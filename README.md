@@ -4,12 +4,12 @@
 
 | 名称          | 类型 | 链接                                                                                                                                                                       | 备注 |
 |-------------|----|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----|
-| Carpet      | 必须 | [MC百科](https://www.mcmod.cn/class/2361.html) &#124; [Modrinth](https://modrinth.com/mod/carpet) &#124; [CurseForge](https://www.curseforge.com/minecraft/mc-mods/carpet) | *  |
-| Fabric API  | 必须 | [MC百科](https://www.mcmod.cn/class/3124.html) &#124; [官方](https://fabricmc.net/)                                                                                          | *  |
+| Carpet      | 必须 | [MC百科](https://www.mcmod.cn/class/2361.html) &#124; [Modrinth](https://modrinth.com/mod/carpet) | -  |
+| Fabric API  | 必须 | [MC百科](https://www.mcmod.cn/class/3124.html) &#124; [官方](https://fabricmc.net/)                                                                                          | - |
 
 ## 版本支持
 
-| 游戏版本   | 开发状态 | 最后支持版本 |  
+| MC版本   | 当前开发状态 | 最后支持版本 |  
 |--------|------|--------|
 | 1.20.1 | 持续更新 | -      |
 | 1.21.1 | 持续更新   | -      |
@@ -25,7 +25,7 @@
 
 ### 挖掘无减速(noMiningSlowDown)
 
-挖掘方块无减速(当玩家处于 流体/蜘蛛网/漂浮状态/水中 时)
+当玩家处于流体/蜘蛛网/漂浮状态/水中时，挖掘方块无减速
 
 - 类型：`布尔值`
 - 默认值：`false`
