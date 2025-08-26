@@ -61,3 +61,6 @@ public abstract class miningNoSlowDown_Mixin extends LivingEntity {
             }
         }
     }
+//#if MC > 12100
+}
+//#endif
