@@ -1,0 +1,38 @@
+{
+	"schemaVersion": 1,
+	"id": "antideath-carpet-addition",
+	"version": "${version}",
+	"name": "Antideath-Carpet-Addition",
+	"description": "A carpet addition provided something useful features.",
+	"authors": [
+		"Antideath"
+	],
+	"contact": {
+		"homepage": "https://github.com/jfglzs/AdCarpetAddition",
+		"sources": "https://github.com/jfglzs/AdCarpetAddition"
+	},
+	"license": "MIT",
+	"icon": "assets/antideath-carpet-addition/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+          "io.jfglzs.ad_carpet_addition.AcaExtentions"
+		],
+		"fabric-datagen": [
+			"io.jfglzs.ad_carpet_addition.AntideathCarpetAdditionDataGenerator"
+		]
+	},
+	"mixins": [
+		"antideath-carpet-addition.mixins.json"
+	],
+    "accessWidener": "aca.accesswidener",
+	"depends": {
+      "fabricloader": "${loader_requirement_version}",
+      "minecraft": "${minecraft_requirement_version}",
+      "fabric": "*",
+      "carpet": "${carpet_requirement_version}"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
