@@ -38,3 +38,17 @@
 - 默认值：`false`
 - 参考选项：`true`，`false`
 - 分类：`ACA`，`SURVIVAL`
+
+### 信标卡顿优化(beaconLagOptimization)
+优化信标逻辑以减小卡顿
+- 类型：`布尔值`
+- 默认值：`false`
+- 参考选项：`true`，`false`
+- 分类：`ACA`，`OPTIMIZATION`
+
+### 展示框永远附着(ItemFrameAlwaysStayAttach)
+展示框会一直附着在方块上(包括空气)
+- 类型：`布尔值`
+- 默认值：`false`
+- 参考选项：`true`，`false`
+- 分类：`ACA`，`OPTIMIZATION`

@@ -3,8 +3,10 @@
   "package": "io.jfglzs.ad_carpet_addition.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "miningNoSlowDown_Mixin",
-    "anvilNeverDamageByFalling_Mixin"
+    "anvilNeverDamageByFalling_Mixin",
+    "beaconLagOptimization_Mixin",
+    "itemFrameAlwaysStayAttached",
+    "miningNoSlowDown_Mixin"
   ],
   "injectors": {
     "defaultRequire": 1

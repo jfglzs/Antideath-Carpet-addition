@@ -23,7 +23,7 @@ import static io.jfglzs.ad_carpet_addition.AcaSetting.noMiningSlowDown;
 public abstract class miningNoSlowDown_Mixin extends LivingEntity {
     @Shadow
     @Final
-    private PlayerInventory inventory;
+    PlayerInventory inventory;
 
     protected miningNoSlowDown_Mixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);

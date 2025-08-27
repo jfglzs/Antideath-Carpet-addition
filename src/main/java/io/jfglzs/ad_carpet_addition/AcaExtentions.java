@@ -13,8 +13,8 @@ public class AcaExtentions implements CarpetExtension,ModInitializer {
     private static SettingsManager antideathSettingManager;
 	public static final String MOD_ID = "antideath-carpet-addition";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-    public static final String mod_version = "1.0";
-    public static final String MOD_NAME = "ACA";
+//    public static final String mod_version = "1.0";
+//    public static final String MOD_NAME = "ACA";
     @Override
 	public void onInitialize() {
 		LOGGER.info("AntiDeath Carpet Addition is loading...");
