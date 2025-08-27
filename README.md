@@ -32,3 +32,9 @@
 - 参考选项：`true`，`false`
 - 分类：`ACA`，`SURVIVAL`
 
+### 铁砧不会因掉落而损坏(anvilNeverDamageByFalling)
+
+- 类型：`布尔值`
+- 默认值：`false`
+- 参考选项：`true`，`false`
+- 分类：`ACA`，`SURVIVAL`
