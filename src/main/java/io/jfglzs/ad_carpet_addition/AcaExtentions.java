@@ -17,7 +17,7 @@ public class AcaExtentions implements CarpetExtension,ModInitializer {
 //    public static final String MOD_NAME = "ACA";
     @Override
 	public void onInitialize() {
-		LOGGER.info("AntiDeath Carpet Addition is loading...");
+		LOGGER.info(MOD_ID + " is loading...");
             CarpetServer.manageExtension(this);
 	}
 
