@@ -16,7 +16,7 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-          "io.jfglzs.ad_carpet_addition.AcaExtentions"
+          "io.jfglzs.ad_carpet_addition.AcaExtension"
 		],
 		"fabric-datagen": [
 			"io.jfglzs.ad_carpet_addition.AntideathCarpetAdditionDataGenerator"

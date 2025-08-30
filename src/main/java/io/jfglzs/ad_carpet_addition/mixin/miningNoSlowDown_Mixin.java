@@ -38,7 +38,6 @@ public abstract class miningNoSlowDown_Mixin extends LivingEntity {
             if (mineSpeed > 1.0F) {
                 mineSpeed += (float) this.getAttributeValue(EntityAttributes.MINING_EFFICIENCY);
             }
-
             if (StatusEffectUtil.hasHaste(this)) {
                 mineSpeed *= 1.0F + (float) (StatusEffectUtil.getHasteAmplifier(this) + 1) * 0.2F;
 
@@ -59,6 +58,6 @@ public abstract class miningNoSlowDown_Mixin extends LivingEntity {
             }
         }
     }
-//#if MC > 12100
+//#if MC > 12001
 }
 //#endif
