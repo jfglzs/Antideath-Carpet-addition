@@ -27,7 +27,7 @@ loom {
     runConfigs.all {
         // to make sure it generates all "Minecraft Client (:subproject_name)" applications
         ideConfigGenerated = true
-        vmArgs '-Dmixin.debug.export=true'
+        vmArgs '-Dmixin.debug.export=false'
         runDir '../../run'
     }
 }
@@ -112,4 +112,22 @@ publishing {
 		// The repositories here will be used for publishing your artifact, not for
 		// retrieving dependencies.
 	}
+}
+
+afterEvaluate {
+
+    configurations.runtimeClasspath.forEach { file ->
+
+        if (file.name.startsWith("sponge-mixin")) {
+
+            tasks.named("runClient", JavaExec) {
+
+                jvmArgs("-javaagent:${file.absolutePath}")
+                jvmArgs("--enable-native-access=ALL-UNNAMED")
+            }
+
+        }
+
+    }
+
 }

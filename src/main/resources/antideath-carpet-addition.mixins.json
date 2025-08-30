@@ -5,12 +5,8 @@
   "mixins": [
     "anvilNeverDamageByFalling_Mixin",
     "beaconLagOptimization_Mixin",
-    "command.EntityPlayerActionPackAccessor",
-    "command.EntityPlayerActionPackAction_Mixin",
-    "command.EntityPlayerActionPackActionTypeAccessor",
     "itemFrameAlwaysStayAttach_Mixin",
-    "miningNoSlowDown_Mixin",
-    "command.PlayerCommand_Mixin"
+    "miningNoSlowDown_Mixin"
   ],
   "injectors": {
     "defaultRequire": 1
