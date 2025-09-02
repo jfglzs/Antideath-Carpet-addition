@@ -15,12 +15,7 @@
 	"icon": "assets/antideath-carpet-addition/icon.png",
 	"environment": "*",
 	"entrypoints": {
-		"main": [
-          "io.jfglzs.ad_carpet_addition.AcaExtension"
-		],
-		"fabric-datagen": [
-			"io.jfglzs.ad_carpet_addition.AntideathCarpetAdditionDataGenerator"
-		]
+		"main": ["io.jfglzs.ad_carpet_addition.AcaExtension"]
 	},
 	"mixins": [
 		"antideath-carpet-addition.mixins.json"

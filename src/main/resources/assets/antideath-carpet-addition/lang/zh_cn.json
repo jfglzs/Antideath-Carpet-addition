@@ -1,0 +1,22 @@
+{
+  "carpet.rule.noMiningSlowDown.desc":"挖掘无减速,当玩家处于 流体 蜘蛛网 挖掘疲劳时挖掘无减速",
+  "carpet.rule.noMiningSlowDown.name": "挖掘无减速",
+
+  "carpet.rule.anvilNeverDamageByFalling.name": "铁砧掉落不损坏",
+  "carpet.rule.anvilNeverDamageByFalling.desc": "启用后铁砧从高处掉落不会损坏。",
+
+  "carpet.rule.beaconLagOptimization.name": "信标性能优化",
+  "carpet.rule.beaconLagOptimization.desc": "启用后减少信标造成的性能消耗。",
+
+  "carpet.rule.ItemFrameAlwaysStayAttach.name": "物品展示框始终保持附着",
+  "carpet.rule.ItemFrameAlwaysStayAttach.desc": "启用后物品展示框始终保持附着",
+
+  "carpet.rule.enableFastOpCommand.name": "快速 OP 指令",
+  "carpet.rule.enableFastOpCommand.desc": "启用后提供更快捷的 OP 指令支持。",
+
+  "carpet.rule.itemDespawnImmediately.name": "物品立即消失",
+  "carpet.rule.itemDespawnImmediately.desc": "启用后掉落的物品会立即消失。",
+
+  "carpet.rule.itemNeverDespawn.name": "物品永不消失",
+  "carpet.rule.itemNeverDespawn.desc": "启用后掉落的物品永远不会消失。"
+}

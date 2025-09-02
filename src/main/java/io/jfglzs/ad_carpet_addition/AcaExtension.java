@@ -7,6 +7,8 @@ import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Map;
+
 
 public class AcaExtension implements CarpetExtension , ModInitializer {
 //    private static SettingsManager antideathSettingManager;
@@ -24,7 +26,10 @@ public class AcaExtension implements CarpetExtension , ModInitializer {
         CarpetServer.settingsManager.parseSettingsClass(AcaSetting.class);
         CarpetServer.settingsManager.registerRuleObserver(((serverCommandSource, rule, s) -> {
         }));
-
     }
 
+    @Override
+    public Map<String, String> canHasTranslations(String lang) {
+        return Rule_Translator.getTranslationFromResourcePath(lang);
+    }
 }
