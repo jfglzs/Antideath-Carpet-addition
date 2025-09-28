@@ -1,23 +1,17 @@
 package io.jfglzs.ad_carpet_addition.command;
 
 import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.shape.VoxelShape;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import static io.jfglzs.ad_carpet_addition.AcaSetting.enableEntitySearchCommand;
-import static io.jfglzs.ad_carpet_addition.AcaSetting.enableFastOpCommand;
-import static net.minecraft.server.command.CommandManager.literal;
 
 public class SearchEntityCommand {
 
