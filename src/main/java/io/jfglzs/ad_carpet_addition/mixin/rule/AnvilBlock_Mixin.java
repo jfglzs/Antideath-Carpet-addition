@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import static io.jfglzs.ad_carpet_addition.AcaSetting.anvilNeverDamageByFalling;
 
 @Mixin(AnvilBlock.class)
-public abstract class anvilBlock_Mixin {
+public abstract class AnvilBlock_Mixin {
 
     @Inject(method = "getLandingState", at = @At("HEAD"), cancellable = true)
     private static void injectGetLandingState(BlockState fallingState, CallbackInfoReturnable<BlockState> cir) {

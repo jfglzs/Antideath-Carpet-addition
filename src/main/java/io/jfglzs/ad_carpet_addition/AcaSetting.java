@@ -24,10 +24,14 @@ public class AcaSetting {
     @Rule(categories = {ACA, COMMAND})
     public static boolean enableFastOpCommand = false;
 
+    @Rule(categories = {ACA, COMMAND})
+    public static boolean enableEntitySearchCommand = false;
+
     @Rule(categories = {ACA, SURVIVAL})
     public static boolean itemDespawnImmediately = false;
 
     @Rule(categories = {ACA, SURVIVAL})
     public static boolean itemNeverDespawn = false;
+
 }
 

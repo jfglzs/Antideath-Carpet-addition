@@ -4,11 +4,11 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "Invoker.command.OpCommandInvoker",
-    "rule.anvilBlock_Mixin",
-    "rule.beaconBlockEntity_Mixin",
-    "rule.itemEntity_Mixin",
-    "rule.itemFrameEntity_Mixin",
-    "rule.playerEntity_Mixin"
+    "rule.AnvilBlock_Mixin",
+    "rule.BeaconBlockEntity_Mixin",
+    "rule.ItemEntity_Mixin",
+    "rule.ItemFrameEntity_Mixin",
+    "rule.PlayerEntity_Mixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -2,11 +2,12 @@ package io.jfglzs.ad_carpet_addition.command;
 
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 
-public class commandRegistry {
+public class CommandRegistry {
 
     public static void registerCommands() {
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
-            fastOpCommand.register(dispatcher);
+            FastOpCommand.register(dispatcher);
+            SearchEntityCommand.registerCommand(dispatcher);
         });
     }
 }

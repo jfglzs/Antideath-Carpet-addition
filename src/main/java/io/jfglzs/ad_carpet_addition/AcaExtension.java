@@ -2,7 +2,7 @@ package io.jfglzs.ad_carpet_addition;
 
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
-import io.jfglzs.ad_carpet_addition.command.commandRegistry;
+import io.jfglzs.ad_carpet_addition.command.CommandRegistry;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +22,7 @@ public class AcaExtension implements CarpetExtension , ModInitializer {
 
     @Override
     public void onGameStarted() {
-        commandRegistry.registerCommands();
+        CommandRegistry.registerCommands();
         CarpetServer.settingsManager.parseSettingsClass(AcaSetting.class);
         CarpetServer.settingsManager.registerRuleObserver(((serverCommandSource, rule, s) -> {
         }));
@@ -30,6 +30,7 @@ public class AcaExtension implements CarpetExtension , ModInitializer {
 
     @Override
     public Map<String, String> canHasTranslations(String lang) {
-        return Rule_Translator.getTranslationFromResourcePath(lang);
+        return RuleTranslator.getTranslationFromResourcePath(lang);
     }
+
 }

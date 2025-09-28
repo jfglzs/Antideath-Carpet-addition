@@ -9,7 +9,11 @@
 
   "carpet.rule.enableFastOpCommand.desc": "When enabled, provides faster OP command support.",
 
+  "carpet.rule.enableEntitySearchCommand.desc": "When enabled, provides faster EntitySearchCommand support.",
+
   "carpet.rule.itemDespawnImmediately.desc": "When enabled, dropped items despawn instantly.",
 
   "carpet.rule.itemNeverDespawn.desc": "When enabled, dropped items will never despawn."
+
+
 }

@@ -11,7 +11,7 @@ import static io.jfglzs.ad_carpet_addition.AcaSetting.itemDespawnImmediately;
 import static io.jfglzs.ad_carpet_addition.AcaSetting.itemNeverDespawn;
 
 @Mixin(ItemEntity.class)
-public abstract class itemEntity_Mixin {
+public abstract class ItemEntity_Mixin {
 
     @Shadow public void setDespawnImmediately(){}
 
@@ -25,7 +25,7 @@ public abstract class itemEntity_Mixin {
     @Inject(method = "tick" , at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ItemEntity;discard()V" , ordinal = 1), cancellable = true)
     public void tick_discard(CallbackInfo ci){
         if (itemNeverDespawn){
-        ci.cancel();
+            ci.cancel();
         }
     }
 }
