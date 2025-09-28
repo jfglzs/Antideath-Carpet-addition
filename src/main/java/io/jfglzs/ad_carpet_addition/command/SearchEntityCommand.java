@@ -32,15 +32,7 @@ public class SearchEntityCommand {
     }
 
     private static int execute(ServerCommandSource source, Collection<? extends Entity> targets) {
-        List<Entity> nearby = new ArrayList<>();
-
-        for(Entity entity : targets) {
-            ServerPlayerEntity playerEntity = source.getPlayer();
-            if (playerEntity == null) return -1;
-            Box box = playerEntity.getBoundingBox().expand(160);
-            sendFeedback(source, entity);
-        }
-
+        for(Entity entity : targets) sendFeedback(source, entity);
         entityList.clear();
         return targets.size();
     }
