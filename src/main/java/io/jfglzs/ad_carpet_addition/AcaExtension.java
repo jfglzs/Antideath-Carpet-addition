@@ -13,7 +13,6 @@ import java.util.Map;
 
 public class AcaExtension implements CarpetExtension , ModInitializer
 {
-//    private static SettingsManager antideathSettingManager;
 	public static final String MOD_ID = "antideath-carpet-addition";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
     @Override
@@ -38,11 +37,4 @@ public class AcaExtension implements CarpetExtension , ModInitializer
     {
         return RuleTranslator.getTranslationFromResourcePath(lang);
     }
-
-    @Override
-    public String version()
-    {
-        return MOD_ID;
-    }
-
 }
