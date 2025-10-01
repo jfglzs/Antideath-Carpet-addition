@@ -19,6 +19,7 @@ _**感谢 @[_OptiJava_](https://github.com/OptiJava) 的指导**_
 | 1.21.4 | 持续更新   | -      |
 | 1.21.5 | 持续更新   | -      |
 | 1.21.7 | 持续更新   | -      |
+| 1.21.8 | 持续更新   | -      |
 
 
 
@@ -76,4 +77,10 @@ _**感谢 @[_OptiJava_](https://github.com/OptiJava) 的指导**_
 - 默认值：`false`
 - 参考选项：`true`，`false`
 - 分类：`ACA`，`COMMAND`
-- 
+
+### 不死图腾扳手(flippinToTemOfUndying)
+实现类似仙人掌扳手的效果（PCA移植功能）
+- 类型：`布尔值`
+- 默认值：`false`
+- 参考选项：`true`，`false`
+- 分类：`ACA`，`SURVIVAL`

@@ -24,7 +24,6 @@
 	"depends": {
       "fabricloader": "${loader_requirement_version}",
       "minecraft": "${minecraft_requirement_version}",
-      "fabric": "*",
       "carpet": "${carpet_requirement_version}"
 	},
 	"suggests": {
