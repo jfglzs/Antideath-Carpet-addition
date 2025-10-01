@@ -3,6 +3,7 @@ package io.jfglzs.ad_carpet_addition;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import io.jfglzs.ad_carpet_addition.command.CommandRegistry;
+import io.jfglzs.ad_carpet_addition.utils.FlipCooldown;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,18 +11,22 @@ import org.slf4j.LoggerFactory;
 import java.util.Map;
 
 
-public class AcaExtension implements CarpetExtension , ModInitializer {
+public class AcaExtension implements CarpetExtension , ModInitializer
+{
 //    private static SettingsManager antideathSettingManager;
 	public static final String MOD_ID = "antideath-carpet-addition";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
     @Override
-	public void onInitialize() {
+	public void onInitialize()
+    {
 		LOGGER.info(MOD_ID + " is loading...");
-            CarpetServer.manageExtension(this);
+        CarpetServer.manageExtension(this);
 	}
 
     @Override
-    public void onGameStarted() {
+    public void onGameStarted()
+    {
+        FlipCooldown.init();
         CommandRegistry.registerCommands();
         CarpetServer.settingsManager.parseSettingsClass(AcaSetting.class);
         CarpetServer.settingsManager.registerRuleObserver(((serverCommandSource, rule, s) -> {
@@ -29,8 +34,15 @@ public class AcaExtension implements CarpetExtension , ModInitializer {
     }
 
     @Override
-    public Map<String, String> canHasTranslations(String lang) {
+    public Map<String, String> canHasTranslations(String lang)
+    {
         return RuleTranslator.getTranslationFromResourcePath(lang);
+    }
+
+    @Override
+    public String version()
+    {
+        return MOD_ID;
     }
 
 }

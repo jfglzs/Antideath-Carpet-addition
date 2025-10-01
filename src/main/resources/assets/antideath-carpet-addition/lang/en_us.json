@@ -11,9 +11,13 @@
 
   "carpet.rule.enableEntitySearchCommand.desc": "When enabled, provides faster EntitySearchCommand support.",
 
+  "carpet.rule.entitySearchCommandEnableXaeroMapSupport.desc": "Provide XaeroMap point Support",
+
   "carpet.rule.itemDespawnImmediately.desc": "When enabled, dropped items despawn instantly.",
 
-  "carpet.rule.itemNeverDespawn.desc": "When enabled, dropped items will never despawn."
+  "carpet.rule.itemNeverDespawn.desc": "When enabled, dropped items will never despawn.",
+
+  "carpet.rule.flippinToTemOfUndying.desc": "Enable Undying of totem flip"
 
 
 }

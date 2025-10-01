@@ -17,11 +17,16 @@
   "carpet.rule.enableFastOpCommand.name": "启用实体查找命令（EntitySearch）",
   "carpet.rule.enableFastOpCommand.desc": "启用后提供更快捷的 EntitySearch 指令支持。",
 
+  "carpet.rule.enableFastOpCommand.name": "启用实体查找命令（EntitySearch）Xearo小地图支持",
+  "carpet.rule.enableFastOpCommand.desc": "启用后提供更快捷的 EntitySearch 小地图路径点支持。",
+
   "carpet.rule.itemDespawnImmediately.name": "物品立即消失",
   "carpet.rule.itemDespawnImmediately.desc": "启用后掉落的物品会立即消失。",
 
   "carpet.rule.itemNeverDespawn.name": "物品永不消失",
-  "carpet.rule.itemNeverDespawn.desc": "启用后掉落的物品永远不会消失。"
+  "carpet.rule.itemNeverDespawn.desc": "启用后掉落的物品永远不会消失。",
 
+  "carpet.rule.flippinToTemOfUndying.name": "启用不死图腾扳手",
+  "carpet.rule.flippinToTemOfUndying.desc": ""
 
 }

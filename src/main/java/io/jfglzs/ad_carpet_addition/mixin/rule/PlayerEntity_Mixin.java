@@ -7,8 +7,11 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectUtil;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.attribute.EntityAttributes;
+//#if MC == 12001
+//$$ import net.minecraft.enchantment.EnchantmentHelper;
+//$$ import net.minecraft.entity.attribute.EntityAttributes;
+//$$ import net.minecraft.item.ItemStack;
+//#endif
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,12 +23,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import static io.jfglzs.ad_carpet_addition.AcaSetting.noMiningSlowDown;
 
 @Mixin(PlayerEntity.class)
-public abstract class PlayerEntity_Mixin extends LivingEntity {
+public abstract class PlayerEntity_Mixin extends LivingEntity
+{
     @Shadow
     @Final
     PlayerInventory inventory;
 
-    protected PlayerEntity_Mixin(EntityType<? extends LivingEntity> entityType, World world) {
+    protected PlayerEntity_Mixin(EntityType<? extends LivingEntity> entityType, World world)
+    {
         super(entityType, world);
     }
 
@@ -33,24 +38,30 @@ public abstract class PlayerEntity_Mixin extends LivingEntity {
 
     public void getBlockBreakingSpeed(BlockState block, CallbackInfoReturnable<Float> cir) {
         float mineSpeed = this.inventory.getSelectedStack().getMiningSpeedMultiplier(block);
-        if (noMiningSlowDown) {
+        if (noMiningSlowDown)
+        {
             //#if MC > 12001
-            if (mineSpeed > 1.0F) {
+            if (mineSpeed > 1.0F)
+            {
                 mineSpeed += (float) this.getAttributeValue(EntityAttributes.MINING_EFFICIENCY);
             }
-            if (StatusEffectUtil.hasHaste(this)) {
+            if (StatusEffectUtil.hasHaste(this))
+            {
                 mineSpeed *= 1.0F + (float) (StatusEffectUtil.getHasteAmplifier(this) + 1) * 0.2F;
 
                 cir.setReturnValue(mineSpeed);
                 //#else
-                //$$            if (mineSpeed > 1.0F) {
+                //$$            if (mineSpeed > 1.0F)
+                //$$            {
                 //$$                int i = EnchantmentHelper.getEfficiency(this);
                 //$$                ItemStack itemStack = this.getMainHandStack();
-                //$$              if (i > 0 && !itemStack.isEmpty()) {
+                //$$              if (i > 0 && !itemStack.isEmpty())
+                //$$            {
                 //$$                    mineSpeed += (float)(i * i + 1);
                 //$$                }
                 //$$            }
-                //$$            if (StatusEffectUtil.hasHaste(this)) {
+                //$$            if (StatusEffectUtil.hasHaste(this))
+                //$$            {
                 //$$                mineSpeed *= 1.0F + (float)(StatusEffectUtil.getHasteAmplifier(this) + 1) * 0.2F;
                 //$$            }
                 //$$   cir.setReturnValue(mineSpeed);
