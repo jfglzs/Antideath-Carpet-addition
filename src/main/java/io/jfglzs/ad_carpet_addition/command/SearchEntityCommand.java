@@ -7,34 +7,30 @@ import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import static io.jfglzs.ad_carpet_addition.AcaSetting.enableEntitySearchCommand;
 import static io.jfglzs.ad_carpet_addition.AcaSetting.entitySearchCommandEnableXaeroMapSupport;
 
-public class SearchEntityCommand {
-
-
-
+public class SearchEntityCommand
+{
     public static void registerCommand(CommandDispatcher<ServerCommandSource> dispatcher)
     {
         dispatcher.register(CommandManager.literal("entitysearch")
-                     .requires((source) -> carpet.utils.CommandHelper.canUseCommand(source, enableEntitySearchCommand))
-                        .then(CommandManager.argument("targets", EntityArgumentType.entities())
-                            .executes((context) -> execute(context.getSource(), EntityArgumentType.getEntities(context, "targets")))));
+                .requires((source) -> carpet.utils.CommandHelper.canUseCommand(source, enableEntitySearchCommand))
+                    .then(CommandManager.argument("targets", EntityArgumentType.entities())
+                        .executes((context) -> execute(context.getSource(), EntityArgumentType.getEntities(context, "targets")))));
     }
 
     private static int execute(ServerCommandSource source, Collection<? extends Entity> targets)
     {
-        for(Entity entity : targets) sendFeedback(source, entity , entitySearchCommandEnableXaeroMapSupport);
+        for(Entity entity : targets) sendFeedback(source, entity);
         return targets.size();
     }
 
-    private static void sendFeedback(ServerCommandSource source, Entity entity , boolean xaeroMapSupport)
+    private static void sendFeedback(ServerCommandSource source, Entity entity)
     {
-        if (xaeroMapSupport)
+        if (entitySearchCommandEnableXaeroMapSupport)
         {
             source.sendFeedback(() -> Text.of(String.format("xaero-waypoint:%s:1:%d:%d:%d:2:false:0:External", getEntityName(entity), (int) entity.getX(), (int) entity.getY(), (int) entity.getZ())),true);
         }
@@ -49,6 +45,4 @@ public class SearchEntityCommand {
         String entityInfo = String.valueOf(entity);
         return entityInfo.split("Entity")[0];
     }
-
-
 }

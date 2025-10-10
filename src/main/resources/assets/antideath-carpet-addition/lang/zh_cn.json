@@ -1,5 +1,5 @@
 {
-  "carpet.rule.noMiningSlowDown.desc":"挖掘无减速,当玩家处于 流体 蜘蛛网 挖掘疲劳时挖掘无减速",
+  "carpet.rule.noMiningSlowDown.desc":"挖掘无减速,当玩家处于,流体,蜘蛛网,挖掘疲劳时挖掘无减速",
   "carpet.rule.noMiningSlowDown.name": "挖掘无减速",
 
   "carpet.rule.anvilNeverDamageByFalling.name": "铁砧掉落不损坏",
@@ -11,22 +11,27 @@
   "carpet.rule.ItemFrameAlwaysStayAttach.name": "物品展示框始终保持附着",
   "carpet.rule.ItemFrameAlwaysStayAttach.desc": "启用后物品展示框始终保持附着",
 
-  "carpet.rule.enableFastOpCommand.name": "快速 OP 指令",
-  "carpet.rule.enableFastOpCommand.desc": "启用后提供更快捷的 OP 指令支持。",
+  "carpet.rule.enableFastOpCommand.name": "快速OP指令",
+  "carpet.rule.enableFastOpCommand.desc": "启用后提供更快捷的OP指令支持",
 
-  "carpet.rule.enableFastOpCommand.name": "启用实体查找命令（EntitySearch）",
-  "carpet.rule.enableFastOpCommand.desc": "启用后提供更快捷的 EntitySearch 指令支持。",
+  "carpet.rule.enableEntitySearchCommand.name": "启用实体查找命令(EntitySearch)",
+  "carpet.rule.enableEntitySearchCommand.desc": "启用后提供更快捷的EntitySearch指令支持。",
 
-  "carpet.rule.enableFastOpCommand.name": "启用实体查找命令（EntitySearch）Xearo小地图支持",
-  "carpet.rule.enableFastOpCommand.desc": "启用后提供更快捷的 EntitySearch 小地图路径点支持。",
+  "carpet.rule.entitySearchCommandEnableXaeroMapSupport.name": "启用实体查找命令(EntitySearch)Xearo小地图支持",
+  "carpet.rule.entitySearchCommandEnableXaeroMapSupport.desc": "启用后提供更快捷的EntitySearch小地图路径点支持",
 
   "carpet.rule.itemDespawnImmediately.name": "物品立即消失",
-  "carpet.rule.itemDespawnImmediately.desc": "启用后掉落的物品会立即消失。",
+  "carpet.rule.itemDespawnImmediately.desc": "启用后掉落的物品会立即消失",
 
   "carpet.rule.itemNeverDespawn.name": "物品永不消失",
-  "carpet.rule.itemNeverDespawn.desc": "启用后掉落的物品永远不会消失。",
+  "carpet.rule.itemNeverDespawn.desc": "启用后掉落的物品永远不会消失",
 
   "carpet.rule.flippinToTemOfUndying.name": "启用不死图腾扳手",
-  "carpet.rule.flippinToTemOfUndying.desc": ""
+  "carpet.rule.flippinToTemOfUndying.desc": "PCA移植功能",
 
+  "carpet.rule.enableSpecTPCommand.name":"启用旁观者快速TP命令(sp)",
+  "carpet.rule.enableSpecTPCommand.desc":"sp player",
+
+  "carpet.rule.endermanNeverGetAngryByPlayer.name":"末影人不会被玩家激怒",
+  "carpet.rule.endermanNeverGetAngryByPlayer.desc":"末影人不会被玩家激怒"
 }

@@ -10,11 +10,8 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 import java.util.Collection;
 
 @Mixin(OpCommand.class)
-public interface OpCommandInvoker
+public interface OpCommand_Invoker
 {
     @Invoker("op")
-    static int invokeOp(ServerCommandSource source, Collection<GameProfile> targets) throws CommandSyntaxException
-    {
-        return 0;
-    }
+    static int invokeOp(ServerCommandSource source, Collection<GameProfile> targets) throws CommandSyntaxException {return 0;}
 }

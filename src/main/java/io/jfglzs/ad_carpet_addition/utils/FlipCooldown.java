@@ -23,10 +23,4 @@ public class FlipCooldown
     {
         cooldownMap.put(player, cooldown);
     }
-
-    static public void removePlayer(PlayerEntity player)
-    {
-        cooldownMap.remove(player);
-    }
-
 }

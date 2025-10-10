@@ -3,10 +3,13 @@
   "package": "io.jfglzs.ad_carpet_addition.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "Invoker.command.OpCommandInvoker",
+    "Invoker.command.OpCommand_Invoker",
+    "Invoker.command.TelePortCommand_Invoker",
+    "Invoker.logger.HUDController_Mixin",
     "rule.AnvilBlock_Mixin",
     "rule.BeaconBlockEntity_Mixin",
     "rule.BlockRotator_Mixin",
+    "rule.EndermanEntity_Mixin",
     "rule.ItemEntity_Mixin",
     "rule.ItemFrameEntity_Mixin",
     "rule.PlayerEntity_Mixin"

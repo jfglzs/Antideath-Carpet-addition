@@ -21,10 +21,6 @@ _**感谢 @[_OptiJava_](https://github.com/OptiJava) 的指导**_
 | 1.21.7 | 持续更新   | -      |
 | 1.21.8 | 持续更新   | -      |
 
-
-
-
-
 ## ACA的所有规则
 
 ### 挖掘无减速(noMiningSlowDown)
@@ -80,6 +76,35 @@ _**感谢 @[_OptiJava_](https://github.com/OptiJava) 的指导**_
 
 ### 不死图腾扳手(flippinToTemOfUndying)
 实现类似仙人掌扳手的效果（PCA移植功能）
+- 类型：`布尔值`
+- 默认值：`false`
+- 参考选项：`true`，`false`
+- 分类：`ACA`，`SURVIVAL`
+
+### 实体搜索命令(enableEntitySearchCommand)
+可用于搜索实体（支持目标选择器）
+- 类型：`布尔值`
+- 默认值：`false`
+- 参考选项：`true`，`false`
+- 分类：`ACA`，`SURVIVAL`
+
+### 实体搜索命令启用小地图支持(entitySearchCommandEnableXaeroMapSupport)
+实体搜索命令启用Xaero小地图支持
+- 类型：`布尔值`
+- 默认值：`false`
+- 参考选项：`true`，`false`
+- 分类：`ACA`，`SURVIVAL`
+
+### 旁观者快捷TP命令(enableSpecTPCommand)
+当玩家处于旁观者模式时，可使用此命令进行快速tp\
+**格式 /sp 玩家**
+- 类型：`布尔值`
+- 默认值：`false`
+- 参考选项：`true`，`false`
+- 分类：`ACA`，`SURVIVAL`
+
+### 末影人不会被玩家激怒(endermanNeverGetAngryByPlayer)
+末影人不会被玩家激怒
 - 类型：`布尔值`
 - 默认值：`false`
 - 参考选项：`true`，`false`

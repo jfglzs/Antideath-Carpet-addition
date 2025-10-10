@@ -5,16 +5,17 @@ import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 
 import java.util.Collections;
+import java.util.Objects;
 
 import static io.jfglzs.ad_carpet_addition.AcaSetting.enableFastOpCommand;
-import static io.jfglzs.ad_carpet_addition.mixin.Invoker.command.OpCommandInvoker.invokeOp;
+import static io.jfglzs.ad_carpet_addition.mixin.Invoker.command.OpCommand_Invoker.invokeOp;
 
 public class FastOpCommand
 {
-    public static void register(CommandDispatcher<ServerCommandSource> dispatcher)
+    public static void registerCommand(CommandDispatcher<ServerCommandSource> dispatcher)
     {
         dispatcher.register(CommandManager.literal("fast_op")
-                .requires((source) -> carpet.utils.CommandHelper.canUseCommand(source, enableFastOpCommand))
-                .executes(context -> invokeOp(context.getSource(), Collections.singleton(context.getSource().getPlayer().getGameProfile()))));
+                    .requires((source) -> carpet.utils.CommandHelper.canUseCommand(source, enableFastOpCommand))
+                        .executes(context -> invokeOp(context.getSource(), Collections.singleton(Objects.requireNonNull(context.getSource().getPlayer()).getGameProfile()))));
     }
 }

@@ -16,7 +16,8 @@ public abstract class AnvilBlock_Mixin
     @Inject(method = "getLandingState", at = @At("HEAD"), cancellable = true)
     private static void injectGetLandingState(BlockState fallingState, CallbackInfoReturnable<BlockState> cir)
     {
-        if (anvilNeverDamageByFalling){
+        if (anvilNeverDamageByFalling)
+        {
             cir.setReturnValue(fallingState);
         }
     }

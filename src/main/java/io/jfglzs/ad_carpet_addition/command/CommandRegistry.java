@@ -12,8 +12,9 @@ public class CommandRegistry
                 registryAccess,
                 environment) ->
         {
-            FastOpCommand.register(dispatcher);
+            FastOpCommand.registerCommand(dispatcher);
             SearchEntityCommand.registerCommand(dispatcher);
+            SpecTeleportCommand.registerCommand(dispatcher);
         });
     }
 }
