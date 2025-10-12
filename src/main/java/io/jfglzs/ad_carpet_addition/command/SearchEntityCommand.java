@@ -17,9 +17,8 @@ public class SearchEntityCommand
     public static void registerCommand(CommandDispatcher<ServerCommandSource> dispatcher)
     {
         dispatcher.register(CommandManager.literal("entitysearch")
-                .requires((source) -> carpet.utils.CommandHelper.canUseCommand(source, enableEntitySearchCommand))
-                    .then(CommandManager.argument("targets", EntityArgumentType.entities())
-                        .executes((context) -> execute(context.getSource(), EntityArgumentType.getEntities(context, "targets")))));
+                      .requires((source) -> carpet.utils.CommandHelper.canUseCommand(source, enableEntitySearchCommand))
+                        .then(CommandManager.argument("targets", EntityArgumentType.entities()).executes((context) -> execute(context.getSource(), EntityArgumentType.getEntities(context, "targets")))));
     }
 
     private static int execute(ServerCommandSource source, Collection<? extends Entity> targets)

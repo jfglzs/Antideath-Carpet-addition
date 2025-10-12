@@ -4,12 +4,12 @@ import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import io.jfglzs.ad_carpet_addition.command.CommandRegistry;
 import io.jfglzs.ad_carpet_addition.logger.Loggers;
+import io.jfglzs.ad_carpet_addition.utils.ConfigUtils;
 import io.jfglzs.ad_carpet_addition.utils.FlipCooldown;
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.server.MinecraftServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import oshi.SystemInfo;
-import oshi.hardware.HardwareAbstractionLayer;
 
 import java.util.Map;
 
@@ -24,6 +24,8 @@ public class AcaExtension implements CarpetExtension , ModInitializer
     {
 		LOGGER.info(MOD_ID + " is loading...");
         CarpetServer.manageExtension(this);
+        if (!ConfigUtils.init()) LOGGER.error("Config Initialize Failed");
+        ConfigUtils.loadConfigFile();
     }
 
     @Override
@@ -37,16 +39,15 @@ public class AcaExtension implements CarpetExtension , ModInitializer
     }
 
     @Override
+    public void onServerClosed(MinecraftServer server)
+    {
+        ConfigUtils.saveConfig();
+    }
+
+    @Override
     public Map<String, String> canHasTranslations(String lang)
     {
         return RuleTranslator.getTranslationFromResourcePath(lang);
-    }
-
-    public static void getSensor()
-    {
-        SystemInfo systemInfo = new SystemInfo();
-        HardwareAbstractionLayer hardware = systemInfo.getHardware();
-        System.out.println(hardware.getSensors().getCpuVoltage());
     }
 
     @Override

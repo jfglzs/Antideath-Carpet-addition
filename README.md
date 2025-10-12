@@ -103,6 +103,38 @@ _**感谢 @[_OptiJava_](https://github.com/OptiJava) 的指导**_
 - 参考选项：`true`，`false`
 - 分类：`ACA`，`SURVIVAL`
 
+### 启用命令拦截器(enableCommandPreventer)
+可以拦截玩家执行的指令\
+**命令 /preventcmd**
+- 类型：`布尔值`
+- 默认值：`false`
+- 参考选项：`true`，`false`
+- 分类：`ACA`，`COMMAND`
+
+### 启用命令拦截器白名单(enableCommandPreventerWhiteList)
+**需要开启命令拦截器**\
+**格式 /preventcmd whitelist (list,add,remove) 命令**
+- 类型：`布尔值`
+- 默认值：`false`
+- 参考选项：`true`，`false`
+- 分类：`ACA`，`COMMAND`
+
+### 启用命令拦截器黑名单(enableCommandPreventerBlackList)
+**需要开启命令拦截器**\
+**格式 /preventcmd blacklist (list,add,remove) 命令**
+- 类型：`布尔值`
+- 默认值：`false`
+- 参考选项：`true`，`false`
+- 分类：`ACA`，`COMMAND`
+
+### 启用命令拦截器前缀(enableCommandPreventerPrefix)
+**需要开启命令拦截器**\
+**格式 /preventcmd prefix (list,add,remove) 命令**
+- 类型：`布尔值`
+- 默认值：`false`
+- 参考选项：`true`，`false`
+- 分类：`ACA`，`COMMAND`
+
 ### 末影人不会被玩家激怒(endermanNeverGetAngryByPlayer)
 末影人不会被玩家激怒
 - 类型：`布尔值`

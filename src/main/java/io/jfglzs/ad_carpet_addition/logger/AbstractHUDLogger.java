@@ -5,12 +5,12 @@ import net.minecraft.server.MinecraftServer;
 
 import java.lang.reflect.Field;
 
-public class AbstractHUDLogger extends HUDLogger
+public abstract class AbstractHUDLogger extends HUDLogger
 {
     protected AbstractHUDLogger(Field acceleratorField, String logName, String def, String[] options, boolean strictOptions)
     {
         super(acceleratorField, logName, def, options, strictOptions);
     }
 
-    public void updateHUD(MinecraftServer server) {}
+    public abstract void updateHUD(MinecraftServer server);
 }

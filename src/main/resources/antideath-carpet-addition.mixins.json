@@ -9,6 +9,7 @@
     "rule.AnvilBlock_Mixin",
     "rule.BeaconBlockEntity_Mixin",
     "rule.BlockRotator_Mixin",
+    "rule.CommandManager_Mixin",
     "rule.EndermanEntity_Mixin",
     "rule.ItemEntity_Mixin",
     "rule.ItemFrameEntity_Mixin",
@@ -19,5 +20,5 @@
   },
   "overwrites": {
     "requireAnnotations": true
-	}
+  }
 }

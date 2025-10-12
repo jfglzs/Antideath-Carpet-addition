@@ -21,5 +21,13 @@
 
   "carpet.rule.enableSpecTPCommand.desc": "Use 'sp player' to quickly teleport in spectator mode.",
 
+  "carpet.rule.enableCommandPreventer.desc": "Command : /preventcmd",
+
+  "carpet.rule.enableCommandPreventerWhiteList.desc": " ",
+
+  "carpet.rule.enableCommandPreventerBlackList.desc": " ",
+
+  "carpet.rule.enableCommandPreventerPrefix.desc": " ",
+
   "carpet.rule.endermanNeverGetAngryByPlayer.desc": "When enabled, Endermen will never become angry at players."
 }

@@ -15,6 +15,7 @@ public class CommandRegistry
             FastOpCommand.registerCommand(dispatcher);
             SearchEntityCommand.registerCommand(dispatcher);
             SpecTeleportCommand.registerCommand(dispatcher);
+            PreventCommand.registerCommand(dispatcher);
         });
     }
 }
