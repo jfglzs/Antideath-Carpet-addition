@@ -16,6 +16,7 @@ public class CommandRegistry
             SearchEntityCommand.registerCommand(dispatcher);
             SpecTeleportCommand.registerCommand(dispatcher);
             PreventCommand.registerCommand(dispatcher);
-        });
+        }
+        );
     }
 }

@@ -19,7 +19,10 @@ public abstract class ItemEntity_Mixin
     @Shadow
     public abstract void setDespawnImmediately();
 
-    @Inject(method = "tick",at = @At("HEAD"))
+    @Inject(
+            method = "tick",
+            at = @At("HEAD")
+    )
     public void tick(CallbackInfo ci)
     {
         if(itemDespawnImmediately)

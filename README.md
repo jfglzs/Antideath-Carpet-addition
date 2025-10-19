@@ -113,7 +113,11 @@ _**感谢 @[_OptiJava_](https://github.com/OptiJava) 的指导**_
 
 ### 启用命令拦截器白名单(enableCommandPreventerWhiteList)
 **需要开启命令拦截器**\
-**格式 /preventcmd whitelist (list,add,remove) 命令**
+**格式 /preventcmd whitelist (list,add,remove) 命令**\
+**list 列出已添加的命令列表**\
+**add xxx 添加命令**\
+**add xxx 移除命令**
+
 - 类型：`布尔值`
 - 默认值：`false`
 - 参考选项：`true`，`false`
@@ -121,7 +125,10 @@ _**感谢 @[_OptiJava_](https://github.com/OptiJava) 的指导**_
 
 ### 启用命令拦截器黑名单(enableCommandPreventerBlackList)
 **需要开启命令拦截器**\
-**格式 /preventcmd blacklist (list,add,remove) 命令**
+**格式 /preventcmd whitelist (list,add,remove) 命令**\
+**list 列出已添加的命令列表**\
+**add xxx 添加命令**\
+**add xxx 移除命令**
 - 类型：`布尔值`
 - 默认值：`false`
 - 参考选项：`true`，`false`
@@ -129,7 +136,10 @@ _**感谢 @[_OptiJava_](https://github.com/OptiJava) 的指导**_
 
 ### 启用命令拦截器前缀(enableCommandPreventerPrefix)
 **需要开启命令拦截器**\
-**格式 /preventcmd prefix (list,add,remove) 命令**
+**格式 /preventcmd whitelist (list,add,remove) 命令**\
+**list 列出已添加的命令列表**\
+**add xxx 添加命令**\
+**add xxx 移除命令**
 - 类型：`布尔值`
 - 默认值：`false`
 - 参考选项：`true`，`false`

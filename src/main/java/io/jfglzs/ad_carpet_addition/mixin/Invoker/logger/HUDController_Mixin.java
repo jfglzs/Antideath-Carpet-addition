@@ -14,8 +14,14 @@ import java.util.List;
 @Mixin(HUDController.class)
 public abstract class HUDController_Mixin
 {
-    @Inject(method = "update_hud", at = @At(value = "INVOKE", target = "Ljava/util/Map;keySet()Ljava/util/Set;"), remap = false)
-    private static void injectUpdateHUD(MinecraftServer server, List<ServerPlayerEntity> force, CallbackInfo ci)
+    @Inject(
+            method = "update_hud",
+            at = @At(value = "INVOKE",
+                    target = "Ljava/util/Map;keySet()Ljava/util/Set;"
+            ),
+            remap = false
+    )
+    private static void updateHUDInject(MinecraftServer server, List<ServerPlayerEntity> force, CallbackInfo ci)
     {
         CpuLogger.INSTANCE.updateHUD(server);
     }

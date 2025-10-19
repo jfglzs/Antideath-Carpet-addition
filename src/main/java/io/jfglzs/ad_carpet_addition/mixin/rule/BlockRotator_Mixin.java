@@ -21,7 +21,11 @@ import static io.jfglzs.ad_carpet_addition.AcaSetting.flippinToTemOfUndying;
 @Mixin(BlockRotator.class)
 public class BlockRotator_Mixin
 {
-    @Inject(method = "flippinEligibility", at = @At("HEAD"), cancellable = true)
+    @Inject(
+            method = "flippinEligibility",
+            at = @At("HEAD"),
+            cancellable = true
+    )
     private static void flippinEligibilityInject(Entity entity, CallbackInfoReturnable<Boolean> cir)
     {
         if (flippinToTemOfUndying && entity instanceof PlayerEntity p)

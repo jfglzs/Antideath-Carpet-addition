@@ -12,7 +12,11 @@ import static io.jfglzs.ad_carpet_addition.AcaSetting.ItemFrameAlwaysStayAttach;
 @Mixin(ItemFrameEntity.class)
 public class ItemFrameEntity_Mixin
 {
-    @Inject(method = "canStayAttached" , at = @At("HEAD"), cancellable = true)
+    @Inject(
+            method = "canStayAttached" ,
+            at = @At("HEAD"),
+            cancellable = true
+    )
     private void injectCanStayAttached(CallbackInfoReturnable<Boolean> cir)
     {
         if (ItemFrameAlwaysStayAttach){

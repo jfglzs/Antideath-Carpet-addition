@@ -1,6 +1,7 @@
 package io.jfglzs.ad_carpet_addition.command;
 
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.command.CommandManager;
@@ -11,19 +12,27 @@ import java.util.Collection;
 
 import static io.jfglzs.ad_carpet_addition.AcaSetting.enableEntitySearchCommand;
 import static io.jfglzs.ad_carpet_addition.AcaSetting.entitySearchCommandEnableXaeroMapSupport;
+import static net.minecraft.server.command.CommandManager.literal;
 
 public class SearchEntityCommand
 {
     public static void registerCommand(CommandDispatcher<ServerCommandSource> dispatcher)
     {
-        dispatcher.register(CommandManager.literal("entitysearch")
+        LiteralArgumentBuilder<ServerCommandSource> argument = literal("entitysearch")
                       .requires((source) -> carpet.utils.CommandHelper.canUseCommand(source, enableEntitySearchCommand))
-                        .then(CommandManager.argument("targets", EntityArgumentType.entities()).executes((context) -> execute(context.getSource(), EntityArgumentType.getEntities(context, "targets")))));
+                        .then(CommandManager.argument("targets", EntityArgumentType.entities())
+                            .executes((context) ->
+                                execute(
+                                    context.getSource(), EntityArgumentType.getEntities(context, "targets")
+                                )
+                            )
+                        );
+        dispatcher.register(argument);
     }
 
     private static int execute(ServerCommandSource source, Collection<? extends Entity> targets)
     {
-        for(Entity entity : targets) sendFeedback(source, entity);
+        targets.forEach((entity -> sendFeedback(source,entity)));
         return targets.size();
     }
 
@@ -41,7 +50,6 @@ public class SearchEntityCommand
 
     private static String getEntityName(Entity entity)
     {
-        String entityInfo = String.valueOf(entity);
-        return entityInfo.split("Entity")[0];
+        return String.valueOf(entity).split("Entity")[0];
     }
 }

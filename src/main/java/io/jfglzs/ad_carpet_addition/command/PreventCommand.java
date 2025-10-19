@@ -75,7 +75,7 @@ public class PreventCommand
     {
         String cmd = StringArgumentType.getString(context,"cmd");
         ConfigUtils.addToConfig(cmd,3);
-        context.getSource().sendFeedback(() -> Text.of("added " + cmd),false);
+        context.getSource().sendFeedback(() -> Text.of("added " + cmd + " to prefixlist"),false);
         return 0;
     }
 
@@ -83,7 +83,7 @@ public class PreventCommand
     {
         String cmd = StringArgumentType.getString(context,"cmd");
         ConfigUtils.removeConfig(cmd,3);
-        context.getSource().sendFeedback(() -> Text.of("removed " + cmd),false);
+        context.getSource().sendFeedback(() -> Text.of("removed " + cmd + " from prefixlist"),false);
         return 0;
     }
 
@@ -97,7 +97,7 @@ public class PreventCommand
     {
         String cmd = StringArgumentType.getString(context,"cmd");
         ConfigUtils.addToConfig(cmd,2);
-        context.getSource().sendFeedback(() -> Text.of("added " + cmd),false);
+        context.getSource().sendFeedback(() -> Text.of("added " + cmd+ " to blacklist"),false);
         return 0;
     }
 
@@ -105,7 +105,7 @@ public class PreventCommand
     {
         String cmd = StringArgumentType.getString(context,"cmd");
         ConfigUtils.removeConfig(cmd,2);
-        context.getSource().sendFeedback(() -> Text.of("removed " + cmd),false);
+        context.getSource().sendFeedback(() -> Text.of("removed " + cmd + " from whitelist"),false);
         return 0;
     }
 
@@ -119,7 +119,7 @@ public class PreventCommand
     {
         String cmd = StringArgumentType.getString(context,"cmd");
         ConfigUtils.addToConfig(cmd,1);
-        context.getSource().sendFeedback(() -> Text.of("added " + cmd),false);
+        context.getSource().sendFeedback(() -> Text.of("added " + cmd + " to whitelist"),false);
         return 0;
     }
 
@@ -127,7 +127,7 @@ public class PreventCommand
     {
         String cmd = StringArgumentType.getString(context,"cmd");
         ConfigUtils.removeConfig(cmd,1);
-        context.getSource().sendFeedback(() -> Text.of("removed " + cmd),false);
+        context.getSource().sendFeedback(() -> Text.of("removed " + cmd + " from whitelist"),false);
         return 0;
     }
 
@@ -140,7 +140,7 @@ public class PreventCommand
     private static int reload(CommandContext<ServerCommandSource> context)
     {
         ConfigUtils.loadConfigFile();
-        context.getSource().sendFeedback(() -> Text.of(String.valueOf("reloaded")),false);
+        context.getSource().sendFeedback(() -> Text.of("Config reloaded"),false);
         return 0;
     }
 }

@@ -12,7 +12,11 @@ import static io.jfglzs.ad_carpet_addition.AcaSetting.endermanNeverGetAngryByPla
 @Mixin(EndermanEntity.class)
 public class EndermanEntity_Mixin
 {
-    @Inject(method = "isPlayerStaring",at = @At("HEAD"), cancellable = true)
+    @Inject(
+            method = "isPlayerStaring",
+            at = @At("HEAD"),
+            cancellable = true
+    )
     void setAngerTimeInject(PlayerEntity player, CallbackInfoReturnable<Boolean> cir)
     {
         if (endermanNeverGetAngryByPlayer) cir.setReturnValue(false);

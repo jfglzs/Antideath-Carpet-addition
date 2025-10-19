@@ -25,15 +25,18 @@ import static io.jfglzs.ad_carpet_addition.AcaSetting.noMiningSlowDown;
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntity_Mixin extends LivingEntity
 {
-    @Shadow
-    @Final
-    PlayerInventory inventory;
+    @Shadow @Final PlayerInventory inventory;
 
-    protected PlayerEntity_Mixin(EntityType<? extends LivingEntity> entityType, World world) {
+    protected PlayerEntity_Mixin(EntityType<? extends LivingEntity> entityType, World world)
+    {
         super(entityType, world);
     }
 
-    @Inject(method = "getBlockBreakingSpeed", at = @At("HEAD"), cancellable = true)
+    @Inject(
+            method = "getBlockBreakingSpeed",
+            at = @At("HEAD"),
+            cancellable = true
+    )
 
     public void getBlockBreakingSpeed(BlockState block, CallbackInfoReturnable<Float> cir)
     {

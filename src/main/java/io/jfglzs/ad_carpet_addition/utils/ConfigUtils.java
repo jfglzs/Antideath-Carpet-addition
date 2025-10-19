@@ -18,7 +18,6 @@ public class ConfigUtils
     public static final String File_NAME = "antideath-carpet-addition.json";
     public static final Gson gson = new Gson();
 
-
     public static String load()
     {
         try

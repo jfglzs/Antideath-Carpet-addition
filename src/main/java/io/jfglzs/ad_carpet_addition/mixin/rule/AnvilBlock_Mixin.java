@@ -13,7 +13,11 @@ import static io.jfglzs.ad_carpet_addition.AcaSetting.anvilNeverDamageByFalling;
 @Mixin(AnvilBlock.class)
 public abstract class AnvilBlock_Mixin
 {
-    @Inject(method = "getLandingState", at = @At("HEAD"), cancellable = true)
+    @Inject(
+            method = "getLandingState",
+            at = @At("HEAD"),
+            cancellable = true
+    )
     private static void injectGetLandingState(BlockState fallingState, CallbackInfoReturnable<BlockState> cir)
     {
         if (anvilNeverDamageByFalling)

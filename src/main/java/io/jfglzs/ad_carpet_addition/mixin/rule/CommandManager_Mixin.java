@@ -13,40 +13,32 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(CommandManager.class)
 public class CommandManager_Mixin
 {
-    @Inject(method = "execute",at = @At("HEAD"), cancellable = true)
+    @Inject(
+            method = "execute",
+            at = @At("HEAD"),
+            cancellable = true
+    )
     public void executeInject(ParseResults<ServerCommandSource> parseResults, String command, CallbackInfo ci)
     {
         String message = "Prevented Command: {}";
 
         if (AcaSetting.enableCommandPreventer)
         {
-            if (AcaSetting.enableCommandPreventerPrefix)
+            if (AcaSetting.enableCommandPreventerPrefix && AcaSetting.config.CommandPreventPrefixList.stream().anyMatch(command::startsWith))
             {
-                for (String prefix : AcaSetting.config.CommandPreventPrefixList)
-                {
-                    if (command.startsWith(prefix))
-                    {
-                        AcaExtension.LOGGER.info(message, command);
-                        ci.cancel();
-                    }
-                }
+                AcaExtension.LOGGER.info(message, command);
+                ci.cancel();
             }
 
-            if (AcaSetting.enableCommandPreventerWhiteList)
+            if (AcaSetting.enableCommandPreventerWhiteList && AcaSetting.config.CommandPreventWhiteList.stream().anyMatch(command::equals))
             {
-                for (String prefix : AcaSetting.config.CommandPreventWhiteList)
-                {
-                    AcaExtension.LOGGER.info(message, command);
-                    if (!command.equals(prefix)) ci.cancel();
-                }
+                ci.cancel();
+                AcaExtension.LOGGER.info(message, command);
             }
-            else if (AcaSetting.enableCommandPreventerBlackList)
+            else if (AcaSetting.enableCommandPreventerBlackList && AcaSetting.config.CommandPreventWhiteList.stream().anyMatch(command::equals))
             {
-                for (String prefix : AcaSetting.config.CommandPreventBlackList)
-                {
-                    AcaExtension.LOGGER.info(message, command);
-                    if (command.equals(prefix)) ci.cancel();
-                }
+                AcaExtension.LOGGER.info(message, command);
+                ci.cancel();
             }
         }
     }
