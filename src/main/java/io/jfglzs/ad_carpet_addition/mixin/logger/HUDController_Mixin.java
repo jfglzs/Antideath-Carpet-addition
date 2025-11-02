@@ -1,4 +1,4 @@
-package io.jfglzs.ad_carpet_addition.mixin.Invoker.logger;
+package io.jfglzs.ad_carpet_addition.mixin.logger;
 
 import carpet.logging.HUDController;
 import io.jfglzs.ad_carpet_addition.logger.CpuLogger;

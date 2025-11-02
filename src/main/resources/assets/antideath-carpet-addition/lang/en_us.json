@@ -1,33 +1,18 @@
 {
   "carpet.rule.noMiningSlowDown.desc": "No mining slowdown when the player is in fluids, cobwebs, or under mining fatigue.",
-
   "carpet.rule.anvilNeverDamageByFalling.desc": "When enabled, anvils will not be damaged by falling from heights.",
-
   "carpet.rule.beaconLagOptimization.desc": "When enabled, reduces performance impact caused by beacons.",
-
   "carpet.rule.ItemFrameAlwaysStayAttach.desc": "When enabled, item frames always stay attached.",
-
   "carpet.rule.enableFastOpCommand.desc": "When enabled, provides faster access to OP commands.",
-
   "carpet.rule.enableEntitySearchCommand.desc": "When enabled, provides faster EntitySearch command support.",
-
   "carpet.rule.entitySearchCommandEnableXaeroMapSupport.desc": "When enabled, provides EntitySearch minimap waypoint support.",
-
   "carpet.rule.itemDespawnImmediately.desc": "When enabled, dropped items will despawn instantly.",
-
   "carpet.rule.itemNeverDespawn.desc": "When enabled, dropped items will never despawn.",
-
   "carpet.rule.flippinToTemOfUndying.desc": "PCA ported feature.",
-
   "carpet.rule.enableSpecTPCommand.desc": "Use 'sp player' to quickly teleport in spectator mode.",
-
   "carpet.rule.enableCommandPreventer.desc": "Command : /preventcmd",
-
   "carpet.rule.enableCommandPreventerWhiteList.desc": " ",
-
   "carpet.rule.enableCommandPreventerBlackList.desc": " ",
-
   "carpet.rule.enableCommandPreventerPrefix.desc": " ",
-
   "carpet.rule.endermanNeverGetAngryByPlayer.desc": "When enabled, Endermen will never become angry at players."
 }

@@ -6,6 +6,7 @@ import io.jfglzs.ad_carpet_addition.AcaSetting;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -20,26 +21,18 @@ public class CommandManager_Mixin
     )
     public void executeInject(ParseResults<ServerCommandSource> parseResults, String command, CallbackInfo ci)
     {
-        String message = "Prevented Command: {}";
-
         if (AcaSetting.enableCommandPreventer)
         {
-            if (AcaSetting.enableCommandPreventerPrefix && AcaSetting.config.CommandPreventPrefixList.stream().anyMatch(command::startsWith))
-            {
-                AcaExtension.LOGGER.info(message, command);
-                ci.cancel();
-            }
-
-            if (AcaSetting.enableCommandPreventerWhiteList && AcaSetting.config.CommandPreventWhiteList.stream().anyMatch(command::equals))
-            {
-                ci.cancel();
-                AcaExtension.LOGGER.info(message, command);
-            }
-            else if (AcaSetting.enableCommandPreventerBlackList && AcaSetting.config.CommandPreventWhiteList.stream().anyMatch(command::equals))
-            {
-                AcaExtension.LOGGER.info(message, command);
-                ci.cancel();
-            }
+            if (AcaSetting.enableCommandPreventerPrefix && AcaSetting.config.CommandPreventPrefixList.stream().anyMatch(command::startsWith)) {preventCommand(ci, command);}
+            if (AcaSetting.enableCommandPreventerWhiteList && AcaSetting.config.CommandPreventWhiteList.stream().noneMatch(command::equals)) {preventCommand(ci, command);}
+            else if (AcaSetting.enableCommandPreventerBlackList && AcaSetting.config.CommandPreventWhiteList.stream().anyMatch(command::equals)) {preventCommand(ci, command);}
         }
+    }
+
+    @Unique
+    private void preventCommand(CallbackInfo ci,String command)
+    {
+        AcaExtension.LOGGER.info("Prevented Command: {}", command);
+        ci.cancel();
     }
 }

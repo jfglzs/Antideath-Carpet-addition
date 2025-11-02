@@ -2,6 +2,7 @@ package io.jfglzs.ad_carpet_addition.command;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
+import io.jfglzs.ad_carpet_addition.RuleTranslator;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.command.CommandManager;
@@ -38,14 +39,16 @@ public class SearchEntityCommand
 
     private static void sendFeedback(ServerCommandSource source, Entity entity)
     {
+
         if (entitySearchCommandEnableXaeroMapSupport)
         {
             source.sendFeedback(() -> Text.of(String.format("xaero-waypoint:%s:1:%d:%d:%d:2:false:0:External", getEntityName(entity), (int) entity.getX(), (int) entity.getY(), (int) entity.getZ())),true);
         }
         else
         {
-            source.sendFeedback(() -> Text.of(String.format("Entity name: %s Pos: X: %f Y: %f Z: %f" , getEntityName(entity) , entity.getX(),  entity.getY(), entity.getZ())), true);
+            source.sendFeedback(() -> Text.of(String.format("%s pos: \n X: %f \n Y: %f \nZ: %f \n", getEntityName(entity) , entity.getX(),  entity.getY(), entity.getZ())), true);
         }
+
     }
 
     private static String getEntityName(Entity entity)
