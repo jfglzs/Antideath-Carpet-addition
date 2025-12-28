@@ -1,11 +1,9 @@
 package io.jfglzs.ad_carpet_addition;
 
-//import carpet.settings.Rule;
-import carpet.api.settings.Rule;
-import net.fabricmc.loader.api.FabricLoader;
-
 import java.nio.file.Path;
 
+import carpet.api.settings.Rule;
+import net.fabricmc.loader.api.FabricLoader;
 import static carpet.api.settings.RuleCategory.*;
 
 public class AcaSetting

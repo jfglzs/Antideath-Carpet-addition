@@ -2,6 +2,7 @@ package io.jfglzs.ad_carpet_addition.mixin.logger;
 
 import carpet.logging.HUDController;
 import io.jfglzs.ad_carpet_addition.logger.CpuLogger;
+import io.jfglzs.ad_carpet_addition.logger.MemoryLogger;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -24,6 +25,7 @@ public abstract class HUDController_Mixin
     private static void updateHUDInject(MinecraftServer server, List<ServerPlayerEntity> force, CallbackInfo ci)
     {
         CpuLogger.INSTANCE.updateHUD(server);
+        MemoryLogger.INSTANCE.updateHUD(server);
     }
 }
 

@@ -30,9 +30,9 @@ public class CommandManager_Mixin
     }
 
     @Unique
-    private void preventCommand(CallbackInfo ci,String command)
+    private void preventCommand(CallbackInfo ci, String command)
     {
-        AcaExtension.LOGGER.info("Prevented Command: {}", command);
+        AcaExtension.LOGGER.info("[Command Preventer] Prevented Command: {}", command);
         ci.cancel();
     }
 }

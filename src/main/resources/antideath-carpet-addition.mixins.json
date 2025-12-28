@@ -13,13 +13,14 @@
     "rule.EndermanEntity_Mixin",
     "rule.ItemEntity_Mixin",
     "rule.ItemFrameEntity_Mixin",
-    "rule.PlayerEntity_Mixin",
-    "rule.Slot_Mixin"
+    "rule.PlayerEntity_Mixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "overwrites": {
     "requireAnnotations": true
-  }
+  },
+  "client": [
+  ]
 }

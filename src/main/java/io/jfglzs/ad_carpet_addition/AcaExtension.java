@@ -11,7 +11,9 @@ import net.fabricmc.api.ModInitializer;
 import net.minecraft.server.MinecraftServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import oshi.SystemInfo;
 
+import java.util.Arrays;
 import java.util.Map;
 
 
@@ -21,10 +23,11 @@ public class AcaExtension implements CarpetExtension , ModInitializer
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
     @Override
-	public void onInitialize()
+    public void onInitialize()
     {
 		LOGGER.info(MOD_ID + " is loading...");
         CarpetServer.manageExtension(this);
+        SystemInfo systemInfo = new SystemInfo();
         if (!ConfigUtils.init()) LOGGER.error("Config Initialize Failed");
         ConfigUtils.loadConfigFile();
     }
@@ -35,8 +38,7 @@ public class AcaExtension implements CarpetExtension , ModInitializer
         FlipCooldown.init();
         CommandRegistry.registerCommands();
         CarpetServer.settingsManager.parseSettingsClass(AcaSetting.class);
-        CarpetServer.settingsManager.registerRuleObserver(((serverCommandSource, rule, s) -> {
-        }));
+        CarpetServer.settingsManager.registerRuleObserver(((source, rule, s) -> {}));
     }
 
     @Override
