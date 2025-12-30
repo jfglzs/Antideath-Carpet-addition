@@ -1,16 +1,25 @@
 package io.jfglzs.ad_carpet_addition;
 
 import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 import carpet.api.settings.Rule;
+import com.google.common.util.concurrent.RateLimiter;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.entity.player.PlayerEntity;
+
 import static carpet.api.settings.RuleCategory.*;
 
 public class AcaSetting
 {
     public static final String ACA = "ACA";
-    public static Path configDirectory = FabricLoader.getInstance().getConfigDir().resolve("antideath-carpet-addition");
     public static ConfigBean config;
+    public static Map<PlayerEntity, RateLimiter> sneakCooldownMap = new HashMap<>();
+    public static Set<PlayerEntity> getDownPlayerList = new HashSet<>();
+    public static Path configDirectory = FabricLoader.getInstance().getConfigDir().resolve("antideath-carpet-addition");
 
     @Rule(categories = {ACA, SURVIVAL})
     public static boolean noMiningSlowDown = false;
@@ -48,6 +57,9 @@ public class AcaSetting
     @Rule(categories = {ACA, COMMAND})
     public static boolean enableCommandPreventerPrefix = false;
 
+    @Rule(categories = {ACA, COMMAND})
+    public static boolean CommandPreventerPreventOP = true;
+
     @Rule(categories = {ACA, SURVIVAL})
     public static boolean itemDespawnImmediately = false;
 
@@ -60,5 +72,7 @@ public class AcaSetting
     @Rule(categories = {ACA, SURVIVAL})
     public static boolean endermanNeverGetAngryByPlayer = false;
 
+    @Rule(categories = {ACA, SURVIVAL})
+    public static boolean doubleClickShiftGetDown = false;
 }
 

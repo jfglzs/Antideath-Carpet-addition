@@ -19,7 +19,8 @@ public class ItemFrameEntity_Mixin
     )
     private void injectCanStayAttached(CallbackInfoReturnable<Boolean> cir)
     {
-        if (ItemFrameAlwaysStayAttach) {
+        if (ItemFrameAlwaysStayAttach)
+        {
             cir.setReturnValue(true);
         }
     }

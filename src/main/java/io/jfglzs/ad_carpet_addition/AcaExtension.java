@@ -2,6 +2,7 @@ package io.jfglzs.ad_carpet_addition;
 
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
+import com.google.common.util.concurrent.RateLimiter;
 import io.jfglzs.ad_carpet_addition.command.CommandRegistry;
 import io.jfglzs.ad_carpet_addition.logger.Loggers;
 import io.jfglzs.ad_carpet_addition.utils.ConfigUtils;
@@ -9,11 +10,10 @@ import io.jfglzs.ad_carpet_addition.utils.FlipCooldown;
 import io.jfglzs.ad_carpet_addition.utils.ThreadUtils;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.network.ServerPlayerEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import oshi.SystemInfo;
 
-import java.util.Arrays;
 import java.util.Map;
 
 
@@ -27,7 +27,6 @@ public class AcaExtension implements CarpetExtension , ModInitializer
     {
 		LOGGER.info(MOD_ID + " is loading...");
         CarpetServer.manageExtension(this);
-        SystemInfo systemInfo = new SystemInfo();
         if (!ConfigUtils.init()) LOGGER.error("Config Initialize Failed");
         ConfigUtils.loadConfigFile();
     }
@@ -39,6 +38,18 @@ public class AcaExtension implements CarpetExtension , ModInitializer
         CommandRegistry.registerCommands();
         CarpetServer.settingsManager.parseSettingsClass(AcaSetting.class);
         CarpetServer.settingsManager.registerRuleObserver(((source, rule, s) -> {}));
+    }
+
+    @Override
+    public void onPlayerLoggedIn(ServerPlayerEntity player)
+    {
+        AcaSetting.sneakCooldownMap.put(player, RateLimiter.create(2));
+    }
+
+    @Override
+    public void onPlayerLoggedOut(ServerPlayerEntity player)
+    {
+        AcaSetting.sneakCooldownMap.remove(player);
     }
 
     @Override

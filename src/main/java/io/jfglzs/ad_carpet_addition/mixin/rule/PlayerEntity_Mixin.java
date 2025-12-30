@@ -38,7 +38,7 @@ public abstract class PlayerEntity_Mixin extends LivingEntity
             cancellable = true
     )
 
-    public void getBlockBreakingSpeed(BlockState block, CallbackInfoReturnable<Float> cir)
+    public void getBlockBreakingSpeedInject(BlockState block, CallbackInfoReturnable<Float> cir)
     {
         float mineSpeed = this.inventory.getSelectedStack().getMiningSpeedMultiplier(block);
         if (noMiningSlowDown)

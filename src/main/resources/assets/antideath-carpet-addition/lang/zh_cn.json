@@ -22,5 +22,9 @@
   "carpet.rule.enableSpecTPCommand.name":"启用旁观者快速TP命令(sp)",
   "carpet.rule.enableSpecTPCommand.desc":"sp player",
   "carpet.rule.endermanNeverGetAngryByPlayer.name":"末影人不会被玩家激怒",
-  "carpet.rule.endermanNeverGetAngryByPlayer.desc":"末影人不会被玩家激怒"
+  "carpet.rule.endermanNeverGetAngryByPlayer.desc":"末影人不会被玩家激怒",
+  "carpet.rule.CommandPreventerPreventOP.name": "命令拦截器是否拦截管理员执行命令",
+  "carpet.rule.CommandPreventerPreventOP.desc": "命令拦截器是否拦截管理员执行命令",
+  "carpet.rule.doubleClickShiftGetDown.name": "双击Shift趴下",
+  "carpet.rule.doubleClickShiftGetDown.desc": "当玩家双击shift键时让玩家趴下，再次按下shift键起立"
 }

@@ -8,7 +8,6 @@ import com.mojang.brigadier.context.CommandContext;
 import io.jfglzs.ad_carpet_addition.AcaSetting;
 import io.jfglzs.ad_carpet_addition.utils.ConfigUtils;
 import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.text.Text;
 
 import static io.jfglzs.ad_carpet_addition.AcaSetting.enableCommandPreventer;
 import static net.minecraft.server.command.CommandManager.argument;
@@ -16,7 +15,7 @@ import static net.minecraft.server.command.CommandManager.literal;
 
 public class PreventCommand
 {
-    private static final String COMMAND_PREVENTER = "[Command Preventer] ";
+    private static final String COMMAND_PREVENTER = "g [Command Preventer] ";
 
     public static void registerCommand(CommandDispatcher<ServerCommandSource> dispatcher)
     {
@@ -76,72 +75,72 @@ public class PreventCommand
 
     private static int addWhiteList(CommandContext<ServerCommandSource> context)
     {
-        return addOrRemoveFromList(context, 1, false, COMMAND_PREVENTER + "Added %s to whitelist");
+        return addOrRemoveFromList(context, 1, false, "Added %s to whitelist");
     }
 
     private static int addBlackList(CommandContext<ServerCommandSource> context)
     {
-        return addOrRemoveFromList(context, 2, false, COMMAND_PREVENTER + "Added %s to blacklist");
+        return addOrRemoveFromList(context, 2, false, "Added %s to blacklist");
     }
 
     private static int addPrefix(CommandContext<ServerCommandSource> context)
     {
-        return addOrRemoveFromList(context, 3, false, COMMAND_PREVENTER + "Added %s to prefixlist");
+        return addOrRemoveFromList(context, 3, false, "Added %s to prefixlist");
     }
 
     private static int removeWhiteList(CommandContext<ServerCommandSource> context)
     {
-        return addOrRemoveFromList(context, 1, true, COMMAND_PREVENTER + "Removed %s from whitelist");
+        return addOrRemoveFromList(context, 1, true,  "Removed %s from whitelist");
     }
 
     private static int removeBlackList(CommandContext<ServerCommandSource> context)
     {
-        return addOrRemoveFromList(context, 2, true, COMMAND_PREVENTER + "Removed %s from blacklist");
+        return addOrRemoveFromList(context, 2, true, "Removed %s from blacklist");
     }
 
     private static int removePrefix(CommandContext<ServerCommandSource> context)
     {
-        return addOrRemoveFromList(context, 3, true, COMMAND_PREVENTER + "Removed %s from prefixlist");
+        return addOrRemoveFromList(context, 3, true, "Removed %s from prefixlist");
     }
 
     private static int listPrefix(CommandContext<ServerCommandSource> context)
     {
-        context.getSource().sendFeedback(() -> Text.of(COMMAND_PREVENTER + "Prefixlist:" + AcaSetting.config.CommandPreventPrefixList),false);
+        context.getSource().sendFeedback(() -> Messenger.c(COMMAND_PREVENTER + "Prefixlist: " + AcaSetting.config.CommandPreventPrefixList),true);
         return 0;
     }
 
     private static int listWhiteList(CommandContext<ServerCommandSource> context)
     {
-        context.getSource().sendFeedback(() -> Text.of(COMMAND_PREVENTER + "WhiteList:" + AcaSetting.config.CommandPreventWhiteList),false);
+        context.getSource().sendFeedback(() -> Messenger.c(COMMAND_PREVENTER + "WhiteList: " + AcaSetting.config.CommandPreventWhiteList),true);
         return 0;
     }
 
     private static int listBlackList(CommandContext<ServerCommandSource> context)
     {
-        context.getSource().sendFeedback(() -> Text.of(COMMAND_PREVENTER + "BlackList:" + AcaSetting.config.CommandPreventBlackList),false);
+        context.getSource().sendFeedback(() -> Messenger.c(COMMAND_PREVENTER + "BlackList: " + AcaSetting.config.CommandPreventBlackList),true);
         return 0;
     }
 
     private static int reload(CommandContext<ServerCommandSource> context)
     {
         ConfigUtils.loadConfigFile();
-        context.getSource().sendFeedback(() -> Text.of(COMMAND_PREVENTER + "Config reloaded"),false);
+        context.getSource().sendFeedback(() -> Messenger.c(COMMAND_PREVENTER + "Config reloaded"),true);
         return 0;
     }
 
     private static int addOrRemoveFromList(CommandContext<ServerCommandSource> context, int index, boolean isRemove, String feedback)
     {
         String cmd = StringArgumentType.getString(context,"cmd");
-
         if (isRemove)
         {
             ConfigUtils.removeConfig(cmd, index);
-            context.getSource().sendFeedback(() -> Text.of(feedback.formatted(cmd)),false);
-            return 0;
+            context.getSource().sendFeedback(() -> Messenger.c(COMMAND_PREVENTER + feedback.formatted(cmd)),true);
         }
-
-        ConfigUtils.addToConfig(cmd, index);
-        context.getSource().sendFeedback(() -> Text.of(feedback.formatted(cmd)),false);
+        else
+        {
+            ConfigUtils.addToConfig(cmd, index);
+            context.getSource().sendFeedback(() -> Messenger.c(COMMAND_PREVENTER + feedback.formatted(cmd)),true);
+        }
         return 0;
     }
 }

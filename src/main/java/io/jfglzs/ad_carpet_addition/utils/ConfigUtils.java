@@ -103,6 +103,7 @@ public class ConfigUtils
         }
         catch (JsonSyntaxException e)
         {
+
             LOGGER.error(String.valueOf(e));
         }
         finally

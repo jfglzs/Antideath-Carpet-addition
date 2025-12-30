@@ -14,8 +14,7 @@ import static io.jfglzs.ad_carpet_addition.AcaSetting.itemNeverDespawn;
 public abstract class ItemEntity_Mixin
 {
 
-    @Shadow
-    public abstract void setDespawnImmediately();
+    @Shadow public abstract void setDespawnImmediately();
 
     @Inject(
             method = "tick",
