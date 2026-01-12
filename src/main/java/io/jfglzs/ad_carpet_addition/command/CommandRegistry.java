@@ -6,15 +6,12 @@ public class CommandRegistry
 {
     public static void registerCommands()
     {
-        CommandRegistrationCallback.EVENT.register((
-                dispatcher,
-                registryAccess,
-                environment) ->
-        {
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             FastOpCommand.registerCommand(dispatcher);
             SearchEntityCommand.registerCommand(dispatcher);
             SpecTeleportCommand.registerCommand(dispatcher);
             PreventCommand.registerCommand(dispatcher);
+            MobRiderCommand.registerCommand(dispatcher);
         }
         );
     }

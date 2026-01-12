@@ -13,8 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.List;
 
 @Mixin(HUDController.class)
-public abstract class HUDController_Mixin
-{
+public abstract class HUDController_Mixin {
     @Inject(
             method = "update_hud",
             at = @At(value = "INVOKE",
@@ -22,8 +21,7 @@ public abstract class HUDController_Mixin
             ),
             remap = false
     )
-    private static void updateHUDInject(MinecraftServer server, List<ServerPlayerEntity> force, CallbackInfo ci)
-    {
+    private static void updateHUDInject(MinecraftServer server, List<ServerPlayerEntity> force, CallbackInfo ci) {
         CpuLogger.INSTANCE.updateHUD(server);
         MemoryLogger.INSTANCE.updateHUD(server);
     }

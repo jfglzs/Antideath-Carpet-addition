@@ -17,14 +17,12 @@ import org.slf4j.LoggerFactory;
 import java.util.Map;
 
 
-public class AcaExtension implements CarpetExtension , ModInitializer
-{
+public class AcaExtension implements CarpetExtension , ModInitializer {
 	public static final String MOD_ID = "antideath-carpet-addition";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
     @Override
-    public void onInitialize()
-    {
+    public void onInitialize() {
 		LOGGER.info(MOD_ID + " is loading...");
         CarpetServer.manageExtension(this);
         if (!ConfigUtils.init()) LOGGER.error("Config Initialize Failed");
@@ -32,8 +30,7 @@ public class AcaExtension implements CarpetExtension , ModInitializer
     }
 
     @Override
-    public void onGameStarted()
-    {
+    public void onGameStarted() {
         FlipCooldown.init();
         CommandRegistry.registerCommands();
         CarpetServer.settingsManager.parseSettingsClass(AcaSetting.class);
@@ -41,8 +38,7 @@ public class AcaExtension implements CarpetExtension , ModInitializer
     }
 
     @Override
-    public void onPlayerLoggedIn(ServerPlayerEntity player)
-    {
+    public void onPlayerLoggedIn(ServerPlayerEntity player) {
         AcaSetting.sneakCooldownMap.put(player, RateLimiter.create(2));
     }
 
@@ -53,15 +49,13 @@ public class AcaExtension implements CarpetExtension , ModInitializer
     }
 
     @Override
-    public void onServerClosed(MinecraftServer server)
-    {
+    public void onServerClosed(MinecraftServer server) {
         ConfigUtils.saveConfig();
         ThreadUtils.threadPool.shutdown();
     }
 
     @Override
-    public Map<String, String> canHasTranslations(String lang)
-    {
+    public Map<String, String> canHasTranslations(String lang) {
         return RuleTranslator.getTranslationFromResourcePath(lang);
     }
 

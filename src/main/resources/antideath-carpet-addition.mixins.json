@@ -14,7 +14,8 @@
     "rule.Entity_Mixin",
     "rule.ItemEntity_Mixin",
     "rule.ItemFrameEntity_Mixin",
-    "rule.PlayerEntity_Mixin"
+    "rule.PlayerEntity_Mixin",
+    "rule.ServerWorld_Mixin"
   ],
   "injectors": {
     "defaultRequire": 1

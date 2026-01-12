@@ -11,22 +11,16 @@ import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.Map;
 
-public class RuleTranslator
-{
-    public static Map<String, String> getTranslationFromResourcePath(String lang)
-    {
+public class RuleTranslator {
+    public static Map<String, String> getTranslationFromResourcePath(String lang) {
         InputStream langFile = RuleTranslator.class.getClassLoader().getResourceAsStream("assets/antideath-carpet-addition/lang/%s.json".formatted(lang));
-        if (langFile == null)
-        {
+        if (langFile == null) {
             return Collections.emptyMap();
         }
         String jsonData;
-        try
-        {
+        try {
             jsonData = IOUtils.toString(langFile, StandardCharsets.UTF_8);
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             return Collections.emptyMap();
         }
         Gson gson = new GsonBuilder().setLenient().create();

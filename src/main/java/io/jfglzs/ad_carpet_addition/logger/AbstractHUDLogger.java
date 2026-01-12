@@ -5,10 +5,8 @@ import net.minecraft.server.MinecraftServer;
 
 import java.lang.reflect.Field;
 
-public abstract class AbstractHUDLogger extends HUDLogger
-{
-    protected AbstractHUDLogger(Field acceleratorField, String logName, String def, String[] options, boolean strictOptions)
-    {
+public abstract class AbstractHUDLogger extends HUDLogger {
+    protected AbstractHUDLogger(Field acceleratorField, String logName, String def, String[] options, boolean strictOptions) {
         super(acceleratorField, logName, def, options, strictOptions);
     }
 

@@ -15,14 +15,12 @@ import static io.jfglzs.ad_carpet_addition.AcaSetting.enableEntitySearchCommand;
 import static io.jfglzs.ad_carpet_addition.AcaSetting.entitySearchCommandEnableXaeroMapSupport;
 import static net.minecraft.server.command.CommandManager.literal;
 
-public class SearchEntityCommand
-{
-    public static void registerCommand(CommandDispatcher<ServerCommandSource> dispatcher)
-    {
+public class SearchEntityCommand {
+    public static void registerCommand(CommandDispatcher<ServerCommandSource> dispatcher) {
         LiteralArgumentBuilder<ServerCommandSource> argument = literal("entitysearch")
                       .requires((source) -> carpet.utils.CommandHelper.canUseCommand(source, enableEntitySearchCommand))
                         .then(CommandManager.argument("targets", EntityArgumentType.entities())
-                            .executes((context) ->
+                            .executes(context ->
                                 execute(
                                     context.getSource(), EntityArgumentType.getEntities(context, "targets")
                                 )
@@ -31,21 +29,16 @@ public class SearchEntityCommand
         dispatcher.register(argument);
     }
 
-    private static int execute(ServerCommandSource source, Collection<? extends Entity> targets)
-    {
+    private static int execute(ServerCommandSource source, Collection<? extends Entity> targets) {
         targets.forEach((entity -> sendFeedback(source,entity)));
         return targets.size();
     }
 
-    private static void sendFeedback(ServerCommandSource source, Entity entity)
-    {
+    private static void sendFeedback(ServerCommandSource source, Entity entity) {
 
-        if (entitySearchCommandEnableXaeroMapSupport)
-        {
+        if (entitySearchCommandEnableXaeroMapSupport) {
             source.sendFeedback(() -> Text.of(String.format("xaero-waypoint:%s:1:%d:%d:%d:2:false:0:External", getEntityName(entity), (int) entity.getX(), (int) entity.getY(), (int) entity.getZ())),true);
-        }
-        else
-        {
+        } else {
             source.sendFeedback(() -> Text.of(String.format("%s pos: \n X: %f \n Y: %f \nZ: %f \n", getEntityName(entity) , entity.getX(),  entity.getY(), entity.getZ())), true);
         }
 

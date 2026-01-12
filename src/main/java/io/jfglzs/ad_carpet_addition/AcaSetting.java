@@ -13,13 +13,14 @@ import net.minecraft.entity.player.PlayerEntity;
 
 import static carpet.api.settings.RuleCategory.*;
 
-public class AcaSetting
-{
-    public static final String ACA = "ACA";
+public class AcaSetting {
     public static ConfigBean config;
+    public static Set<PlayerEntity> sitOnEntitySet = new HashSet<>();
+    public static Set<PlayerEntity> getDownPlayerSet = new HashSet<>();
     public static Map<PlayerEntity, RateLimiter> sneakCooldownMap = new HashMap<>();
-    public static Set<PlayerEntity> getDownPlayerList = new HashSet<>();
-    public static Path configDirectory = FabricLoader.getInstance().getConfigDir().resolve("antideath-carpet-addition");
+    public static final Path configDirectory = FabricLoader.getInstance().getConfigDir().resolve("antideath-carpet-addition");
+    public static final String FALSE = "false";
+    public static final String ACA = "ACA";
 
     @Rule(categories = {ACA, SURVIVAL})
     public static boolean noMiningSlowDown = false;
@@ -34,31 +35,7 @@ public class AcaSetting
     public static boolean ItemFrameAlwaysStayAttach = false;
 
     @Rule(categories = {ACA, COMMAND})
-    public static boolean enableFastOpCommand = false;
-
-    @Rule(categories = {ACA, COMMAND})
-    public static boolean enableEntitySearchCommand = false;
-
-    @Rule(categories = {ACA, COMMAND})
-    public static boolean enableSpecTPCommand = false;
-
-    @Rule(categories = {ACA, COMMAND})
     public static boolean entitySearchCommandEnableXaeroMapSupport = false;
-
-    @Rule(categories = {ACA, COMMAND})
-    public static boolean enableCommandPreventer = false;
-
-    @Rule(categories = {ACA, COMMAND})
-    public static boolean enableCommandPreventerWhiteList = false;
-
-    @Rule(categories = {ACA, COMMAND})
-    public static boolean enableCommandPreventerBlackList = false;
-
-    @Rule(categories = {ACA, COMMAND})
-    public static boolean enableCommandPreventerPrefix = false;
-
-    @Rule(categories = {ACA, COMMAND})
-    public static boolean CommandPreventerPreventOP = true;
 
     @Rule(categories = {ACA, SURVIVAL})
     public static boolean itemDespawnImmediately = false;
@@ -74,5 +51,36 @@ public class AcaSetting
 
     @Rule(categories = {ACA, SURVIVAL})
     public static boolean doubleClickShiftGetDown = false;
+
+    //Command:
+    @Rule(categories = {ACA, COMMAND}, options = {"1", "2", "3", "4", "true", "false" })
+    public static String enableCommandPreventer = FALSE;
+
+    @Rule(categories = {ACA, COMMAND}, options = {"1", "2", "3", "4", "true", "false" })
+    public static String enableFastOpCommand = FALSE;
+
+    @Rule(categories = {ACA, COMMAND}, options = {"1", "2", "3", "4", "true", "false" })
+    public static String enableEntitySearchCommand = FALSE;
+
+    @Rule(categories = {ACA, COMMAND}, options = {"1", "2", "3", "4", "true", "false" })
+    public static String enableSpecTPCommand = FALSE;
+
+    @Rule(categories = {ACA, COMMAND}, options = {"1", "2", "3", "4", "true", "false" })
+    public static boolean mobRiderCommand = false;
+
+    @Rule(categories = {ACA, COMMAND}, options = {"1", "2", "3", "4", "true", "false" })
+    public static boolean diskInfoCommand = false;
+
+    @Rule(categories = {ACA, COMMAND})
+    public static boolean enableCommandPreventerWhiteList = false;
+
+    @Rule(categories = {ACA, COMMAND})
+    public static boolean enableCommandPreventerBlackList = false;
+
+    @Rule(categories = {ACA, COMMAND})
+    public static boolean enableCommandPreventerPrefix = false;
+
+    @Rule(categories = {ACA, COMMAND})
+    public static boolean commandPreventerPreventOP = true;
 }
 

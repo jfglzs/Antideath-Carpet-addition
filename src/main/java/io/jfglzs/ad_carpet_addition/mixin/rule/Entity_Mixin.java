@@ -5,26 +5,27 @@ import io.jfglzs.ad_carpet_addition.AcaSetting;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.network.ServerPlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Entity.class)
-public class Entity_Mixin
-{
+public abstract class Entity_Mixin {
     @Inject(
             method = "getPose",
             at = @At("HEAD"),
             cancellable = true
     )
-    public void getPoseInject(CallbackInfoReturnable<EntityPose> cir)
-    {
-        if (AcaSetting.doubleClickShiftGetDown && (Object) this instanceof PlayerEntity p && AcaSetting.getDownPlayerList.contains(p) && p.isOnGround())
-        {
-            cir.setReturnValue(EntityPose.SWIMMING);
+    public void getPoseInject(CallbackInfoReturnable<EntityPose> cir) {
+        if (AcaSetting.doubleClickShiftGetDown && (Object) this instanceof PlayerEntity p && AcaSetting.getDownPlayerSet.contains(p)) {
+            if (!p.isOnGround()) {
+                AcaSetting.getDownPlayerSet.remove(p);
+            } else {
+                cir.setReturnValue(EntityPose.SWIMMING);
+            }
         }
     }
 
@@ -32,25 +33,22 @@ public class Entity_Mixin
             method = "setSneaking",
             at = @At("HEAD")
     )
-    public void setSneakingInject(boolean sneaking, CallbackInfo ci)
-    {
-        if (AcaSetting.doubleClickShiftGetDown && sneaking && (Object) this instanceof PlayerEntity p && p.isOnGround())
-        {
-            if (!AcaSetting.getDownPlayerList.contains(p))
-            {
-                RateLimiter r = AcaSetting.sneakCooldownMap.get(p);
-                if (!r.tryAcquire()) setToGetDown(p);
-            }
-            else
-            {
-                AcaSetting.getDownPlayerList.remove(p);
-            }
-        }
-    }
+    public void setSneakingInject(boolean sneaking, CallbackInfo ci) {
+        if (!((Object) this instanceof ServerPlayerEntity)) return;
+        ServerPlayerEntity player = (ServerPlayerEntity)(Object) this;
+        RateLimiter rateLimiter = AcaSetting.sneakCooldownMap.get(player);
+        if (rateLimiter == null) return;
 
-    @Unique
-    private void setToGetDown(PlayerEntity p)
-    {
-        AcaSetting.getDownPlayerList.add(p);
+        if (
+                AcaSetting.doubleClickShiftGetDown &&
+                sneaking &&
+                player != null &&
+                player.isOnGround()
+        ) {
+            if (!AcaSetting.getDownPlayerSet.contains(player)) {
+                if (!rateLimiter.tryAcquire()) AcaSetting.getDownPlayerSet.add(player);
+            }
+            else AcaSetting.getDownPlayerSet.remove(player);
+        }
     }
 }

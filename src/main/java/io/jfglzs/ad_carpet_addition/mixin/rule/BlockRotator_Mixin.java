@@ -19,27 +19,22 @@ import static carpet.helpers.BlockRotator.flipBlock;
 import static io.jfglzs.ad_carpet_addition.AcaSetting.flippinToTemOfUndying;
 
 @Mixin(BlockRotator.class)
-public class BlockRotator_Mixin
-{
+public class BlockRotator_Mixin {
     @Inject(
             method = "flippinEligibility",
             at = @At("HEAD"),
             cancellable = true
     )
-    private static void flippinEligibilityInject(Entity entity, CallbackInfoReturnable<Boolean> cir)
-    {
-        if (flippinToTemOfUndying && entity instanceof PlayerEntity p)
-        {
-            if (p.getMainHandStack().getItem().equals(Items.TOTEM_OF_UNDYING))
-            {
+    private static void flippinEligibilityInject(Entity entity, CallbackInfoReturnable<Boolean> cir) {
+        if (flippinToTemOfUndying && entity instanceof PlayerEntity p) {
+            if (p.getMainHandStack().getItem().equals(Items.TOTEM_OF_UNDYING)) {
                 cir.setReturnValue(true);
             }
         }
     }
 
     @Inject(method = "flipBlockWithCactus", at = @At("RETURN"), cancellable = true)
-    private static void flipBlockWithCactus(BlockState state, World world, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<Boolean> cir)
-    {
+    private static void flipBlockWithCactus(BlockState state, World world, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<Boolean> cir) {
         if (!player.getAbilities().allowModifyWorld || !flippinToTemOfUndying || !player.getMainHandStack().getItem().equals(Items.TOTEM_OF_UNDYING)) return;
         if (FlipCooldown.getCoolDown(player) == world.getTime()) return;
 

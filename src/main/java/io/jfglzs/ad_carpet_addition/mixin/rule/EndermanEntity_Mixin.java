@@ -10,15 +10,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import static io.jfglzs.ad_carpet_addition.AcaSetting.endermanNeverGetAngryByPlayer;
 
 @Mixin(EndermanEntity.class)
-public class EndermanEntity_Mixin
-{
+public class EndermanEntity_Mixin {
     @Inject(
             method = "isPlayerStaring",
             at = @At("HEAD"),
             cancellable = true
     )
-    void setAngerTimeInject(PlayerEntity player, CallbackInfoReturnable<Boolean> cir)
-    {
+    void setAngerTimeInject(PlayerEntity player, CallbackInfoReturnable<Boolean> cir) {
         if (endermanNeverGetAngryByPlayer) cir.setReturnValue(false);
     }
 }

@@ -7,12 +7,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import static io.jfglzs.ad_carpet_addition.AcaSetting.itemDespawnImmediately;
-import static io.jfglzs.ad_carpet_addition.AcaSetting.itemNeverDespawn;
+import static io.jfglzs.ad_carpet_addition.AcaSetting.*;
 
 @Mixin(ItemEntity.class)
-public abstract class ItemEntity_Mixin
-{
+public abstract class ItemEntity_Mixin {
 
     @Shadow public abstract void setDespawnImmediately();
 
@@ -20,10 +18,8 @@ public abstract class ItemEntity_Mixin
             method = "tick",
             at = @At("HEAD")
     )
-    public void tick(CallbackInfo ci)
-    {
-        if(itemDespawnImmediately)
-        {
+    public void tick(CallbackInfo ci) {
+        if(itemDespawnImmediately) {
             setDespawnImmediately();
         }
     }
@@ -37,10 +33,8 @@ public abstract class ItemEntity_Mixin
             ),
             cancellable = true
     )
-    public void tick_discard(CallbackInfo ci)
-    {
-        if (itemNeverDespawn)
-        {
+    public void tick_discard(CallbackInfo ci) {
+        if (itemNeverDespawn) {
             ci.cancel();
         }
     }
