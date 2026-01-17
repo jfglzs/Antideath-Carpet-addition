@@ -118,13 +118,10 @@ public class PreventCommand {
 
     private static int addOrRemoveFromList(CommandContext<ServerCommandSource> context, int index, boolean isRemove, String feedback) {
         String cmd = StringArgumentType.getString(context,"cmd");
-        if (isRemove)
-        {
+        if (isRemove) {
             ConfigUtils.removeConfig(cmd, index);
             context.getSource().sendFeedback(() -> Messenger.c(COMMAND_PREVENTER + feedback.formatted(cmd)),true);
-        }
-        else
-        {
+        } else {
             ConfigUtils.addToConfig(cmd, index);
             context.getSource().sendFeedback(() -> Messenger.c(COMMAND_PREVENTER + feedback.formatted(cmd)),true);
         }

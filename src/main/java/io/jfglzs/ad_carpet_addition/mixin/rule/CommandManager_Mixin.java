@@ -20,14 +20,18 @@ import static io.jfglzs.ad_carpet_addition.AcaSetting.commandPreventerPreventOP;
 public class CommandManager_Mixin {
     @Inject(
             method = "execute",
-            at = @At("HEAD"),
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/server/command/CommandManager;callWithContext(Lnet/minecraft/server/command/ServerCommandSource;Ljava/util/function/Consumer;)V"
+            ),
             cancellable = true
     )
     public void executeInject(ParseResults<ServerCommandSource> parseResults, String command, CallbackInfo ci) {
         if (ConfigUtils.toBoolean(AcaSetting.enableCommandPreventer)) {
-            if (AcaSetting.enableCommandPreventerPrefix && AcaSetting.config.CommandPreventPrefixList.stream().anyMatch(command::startsWith)) preventCommand(ci, command, parseResults);
-            if (AcaSetting.enableCommandPreventerWhiteList && AcaSetting.config.CommandPreventWhiteList.contains(command)) preventCommand(ci, command, parseResults);
-            else if (AcaSetting.enableCommandPreventerBlackList && AcaSetting.config.CommandPreventWhiteList.contains(command)) preventCommand(ci, command, parseResults);
+            if (!(AcaSetting.enableCommandPreventerPrefix && AcaSetting.config.CommandPreventPrefixList.stream().anyMatch(command::startsWith))) return;
+            if (!(AcaSetting.enableCommandPreventerWhiteList && AcaSetting.config.CommandPreventWhiteList.contains(command))) return;
+            else if (!(AcaSetting.enableCommandPreventerBlackList && AcaSetting.config.CommandPreventWhiteList.contains(command))) return;
+            preventCommand(ci, command, parseResults);
         }
     }
 

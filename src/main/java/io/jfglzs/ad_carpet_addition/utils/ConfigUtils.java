@@ -102,7 +102,7 @@ public class ConfigUtils {
             case 1 -> AcaSetting.config.CommandPreventWhiteList.add(context);
             case 2 -> AcaSetting.config.CommandPreventBlackList.add(context);
             case 3 -> AcaSetting.config.CommandPreventPrefixList.add(context);
-            default -> LOGGER.warn("Invalid index");
+            default -> throw new IllegalStateException("Invalid index");
         }
     }
 
@@ -111,7 +111,7 @@ public class ConfigUtils {
             case 1 -> AcaSetting.config.CommandPreventWhiteList.remove(context);
             case 2 -> AcaSetting.config.CommandPreventBlackList.remove(context);
             case 3 -> AcaSetting.config.CommandPreventPrefixList.remove(context);
-            default -> LOGGER.warn("Invalid index");
+            default -> throw new IllegalStateException("Invalid index");
         }
     }
 
