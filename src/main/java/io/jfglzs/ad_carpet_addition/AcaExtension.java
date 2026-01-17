@@ -6,7 +6,6 @@ import com.google.common.util.concurrent.RateLimiter;
 import io.jfglzs.ad_carpet_addition.command.CommandRegistry;
 import io.jfglzs.ad_carpet_addition.logger.Loggers;
 import io.jfglzs.ad_carpet_addition.utils.ConfigUtils;
-import io.jfglzs.ad_carpet_addition.utils.FlipCooldown;
 import io.jfglzs.ad_carpet_addition.utils.ThreadUtils;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.server.MinecraftServer;
@@ -31,7 +30,6 @@ public class AcaExtension implements CarpetExtension , ModInitializer {
 
     @Override
     public void onGameStarted() {
-        FlipCooldown.init();
         CommandRegistry.registerCommands();
         CarpetServer.settingsManager.parseSettingsClass(AcaSetting.class);
         CarpetServer.settingsManager.registerRuleObserver(((source, rule, s) -> {}));

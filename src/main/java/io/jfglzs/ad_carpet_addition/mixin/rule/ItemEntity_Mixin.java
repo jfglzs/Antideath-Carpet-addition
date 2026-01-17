@@ -1,5 +1,7 @@
 package io.jfglzs.ad_carpet_addition.mixin.rule;
 
+import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
+import io.jfglzs.ad_carpet_addition.AcaSetting;
 import net.minecraft.entity.ItemEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -7,7 +9,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import static io.jfglzs.ad_carpet_addition.AcaSetting.*;
 
 @Mixin(ItemEntity.class)
 public abstract class ItemEntity_Mixin {
@@ -19,23 +20,21 @@ public abstract class ItemEntity_Mixin {
             at = @At("HEAD")
     )
     public void tick(CallbackInfo ci) {
-        if(itemDespawnImmediately) {
+        if(AcaSetting.itemDespawnImmediately) {
             setDespawnImmediately();
         }
     }
 
-    @Inject(
+
+    @WrapWithCondition(
             method = "tick",
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/entity/ItemEntity;discard()V",
                     ordinal = 1
-            ),
-            cancellable = true
+            )
     )
-    public void tick_discard(CallbackInfo ci) {
-        if (itemNeverDespawn) {
-            ci.cancel();
-        }
+    public boolean tick_discard(ItemEntity instance) {
+        return !AcaSetting.itemNeverDespawn;
     }
 }

@@ -13,5 +13,5 @@ import java.util.Collection;
 public interface OpCommand_Invoker
 {
     @Invoker("op")
-    static int invokeOp(ServerCommandSource source, Collection<GameProfile> targets) throws CommandSyntaxException {return 0;}
+    static int invokeOp(ServerCommandSource source, Collection<GameProfile> targets) {return 0;}
 }

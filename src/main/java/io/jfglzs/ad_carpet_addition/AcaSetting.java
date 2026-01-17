@@ -68,9 +68,6 @@ public class AcaSetting {
     @Rule(categories = {ACA, COMMAND}, options = {"1", "2", "3", "4", "true", "false" })
     public static boolean mobRiderCommand = false;
 
-    @Rule(categories = {ACA, COMMAND}, options = {"1", "2", "3", "4", "true", "false" })
-    public static boolean diskInfoCommand = false;
-
     @Rule(categories = {ACA, COMMAND})
     public static boolean enableCommandPreventerWhiteList = false;
 
