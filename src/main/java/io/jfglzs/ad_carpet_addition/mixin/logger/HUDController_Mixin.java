@@ -16,7 +16,8 @@ import java.util.List;
 public abstract class HUDController_Mixin {
     @Inject(
             method = "update_hud",
-            at = @At(value = "INVOKE",
+            at = @At(
+                    value = "INVOKE",
                     target = "Ljava/util/Map;keySet()Ljava/util/Set;"
             ),
             remap = false

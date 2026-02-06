@@ -52,20 +52,4 @@ public abstract class PlayerEntity_Mixin extends LivingEntity {
             cir.setReturnValue(mineSpeed);
         }
     }
-
-    @Inject(
-            method = "interact",
-            at = @At(
-                    value = "RETURN",
-                    ordinal = 3
-            ),
-            cancellable = true
-    )
-    public void interactInject(Entity entity, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
-        if (AcaSetting.mobRiderCommand && (Object) this instanceof ServerPlayerEntity player && AcaSetting.sitOnEntitySet.contains(player)) {
-            player.startRiding(entity, true);
-            AcaSetting.sitOnEntitySet.remove((PlayerEntity)(Object) this);
-            cir.setReturnValue(ActionResult.SUCCESS);
-        }
-    }
 }

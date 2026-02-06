@@ -16,6 +16,5 @@
   "carpet.rule.enableCommandPreventerPrefix.desc": " ",
   "carpet.rule.endermanNeverGetAngryByPlayer.desc": "When enabled, Endermen will never become angry at players.",
   "carpet.rule.commandPreventerPreventOP.desc": "When enabled, Command Preventer will not prevent op player executing command",
-  "carpet.rule.doubleClickShiftGetDown.desc": "doubleClickShiftGetDown",
-  "carpet.rule.mobRiderCommand.desc": "player can sit any entity that except player(need type /modrider)"
+  "carpet.rule.doubleClickShiftGetDown.desc": "doubleClickShiftGetDown"
 }

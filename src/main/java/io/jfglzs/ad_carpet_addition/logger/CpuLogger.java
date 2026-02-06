@@ -1,18 +1,17 @@
 package io.jfglzs.ad_carpet_addition.logger;
 
 import carpet.logging.LoggerRegistry;
+import carpet.utils.Messenger;
+import com.sun.management.OperatingSystemMXBean;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.text.Text;
-import oshi.SystemInfo;
-import oshi.hardware.HardwareAbstractionLayer;
 
+import java.lang.management.ManagementFactory;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
 
 public class CpuLogger extends AbstractHUDLogger {
     public static final CpuLogger INSTANCE;
-    static Text cpuInfo = Text.of(getHardware().getProcessor().getProcessorIdentifier().getName());
+    private static final OperatingSystemMXBean osBean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
 
     protected CpuLogger(Field acceleratorField, String logName, String def, String[] options, boolean strictOptions) {
         super(acceleratorField, logName, def, options, strictOptions);
@@ -20,14 +19,20 @@ public class CpuLogger extends AbstractHUDLogger {
 
     @Override
     public void updateHUD(MinecraftServer server) {
-        List<Text> list = new ArrayList<>();
-        list.add(cpuInfo);
-        LoggerRegistry.getLogger("cpu").log(() -> list.toArray(new Text[0]));
+        if (Loggers.__cpu) {
+            LoggerRegistry.getLogger("cpu").log(CpuLogger::getCpuLoad);
+        }
     }
 
-    public static HardwareAbstractionLayer getHardware() {
-        SystemInfo systemInfo = new SystemInfo();
-        return systemInfo.getHardware();
+    private static Text[] getCpuLoad() {
+        double cpuLoad = osBean.getCpuLoad() * 100;
+        String color = Messenger.heatmap_color(cpuLoad, 100);
+        return new Text[] {
+                Messenger.c(
+                        "g Cpu Usage: ",
+                        String.format("%s %.2f%%", color, cpuLoad)
+                )
+        };
     }
 
     static {
@@ -38,3 +43,4 @@ public class CpuLogger extends AbstractHUDLogger {
         }
     }
 }
+

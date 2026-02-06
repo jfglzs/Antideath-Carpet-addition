@@ -6,8 +6,8 @@ apply plugin: 'com.replaymod.preprocess'
 version = project.mod_version
 group = project.maven_group
 
-def simple_version = 'v' + project.mod_version + '+build.' + new Date().format('yyMMddHHmm')
-def short_version = 'v' + project.mod_version
+def simple_version = project.mod_version + '+build.' + new Date().format('yyMMddHHmm')
+def short_version = project.mod_version
 version = simple_version + '-' + project.minecraft_version
 println "mcVersion: " + project.mcVersion
 

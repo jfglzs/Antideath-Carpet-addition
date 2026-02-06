@@ -30,22 +30,16 @@ public class SearchEntityCommand {
     }
 
     private static int execute(ServerCommandSource source, Collection<? extends Entity> targets) {
-        targets.forEach((entity -> sendFeedback(source,entity)));
+        targets.forEach(entity -> sendFeedback(source, entity));
         return targets.size();
     }
 
     private static void sendFeedback(ServerCommandSource source, Entity entity) {
 
         if (entitySearchCommandEnableXaeroMapSupport) {
-            source.sendFeedback(() -> Text.of(String.format("xaero-waypoint:%s:1:%d:%d:%d:2:false:0:External", getEntityName(entity), (int) entity.getX(), (int) entity.getY(), (int) entity.getZ())),true);
+            source.sendFeedback(() -> Text.of(String.format("xaero-waypoint:%s:1:%d:%d:%d:2:false:0:External", entity.getName(), (int) entity.getX(), (int) entity.getY(), (int) entity.getZ())),true);
         } else {
-            source.sendFeedback(() -> Text.of(String.format("%s pos: \n X: %f \n Y: %f \nZ: %f \n", getEntityName(entity) , entity.getX(),  entity.getY(), entity.getZ())), true);
+            source.sendFeedback(() -> Text.of(String.format("%s pos: \n X: %f \n Y: %f \nZ: %f \n", entity.getName() , entity.getX(),  entity.getY(), entity.getZ())), true);
         }
-
-    }
-
-    private static String getEntityName(Entity entity)
-    {
-        return String.valueOf(entity).split("Entity")[0];
     }
 }

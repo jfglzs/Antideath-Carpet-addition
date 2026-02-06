@@ -23,22 +23,22 @@ public class MemoryLogger extends AbstractHUDLogger {
 
     @Override
     public void updateHUD(MinecraftServer server) {
-        long free = Runtime.getRuntime().freeMemory();
-        long total = Runtime.getRuntime().totalMemory();
+        if (Loggers.__mem) {
+            List<Text> list = new ArrayList<>();
+            long free = Runtime.getRuntime().freeMemory();
+            long total = Runtime.getRuntime().totalMemory();
 
-        List<Text> list = new ArrayList<>();
-        list.add(
-                Text.of(
-                        Messenger.c(
-                                String.format(
-                                Locale.ROOT,
-                                "g Allocation rate: %03dMB/s",
-                                toMiB(allocationRateCalculator.get(total - free))
-                                )
-                        )
-                )
-        );
-        LoggerRegistry.getLogger("memAllocate").log(() -> list.toArray(new Text[0]));
+            list.add(
+                    Messenger.c(
+                            String.format(
+                                    Locale.ROOT,
+                                    "g Allocation rate: %03dMB/s",
+                                    toMiB(allocationRateCalculator.get(total - free))
+                            )
+                    )
+            );
+            LoggerRegistry.getLogger("memAllocate").log(() -> list.toArray(new Text[0]));
+        }
     }
 
     private static long toMiB(long bytes)
