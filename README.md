@@ -14,12 +14,19 @@ _**感谢 @[_OptiJava_](https://github.com/OptiJava) 的指导**_
 
 | MC版本   | 当前开发状态 | 最后支持版本 |  
 |--------|------|--------|
-| 1.20.1 | 持续更新 | -      |
 | 1.21.1 | 持续更新   | -      |
 | 1.21.4 | 持续更新   | -      |
 | 1.21.5 | 持续更新   | -      |
-| 1.21.7 | 持续更新   | -      |
 | 1.21.8 | 持续更新   | -      |
+
+## 记录器
+
+### /log cpu all/fullcore/percore
+**记录服务器CPU的占用情况**
+![CPUlogger](res/cpu.png)
+### /log memAllocate
+**客户端Memory Allocate移植功能**
+![memAllocate](res/memAll.png)
 
 ## ACA的所有规则
 
