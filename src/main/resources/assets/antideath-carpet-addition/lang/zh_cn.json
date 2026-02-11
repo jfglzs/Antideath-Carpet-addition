@@ -26,5 +26,5 @@
   "carpet.rule.commandPreventerPreventOP.name": "命令拦截器是否拦截管理员执行命令",
   "carpet.rule.commandPreventerPreventOP.desc": "命令拦截器是否拦截管理员执行命令",
   "carpet.rule.doubleClickShiftGetDown.name": "双击Shift趴下",
-  "carpet.rule.doubleClickShiftGetDown.desc": "当玩家双击shift键时让玩家趴下，再次按下shift键起立",
+  "carpet.rule.doubleClickShiftGetDown.desc": "当玩家双击shift键时让玩家趴下，再次按下shift键起立"
 }

@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import static io.jfglzs.ad_carpet_addition.AcaSetting.beaconLagOptimization;
 
 @Mixin(BeaconBlockEntity.class)
-public class BeaconBlockEntity_Mixin {
+public abstract class BeaconBlockEntity_Mixin {
     @ModifyConstant(
             method = "tick",
             constant = @Constant(longValue = 80L)

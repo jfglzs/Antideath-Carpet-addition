@@ -1,8 +1,8 @@
 package io.jfglzs.ad_carpet_addition.mixin.logger;
 
 import carpet.logging.HUDController;
-import io.jfglzs.ad_carpet_addition.logger.CpuLogger;
-import io.jfglzs.ad_carpet_addition.logger.MemoryLogger;
+import io.jfglzs.ad_carpet_addition.logger.cpu.CpuLogger;
+import io.jfglzs.ad_carpet_addition.logger.memory.MemoryLogger;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;

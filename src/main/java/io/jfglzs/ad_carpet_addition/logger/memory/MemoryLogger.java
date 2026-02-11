@@ -1,7 +1,9 @@
-package io.jfglzs.ad_carpet_addition.logger;
+package io.jfglzs.ad_carpet_addition.logger.memory;
 
 import carpet.logging.LoggerRegistry;
 import carpet.utils.Messenger;
+import io.jfglzs.ad_carpet_addition.logger.AbstractHUDLogger;
+import io.jfglzs.ad_carpet_addition.logger.Loggers;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.text.Text;
 

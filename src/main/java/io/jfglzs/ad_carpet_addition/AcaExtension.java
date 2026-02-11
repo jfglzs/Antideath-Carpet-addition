@@ -41,8 +41,7 @@ public class AcaExtension implements CarpetExtension , ModInitializer {
     }
 
     @Override
-    public void onPlayerLoggedOut(ServerPlayerEntity player)
-    {
+    public void onPlayerLoggedOut(ServerPlayerEntity player) {
         AcaSetting.sneakCooldownMap.remove(player);
     }
 

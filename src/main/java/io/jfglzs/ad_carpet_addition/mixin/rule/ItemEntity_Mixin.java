@@ -3,10 +3,12 @@ package io.jfglzs.ad_carpet_addition.mixin.rule;
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import io.jfglzs.ad_carpet_addition.AcaSetting;
 import net.minecraft.entity.ItemEntity;
+import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 
@@ -24,7 +26,6 @@ public abstract class ItemEntity_Mixin {
             setDespawnImmediately();
         }
     }
-
 
     @WrapWithCondition(
             method = "tick",
