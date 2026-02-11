@@ -4,22 +4,28 @@ import carpet.utils.Messenger;
 import com.sun.management.OperatingSystemMXBean;
 import io.jfglzs.ad_carpet_addition.utils.ThreadUtils;
 import net.minecraft.text.Text;
+import org.apache.commons.lang3.ArrayUtils;
 import oshi.SystemInfo;
 import oshi.hardware.CentralProcessor;
 
 import java.lang.management.ManagementFactory;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class CpuLoad {
     private static final OperatingSystemMXBean osBean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
     private static final SystemInfo info = new SystemInfo();
-    private static volatile String perCoreLoad = " ";
+    private static volatile List<Text> perCoreLoad = new ArrayList<>();
 
     public static Text[] getCpuLoad(String option) {
         double cpuLoad = osBean.getCpuLoad() * 100;
         String color = Messenger.heatmap_color(cpuLoad, 100);
-        Text perCore;
+        Text[] text;
 
-        synchronized (ThreadUtils.lock) {perCore = Messenger.c(perCoreLoad);}
+        synchronized (ThreadUtils.lock) {
+            text = perCoreLoad.toArray(new Text[0]);
+        }
 
         Text fullCore = Messenger.c(
                 "g Cpu Load: ",
@@ -27,14 +33,21 @@ public class CpuLoad {
         );
 
         switch (option) {
-            case "all" -> {return new Text[] {fullCore, perCore};}
-            case "percore" -> {return new Text[] {perCore};}
-            default -> {return new Text[] {fullCore};}
+            case "all" -> {
+                return ArrayUtils.add(text, fullCore);
+            }
+            case "percore" -> {
+                return text;
+            }
+            default -> {
+                return new Text[] {fullCore};
+            }
         }
     }
 
-    private static Text[] getCpuPerCoreLoad() {
+    private static void getCpuPerCoreLoad() {
         CentralProcessor processor = info.getHardware().getProcessor();
+        List<Text> load = new ArrayList<>();
 
         // 第一次获取初始 Ticks
         long[][] prevTicks = processor.getProcessorCpuLoadTicks();
@@ -53,16 +66,24 @@ public class CpuLoad {
             // 更新 prevTicks，为下一次循环做准备
             prevTicks = processor.getProcessorCpuLoadTicks();
 
-            StringBuilder load = new StringBuilder("g ");
-
             // 格式化输出
             for (int i = 0; i < coreLoads.length; i++) {
-                load.append(String.format("C%d: %.0f%% ", i, coreLoads[i] * 100));
+                double cl = coreLoads[i] * 100; //单核心负载
+
+                load.add(
+                        Messenger.c(
+                                "%s C%d: %.0f%%".formatted(
+                                        Messenger.heatmap_color(cl,100),
+                                        i,
+                                        cl
+                        ))
+                );
             }
 
             synchronized (ThreadUtils.lock) {
-                perCoreLoad = load.toString();
+                perCoreLoad = List.copyOf(load);
             }
+            load.clear();
         }
     }
 
