@@ -16,7 +16,7 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-          "xyz.antideath.aca.AcaExtension"
+          "io.github.jfglzs.aca.AcaExtension"
         ]
 	},
 	"mixins": [
