@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import static io.github.jfglzs.aca.AcaSetting.commandPreventerPreventOP;
 
 @Mixin(CommandManager.class)
-public class CommandManager_Mixin {
+public abstract class CommandManager_Mixin {
     @Inject(
             method = "execute",
             at = @At(

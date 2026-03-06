@@ -2,34 +2,28 @@ package io.github.jfglzs.aca.logger.cpu;
 
 import carpet.utils.Messenger;
 import com.sun.management.OperatingSystemMXBean;
-import io.github.jfglzs.aca.utils.ThreadUtils;
+import io.github.jfglzs.aca.logger.Loggers;
 import net.minecraft.text.Text;
 import org.apache.commons.lang3.ArrayUtils;
 import oshi.SystemInfo;
 import oshi.hardware.CentralProcessor;
 
 import java.lang.management.ManagementFactory;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class CpuLoad {
     private static final OperatingSystemMXBean osBean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
-    private static final SystemInfo info = new SystemInfo();
-    private static volatile List<Text> perCoreLoad = new ArrayList<>();
+    private static final List<Text> perCoreLoad = new CopyOnWriteArrayList<>();
 
     public static Text[] getCpuLoad(String option) {
         double cpuLoad = osBean.getCpuLoad() * 100;
         String color = Messenger.heatmap_color(cpuLoad, 100);
-        Text[] text;
-
-        //从另外一个线程同步数据
-        synchronized (ThreadUtils.lock) {
-            text = perCoreLoad.toArray(new Text[0]);
-        }
+        Text[] text = perCoreLoad.toArray(new Text[0]);
 
         Text fullCore = Messenger.c(
                 "g Cpu Load: ",
-                String.format("%s %.2f%%", color, cpuLoad)
+                String.format("%s %.0f%%", color, cpuLoad)
         );
 
         switch (option) {
@@ -46,48 +40,40 @@ public class CpuLoad {
     }
 
     private static void getCpuPerCoreLoad() {
-        CentralProcessor processor = info.getHardware().getProcessor();
-        List<Text> load = new ArrayList<>();
+        CentralProcessor processor = Loggers.sysInfo.getHardware().getProcessor();
 
         // 第一次获取初始 Ticks
         long[][] prevTicks = processor.getProcessorCpuLoadTicks();
 
         while (true) {
 
-            // 采样间隔（1秒）
             try {
                 Thread.sleep(1000);
-            } catch (InterruptedException ignore) {
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
 
             // 计算当前时刻与上一次 Ticks 之间的负载
             double[] coreLoads = processor.getProcessorCpuLoadBetweenTicks(prevTicks);
 
-            // 更新 prevTicks，为下一次循环做准备
             prevTicks = processor.getProcessorCpuLoadTicks();
 
             // 格式化输出
             for (int i = 0; i < coreLoads.length; i++) {
-                double cl = coreLoads[i] * 100; //单核心负载
+                double cpuLoad = coreLoads[i] * 100;
 
-                load.add(
-                        Messenger.c(
-                                "%s C%d: %.0f%%".formatted(
-                                        Messenger.heatmap_color(cl,100),
-                                        i,
-                                        cl
-                        ))
+                String coreInfo = "%s C%d: %.0f%%".formatted(
+                        Messenger.heatmap_color(cpuLoad, 100),
+                        i++,
+                        cpuLoad
                 );
-            }
 
-            synchronized (ThreadUtils.lock) {
-                perCoreLoad = List.copyOf(load);
+                perCoreLoad.add(Messenger.c(coreInfo));
             }
-            load.clear();
         }
     }
 
     static {
-        ThreadUtils.threadPool.submit(CpuLoad::getCpuPerCoreLoad);
+        Thread.startVirtualThread(CpuLoad::getCpuPerCoreLoad);
     }
 }

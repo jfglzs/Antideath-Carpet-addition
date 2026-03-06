@@ -4,7 +4,7 @@ import carpet.utils.Messenger;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import io.github.jfglzs.aca.mixin.Invoker.command.TelePortCommand_Invoker;
+import io.github.jfglzs.aca.mixin.Invoker.TelePortCommand_Invoker;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.ServerCommandSource;

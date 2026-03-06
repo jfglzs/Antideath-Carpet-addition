@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ItemFrameEntity.class)
-public class ItemFrameEntity_Mixin {
+public abstract class ItemFrameEntity_Mixin {
     @Inject(
             method = "canStayAttached",
             at = @At("HEAD"),

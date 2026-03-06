@@ -19,7 +19,7 @@ import static carpet.helpers.BlockRotator.flipBlock;
 import static io.github.jfglzs.aca.AcaSetting.flippinToTemOfUndying;
 
 @Mixin(BlockRotator.class)
-public class BlockRotator_Mixin {
+public abstract class BlockRotator_Mixin {
     private static RateLimiter limiter = RateLimiter.create(10);
 
     @Inject(

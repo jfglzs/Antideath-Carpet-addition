@@ -10,7 +10,6 @@ import java.lang.reflect.Field;
 public class CpuLogger extends AbstractHUDLogger {
     public static final CpuLogger INSTANCE;
 
-
     protected CpuLogger(Field acceleratorField, String logName, String def, String[] options, boolean strictOptions) {
         super(acceleratorField, logName, def, options, strictOptions);
     }

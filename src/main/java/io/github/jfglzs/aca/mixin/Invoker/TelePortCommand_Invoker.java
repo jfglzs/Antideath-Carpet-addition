@@ -1,4 +1,4 @@
-package io.github.jfglzs.aca.mixin.Invoker.command;
+package io.github.jfglzs.aca.mixin.Invoker;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.server.command.ServerCommandSource;
@@ -12,5 +12,4 @@ import java.util.Collection;
 public interface TelePortCommand_Invoker {
     @Invoker("execute")
     static int executeInvoker(ServerCommandSource source, Collection<? extends Entity> targets, Entity destination) {return 0;}
-
 }

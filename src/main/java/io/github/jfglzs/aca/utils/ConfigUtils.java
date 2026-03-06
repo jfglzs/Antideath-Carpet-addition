@@ -21,7 +21,7 @@ public class ConfigUtils {
         try {
             return Files.readString(configDirectory.resolve(File_NAME), StandardCharsets.UTF_8);
         } catch (IOException e) {
-            LOGGER.error(String.valueOf(e));
+            LOGGER.error(e.getMessage());
             return "Failed";
         }
     }
@@ -31,7 +31,7 @@ public class ConfigUtils {
             Files.createFile(configDirectory.resolve(File_NAME));
             return true;
         } catch (IOException e) {
-            LOGGER.error(String.valueOf(e));
+            LOGGER.error(e.getMessage());
             return false;
         }
     }
@@ -53,7 +53,7 @@ public class ConfigUtils {
         try {
             Files.write(configDirectory.resolve(File_NAME), content.getBytes());
         } catch (IOException e) {
-            LOGGER.error(String.valueOf(e));
+            LOGGER.error(e.getMessage());
             return false;
         }
         return true;
@@ -81,8 +81,7 @@ public class ConfigUtils {
             if (content.equals("Failed")) return;
             AcaSetting.config = gson.fromJson(content, ConfigBean.class);
         } catch (JsonSyntaxException e) {
-
-            LOGGER.error(String.valueOf(e));
+            LOGGER.error(e.getMessage());
         }
         finally {
             if (AcaSetting.config == null) {
@@ -102,7 +101,7 @@ public class ConfigUtils {
             case 1 -> AcaSetting.config.CommandPreventWhiteList.add(context);
             case 2 -> AcaSetting.config.CommandPreventBlackList.add(context);
             case 3 -> AcaSetting.config.CommandPreventPrefixList.add(context);
-            default -> throw new IllegalStateException("Invalid index");
+            default -> throw new IllegalArgumentException("Invalid index");
         }
     }
 
@@ -111,7 +110,7 @@ public class ConfigUtils {
             case 1 -> AcaSetting.config.CommandPreventWhiteList.remove(context);
             case 2 -> AcaSetting.config.CommandPreventBlackList.remove(context);
             case 3 -> AcaSetting.config.CommandPreventPrefixList.remove(context);
-            default -> throw new IllegalStateException("Invalid index");
+            default -> throw new IllegalArgumentException("Invalid index");
         }
     }
 

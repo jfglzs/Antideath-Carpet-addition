@@ -1,4 +1,4 @@
-package io.github.jfglzs.aca;
+package io.github.jfglzs.aca.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

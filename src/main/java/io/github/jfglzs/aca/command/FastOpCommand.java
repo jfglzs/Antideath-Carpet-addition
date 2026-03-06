@@ -2,7 +2,7 @@ package io.github.jfglzs.aca.command;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
-import io.github.jfglzs.aca.mixin.Invoker.command.OpCommand_Invoker;
+import io.github.jfglzs.aca.mixin.Invoker.OpCommand_Invoker;
 import net.minecraft.server.command.ServerCommandSource;
 
 import java.util.Collections;
