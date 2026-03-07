@@ -67,5 +67,8 @@ public class AcaSetting {
 
     @Rule(categories = {ACA, OPTIMIZATION})
     public static boolean fakePeaceOptimization = false;
+
+    @Rule(categories = {ACA, OPTIMIZATION})
+    public static boolean villagerOptimization = false;
 }
 

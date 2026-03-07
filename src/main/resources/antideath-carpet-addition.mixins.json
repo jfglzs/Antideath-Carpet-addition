@@ -17,7 +17,11 @@
     "rule.fakePlaceOptimization.Brain_Mixin",
     "rule.fakePlaceOptimization.Entity_Mixin",
     "rule.fakePlaceOptimization.WardenEntity_Mixin",
-    "rule.fakePlaceOptimization.WitherEntity_Mixin"
+    "rule.fakePlaceOptimization.WitherEntity_Mixin",
+    "rule.villagerOptimization.Brain_Mixin",
+    "rule.villagerOptimization.Entity_Mixin",
+    "rule.villagerOptimization.SingleTickTask_Mixin",
+    "rule.villagerOptimization.VillagerEntity_Mixin"
   ],
   "injectors": {
     "defaultRequire": 1

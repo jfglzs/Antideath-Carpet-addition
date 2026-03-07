@@ -32,8 +32,11 @@ public class MemoryLogger extends AbstractHUDLogger {
 
             list.add(
                     Messenger.c(
-                            "g Allocation rate: %03dMB/s",
-                            toMiB(allocationRateCalculator.get(total - free))
+                            String.format(
+                                    Locale.ROOT,
+                                    "g Allocation rate: %03dMB/s",
+                                    toMiB(allocationRateCalculator.get(total - free))
+                            )
                     )
             );
             LoggerRegistry.getLogger("memAllocate").log(() -> list.toArray(new Text[0]));

@@ -16,5 +16,6 @@
   "carpet.rule.enableCommandPreventerPrefix.desc": " ",
   "carpet.rule.endermanNeverGetAngryByPlayer.desc": "When enabled, Endermen will never become angry at players.",
   "carpet.rule.commandPreventerPreventOP.desc": "When enabled, Command Preventer will not prevent op player executing command",
-  "carpet.rule.fakePeaceOptimization.desc": "optimize"
+  "carpet.rule.fakePeaceOptimization.desc": "optimize fake place",
+  "carpet.rule.villagerOptimization.desc": "villagerOptimization"
 }

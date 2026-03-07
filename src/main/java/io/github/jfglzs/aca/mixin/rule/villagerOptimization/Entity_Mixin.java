@@ -1,10 +1,9 @@
-package io.github.jfglzs.aca.mixin.rule.fakePlaceOptimization;
+package io.github.jfglzs.aca.mixin.rule.villagerOptimization;
 
 import io.github.jfglzs.aca.AcaSetting;
-import io.github.jfglzs.aca.accessors.EntityAccessor;
+import io.github.jfglzs.aca.accessors.VillagerAccessor;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.boss.WitherEntity;
-import net.minecraft.entity.mob.WardenEntity;
+import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
@@ -25,14 +24,9 @@ public class Entity_Mixin {
             cancellable = true
     )
     private static void adjustMovementForCollisions_Inject(@Nullable Entity entity, Vec3d movement, Box entityBoundingBox, World world, List<VoxelShape> collisions, CallbackInfoReturnable<Vec3d> cir) {
-        if (AcaSetting.fakePeaceOptimization) {
-            if (
-                    (entity instanceof WardenEntity warden && ((EntityAccessor) warden).aca$getCount() > 70) ||
-                    (entity instanceof WitherEntity wither && ((EntityAccessor) wither).aca$getCount() > 70)
-            ) {
-                cir.setReturnValue(Vec3d.ZERO);
-                cir.cancel();
-            }
+        if (entity instanceof VillagerEntity villager && AcaSetting.villagerOptimization && ((VillagerAccessor) villager).aca$canDisableAI()) {
+            cir.setReturnValue(Vec3d.ZERO);
+            cir.cancel();
         }
     }
 }

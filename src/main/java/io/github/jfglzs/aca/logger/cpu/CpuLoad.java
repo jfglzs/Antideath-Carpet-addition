@@ -23,7 +23,7 @@ public class CpuLoad {
 
         Text fullCore = Messenger.c(
                 "g Cpu Load: ",
-                String.format("%s %.0f%%", color, cpuLoad)
+                String.format("%s %.2f%%", color, cpuLoad)
         );
 
         switch (option) {
@@ -57,6 +57,8 @@ public class CpuLoad {
             double[] coreLoads = processor.getProcessorCpuLoadBetweenTicks(prevTicks);
 
             prevTicks = processor.getProcessorCpuLoadTicks();
+
+            perCoreLoad.clear();
 
             // 格式化输出
             for (int i = 0; i < coreLoads.length; i++) {
