@@ -5,7 +5,6 @@ import com.sun.management.OperatingSystemMXBean;
 import io.github.jfglzs.aca.logger.Loggers;
 import net.minecraft.text.Text;
 import org.apache.commons.lang3.ArrayUtils;
-import oshi.SystemInfo;
 import oshi.hardware.CentralProcessor;
 
 import java.lang.management.ManagementFactory;
@@ -61,16 +60,26 @@ public class CpuLoad {
             perCoreLoad.clear();
 
             // 格式化输出
-            for (int i = 0; i < coreLoads.length; i++) {
-                double cpuLoad = coreLoads[i] * 100;
+            for (int i = 0; i < coreLoads.length; i += 2) {
+                double cl1 = coreLoads[i] * 100;
+                double cl2 = coreLoads[i] * 100;
 
-                String coreInfo = "%s C%d: %.0f%%".formatted(
-                        Messenger.heatmap_color(cpuLoad, 100),
-                        i + 1,
-                        cpuLoad
+                String coreInfo1 = "g C%d: ".formatted(i + 1);
+
+                String cpuLoad1 = "%s %.0f%%".formatted(
+                        Messenger.heatmap_color(cl1, 100),
+                        cl1
                 );
 
-                perCoreLoad.add(Messenger.c(coreInfo));
+
+                String coreInfo2 = "g C%d: ".formatted(i + 2);
+
+                String cpuLoad2 = "%s %.0f%%".formatted(
+                        Messenger.heatmap_color(cl2, 100),
+                        cl2
+                );
+
+                perCoreLoad.add(Messenger.c(coreInfo1, cpuLoad1, " | ", coreInfo2, cpuLoad2));
             }
         }
     }
