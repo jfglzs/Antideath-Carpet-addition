@@ -1,4 +1,4 @@
-package io.github.jfglzs.aca.mixin.rule;
+package io.github.jfglzs.aca.mixin.rule.commandPreventer;
 
 import carpet.utils.Messenger;
 import com.mojang.brigadier.ParseResults;

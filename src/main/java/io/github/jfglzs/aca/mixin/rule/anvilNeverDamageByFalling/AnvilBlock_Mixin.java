@@ -1,4 +1,4 @@
-package io.github.jfglzs.aca.mixin.rule;
+package io.github.jfglzs.aca.mixin.rule.anvilNeverDamageByFalling;
 
 
 import io.github.jfglzs.aca.AcaSetting;

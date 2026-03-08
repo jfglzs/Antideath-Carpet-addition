@@ -1,4 +1,4 @@
-package io.github.jfglzs.aca.mixin.rule;
+package io.github.jfglzs.aca.mixin.rule.endermanNeverGetAngryByPlayer;
 
 import io.github.jfglzs.aca.AcaSetting;
 import net.minecraft.entity.mob.EndermanEntity;

@@ -1,4 +1,4 @@
-package io.github.jfglzs.aca.mixin.rule;
+package io.github.jfglzs.aca.mixin.rule.noMiningSlowDown;
 
 import io.github.jfglzs.aca.AcaSetting;
 import net.minecraft.block.BlockState;

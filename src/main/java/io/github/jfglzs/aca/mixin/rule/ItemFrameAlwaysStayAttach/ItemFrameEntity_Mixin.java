@@ -1,4 +1,4 @@
-package io.github.jfglzs.aca.mixin.rule;
+package io.github.jfglzs.aca.mixin.rule.ItemFrameAlwaysStayAttach;
 
 import io.github.jfglzs.aca.AcaSetting;
 import net.minecraft.entity.decoration.ItemFrameEntity;

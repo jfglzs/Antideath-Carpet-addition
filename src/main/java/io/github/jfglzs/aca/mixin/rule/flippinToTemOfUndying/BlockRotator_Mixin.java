@@ -1,4 +1,4 @@
-package io.github.jfglzs.aca.mixin.rule;
+package io.github.jfglzs.aca.mixin.rule.flippinToTemOfUndying;
 
 import carpet.CarpetSettings;
 import carpet.helpers.BlockRotator;

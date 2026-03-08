@@ -1,4 +1,4 @@
-package io.github.jfglzs.aca.mixin.rule;
+package io.github.jfglzs.aca.mixin.rule.itemDespawnImmediately;
 
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import io.github.jfglzs.aca.AcaSetting;
