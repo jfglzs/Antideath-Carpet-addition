@@ -19,7 +19,12 @@ public class SingleTickTask_Mixin<E extends LivingEntity> {
             cancellable = true
     )
     public final void tryStarting_Inject(ServerWorld world, E entity, long time, CallbackInfoReturnable<Boolean> cir) {
-        if (entity instanceof VillagerEntity villager && AcaSetting.villagerOptimization && ((VillagerAccessor) villager).aca$canDisableAI()) {
+        if (
+                entity instanceof VillagerEntity villager
+                        && AcaSetting.villagerOptimization
+                        && ((VillagerAccessor) villager).aca$canDisableAI()
+                        && (entity.age + entity.getId()) % 40 == 0
+        ) {
             cir.setReturnValue(false);
             cir.cancel();
         }

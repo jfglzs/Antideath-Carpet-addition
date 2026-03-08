@@ -66,7 +66,7 @@ public class CpuLoad {
 
                 String coreInfo = "%s C%d: %.0f%%".formatted(
                         Messenger.heatmap_color(cpuLoad, 100),
-                        i++,
+                        i + 1,
                         cpuLoad
                 );
 

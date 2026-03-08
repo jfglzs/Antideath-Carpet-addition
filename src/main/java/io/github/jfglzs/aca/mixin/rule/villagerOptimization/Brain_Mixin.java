@@ -20,19 +20,20 @@ import java.util.Set;
 @Mixin(Brain.class)
 public class Brain_Mixin<E extends LivingEntity> {
     @Unique
-    private static final Set<Class<? extends Sensor<?>>> SENSORS = Set.of(
+    private static final Set<Class<? extends Sensor>> SENSORS = Set.of(
+            SecondaryPointsOfInterestSensor.class,
             VillagerBabiesSensor.class,
             NearestPlayersSensor.class,
             NearestItemsSensor.class,
-            HurtBySensor.class,
-            SecondaryPointsOfInterestSensor.class
+            HurtBySensor.class
     );
 
     @Unique
     private static final Set<Class<? extends Task>> TASKS = Set.of(
             GiveGiftsToHeroTask.class,
             StayAboveWaterTask.class,
-            FollowCustomerTask.class
+            FollowCustomerTask.class,
+            GatherItemsVillagerTask.class
     );
 
     @WrapWithCondition(
@@ -40,25 +41,36 @@ public class Brain_Mixin<E extends LivingEntity> {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/brain/sensor/Sensor;tick(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/entity/LivingEntity;)V")
     )
     private boolean tickSensors_WarpOperation(Sensor<?> sensor, ServerWorld world, E entity) {
-        if (entity instanceof VillagerEntity villager && AcaSetting.villagerOptimization) {
-            return !((VillagerAccessor) villager).aca$canDisableAI() || !SENSORS.contains(sensor.getClass());
+        if (
+                entity instanceof VillagerEntity villager &&
+                AcaSetting.villagerOptimization &&
+                ((VillagerAccessor) villager).aca$canDisableAI()
+        ) {
+            return !SENSORS.contains(sensor.getClass());
         }
+
         return true;
     }
 
     @WrapOperation(
             method = "updateTasks",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/brain/task/Task;tick(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/entity/LivingEntity;J)V")
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/entity/ai/brain/task/Task;tick(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/entity/LivingEntity;J)V"
+            )
     )
-    private void startTasks_tick(Task task, ServerWorld serverWorld, E e, long l, Operation<Void> original) {
-        if (
-                !(e instanceof VillagerEntity villager && AcaSetting.villagerOptimization &&
-                        ((VillagerAccessor) villager).aca$canDisableAI() &&
-                        !TASKS.contains(task.getClass())
-                )
+    private void startTasks_Tick(Task task, ServerWorld serverWorld, E e, long l, Operation<Void> original) {
 
+        if (
+                e instanceof VillagerEntity villager &&
+                AcaSetting.villagerOptimization &&
+                ((VillagerAccessor) villager).aca$canDisableAI() &&
+                TASKS.contains(task.getClass())
         ) {
-            original.call(task, serverWorld, e, l);
+            return;
         }
+
+        original.call(task, serverWorld, e, l);
     }
+
 }

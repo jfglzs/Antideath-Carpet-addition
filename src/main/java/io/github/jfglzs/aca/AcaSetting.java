@@ -31,6 +31,9 @@ public class AcaSetting {
     @Rule(categories = {ACA, SURVIVAL})
     public static boolean itemDespawnImmediately = false;
 
+    @Rule(categories = {ACA, SURVIVAL}, options = {"0"})
+    public static int beaconRange = 0;
+
     @Rule(categories = {ACA, SURVIVAL})
     public static boolean itemNeverDespawn = false;
 

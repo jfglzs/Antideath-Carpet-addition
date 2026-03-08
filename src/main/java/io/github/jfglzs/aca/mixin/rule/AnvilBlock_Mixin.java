@@ -1,14 +1,13 @@
 package io.github.jfglzs.aca.mixin.rule;
 
 
+import io.github.jfglzs.aca.AcaSetting;
 import net.minecraft.block.AnvilBlock;
 import net.minecraft.block.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import static io.github.jfglzs.aca.AcaSetting.anvilNeverDamageByFalling;
 
 @Mixin(AnvilBlock.class)
 public abstract class AnvilBlock_Mixin {
@@ -18,7 +17,7 @@ public abstract class AnvilBlock_Mixin {
             cancellable = true
     )
     private static void getLandingStateInject(BlockState fallingState, CallbackInfoReturnable<BlockState> cir) {
-        if (anvilNeverDamageByFalling) {
+        if (AcaSetting.anvilNeverDamageByFalling) {
             cir.setReturnValue(fallingState);
         }
     }

@@ -1,29 +1,19 @@
 package io.github.jfglzs.aca.mixin.rule;
 
 
-import net.minecraft.block.BlockState;
+import io.github.jfglzs.aca.AcaSetting;
 import net.minecraft.block.entity.BeaconBlockEntity;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.util.math.BlockPos;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.Constant;
-import org.spongepowered.asm.mixin.injection.ModifyConstant;
-
-import static io.github.jfglzs.aca.AcaSetting.beaconLagOptimization;
+import org.spongepowered.asm.mixin.injection.*;
 
 @Mixin(BeaconBlockEntity.class)
-public abstract class BeaconBlockEntity_Mixin extends BlockEntity {
-    public BeaconBlockEntity_Mixin(BlockEntityType<?> type, BlockPos pos, BlockState state) {
-        super(type, pos, state);
-    }
-
+public abstract class BeaconBlockEntity_Mixin {
     @ModifyConstant(
             method = "tick",
             constant = @Constant(longValue = 80L)
     )
     private static long modifyCheckInterval(long constant) {
-        return beaconLagOptimization ? constant * 2 : constant;
+        return AcaSetting.beaconLagOptimization ? constant * 2 : constant;
     }
 
     @ModifyConstant(
@@ -31,6 +21,15 @@ public abstract class BeaconBlockEntity_Mixin extends BlockEntity {
             constant = @Constant(intValue = 10)
     )
     private static int modifyColorChangeInterval(int constant) {
-        return beaconLagOptimization ? constant / 10 : constant;
+        return AcaSetting.beaconLagOptimization ? constant / 10 : constant;
+    }
+
+    @ModifyVariable(
+            method = "applyPlayerEffects",
+            at = @At("STORE"),
+            name = "d"
+    )
+    private static double modifyRange(double d) {
+        return AcaSetting.beaconRange == 0 ? d : AcaSetting.beaconRange;
     }
 }

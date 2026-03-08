@@ -26,8 +26,9 @@ public class VillagerEntity_Mixin implements VillagerAccessor {
     protected void mobTick_Inject(ServerWorld world, CallbackInfo ci) {
         if (AcaSetting.villagerOptimization) {
             VillagerEntity entity = (VillagerEntity) ((Object) this);
+            boolean bl = entity.isSleeping();
 
-            if ((entity.age + entity.getId() % 807) % 400 == 0 || count == -1) {
+            if ((entity.age + entity.getId() % 807) % 400 == 0 && !bl || count == -1 && !bl) {
 
                 Box box = new Box(
                         entity.getPos().add(0.5, 0.5, 0.5),
@@ -45,7 +46,7 @@ public class VillagerEntity_Mixin implements VillagerAccessor {
 
     @Override
     public boolean aca$canDisableAI() {
-        return count == 3;
+        return true;
     }
 
     @Inject(
@@ -53,6 +54,6 @@ public class VillagerEntity_Mixin implements VillagerAccessor {
             at = @At(value = "INVOKE", target = "Ljava/util/List;forEach(Ljava/util/function/Consumer;)V")
     )
     private void foreach_Inject(ServerWorld world, long time, int requiredCount, CallbackInfo ci) {
-        count++;
+        countGolem++;
     }
 }

@@ -20,6 +20,7 @@
     "rule.fakePlaceOptimization.WitherEntity_Mixin",
     "rule.villagerOptimization.Brain_Mixin",
     "rule.villagerOptimization.Entity_Mixin",
+    "rule.villagerOptimization.NearestLivingEntitiesSensor_Mixin",
     "rule.villagerOptimization.SingleTickTask_Mixin",
     "rule.villagerOptimization.VillagerEntity_Mixin"
   ],
