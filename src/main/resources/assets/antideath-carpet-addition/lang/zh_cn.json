@@ -20,11 +20,17 @@
   "carpet.rule.flippinToTemOfUndying.name": "启用不死图腾扳手",
   "carpet.rule.flippinToTemOfUndying.desc": "PCA移植功能",
   "carpet.rule.enableSpecTPCommand.name":"启用旁观者快速TP命令(sp)",
-  "carpet.rule.enableSpecTPCommand.desc":"sp player",
+  "carpet.rule.enableSpecTPCommand.desc":"sp <player>",
   "carpet.rule.endermanNeverGetAngryByPlayer.name":"末影人不会被玩家激怒",
   "carpet.rule.endermanNeverGetAngryByPlayer.desc":"末影人不会被玩家激怒",
   "carpet.rule.commandPreventerPreventOP.name": "命令拦截器是否拦截管理员执行命令",
   "carpet.rule.commandPreventerPreventOP.desc": "命令拦截器是否拦截管理员执行命令",
   "carpet.rule.doubleClickShiftGetDown.name": "双击Shift趴下",
-  "carpet.rule.doubleClickShiftGetDown.desc": "当玩家双击shift键时让玩家趴下，再次按下shift键起立"
+  "carpet.rule.doubleClickShiftGetDown.desc": "当玩家双击shift键时让玩家趴下，再次按下shift键起立",
+  "carpet.rule.fakePeaceOptimization.name": "伪和平优化",
+  "carpet.rule.fakePeaceOptimization.desc": "优化强加在伪和平时的卡顿",
+  "carpet.rule.villagerOptimization.name": "村民优化",
+  "carpet.rule.villagerOptimization.desc": "优化刷铁机中村民的卡顿",
+  "carpet.rule.beaconRange.name": "自定义信标范围",
+  "carpet.rule.beaconRange.desc": "自定义信标的范围 单位：格"
 }

@@ -158,3 +158,24 @@ _**感谢 @[_OptiJava_](https://github.com/OptiJava) 的指导**_
 - 默认值：`false`
 - 参考选项：`true`，`false`
 - 分类：`ACA`，`SURVIVAL`
+
+### 自定义信标范围(beaconRange)
+自定义信标效果范围
+- 类型：`整数`
+- 默认值：`0`
+- 参考选项：`true`，`false`
+- 分类：`ACA`，`SURVIVAL`
+
+### 伪和平优化(fakePeaceOptimization)
+优化强加在伪和平时的卡顿
+- 类型：`布尔值`
+- 默认值：`false`
+- 参考选项：`true`，`false`
+- 分类：`ACA`，`OPTIMIZATION`
+
+### 村民优化(villagerOptimization)
+优化刷铁机中村民的卡顿
+- 类型：`布尔值`
+- 默认值：`false`
+- 参考选项：`true`，`false`
+- 分类：`ACA`，`OPTIMIZATION`
