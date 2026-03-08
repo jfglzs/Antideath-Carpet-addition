@@ -162,7 +162,7 @@ _**感谢 @[_OptiJava_](https://github.com/OptiJava) 的指导**_
 ### 自定义信标范围(beaconRange)
 自定义信标效果范围
 - 类型：`整数`
-- 默认值：`0`
+- 默认值：0，100, 200, 500, 1000
 - 参考选项：`true`，`false`
 - 分类：`ACA`，`SURVIVAL`
 
@@ -179,3 +179,5 @@ _**感谢 @[_OptiJava_](https://github.com/OptiJava) 的指导**_
 - 默认值：`false`
 - 参考选项：`true`，`false`
 - 分类：`ACA`，`OPTIMIZATION`
+
+

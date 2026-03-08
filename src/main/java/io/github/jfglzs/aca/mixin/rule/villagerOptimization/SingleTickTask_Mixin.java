@@ -23,7 +23,7 @@ public class SingleTickTask_Mixin<E extends LivingEntity> {
                 entity instanceof VillagerEntity villager
                         && AcaSetting.villagerOptimization
                         && ((VillagerAccessor) villager).aca$canDisableAI()
-                        && (entity.age + entity.getId()) % 40 == 0
+                        && !((entity.age + entity.getId()) % 40 == 0)
         ) {
             cir.setReturnValue(false);
             cir.cancel();

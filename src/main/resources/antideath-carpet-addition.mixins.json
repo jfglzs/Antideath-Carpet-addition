@@ -8,16 +8,17 @@
     "logger.HUDController_Mixin",
     "rule.anvilNeverDamageByFalling.AnvilBlock_Mixin",
     "rule.beaconOptimization.BeaconBlockEntity_Mixin",
-    "rule.flippinToTemOfUndying.BlockRotator_Mixin",
     "rule.commandPreventer.CommandManager_Mixin",
     "rule.endermanNeverGetAngryByPlayer.EndermanEntity_Mixin",
-    "rule.itemDespawnImmediately.ItemEntity_Mixin",
-    "rule.ItemFrameAlwaysStayAttach.ItemFrameEntity_Mixin",
-    "rule.noMiningSlowDown.PlayerEntity_Mixin",
     "rule.fakePlaceOptimization.Brain_Mixin",
     "rule.fakePlaceOptimization.Entity_Mixin",
     "rule.fakePlaceOptimization.WardenEntity_Mixin",
     "rule.fakePlaceOptimization.WitherEntity_Mixin",
+    "rule.flippinToTemOfUndying.BlockRotator_Mixin",
+    "rule.itemDespawnImmediately.ItemEntity_Mixin",
+    "rule.ItemFrameAlwaysStayAttach.ItemFrameEntity_Mixin",
+    "rule.itemPickUpRange.PlayerEntity_Mixin",
+    "rule.noMiningSlowDown.PlayerEntity_Mixin",
     "rule.villagerOptimization.Brain_Mixin",
     "rule.villagerOptimization.Entity_Mixin",
     "rule.villagerOptimization.NearestLivingEntitiesSensor_Mixin",
@@ -28,7 +29,7 @@
     "defaultRequire": 1
   },
   "overwrites": {
-    "requireAnnotations": true
+    "requireAnnotations": false
   },
   "client": [
   ]

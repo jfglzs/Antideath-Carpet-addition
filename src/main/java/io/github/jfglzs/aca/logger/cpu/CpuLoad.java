@@ -61,27 +61,21 @@ public class CpuLoad {
 
             // 格式化输出
             for (int i = 0; i < coreLoads.length; i += 2) {
-                double cl1 = coreLoads[i] * 100;
-                double cl2 = coreLoads[i] * 100;
-
-                String coreInfo1 = "g C%d: ".formatted(i + 1);
-
-                String cpuLoad1 = "%s %.0f%%".formatted(
-                        Messenger.heatmap_color(cl1, 100),
-                        cl1
-                );
-
-
-                String coreInfo2 = "g C%d: ".formatted(i + 2);
-
-                String cpuLoad2 = "%s %.0f%%".formatted(
-                        Messenger.heatmap_color(cl2, 100),
-                        cl2
-                );
-
-                perCoreLoad.add(Messenger.c(coreInfo1, cpuLoad1, " | ", coreInfo2, cpuLoad2));
+                perCoreLoad.add(Messenger.c(
+                        coreLoad(i + 1, coreLoads[i]),
+                        " | ",
+                        coreLoad(i + 2, coreLoads[i + 1])
+                ));
             }
         }
+    }
+
+    private static Text coreLoad(int core, double load) {
+        double percent = load * 100;
+        return Messenger.c(
+                "g C%d: ".formatted(core),
+                "%s %.0f%%".formatted(Messenger.heatmap_color(percent, 100), percent)
+        );
     }
 
     static {
