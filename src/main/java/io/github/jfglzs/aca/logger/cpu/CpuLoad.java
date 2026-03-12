@@ -19,7 +19,7 @@ public class CpuLoad {
     public static Text[] getCpuLoad(String option) {
         double cpuLoad = osBean.getCpuLoad() * 100;
         String color = Messenger.heatmap_color(cpuLoad, 100);
-        Text[] text = perCoreLoad.toArray(new Text[0]);
+        Text[] perCoreLoadArray = perCoreLoad.toArray(new Text[0]);
 
         Text fullCore = Messenger.c(
                 "g Cpu Load: ",
@@ -28,10 +28,10 @@ public class CpuLoad {
 
         switch (option) {
             case "all" -> {
-                return ArrayUtils.add(text, fullCore);
+                return ArrayUtils.add(perCoreLoadArray, fullCore);
             }
             case "percore" -> {
-                return text;
+                return perCoreLoadArray;
             }
             default -> {
                 return new Text[] {fullCore};
@@ -72,17 +72,30 @@ public class CpuLoad {
 
     private static Text coreLoad(int core, double load) {
         double percent = load * 100;
-        String coreInfo = "g C%d: ".formatted(core);
-        String coreLoad = "%s %3.0f%%".formatted(Messenger.heatmap_color(percent, 100), percent);
 
-        int i = coreInfo.length() + coreLoad.length();
-        
-        if (i < 13) {
-            coreInfo += " ".repeat(13 - i);
+        // 百分比
+        String num = "%d".formatted((int) percent);
+        if (num.length() == 1) {
+            num = FIGURE_SPACE + FIGURE_SPACE + num;
+        } else if (num.length() == 2) {
+            num = FIGURE_SPACE + num;
         }
 
-        return Messenger.c(coreInfo, coreLoad);
+        // 核心编号
+        String coreStr = "%d".formatted(core);
+        if (coreStr.length() == 1) {
+            coreStr = FIGURE_SPACE + coreStr;
+        }
+
+        String coreInfo = "g C%s: ".formatted(coreStr);
+        String coreLoad = "%s %s%%".formatted(
+                Messenger.heatmap_color(percent, 100),
+                num
+        );
+
+        return Messenger.c(coreInfo,coreLoad);
     }
+
 
     static {
         Thread.startVirtualThread(CpuLoad::getCpuPerCoreLoad);
