@@ -14,6 +14,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class CpuLoad {
     private static final OperatingSystemMXBean osBean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
     private static final List<Text> perCoreLoad = new CopyOnWriteArrayList<>();
+    private static final String FIGURE_SPACE = "\u2007";
 
     public static Text[] getCpuLoad(String option) {
         double cpuLoad = osBean.getCpuLoad() * 100;
@@ -63,7 +64,6 @@ public class CpuLoad {
             for (int i = 0; i < coreLoads.length; i += 2) {
                 perCoreLoad.add(Messenger.c(
                         coreLoad(i + 1, coreLoads[i]),
-                        " | ",
                         coreLoad(i + 2, coreLoads[i + 1])
                 ));
             }
@@ -72,10 +72,16 @@ public class CpuLoad {
 
     private static Text coreLoad(int core, double load) {
         double percent = load * 100;
-        return Messenger.c(
-                "g C%d: ".formatted(core),
-                "%s %.0f%%".formatted(Messenger.heatmap_color(percent, 100), percent)
-        );
+        String coreInfo = "g C%d: ".formatted(core);
+        String coreLoad = "%s %3.0f%%".formatted(Messenger.heatmap_color(percent, 100), percent);
+
+        int i = coreInfo.length() + coreLoad.length();
+        
+        if (i < 13) {
+            coreInfo += " ".repeat(13 - i);
+        }
+
+        return Messenger.c(coreInfo, coreLoad);
     }
 
     static {

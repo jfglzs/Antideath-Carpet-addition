@@ -8,10 +8,10 @@ import org.jetbrains.annotations.Nullable;
 
 public class nonZeroValidator extends Validator<Integer> {
     @Override
-    public Integer validate(@Nullable ServerCommandSource serverCommandSource, CarpetRule<Integer> carpetRule, Integer integer, String s) {
+    public Integer validate(@Nullable ServerCommandSource source, CarpetRule<Integer> carpetRule, Integer integer, String s) {
         if (integer < 0) {
-            Messenger.m(serverCommandSource, "r The value must be bigger than 0");
-            return 0;
+            Messenger.m(source, "r The value must be greater than 0");
+            return null;
         }
         return integer;
     }

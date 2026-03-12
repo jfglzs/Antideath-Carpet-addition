@@ -75,7 +75,7 @@ public class AcaSetting {
     @Rule(categories = {ACA, OPTIMIZATION})
     public static boolean villagerOptimization = false;
 
-    @Rule(categories = {ACA, SURVIVAL}, validators = nonZeroValidator.class)
+    @Rule(categories = {ACA, SURVIVAL}, strict = false, options = {"0","10","100"}, validators = nonZeroValidator.class)
     public static int itemPickUpRange = 0;
 }
 
