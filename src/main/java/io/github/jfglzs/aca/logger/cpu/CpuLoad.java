@@ -64,6 +64,7 @@ public class CpuLoad {
             for (int i = 0; i < coreLoads.length; i += 2) {
                 perCoreLoad.add(Messenger.c(
                         coreLoad(i + 1, coreLoads[i]),
+                        "g  | ",
                         coreLoad(i + 2, coreLoads[i + 1])
                 ));
             }
@@ -73,24 +74,10 @@ public class CpuLoad {
     private static Text coreLoad(int core, double load) {
         double percent = load * 100;
 
-        // 百分比
-        String num = "%d".formatted((int) percent);
-        if (num.length() == 1) {
-            num = FIGURE_SPACE + FIGURE_SPACE + num;
-        } else if (num.length() == 2) {
-            num = FIGURE_SPACE + num;
-        }
-
-        // 核心编号
-        String coreStr = "%d".formatted(core);
-        if (coreStr.length() == 1) {
-            coreStr = FIGURE_SPACE + coreStr;
-        }
-
-        String coreInfo = "g C%s: ".formatted(coreStr);
-        String coreLoad = "%s %s%%".formatted(
+        String coreInfo = "g C%s: ".formatted(core);
+        String coreLoad = "%s %.0f%%".formatted(
                 Messenger.heatmap_color(percent, 100),
-                num
+                percent
         );
 
         return Messenger.c(coreInfo,coreLoad);
