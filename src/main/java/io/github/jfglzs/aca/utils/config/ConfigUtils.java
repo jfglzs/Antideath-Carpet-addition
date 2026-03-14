@@ -1,9 +1,8 @@
-package io.github.jfglzs.aca.utils;
+package io.github.jfglzs.aca.utils.config;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import io.github.jfglzs.aca.AcaSetting;
-import io.github.jfglzs.aca.ConfigBean;
 
 import java.io.File;
 import java.io.IOException;

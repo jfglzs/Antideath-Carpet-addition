@@ -14,7 +14,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class CpuLoad {
     private static final OperatingSystemMXBean osBean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
     private static final List<Text> perCoreLoad = new CopyOnWriteArrayList<>();
-    private static final String FIGURE_SPACE = "\u2007";
 
     public static Text[] getCpuLoad(String option) {
         double cpuLoad = osBean.getCpuLoad() * 100;

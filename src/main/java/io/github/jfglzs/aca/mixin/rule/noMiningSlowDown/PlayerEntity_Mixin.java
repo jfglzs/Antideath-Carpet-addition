@@ -27,7 +27,7 @@ public abstract class PlayerEntity_Mixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    public void getBlockBreakingSpeedInject(BlockState block, CallbackInfoReturnable<Float> cir) {
+    public void getBlockBreakingSpeed_Inject(BlockState block, CallbackInfoReturnable<Float> cir) {
         if (AcaSetting.noMiningSlowDown) {
             PlayerEntity player = (PlayerEntity) (Object) this;
             float mineSpeed = this.inventory.getSelectedStack().getMiningSpeedMultiplier(block);

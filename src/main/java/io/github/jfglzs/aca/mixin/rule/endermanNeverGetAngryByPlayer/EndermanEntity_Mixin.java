@@ -15,7 +15,7 @@ public abstract class EndermanEntity_Mixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    void setAngerTimeInject(PlayerEntity player, CallbackInfoReturnable<Boolean> cir) {
+    void setAngerTime_Inject(PlayerEntity player, CallbackInfoReturnable<Boolean> cir) {
         if (AcaSetting.endermanNeverGetAngryByPlayer) cir.setReturnValue(false);
     }
 }

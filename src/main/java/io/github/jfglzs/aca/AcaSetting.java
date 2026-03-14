@@ -3,6 +3,7 @@ package io.github.jfglzs.aca;
 import java.nio.file.Path;
 
 import carpet.api.settings.Rule;
+import io.github.jfglzs.aca.utils.config.ConfigBean;
 import io.github.jfglzs.aca.utils.validator.nonZeroValidator;
 import net.fabricmc.loader.api.FabricLoader;
 

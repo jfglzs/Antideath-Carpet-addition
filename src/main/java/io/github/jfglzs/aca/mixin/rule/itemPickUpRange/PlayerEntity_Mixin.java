@@ -7,10 +7,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -38,11 +36,11 @@ public class PlayerEntity_Mixin {
             method = "tickMovement",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getOtherEntities(Lnet/minecraft/entity/Entity;Lnet/minecraft/util/math/Box;)Ljava/util/List;")
     )
-    public List<Entity> getOtherEntities_Wrap(World instance, Entity entity, Box box, Operation<List<Entity>> original) {
+    public List<Entity> getOtherEntities_Wrap(World world, Entity entity, Box box, Operation<List<Entity>> original) {
         if (AcaSetting.itemPickUpRange > 0) {
-            return instance.getOtherEntities(entity, box, entity1 -> !entity1.isSpectator() && !(entity1 instanceof ItemEntity));
+            return world.getOtherEntities(entity, box, entity1 -> !entity1.isSpectator() && !(entity1 instanceof ItemEntity));
         }
-        return original.call(instance, entity, box);
+        return original.call(world, entity, box);
     }
 
 }

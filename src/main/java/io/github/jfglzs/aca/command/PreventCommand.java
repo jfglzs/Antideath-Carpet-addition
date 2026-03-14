@@ -6,7 +6,7 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import io.github.jfglzs.aca.AcaSetting;
-import io.github.jfglzs.aca.utils.ConfigUtils;
+import io.github.jfglzs.aca.utils.config.ConfigUtils;
 import net.minecraft.server.command.ServerCommandSource;
 
 import static io.github.jfglzs.aca.AcaSetting.enableCommandPreventer;

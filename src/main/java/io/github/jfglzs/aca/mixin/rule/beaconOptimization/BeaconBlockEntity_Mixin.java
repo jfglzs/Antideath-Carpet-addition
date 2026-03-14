@@ -29,7 +29,7 @@ public abstract class BeaconBlockEntity_Mixin {
             at = @At("STORE"),
             ordinal = 0
     )
-    private static double modifyRange(double d) {
-        return AcaSetting.beaconRange == 0 ? d : AcaSetting.beaconRange;
+    private static double modifyRange(double range) {
+        return AcaSetting.beaconRange == 0 ? range : AcaSetting.beaconRange;
     }
 }

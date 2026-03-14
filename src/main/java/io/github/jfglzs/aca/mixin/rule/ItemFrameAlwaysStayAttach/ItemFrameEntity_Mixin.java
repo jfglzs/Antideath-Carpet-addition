@@ -14,7 +14,7 @@ public abstract class ItemFrameEntity_Mixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void injectCanStayAttached(CallbackInfoReturnable<Boolean> cir) {
+    private void CanStayAttached_Inject(CallbackInfoReturnable<Boolean> cir) {
         if (AcaSetting.ItemFrameAlwaysStayAttach) {
             cir.setReturnValue(true);
         }
