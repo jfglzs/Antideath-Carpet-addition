@@ -53,8 +53,8 @@ public class NetworkLogger extends AbstractHUDLogger {
 //                    System.out.println("sent " + bytesSent + " bytes");
 //                    System.out.println("millis " + millis + " ms");
 //                    System.out.println("millis " + lastUpdate + " ms");
-                    double uploadMbps = ((bytesSent - this.lastSent) * 8.0 / (1024 * 1024)) / (timediff / 1000.0);
-                    double downloadMbps = ((bytesRecv - this.lastRecv) * 8.0 / (1024 * 1024)) / (timediff / 1000.0);
+                    double uploadMbps = ((bytesSent - this.lastSent) * 8.0 / (8 * 1024 * 1024)) / (timediff / 1000.0);
+                    double downloadMbps = ((bytesRecv - this.lastRecv) * 8.0 / (8 *1024 * 1024)) / (timediff / 1000.0);
                     list.add(
                             Messenger.c(
                                     String.format(
