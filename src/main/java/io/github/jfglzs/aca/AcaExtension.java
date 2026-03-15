@@ -4,7 +4,7 @@ import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import io.github.jfglzs.aca.command.CommandRegistry;
 import io.github.jfglzs.aca.logger.Loggers;
-import io.github.jfglzs.aca.utils.ConfigUtils;
+import io.github.jfglzs.aca.utils.config.ConfigUtils;
 import io.github.jfglzs.aca.utils.RuleTranslator;
 import io.github.jfglzs.aca.utils.ThreadUtils;
 import net.fabricmc.api.ModInitializer;
@@ -12,7 +12,6 @@ import net.minecraft.server.MinecraftServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
 import java.util.Map;
 
 

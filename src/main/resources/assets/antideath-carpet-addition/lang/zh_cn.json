@@ -32,5 +32,7 @@
   "carpet.rule.villagerOptimization.name": "村民优化",
   "carpet.rule.villagerOptimization.desc": "优化刷铁机中村民的卡顿",
   "carpet.rule.beaconRange.name": "自定义信标范围",
-  "carpet.rule.beaconRange.desc": "自定义信标的范围 单位：格"
+  "carpet.rule.beaconRange.desc": "自定义信标的范围 单位：格",
+  "carpet.rule.itemPickUpRange.name": "物品拾取范围",
+  "carpet.rule.itemPickUpRange.desc": "可自定义物品拾取范围"
 }

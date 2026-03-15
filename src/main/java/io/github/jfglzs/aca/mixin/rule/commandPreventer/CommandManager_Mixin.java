@@ -4,7 +4,7 @@ import carpet.utils.Messenger;
 import com.mojang.brigadier.ParseResults;
 import io.github.jfglzs.aca.AcaExtension;
 import io.github.jfglzs.aca.AcaSetting;
-import io.github.jfglzs.aca.utils.ConfigUtils;
+import io.github.jfglzs.aca.utils.config.ConfigUtils;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -26,20 +26,24 @@ public abstract class CommandManager_Mixin {
             ),
             cancellable = true
     )
-    public void executeInject(ParseResults<ServerCommandSource> parseResults, String command, CallbackInfo ci) {
+    public void execute_Inject(ParseResults<ServerCommandSource> parseResults, String command, CallbackInfo ci) {
         if (ConfigUtils.toBoolean(AcaSetting.enableCommandPreventer)) {
-            if (!(AcaSetting.enableCommandPreventerPrefix && AcaSetting.config.CommandPreventPrefixList.stream().anyMatch(command::startsWith))) return;
-            if (!(AcaSetting.enableCommandPreventerWhiteList && AcaSetting.config.CommandPreventWhiteList.contains(command))) return;
-            else if (!(AcaSetting.enableCommandPreventerBlackList && AcaSetting.config.CommandPreventWhiteList.contains(command))) return;
-            preventCommand(ci, command, parseResults);
+            if (AcaSetting.enableCommandPreventerPrefix && AcaSetting.config.CommandPreventPrefixList.stream().anyMatch(command::startsWith))
+                preventCommand(ci, command, parseResults);
+            if (AcaSetting.enableCommandPreventerWhiteList && AcaSetting.config.CommandPreventWhiteList.contains(command))
+                preventCommand(ci, command, parseResults);
+            else if (AcaSetting.enableCommandPreventerBlackList && AcaSetting.config.CommandPreventWhiteList.contains(command))
+                preventCommand(ci, command, parseResults);
         }
     }
 
     @Unique
-    private void preventCommand(CallbackInfo ci, String command, ParseResults<ServerCommandSource> parseResults) {
-        ServerPlayerEntity p = parseResults.getContext().getSource().getPlayer();
-        if (!commandPreventerPreventOP && p != null && p.getServer().getPlayerManager().isOperator(p.getGameProfile())) return;
-        parseResults.getContext().getSource().sendFeedback(() -> Messenger.c("r [Command Preventer] Command: %s had prevented by Command Preventer".formatted(command)) ,true);
+    private void preventCommand(CallbackInfo ci, String command, ParseResults<ServerCommandSource> results) {
+        ServerPlayerEntity player = results.getContext().getSource().getPlayer();
+        if (!commandPreventerPreventOP && player != null && player.getServer().getPlayerManager().isOperator(player.getGameProfile())) return;
+        results.getContext().getSource().sendFeedback(
+                () -> Messenger.c("r [Command Preventer] Command: %s had prevented ".formatted(command)) ,true
+        );
         AcaExtension.LOGGER.info("[Command Preventer] Prevented Command: {}", command);
         ci.cancel();
     }

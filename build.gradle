@@ -1,11 +1,13 @@
 plugins {
-    id 'fabric-loom' version '1.10-SNAPSHOT' apply false
-    id 'com.replaymod.preprocess' version '20c7ec554a'
+    id 'fabric-loom' version '1.11-SNAPSHOT' apply false
+    id 'com.replaymod.preprocess' version 'd452ef7612'
     id 'maven-publish'
 }
 
 
 preprocess {
+    preprocess.strictExtraMappings.set(true)
+
     def mc1211 = createNode('1.21.1' , 1_21_01, 'yarn')
     def mc1214 = createNode('1.21.4' , 1_21_04, 'yarn')
     def mc1215 = createNode('1.21.5' , 1_21_05, 'yarn')

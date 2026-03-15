@@ -18,5 +18,6 @@
   "carpet.rule.commandPreventerPreventOP.desc": "When enabled, Command Preventer will not prevent op player executing command",
   "carpet.rule.fakePeaceOptimization.desc": "optimize fake place",
   "carpet.rule.villagerOptimization.desc": "villagerOptimization",
-  "carpet.rule.beaconRange.desc": "beaconRange"
+  "carpet.rule.beaconRange.desc": "beaconRange",
+  "carpet.rule.itemPickUpRange.desc": "itemPickUpRange"
 }

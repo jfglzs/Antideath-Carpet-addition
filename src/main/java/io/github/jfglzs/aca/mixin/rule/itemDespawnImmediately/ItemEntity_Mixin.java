@@ -21,7 +21,7 @@ public abstract class ItemEntity_Mixin {
     )
     public void tick(CallbackInfo ci) {
         if(AcaSetting.itemDespawnImmediately) {
-            setDespawnImmediately();
+            this.setDespawnImmediately();
         }
     }
 
@@ -33,7 +33,7 @@ public abstract class ItemEntity_Mixin {
                     ordinal = 1
             )
     )
-    public boolean tick_discard(ItemEntity instance) {
+    public boolean discard_Wrap(ItemEntity instance) {
         return !AcaSetting.itemNeverDespawn;
     }
 }

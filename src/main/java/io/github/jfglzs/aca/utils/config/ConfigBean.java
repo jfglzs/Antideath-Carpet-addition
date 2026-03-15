@@ -1,4 +1,4 @@
-package io.github.jfglzs.aca;
+package io.github.jfglzs.aca.utils.config;
 
 import java.util.HashSet;
 import java.util.Set;

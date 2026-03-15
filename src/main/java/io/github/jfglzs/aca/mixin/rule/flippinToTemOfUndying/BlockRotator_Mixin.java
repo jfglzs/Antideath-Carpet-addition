@@ -27,7 +27,7 @@ public abstract class BlockRotator_Mixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private static void flippinEligibilityInject(Entity entity, CallbackInfoReturnable<Boolean> cir) {
+    private static void flippinEligibility_Inject(Entity entity, CallbackInfoReturnable<Boolean> cir) {
         if (flippinToTemOfUndying && entity instanceof PlayerEntity player) {
             if (player.getMainHandStack().getItem().equals(Items.TOTEM_OF_UNDYING)) {
                 cir.setReturnValue(true);
@@ -40,7 +40,7 @@ public abstract class BlockRotator_Mixin {
             at = @At("RETURN"),
             cancellable = true
     )
-    private static void flipBlockWithCactus(BlockState state, World world, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<Boolean> cir) {
+    private static void flipBlockWithCactus_Inject(BlockState state, World world, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<Boolean> cir) {
         if (!player.getAbilities().allowModifyWorld || !flippinToTemOfUndying || !player.getMainHandStack().getItem().equals(Items.TOTEM_OF_UNDYING)) return;
         if (!limiter.tryAcquire()) return;
 

@@ -3,6 +3,8 @@ package io.github.jfglzs.aca;
 import java.nio.file.Path;
 
 import carpet.api.settings.Rule;
+import io.github.jfglzs.aca.utils.config.ConfigBean;
+import io.github.jfglzs.aca.utils.validator.nonZeroValidator;
 import net.fabricmc.loader.api.FabricLoader;
 
 import static carpet.api.settings.RuleCategory.*;
@@ -31,7 +33,7 @@ public class AcaSetting {
     @Rule(categories = {ACA, SURVIVAL})
     public static boolean itemDespawnImmediately = false;
 
-    @Rule(categories = {ACA, SURVIVAL}, options = {"0"})
+    @Rule(categories = {ACA, SURVIVAL}, validators = nonZeroValidator.class)
     public static int beaconRange = 0;
 
     @Rule(categories = {ACA, SURVIVAL})
@@ -73,5 +75,8 @@ public class AcaSetting {
 
     @Rule(categories = {ACA, OPTIMIZATION})
     public static boolean villagerOptimization = false;
+
+    @Rule(categories = {ACA, SURVIVAL}, strict = false, options = {"0","10","100"}, validators = nonZeroValidator.class)
+    public static int itemPickUpRange = 0;
 }
 
