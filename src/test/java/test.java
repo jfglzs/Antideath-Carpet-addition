@@ -1,18 +1,20 @@
 import carpet.utils.Messenger;
+import io.github.jfglzs.aca.logger.Loggers;
+import oshi.SystemInfo;
+import oshi.hardware.NetworkIF;
+
+import static io.github.jfglzs.aca.logger.network.NetworkLogger.blackList;
 
 public class test {
     public static void main(String[] args) {
-//        String s = "C99: 100%";
-//        System.out.println(s.length());
-//
-//        String s1 = "g C%d: ".formatted(99);
-//        System.out.println(s1);
-//        System.out.println(s1.length());
-//        String coreLoad = "%s %.0f%%".formatted("g", 100f);
-//        System.out.println(coreLoad);
-//        System.out.println(coreLoad.length());
+        SystemInfo info = new SystemInfo();
+        for (NetworkIF nif : info.getHardware().getNetworkIFs()) {
 
-        System.out.println("   ");
-        System.out.println("100");
+                if (!nif.isKnownVmMacAddr() && nif.isConnectorPresent()) {
+                    System.out.println(nif.getDisplayName());
+                }
+
+
+        }
     }
 }

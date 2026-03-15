@@ -28,10 +28,12 @@ public abstract class CommandManager_Mixin {
     )
     public void execute_Inject(ParseResults<ServerCommandSource> parseResults, String command, CallbackInfo ci) {
         if (ConfigUtils.toBoolean(AcaSetting.enableCommandPreventer)) {
-            if (!(AcaSetting.enableCommandPreventerPrefix && AcaSetting.config.CommandPreventPrefixList.stream().anyMatch(command::startsWith))) return;
-            if (!(AcaSetting.enableCommandPreventerWhiteList && AcaSetting.config.CommandPreventWhiteList.contains(command))) return;
-            else if (!(AcaSetting.enableCommandPreventerBlackList && AcaSetting.config.CommandPreventWhiteList.contains(command))) return;
-            preventCommand(ci, command, parseResults);
+            if (AcaSetting.enableCommandPreventerPrefix && AcaSetting.config.CommandPreventPrefixList.stream().anyMatch(command::startsWith))
+                preventCommand(ci, command, parseResults);
+            if (AcaSetting.enableCommandPreventerWhiteList && AcaSetting.config.CommandPreventWhiteList.contains(command))
+                preventCommand(ci, command, parseResults);
+            else if (AcaSetting.enableCommandPreventerBlackList && AcaSetting.config.CommandPreventWhiteList.contains(command))
+                preventCommand(ci, command, parseResults);
         }
     }
 

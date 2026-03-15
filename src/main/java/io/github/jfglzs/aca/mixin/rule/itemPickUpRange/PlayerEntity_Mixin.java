@@ -20,7 +20,7 @@ import java.util.List;
 public class PlayerEntity_Mixin {
     @Inject(
             method = "tickMovement",
-            at = @At(value = "INVOKE", target = "Lcom/google/common/collect/Lists;newArrayList()Ljava/util/ArrayList;")
+            at = @At(value = "TAIL")
     )
     public void tickMovement_Inject(CallbackInfo ci) {
         if (AcaSetting.itemPickUpRange > 0) {
