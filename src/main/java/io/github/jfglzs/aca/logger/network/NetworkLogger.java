@@ -45,29 +45,31 @@ public class NetworkLogger extends AbstractHUDLogger {
             List<Text> list = new ArrayList<>();
             for (NetworkIF nif : Loggers.sysInfo.getHardware().getNetworkIFs()) {
                 if (this.isPhysicalDevice(nif)) {
-                    nif.updateAttributes();
                     long timediff = System.currentTimeMillis() - lastUpdate;
-                    long bytesRecv = nif.getBytesRecv();
-                    long bytesSent = nif.getBytesSent();
-//                    System.out.println("recv " + bytesRecv + " bytes");
-//                    System.out.println("sent " + bytesSent + " bytes");
-//                    System.out.println("millis " + millis + " ms");
-//                    System.out.println("millis " + lastUpdate + " ms");
-                    double uploadMbps = ((bytesSent - this.lastSent) * 8.0 / (8 * 1024 * 1024)) / (timediff / 1000.0);
-                    double downloadMbps = ((bytesRecv - this.lastRecv) * 8.0 / (8 *1024 * 1024)) / (timediff / 1000.0);
-                    list.add(
+                    if (timediff > 0) {
+                        nif.updateAttributes();
+                        long bytesRecv = nif.getBytesRecv();
+                        long bytesSent = nif.getBytesSent();
+//                      System.out.println("recv " + bytesRecv + " bytes");
+//                      System.out.println("sent " + bytesSent + " bytes");
+//                      System.out.println("millis " + millis + " ms");
+//                      System.out.println("millis " + lastUpdate + " ms");
+                        double uploadMbps = ((bytesSent - this.lastSent) * 8.0 / (1024 * 1024)) / (timediff / 1000.0);
+                        double downloadMbps = ((bytesRecv - this.lastRecv) * 8.0 / (1024 * 1024)) / (timediff / 1000.0);
+                        list.add(
                             Messenger.c(
                                     String.format(
                                             "g ⬆Upload: %.3f Mbps ⬇Download: %.3f Mbps",
                                             uploadMbps,
                                             downloadMbps
-                                    )
-                            )
-                    );
-                    this.lastRecv = bytesRecv;
-                    this.lastSent = bytesSent;
-                    this.lastUpdate = System.currentTimeMillis();
-                    break;
+                                        )
+                                )
+                        );
+                        this.lastRecv = bytesRecv;
+                        this.lastSent = bytesSent;
+                        this.lastUpdate = System.currentTimeMillis();
+                        break;
+                    }
                 }
             }
             LoggerRegistry.getLogger("network").log(() -> list.toArray(new Text[0]));
