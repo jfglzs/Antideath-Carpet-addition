@@ -3,6 +3,7 @@
   "package": "io.github.jfglzs.aca.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "test",
     "Invoker.OpCommand_Invoker",
     "Invoker.TelePortCommand_Invoker",
     "logger.HUDController_Mixin",

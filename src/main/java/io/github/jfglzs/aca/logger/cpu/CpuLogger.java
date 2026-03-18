@@ -3,6 +3,7 @@ package io.github.jfglzs.aca.logger.cpu;
 import carpet.logging.LoggerRegistry;
 import carpet.utils.Messenger;
 import com.sun.management.OperatingSystemMXBean;
+import io.github.jfglzs.aca.event.LoggerUpdateEvent;
 import io.github.jfglzs.aca.logger.AbstractHUDLogger;
 import io.github.jfglzs.aca.logger.Loggers;
 import net.minecraft.server.MinecraftServer;
@@ -20,6 +21,7 @@ public class CpuLogger extends AbstractHUDLogger {
 
     protected CpuLogger(Field acceleratorField, String logName, String def, String[] options, boolean strictOptions) {
         super(acceleratorField, logName, def, options, strictOptions);
+        LoggerUpdateEvent.event.onEvent(this::updateHUD);
     }
 
     @Override

@@ -2,6 +2,7 @@ package io.github.jfglzs.aca.logger.memory;
 
 import carpet.logging.LoggerRegistry;
 import carpet.utils.Messenger;
+import io.github.jfglzs.aca.event.LoggerUpdateEvent;
 import io.github.jfglzs.aca.logger.AbstractHUDLogger;
 import io.github.jfglzs.aca.logger.Loggers;
 import net.minecraft.server.MinecraftServer;
@@ -21,6 +22,8 @@ public class MemoryLogger extends AbstractHUDLogger {
 
     protected MemoryLogger(Field acceleratorField, String logName, String def, String[] options, boolean strictOptions) {
         super(acceleratorField, logName, def, options, strictOptions);
+        LoggerUpdateEvent.event.onEvent(this::updateHUD);
+
     }
 
     @Override
