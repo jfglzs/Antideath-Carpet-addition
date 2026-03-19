@@ -9,7 +9,7 @@ import java.util.function.Consumer;
 public class Event<T> {
     private final Set<Consumer<T>> consumers = new HashSet<>();
 
-    public void onUpdate(T arg) {
+    public void update(T arg) {
         try {
             this.consumers.forEach(consumer -> consumer.accept(arg));
         } catch (Exception e) {

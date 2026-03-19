@@ -22,7 +22,7 @@ public abstract class HUDController_Mixin {
             remap = false
     )
     private static void updateHUD_Inject(MinecraftServer server, List<ServerPlayerEntity> force, CallbackInfo ci) {
-        LoggerUpdateEvent.event.onUpdate(server);
+        LoggerUpdateEvent.event.update(server);
     }
 }
 

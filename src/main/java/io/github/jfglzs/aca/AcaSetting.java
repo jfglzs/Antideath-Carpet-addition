@@ -11,7 +11,7 @@ import static carpet.api.settings.RuleCategory.*;
 
 public class AcaSetting {
     public static ConfigBean config;
-    public static final Path configDirectory = FabricLoader.getInstance().getConfigDir().resolve("antideath-carpet-addition");
+    public static final Path dir = FabricLoader.getInstance().getConfigDir().resolve("antideath-carpet-addition");
     public static final String FALSE = "false";
     public static final String ACA = "ACA";
 
