@@ -60,7 +60,6 @@ public class MemoryLogger extends AbstractHUDLogger {
     }
 
     static class AllocationRateCalculator {
-
         private static final List<GarbageCollectorMXBean> GARBAGE_COLLECTORS = ManagementFactory.getGarbageCollectorMXBeans();
         private long lastCalculated = 0L;
         private long allocatedBytes = -1L;

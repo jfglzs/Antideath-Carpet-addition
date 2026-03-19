@@ -46,7 +46,7 @@ public class NetworkLogger extends AbstractHUDLogger {
         if (Loggers.__network) {
             List<Text> list = new ArrayList<>();
             for (NetworkIF nif : Loggers.sysInfo.getHardware().getNetworkIFs()) {
-                if (this.isPhysicalDevice(nif)) {
+                if (this.isPhysicDevice(nif)) {
                     long timediff = System.currentTimeMillis() - lastUpdate;
                     if (timediff > 0) {
                         nif.updateAttributes();
@@ -78,7 +78,7 @@ public class NetworkLogger extends AbstractHUDLogger {
         }
     }
 
-    public boolean isPhysicalDevice(NetworkIF nif) {
+    public boolean isPhysicDevice(NetworkIF nif) {
         for (String s : blackList) {
             if (nif.getDisplayName().toLowerCase().contains(s)) {
                 return false;
