@@ -6,11 +6,6 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectUtil;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-//#if MC == 12001
-//$$ import net.minecraft.enchantment.EnchantmentHelper;
-//$$ import net.minecraft.entity.attribute.EntityAttributes;
-//$$ import net.minecraft.item.ItemStack;
-//#endif
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;

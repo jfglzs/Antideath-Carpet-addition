@@ -24,9 +24,9 @@
 	],
     "accessWidener": "aca.accesswidener",
 	"depends": {
-      "fabricloader": "${loader_requirement_version}",
-      "minecraft": "${minecraft_requirement_version}",
-      "carpet": "${carpet_requirement_version}"
+      "fabricloader": "0.17.2",
+      "minecraft": "${version}",
+      "carpet": "*"
 	},
 	"suggests": {
 		"another-mod": "*"
