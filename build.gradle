@@ -2,13 +2,10 @@ plugins {
     id 'fabric-loom' version "1.11-SNAPSHOT"
     id 'maven-publish'
 }
-//apply plugin: 'com.replaymod.preprocess'
 
-def name = "${property("mod_version")}+build.${new Date().format('yyMMddHHmm')}"
+def modver = property("mod_version")
+def name = "${modver}+build.${new Date().format('yyMMddHHmm')}"
 def minecraftVer = stonecutter.current.version
-
-
-println "mcVersion: " + minecraftVer
 
 base {
 	archivesName = archives_base_name + name
@@ -16,7 +13,9 @@ base {
 
 repositories {
     mavenCentral()
-    maven { url 'https://maven.aliyun.com/repository/public/' }
+    maven {
+        url 'https://maven.aliyun.com/repository/public/'
+    }
     maven {
         url 'https://www.cursemaven.com'
     }
@@ -24,7 +23,6 @@ repositories {
         name = "Modrinth"
         url = "https://api.modrinth.com/maven"
     }
-
     maven {
         url 'https://jitpack.io'
     }
@@ -57,11 +55,13 @@ dependencies {
 processResources {
     from "aca.accesswidener"
 
-    inputs.property "version", minecraftVer
+    inputs.property "version", modver
+    inputs.property "mc", minecraftVer
 
     filesMatching("fabric.mod.json") {
         def valueMap = [
-                "version": stonecutter.current.version,
+                "version": modver,
+                "mc": stonecutter.current.version,
         ]
         expand valueMap
     }
