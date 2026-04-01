@@ -44,7 +44,6 @@ public class NetworkLogger extends AbstractHUDLogger {
     @Override
     public void updateHUD(MinecraftServer server) {
         if (Loggers.__network) {
-            List<Text> list = new ArrayList<>();
             for (NetworkIF nif : Loggers.sysInfo.getHardware().getNetworkIFs()) {
                 if (this.isPhysicDevice(nif)) {
                     long timediff = System.currentTimeMillis() - lastUpdate;
@@ -58,7 +57,7 @@ public class NetworkLogger extends AbstractHUDLogger {
 //                      System.out.println("millis " + lastUpdate + " ms");
                         double uploadMbps = ((bytesSent - this.lastSent) * 8.0 / (1024 * 1024)) / (timediff / 1000.0);
                         double downloadMbps = ((bytesRecv - this.lastRecv) * 8.0 / (1024 * 1024)) / (timediff / 1000.0);
-                        list.add(
+                        Text[] text = {
                                 Messenger.c(
                                         String.format(
                                                 "g ⬆Upload: %.3f Mbps ⬇Download: %.3f Mbps",
@@ -66,15 +65,16 @@ public class NetworkLogger extends AbstractHUDLogger {
                                                 downloadMbps
                                         )
                                 )
-                        );
+                        };
                         this.lastRecv = bytesRecv;
                         this.lastSent = bytesSent;
                         this.lastUpdate = System.currentTimeMillis();
+
+                        LoggerRegistry.getLogger("network").log(() -> text);
                         break;
                     }
                 }
             }
-            LoggerRegistry.getLogger("network").log(() -> list.toArray(new Text[0]));
         }
     }
 
