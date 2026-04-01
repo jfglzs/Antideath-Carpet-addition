@@ -20,7 +20,7 @@ import static io.github.jfglzs.aca.AcaSetting.flippinToTemOfUndying;
 
 @Mixin(BlockRotator.class)
 public abstract class BlockRotator_Mixin {
-    private static RateLimiter limiter = RateLimiter.create(10);
+    private static final RateLimiter limiter = RateLimiter.create(10);
 
     @Inject(
             method = "flippinEligibility",
@@ -41,7 +41,8 @@ public abstract class BlockRotator_Mixin {
             cancellable = true
     )
     private static void flipBlockWithCactus_Inject(BlockState state, World world, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<Boolean> cir) {
-        if (!player.getAbilities().allowModifyWorld || !flippinToTemOfUndying || !player.getMainHandStack().getItem().equals(Items.TOTEM_OF_UNDYING)) return;
+        if (!player.getAbilities().allowModifyWorld || !flippinToTemOfUndying || !player.getMainHandStack().getItem().equals(Items.TOTEM_OF_UNDYING))
+            return;
         if (!limiter.tryAcquire()) return;
 
         CarpetSettings.impendingFillSkipUpdates.set(true);

@@ -17,14 +17,14 @@ import static net.minecraft.server.command.CommandManager.literal;
 public class SearchEntityCommand {
     public static void registerCommand(CommandDispatcher<ServerCommandSource> dispatcher) {
         LiteralArgumentBuilder<ServerCommandSource> argument = literal("entitysearch")
-                      .requires((source) -> carpet.utils.CommandHelper.canUseCommand(source, enableEntitySearchCommand))
-                        .then(CommandManager.argument("targets", EntityArgumentType.entities())
-                            .executes(context ->
+                .requires((source) -> carpet.utils.CommandHelper.canUseCommand(source, enableEntitySearchCommand))
+                .then(CommandManager.argument("targets", EntityArgumentType.entities())
+                        .executes(context ->
                                 execute(
-                                    context.getSource(), EntityArgumentType.getEntities(context, "targets")
+                                        context.getSource(), EntityArgumentType.getEntities(context, "targets")
                                 )
-                            )
-                        );
+                        )
+                );
         dispatcher.register(argument);
     }
 
@@ -34,11 +34,10 @@ public class SearchEntityCommand {
     }
 
     private static void sendFeedback(ServerCommandSource source, Entity entity) {
-
         if (entitySearchCommandEnableXaeroMapSupport) {
-            source.sendFeedback(() -> Text.of(String.format("xaero-waypoint:%s:1:%d:%d:%d:2:false:0:External", entity.getDisplayName().getString(), (int) entity.getX(), (int) entity.getY(), (int) entity.getZ())),true);
+            source.sendFeedback(() -> Text.of(String.format("xaero-waypoint:%s:1:%d:%d:%d:2:false:0:External", entity.getDisplayName().getString(), (int) entity.getX(), (int) entity.getY(), (int) entity.getZ())), true);
         } else {
-            source.sendFeedback(() -> Text.of(String.format("%s pos: \n X: %f \n Y: %f \nZ: %f \n", entity.getDisplayName().getString() , entity.getX(),  entity.getY(), entity.getZ())), true);
+            source.sendFeedback(() -> Text.of(String.format("%s pos: \n X: %f \n Y: %f \nZ: %f \n", entity.getDisplayName().getString(), entity.getX(), entity.getY(), entity.getZ())), true);
         }
     }
 }

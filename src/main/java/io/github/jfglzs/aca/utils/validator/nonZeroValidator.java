@@ -6,9 +6,9 @@ import carpet.utils.Messenger;
 import net.minecraft.server.command.ServerCommandSource;
 import org.jetbrains.annotations.Nullable;
 
-public class nonZeroValidator extends Validator<Integer> {
+public class NonZeroValidator extends Validator<Integer> {
     @Override
-    public Integer validate(@Nullable ServerCommandSource source, CarpetRule<Integer> carpetRule, Integer integer, String s) {
+    public Integer validate(@Nullable ServerCommandSource source, CarpetRule<Integer> rule, Integer integer, String s) {
         if (integer < 0) {
             Messenger.m(source, "r The value must be greater than 0");
             return null;

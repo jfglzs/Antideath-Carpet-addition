@@ -15,7 +15,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntity_Mixin {
-    @Shadow @Final PlayerInventory inventory;
+    @Shadow
+    @Final
+    PlayerInventory inventory;
 
     @Inject(
             method = "getBlockBreakingSpeed",

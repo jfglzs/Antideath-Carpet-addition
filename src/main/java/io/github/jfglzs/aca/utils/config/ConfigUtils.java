@@ -44,8 +44,7 @@ public class ConfigUtils {
         return true;
     }
 
-    public static boolean exists()
-    {
+    public static boolean exists() {
         return Files.exists(dir.resolve(File_NAME));
     }
 
@@ -79,8 +78,7 @@ public class ConfigUtils {
             AcaSetting.config = gson.fromJson(content, ConfigBean.class);
         } catch (JsonSyntaxException e) {
             LOGGER.error(e.getMessage());
-        }
-        finally {
+        } finally {
             if (AcaSetting.config == null) {
                 AcaSetting.config = new ConfigBean();
             }

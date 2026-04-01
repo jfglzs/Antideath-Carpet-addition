@@ -43,8 +43,8 @@ public class Brain_Mixin<E extends LivingEntity> {
     private boolean tickSensors_WarpOperation(Sensor<?> sensor, ServerWorld world, E entity) {
         if (
                 entity instanceof VillagerEntity villager &&
-                AcaSetting.villagerOptimization &&
-                ((VillagerAccessor) villager).aca$canDisableAI()
+                        AcaSetting.villagerOptimization &&
+                        ((VillagerAccessor) villager).aca$canDisableAI()
         ) {
             return !SENSORS.contains(sensor.getClass());
         }
@@ -63,9 +63,9 @@ public class Brain_Mixin<E extends LivingEntity> {
 
         if (
                 e instanceof VillagerEntity villager &&
-                AcaSetting.villagerOptimization &&
-                ((VillagerAccessor) villager).aca$canDisableAI() &&
-                TASKS.contains(task.getClass())
+                        AcaSetting.villagerOptimization &&
+                        ((VillagerAccessor) villager).aca$canDisableAI() &&
+                        TASKS.contains(task.getClass())
         ) {
             return;
         }

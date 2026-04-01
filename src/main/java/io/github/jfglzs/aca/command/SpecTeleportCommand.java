@@ -16,11 +16,10 @@ import static net.minecraft.server.command.CommandManager.argument;
 import static net.minecraft.server.command.CommandManager.literal;
 
 public class SpecTeleportCommand {
-
     public static void registerCommand(CommandDispatcher<ServerCommandSource> dispatcher) {
         LiteralArgumentBuilder<ServerCommandSource> argument = literal("sp")
-                      .requires((source) -> carpet.utils.CommandHelper.canUseCommand(source, enableSpecTPCommand))
-                          .then(argument("player", EntityArgumentType.player()).executes((context) -> execute(context.getSource(), EntityArgumentType.getPlayer(context, "player"))));
+                .requires((source) -> carpet.utils.CommandHelper.canUseCommand(source, enableSpecTPCommand))
+                .then(argument("player", EntityArgumentType.player()).executes((context) -> execute(context.getSource(), EntityArgumentType.getPlayer(context, "player"))));
 
         dispatcher.register(argument);
     }
@@ -29,11 +28,10 @@ public class SpecTeleportCommand {
         PlayerEntity player = source.getPlayer();
         if (player == null) return -1;
         if (player.isSpectator()) {
-            return TelePortCommand_Invoker.executeInvoker(source , Collections.singleton(player) , player1);
+            return TelePortCommand_Invoker.executeInvoker(source, Collections.singleton(player), player1);
         } else {
             Messenger.m(player, "r you're not spectator");
             return 0;
         }
     }
-
 }

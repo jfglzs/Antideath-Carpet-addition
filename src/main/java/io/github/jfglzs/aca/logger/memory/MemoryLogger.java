@@ -20,10 +20,23 @@ public class MemoryLogger extends AbstractHUDLogger {
     public static final MemoryLogger INSTANCE;
     private static final AllocationRateCalculator allocationRateCalculator;
 
+    static {
+        try {
+            INSTANCE = new MemoryLogger(Loggers.class.getField("__mem"), "MemoryLogger", " ", null, false);
+            allocationRateCalculator = new AllocationRateCalculator();
+        } catch (NoSuchFieldException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     protected MemoryLogger(Field acceleratorField, String logName, String def, String[] options, boolean strictOptions) {
         super(acceleratorField, logName, def, options, strictOptions);
-        LoggerUpdateEvent.event.onEvent(this::updateHUD);
+        LoggerUpdateEvent.event.register(this::updateHUD);
 
+    }
+
+    private static long toMiB(long bytes) {
+        return bytes / 1024L / 1024L;
     }
 
     @Override
@@ -46,25 +59,22 @@ public class MemoryLogger extends AbstractHUDLogger {
         }
     }
 
-    private static long toMiB(long bytes) {
-        return bytes / 1024L / 1024L;
-    }
-
-    static {
-        try {
-            INSTANCE = new MemoryLogger(Loggers.class.getField("__mem"),"MemoryLogger"," ",null,false);
-            allocationRateCalculator = new AllocationRateCalculator();
-        } catch (NoSuchFieldException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     static class AllocationRateCalculator {
         private static final List<GarbageCollectorMXBean> GARBAGE_COLLECTORS = ManagementFactory.getGarbageCollectorMXBeans();
         private long lastCalculated = 0L;
         private long allocatedBytes = -1L;
         private long collectionCount = -1L;
         private long allocationRate = 0L;
+
+        private static long getCollectionCount() {
+            long l = 0L;
+
+            for (GarbageCollectorMXBean garbageCollectorMXBean : GARBAGE_COLLECTORS) {
+                l += garbageCollectorMXBean.getCollectionCount();
+            }
+
+            return l;
+        }
 
         long get(long allocatedBytes) {
             long l = System.currentTimeMillis();
@@ -73,9 +83,9 @@ public class MemoryLogger extends AbstractHUDLogger {
             } else {
                 long m = getCollectionCount();
                 if (this.lastCalculated != 0L && m == this.collectionCount) {
-                    double d = (double) TimeUnit.SECONDS.toMillis(1L) / (double)(l - this.lastCalculated);
+                    double d = (double) TimeUnit.SECONDS.toMillis(1L) / (double) (l - this.lastCalculated);
                     long n = allocatedBytes - this.allocatedBytes;
-                    this.allocationRate = Math.round((double)n * d);
+                    this.allocationRate = Math.round((double) n * d);
                 }
 
                 this.lastCalculated = l;
@@ -83,16 +93,6 @@ public class MemoryLogger extends AbstractHUDLogger {
                 this.collectionCount = m;
                 return this.allocationRate;
             }
-        }
-
-        private static long getCollectionCount() {
-            long l = 0L;
-
-            for(GarbageCollectorMXBean garbageCollectorMXBean : GARBAGE_COLLECTORS) {
-                l += garbageCollectorMXBean.getCollectionCount();
-            }
-
-            return l;
         }
     }
 }

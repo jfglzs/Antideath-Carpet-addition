@@ -4,7 +4,10 @@ package io.github.jfglzs.aca.mixin.rule.beaconOptimization;
 import io.github.jfglzs.aca.AcaSetting;
 import net.minecraft.block.entity.BeaconBlockEntity;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Constant;
+import org.spongepowered.asm.mixin.injection.ModifyConstant;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(BeaconBlockEntity.class)
 public abstract class BeaconBlockEntity_Mixin {

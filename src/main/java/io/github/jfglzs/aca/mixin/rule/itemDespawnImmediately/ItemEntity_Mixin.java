@@ -13,14 +13,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ItemEntity.class)
 public abstract class ItemEntity_Mixin {
 
-    @Shadow public abstract void setDespawnImmediately();
+    @Shadow
+    public abstract void setDespawnImmediately();
 
     @Inject(
             method = "tick",
             at = @At("HEAD")
     )
     public void tick(CallbackInfo ci) {
-        if(AcaSetting.itemDespawnImmediately) {
+        if (AcaSetting.itemDespawnImmediately) {
             this.setDespawnImmediately();
         }
     }

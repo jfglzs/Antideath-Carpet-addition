@@ -16,7 +16,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(WardenEntity.class)
 public class WardenEntity_Mixin extends HostileEntity implements EntityAccessor {
-    @Unique private int count = -1;
+    @Unique
+    private int count = -1;
 
     protected WardenEntity_Mixin(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);

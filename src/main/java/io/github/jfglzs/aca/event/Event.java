@@ -17,7 +17,7 @@ public class Event<T> {
         }
     }
 
-    public void onEvent(Consumer<T> consumer) {
+    public void register(Consumer<T> consumer) {
         this.consumers.add(consumer);
     }
 }

@@ -42,5 +42,4 @@ public class PlayerEntity_Mixin {
         }
         return original.call(world, entity, box);
     }
-
 }

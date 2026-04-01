@@ -24,6 +24,7 @@ public class RuleTranslator {
             return Collections.emptyMap();
         }
         Gson gson = new GsonBuilder().setLenient().create();
-        return gson.fromJson(jsonData, new TypeToken<Map<String, String>>() {}.getType());
+        return gson.fromJson(jsonData, new TypeToken<Map<String, String>>() {
+        }.getType());
     }
 }

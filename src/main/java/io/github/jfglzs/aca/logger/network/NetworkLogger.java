@@ -38,7 +38,7 @@ public class NetworkLogger extends AbstractHUDLogger {
 
     protected NetworkLogger(Field acceleratorField, String logName, String def, String[] options, boolean strictOptions) {
         super(acceleratorField, logName, def, options, strictOptions);
-        LoggerUpdateEvent.event.onEvent(this::updateHUD);
+        LoggerUpdateEvent.event.register(this::updateHUD);
     }
 
     @Override
@@ -59,11 +59,11 @@ public class NetworkLogger extends AbstractHUDLogger {
                         double uploadMbps = ((bytesSent - this.lastSent) * 8.0 / (1024 * 1024)) / (timediff / 1000.0);
                         double downloadMbps = ((bytesRecv - this.lastRecv) * 8.0 / (1024 * 1024)) / (timediff / 1000.0);
                         list.add(
-                            Messenger.c(
-                                    String.format(
-                                            "g ⬆Upload: %.3f Mbps ⬇Download: %.3f Mbps",
-                                            uploadMbps,
-                                            downloadMbps
+                                Messenger.c(
+                                        String.format(
+                                                "g ⬆Upload: %.3f Mbps ⬇Download: %.3f Mbps",
+                                                uploadMbps,
+                                                downloadMbps
                                         )
                                 )
                         );
