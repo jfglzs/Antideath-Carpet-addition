@@ -79,11 +79,11 @@ public class NetworkLogger extends AbstractHUDLogger {
     }
 
     public boolean isPhysicDevice(NetworkIF nif) {
-        for (String s : blackList) {
-            if (nif.getDisplayName().toLowerCase().contains(s)) {
-                return false;
-            }
-        }
-        return !nif.isKnownVmMacAddr();
+//        for (String s : blackList) {
+//            if (nif.getDisplayName().toLowerCase().contains(s)) {
+//                return false;
+//            }
+//        }
+        return blackList.stream().noneMatch(nif.getDisplayName().toLowerCase()::contains) && !nif.isKnownVmMacAddr();
     }
 }
