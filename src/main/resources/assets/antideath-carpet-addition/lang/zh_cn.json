@@ -36,5 +36,7 @@
   "carpet.rule.itemPickUpRange.name": "物品拾取范围",
   "carpet.rule.itemPickUpRange.desc": "可自定义物品拾取范围",
   "carpet.rule.softAnvil.name": "易碎铁砧",
-  "carpet.rule.softAnvil.desc": "开启后铁砧从高处摔落会直接变成掉落物"
+  "carpet.rule.softAnvil.desc": "开启后铁砧从高处摔落会直接变成掉落物",
+  "carpet.rule.superSponge.name": "超级海绵",
+  "carpet.rule.superSponge.desc": "开启后会大大提升海绵的吸水范围，但放置海绵时会造成一定的卡顿"
 }

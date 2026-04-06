@@ -82,5 +82,8 @@ public class AcaSetting {
 
     @Rule(categories = {ACA, SURVIVAL}, strict = false, options = {"0", "10", "100"}, validators = GreaterThanZeroValidator.class)
     public static int itemPickUpRange = 0;
+
+    @Rule(categories = {ACA, SURVIVAL})
+    public static boolean superSponge = false;
 }
 

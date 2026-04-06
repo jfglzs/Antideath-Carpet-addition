@@ -20,6 +20,7 @@
     "rule.itemPickUpRange.PlayerEntity_Mixin",
     "rule.noMiningSlowDown.PlayerEntity_Mixin",
     "rule.softAnvil.FallingBlockEntity_Mixin",
+    "rule.superSponge.SpongeBlock_Mixin",
     "rule.villagerOptimization.Brain_Mixin",
     "rule.villagerOptimization.Entity_Mixin",
     "rule.villagerOptimization.NearestLivingEntitiesSensor_Mixin",
@@ -33,6 +34,5 @@
     "requireAnnotations": false
   },
   "client": [
-    "Item"
   ]
 }
