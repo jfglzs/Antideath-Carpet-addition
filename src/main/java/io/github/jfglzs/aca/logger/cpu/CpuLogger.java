@@ -3,7 +3,7 @@ package io.github.jfglzs.aca.logger.cpu;
 import carpet.logging.LoggerRegistry;
 import carpet.utils.Messenger;
 import com.sun.management.OperatingSystemMXBean;
-import io.github.jfglzs.aca.event.LoggerUpdateEvent;
+import io.github.jfglzs.aca.event.LogEvent;
 import io.github.jfglzs.aca.logger.AbstractHUDLogger;
 import io.github.jfglzs.aca.logger.Loggers;
 import net.minecraft.server.MinecraftServer;
@@ -29,7 +29,7 @@ public class CpuLogger extends AbstractHUDLogger {
 
     protected CpuLogger(Field acceleratorField, String logName, String def, String[] options, boolean strictOptions) {
         super(acceleratorField, logName, def, options, strictOptions);
-        LoggerUpdateEvent.event.register(this::updateHUD);
+        LogEvent.event.register(this::updateHUD);
     }
 
     @Override
@@ -57,21 +57,17 @@ public class CpuLogger extends AbstractHUDLogger {
                     String.format("%s %.2f%%", color, cpuLoad)
             );
 
-            switch (option) {
-                case "all" -> {
-                    return ArrayUtils.add(perCoreLoadArray, fullCore);
-                }
-                case "percore" -> {
-                    return perCoreLoadArray;
-                }
-                default -> {
-                    return new Text[]{fullCore};
-                }
+            if (option.equals("all")) {
+                return ArrayUtils.add(perCoreLoadArray, fullCore);
+            } else if (option.equals("percore")) {
+                return perCoreLoadArray;
+            } else {
+                return new Text[]{fullCore};
             }
         }
 
         private static void getCpuPerCoreLoad() {
-            CentralProcessor processor = Loggers.sysInfo.getHardware().getProcessor();
+            CentralProcessor processor = Loggers.SYSTEM_INFO.getHardware().getProcessor();
 
             // 第一次获取初始 Ticks
             long[][] prevTicks = processor.getProcessorCpuLoadTicks();

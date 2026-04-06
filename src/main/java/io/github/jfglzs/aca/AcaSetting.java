@@ -2,7 +2,7 @@ package io.github.jfglzs.aca;
 
 import carpet.api.settings.Rule;
 import io.github.jfglzs.aca.utils.config.ConfigBean;
-import io.github.jfglzs.aca.utils.validator.NonZeroValidator;
+import io.github.jfglzs.aca.utils.validator.GreaterThanZeroValidator;
 import net.fabricmc.loader.api.FabricLoader;
 
 import java.nio.file.Path;
@@ -14,6 +14,8 @@ public class AcaSetting {
     public static final String FALSE = "false";
     public static final String ACA = "ACA";
     public static ConfigBean config;
+
+
     @Rule(categories = {ACA, SURVIVAL})
     public static boolean noMiningSlowDown = false;
 
@@ -35,7 +37,7 @@ public class AcaSetting {
     @Rule(categories = {ACA, SURVIVAL})
     public static boolean itemDespawnImmediately = false;
 
-    @Rule(categories = {ACA, SURVIVAL}, validators = NonZeroValidator.class)
+    @Rule(categories = {ACA, SURVIVAL}, validators = GreaterThanZeroValidator.class)
     public static int beaconRange = 0;
 
     @Rule(categories = {ACA, SURVIVAL})
@@ -78,7 +80,7 @@ public class AcaSetting {
     @Rule(categories = {ACA, OPTIMIZATION})
     public static boolean villagerOptimization = false;
 
-    @Rule(categories = {ACA, SURVIVAL}, strict = false, options = {"0", "10", "100"}, validators = NonZeroValidator.class)
+    @Rule(categories = {ACA, SURVIVAL}, strict = false, options = {"0", "10", "100"}, validators = GreaterThanZeroValidator.class)
     public static int itemPickUpRange = 0;
 }
 

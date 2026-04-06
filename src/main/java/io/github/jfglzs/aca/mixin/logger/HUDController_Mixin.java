@@ -1,7 +1,7 @@
 package io.github.jfglzs.aca.mixin.logger;
 
 import carpet.logging.HUDController;
-import io.github.jfglzs.aca.event.LoggerUpdateEvent;
+import io.github.jfglzs.aca.event.LogEvent;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -22,7 +22,7 @@ public abstract class HUDController_Mixin {
             remap = false
     )
     private static void updateHUD_Inject(MinecraftServer server, List<ServerPlayerEntity> force, CallbackInfo ci) {
-        LoggerUpdateEvent.event.update(server);
+        LogEvent.event.update(server);
     }
 }
 

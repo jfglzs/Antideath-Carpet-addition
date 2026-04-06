@@ -6,7 +6,7 @@ import carpet.utils.Messenger;
 import net.minecraft.server.command.ServerCommandSource;
 import org.jetbrains.annotations.Nullable;
 
-public class NonZeroValidator extends Validator<Integer> {
+public class GreaterThanZeroValidator extends Validator<Integer> {
     @Override
     public Integer validate(@Nullable ServerCommandSource source, CarpetRule<Integer> rule, Integer integer, String s) {
         if (integer < 0) {

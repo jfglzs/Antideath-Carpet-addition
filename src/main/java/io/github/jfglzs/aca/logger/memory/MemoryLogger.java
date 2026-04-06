@@ -2,7 +2,7 @@ package io.github.jfglzs.aca.logger.memory;
 
 import carpet.logging.LoggerRegistry;
 import carpet.utils.Messenger;
-import io.github.jfglzs.aca.event.LoggerUpdateEvent;
+import io.github.jfglzs.aca.event.LogEvent;
 import io.github.jfglzs.aca.logger.AbstractHUDLogger;
 import io.github.jfglzs.aca.logger.Loggers;
 import net.minecraft.server.MinecraftServer;
@@ -11,7 +11,6 @@ import net.minecraft.text.Text;
 import java.lang.management.GarbageCollectorMXBean;
 import java.lang.management.ManagementFactory;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -31,7 +30,7 @@ public class MemoryLogger extends AbstractHUDLogger {
 
     protected MemoryLogger(Field acceleratorField, String logName, String def, String[] options, boolean strictOptions) {
         super(acceleratorField, logName, def, options, strictOptions);
-        LoggerUpdateEvent.event.register(this::updateHUD);
+        LogEvent.event.register(this::updateHUD);
 
     }
 
