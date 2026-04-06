@@ -29,7 +29,10 @@ _**感谢 @[_OptiJava_](https://github.com/OptiJava) 的指导**_
 ![memAllocate](res/memAll.png)
 ### /log network
 **可查看服务器物理网卡的上传/下载速度**
-![network.png](res/network.png)
+![network](res/network.png)
+### /log sysMemory
+**查看物理内存/虚拟内存 使用率/总大小**
+![Memory](res/mem.png)
 
 ## ACA的所有规则
 

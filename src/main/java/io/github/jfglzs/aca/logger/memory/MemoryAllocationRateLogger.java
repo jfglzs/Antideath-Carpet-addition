@@ -15,20 +15,20 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-public class MemoryLogger extends AbstractHUDLogger {
-    public static final MemoryLogger INSTANCE;
+public class MemoryAllocationRateLogger extends AbstractHUDLogger {
+    public static final MemoryAllocationRateLogger INSTANCE;
     private static final AllocationRateCalculator allocationRateCalculator;
 
     static {
         try {
-            INSTANCE = new MemoryLogger(Loggers.class.getField("__mem"), "MemoryLogger", " ", null, false);
+            INSTANCE = new MemoryAllocationRateLogger(Loggers.class.getField("__mem"), "MemoryLogger", " ", null, false);
             allocationRateCalculator = new AllocationRateCalculator();
         } catch (NoSuchFieldException e) {
             throw new RuntimeException(e);
         }
     }
 
-    protected MemoryLogger(Field acceleratorField, String logName, String def, String[] options, boolean strictOptions) {
+    protected MemoryAllocationRateLogger(Field acceleratorField, String logName, String def, String[] options, boolean strictOptions) {
         super(acceleratorField, logName, def, options, strictOptions);
         LogEvent.event.register(this::updateHUD);
 

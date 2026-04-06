@@ -10,18 +10,18 @@ import net.minecraft.text.Text;
 
 import java.lang.reflect.Field;
 
-public class SystemMemoryLogger extends AbstractHUDLogger {
-    public static final SystemMemoryLogger INSTANCE;
+public class MemoryLogger extends AbstractHUDLogger {
+    public static final MemoryLogger INSTANCE;
 
     static {
         try {
-            INSTANCE = new SystemMemoryLogger(Loggers.class.getField("__sysMem"), "sysMemory", " ", null, false);
+            INSTANCE = new MemoryLogger(Loggers.class.getField("__sysMem"), "sysMemory", " ", null, false);
         } catch (NoSuchFieldException e) {
             throw new RuntimeException(e);
         }
     }
 
-    protected SystemMemoryLogger(Field acceleratorField, String logName, String def, String[] options, boolean strictOptions) {
+    protected MemoryLogger(Field acceleratorField, String logName, String def, String[] options, boolean strictOptions) {
         super(acceleratorField, logName, def, options, strictOptions);
         LogEvent.event.register(this::updateHUD);
 
