@@ -2,7 +2,6 @@ package io.github.jfglzs.aca.mixin.rule.noMiningSlowDown;
 
 import io.github.jfglzs.aca.AcaSetting;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectUtil;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -28,7 +27,7 @@ public abstract class PlayerEntity_Mixin {
         if (AcaSetting.noMiningSlowDown) {
             PlayerEntity player = (PlayerEntity) (Object) this;
             float mineSpeed;
-            //? if > 1.21.1 {
+            //? if > 1.21.4 {
              mineSpeed = inventory.getSelectedStack().getMiningSpeedMultiplier(block);
             //?} else {
             /*mineSpeed = inventory.getMainHandStack().getMiningSpeedMultiplier(block);
