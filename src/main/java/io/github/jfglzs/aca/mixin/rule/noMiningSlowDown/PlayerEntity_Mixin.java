@@ -27,10 +27,12 @@ public abstract class PlayerEntity_Mixin {
     public void getBlockBreakingSpeed_Inject(BlockState block, CallbackInfoReturnable<Float> cir) {
         if (AcaSetting.noMiningSlowDown) {
             PlayerEntity player = (PlayerEntity) (Object) this;
-            float mineSpeed = this.inventory.getSelectedStack().getMiningSpeedMultiplier(block);
-            if (mineSpeed > 1.0F) {
-                mineSpeed += (float) player.getAttributeValue(EntityAttributes.MINING_EFFICIENCY);
-            }
+            float mineSpeed;
+            //? if > 1.21.1 {
+             mineSpeed = inventory.getSelectedStack().getMiningSpeedMultiplier(block);
+            //?} else {
+            /*mineSpeed = inventory.getMainHandStack().getMiningSpeedMultiplier(block);
+            *///?}
             if (StatusEffectUtil.hasHaste(player)) {
                 mineSpeed *= 1.0F + (float) (StatusEffectUtil.getHasteAmplifier(player) + 1) * 0.2F;
             }
