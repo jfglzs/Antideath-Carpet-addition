@@ -11,5 +11,7 @@ import java.util.Collection;
 @Mixin(TeleportCommand.class)
 public interface TelePortCommand_Invoker {
     @Invoker("execute")
-    static int executeInvoker(ServerCommandSource source, Collection<? extends Entity> targets, Entity destination) {return 0;}
+    static int executeInvoker(ServerCommandSource source, Collection<? extends Entity> targets, Entity destination) {
+        return 0;
+    }
 }

@@ -19,5 +19,7 @@
   "carpet.rule.fakePeaceOptimization.desc": "optimize fake place",
   "carpet.rule.villagerOptimization.desc": "villagerOptimization",
   "carpet.rule.beaconRange.desc": "beaconRange",
-  "carpet.rule.itemPickUpRange.desc": "itemPickUpRange"
+  "carpet.rule.itemPickUpRange.desc": "itemPickUpRange",
+  "carpet.rule.softAnvil.desc": "softAnvil",
+  "carpet.rule.superSponge.desc": "superSponge"
 }

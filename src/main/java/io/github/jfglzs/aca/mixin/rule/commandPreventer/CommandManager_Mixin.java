@@ -40,9 +40,10 @@ public abstract class CommandManager_Mixin {
     @Unique
     private void preventCommand(CallbackInfo ci, String command, ParseResults<ServerCommandSource> results) {
         ServerPlayerEntity player = results.getContext().getSource().getPlayer();
-        if (!commandPreventerPreventOP && player != null && player.getServer().getPlayerManager().isOperator(player.getGameProfile())) return;
+        if (!commandPreventerPreventOP && player != null && player.getServer().getPlayerManager().isOperator(player.getGameProfile()))
+            return;
         results.getContext().getSource().sendFeedback(
-                () -> Messenger.c("r [Command Preventer] Command: %s had prevented ".formatted(command)) ,true
+                () -> Messenger.c("r [Command Preventer] Command: %s had prevented ".formatted(command)), true
         );
         AcaExtension.LOGGER.info("[Command Preventer] Prevented Command: {}", command);
         ci.cancel();

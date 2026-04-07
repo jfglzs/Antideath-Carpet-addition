@@ -20,52 +20,52 @@ public class PreventCommand {
         LiteralArgumentBuilder<ServerCommandSource> argument = literal("preventcmd")
                 .requires((source) -> carpet.utils.CommandHelper.canUseCommand(source, enableCommandPreventer))
                 .then(literal("whitelist")
-                    .then(literal("add")
-                        .then(argument("cmd", StringArgumentType.word())
-                            .executes(PreventCommand::addWhiteList)
+                        .then(literal("add")
+                                .then(argument("cmd", StringArgumentType.word())
+                                        .executes(PreventCommand::addWhiteList)
+                                )
                         )
-                    )
-                    .then(literal("remove")
-                        .then(argument("cmd", StringArgumentType.word())
-                            .executes(PreventCommand::removeWhiteList)
+                        .then(literal("remove")
+                                .then(argument("cmd", StringArgumentType.word())
+                                        .executes(PreventCommand::removeWhiteList)
+                                )
                         )
-                    )
-                    .then(literal("list")
-                        .executes(PreventCommand::listWhiteList)
-                    )
+                        .then(literal("list")
+                                .executes(PreventCommand::listWhiteList)
+                        )
                 )
                 .then(literal("blacklist")
-                    .then(literal("add")
-                        .then(argument("cmd", StringArgumentType.word())
-                            .executes(PreventCommand::addBlackList)
+                        .then(literal("add")
+                                .then(argument("cmd", StringArgumentType.word())
+                                        .executes(PreventCommand::addBlackList)
+                                )
                         )
-                    )
-                    .then(literal("remove")
-                        .then(argument("cmd", StringArgumentType.word())
-                            .executes(PreventCommand::removeBlackList)
+                        .then(literal("remove")
+                                .then(argument("cmd", StringArgumentType.word())
+                                        .executes(PreventCommand::removeBlackList)
+                                )
                         )
-                    )
-                    .then(literal("list")
-                        .executes(PreventCommand::listBlackList)
-                    )
+                        .then(literal("list")
+                                .executes(PreventCommand::listBlackList)
+                        )
                 )
                 .then(literal("prefix")
-                    .then(literal("add")
-                        .then(argument("cmd", StringArgumentType.word())
-                            .executes(PreventCommand::addPrefix)
+                        .then(literal("add")
+                                .then(argument("cmd", StringArgumentType.word())
+                                        .executes(PreventCommand::addPrefix)
+                                )
                         )
-                    )
-                    .then(literal("remove")
-                        .then(argument("cmd", StringArgumentType.word())
-                            .executes(PreventCommand::removePrefix)
+                        .then(literal("remove")
+                                .then(argument("cmd", StringArgumentType.word())
+                                        .executes(PreventCommand::removePrefix)
+                                )
                         )
-                    )
-                    .then(literal("list")
-                        .executes(PreventCommand::listPrefix)
-                    )
+                        .then(literal("list")
+                                .executes(PreventCommand::listPrefix)
+                        )
                 )
                 .then(literal("reload")
-                    .executes(PreventCommand::reload)
+                        .executes(PreventCommand::reload)
                 );
 
         dispatcher.register(argument);
@@ -84,7 +84,7 @@ public class PreventCommand {
     }
 
     private static int removeWhiteList(CommandContext<ServerCommandSource> context) {
-        return addOrRemoveFromList(context, 1, true,  "Removed %s from whitelist");
+        return addOrRemoveFromList(context, 1, true, "Removed %s from whitelist");
     }
 
     private static int removeBlackList(CommandContext<ServerCommandSource> context) {
@@ -96,34 +96,34 @@ public class PreventCommand {
     }
 
     private static int listPrefix(CommandContext<ServerCommandSource> context) {
-        context.getSource().sendFeedback(() -> Messenger.c(COMMAND_PREVENTER + "Prefixlist: " + AcaSetting.config.CommandPreventPrefixList),true);
+        context.getSource().sendFeedback(() -> Messenger.c(COMMAND_PREVENTER + "Prefixlist: " + AcaSetting.config.CommandPreventPrefixList), true);
         return 0;
     }
 
     private static int listWhiteList(CommandContext<ServerCommandSource> context) {
-        context.getSource().sendFeedback(() -> Messenger.c(COMMAND_PREVENTER + "WhiteList: " + AcaSetting.config.CommandPreventWhiteList),true);
+        context.getSource().sendFeedback(() -> Messenger.c(COMMAND_PREVENTER + "WhiteList: " + AcaSetting.config.CommandPreventWhiteList), true);
         return 0;
     }
 
     private static int listBlackList(CommandContext<ServerCommandSource> context) {
-        context.getSource().sendFeedback(() -> Messenger.c(COMMAND_PREVENTER + "BlackList: " + AcaSetting.config.CommandPreventBlackList),true);
+        context.getSource().sendFeedback(() -> Messenger.c(COMMAND_PREVENTER + "BlackList: " + AcaSetting.config.CommandPreventBlackList), true);
         return 0;
     }
 
     private static int reload(CommandContext<ServerCommandSource> context) {
         ConfigUtils.loadConfigFile();
-        context.getSource().sendFeedback(() -> Messenger.c(COMMAND_PREVENTER + "Config reloaded"),true);
+        context.getSource().sendFeedback(() -> Messenger.c(COMMAND_PREVENTER + "Config reloaded"), true);
         return 0;
     }
 
     private static int addOrRemoveFromList(CommandContext<ServerCommandSource> context, int index, boolean isRemove, String feedback) {
-        String cmd = StringArgumentType.getString(context,"cmd");
+        String cmd = StringArgumentType.getString(context, "cmd");
         if (isRemove) {
             ConfigUtils.removeConfig(cmd, index);
-            context.getSource().sendFeedback(() -> Messenger.c(COMMAND_PREVENTER + feedback.formatted(cmd)),true);
+            context.getSource().sendFeedback(() -> Messenger.c(COMMAND_PREVENTER + feedback.formatted(cmd)), true);
         } else {
             ConfigUtils.addToConfig(cmd, index);
-            context.getSource().sendFeedback(() -> Messenger.c(COMMAND_PREVENTER + feedback.formatted(cmd)),true);
+            context.getSource().sendFeedback(() -> Messenger.c(COMMAND_PREVENTER + feedback.formatted(cmd)), true);
         }
         return 0;
     }

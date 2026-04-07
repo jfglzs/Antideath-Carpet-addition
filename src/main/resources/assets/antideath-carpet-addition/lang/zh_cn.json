@@ -1,5 +1,5 @@
 {
-  "carpet.rule.noMiningSlowDown.desc":"挖掘无减速,当玩家处于,流体,蜘蛛网,挖掘疲劳时挖掘无减速",
+  "carpet.rule.noMiningSlowDown.desc": "挖掘无减速,当玩家处于,流体,蜘蛛网,挖掘疲劳时挖掘无减速",
   "carpet.rule.noMiningSlowDown.name": "挖掘无减速",
   "carpet.rule.anvilNeverDamageByFalling.name": "铁砧掉落不损坏",
   "carpet.rule.anvilNeverDamageByFalling.desc": "启用后铁砧从高处掉落不会损坏。",
@@ -19,10 +19,10 @@
   "carpet.rule.itemNeverDespawn.desc": "启用后掉落的物品永远不会消失",
   "carpet.rule.flippinToTemOfUndying.name": "启用不死图腾扳手",
   "carpet.rule.flippinToTemOfUndying.desc": "PCA移植功能",
-  "carpet.rule.enableSpecTPCommand.name":"启用旁观者快速TP命令(sp)",
-  "carpet.rule.enableSpecTPCommand.desc":"sp <player>",
-  "carpet.rule.endermanNeverGetAngryByPlayer.name":"末影人不会被玩家激怒",
-  "carpet.rule.endermanNeverGetAngryByPlayer.desc":"末影人不会被玩家激怒",
+  "carpet.rule.enableSpecTPCommand.name": "启用旁观者快速TP命令(sp)",
+  "carpet.rule.enableSpecTPCommand.desc": "sp <player>",
+  "carpet.rule.endermanNeverGetAngryByPlayer.name": "末影人不会被玩家激怒",
+  "carpet.rule.endermanNeverGetAngryByPlayer.desc": "末影人不会被玩家激怒",
   "carpet.rule.commandPreventerPreventOP.name": "命令拦截器是否拦截管理员执行命令",
   "carpet.rule.commandPreventerPreventOP.desc": "命令拦截器是否拦截管理员执行命令",
   "carpet.rule.doubleClickShiftGetDown.name": "双击Shift趴下",
@@ -34,5 +34,9 @@
   "carpet.rule.beaconRange.name": "自定义信标范围",
   "carpet.rule.beaconRange.desc": "自定义信标的范围 单位：格",
   "carpet.rule.itemPickUpRange.name": "物品拾取范围",
-  "carpet.rule.itemPickUpRange.desc": "可自定义物品拾取范围"
+  "carpet.rule.itemPickUpRange.desc": "可自定义物品拾取范围",
+  "carpet.rule.softAnvil.name": "易碎铁砧",
+  "carpet.rule.softAnvil.desc": "开启后铁砧从高处摔落会直接变成掉落物",
+  "carpet.rule.superSponge.name": "超级海绵",
+  "carpet.rule.superSponge.desc": "开启后会大大提升海绵的吸水范围，但放置海绵时会造成一定的卡顿"
 }

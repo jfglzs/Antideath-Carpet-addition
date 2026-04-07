@@ -6,11 +6,12 @@ import io.github.jfglzs.aca.AcaSetting;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
 import static io.github.jfglzs.aca.AcaExtension.LOGGER;
-import static io.github.jfglzs.aca.AcaSetting.configDirectory;
+import static io.github.jfglzs.aca.AcaSetting.dir;
 
 public class ConfigUtils {
     public static final String File_NAME = "antideath-carpet-addition.json";
@@ -18,7 +19,7 @@ public class ConfigUtils {
 
     public static String load() {
         try {
-            return Files.readString(configDirectory.resolve(File_NAME), StandardCharsets.UTF_8);
+            return Files.readString(dir.resolve(File_NAME), StandardCharsets.UTF_8);
         } catch (IOException e) {
             LOGGER.error(e.getMessage());
             return "Failed";
@@ -27,7 +28,7 @@ public class ConfigUtils {
 
     public static boolean create() {
         try {
-            Files.createFile(configDirectory.resolve(File_NAME));
+            Files.createFile(dir.resolve(File_NAME));
             return true;
         } catch (IOException e) {
             LOGGER.error(e.getMessage());
@@ -36,21 +37,20 @@ public class ConfigUtils {
     }
 
     public static boolean init() {
-        File file = configDirectory.toFile();
+        File file = dir.toFile();
         if (!file.exists()) {
             return file.mkdirs();
         }
         return true;
     }
 
-    public static boolean exists()
-    {
-        return Files.exists(configDirectory.resolve(File_NAME));
+    public static boolean exists() {
+        return Files.exists(dir.resolve(File_NAME));
     }
 
     public static boolean write(String content) {
         try {
-            Files.write(configDirectory.resolve(File_NAME), content.getBytes());
+            Files.write(dir.resolve(File_NAME), content.getBytes());
         } catch (IOException e) {
             LOGGER.error(e.getMessage());
             return false;
@@ -64,14 +64,11 @@ public class ConfigUtils {
                 LOGGER.error("Fail to create config file");
                 return;
             }
-            if (!ConfigUtils.write("""
-                    {
-                      "CommandPreventWhiteList": [],
-                      "CommandPreventBlackList": [],
-                      "CommandPreventPrefixList": []
-                    }""")) {
-                LOGGER.error("Fail to write config file");
-                return;
+
+            try (InputStream in = ConfigUtils.class.getResourceAsStream("assets/antideath-carpet-addition")) {
+                Files.copy(in, dir.resolve(File_NAME));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }
 
@@ -81,8 +78,7 @@ public class ConfigUtils {
             AcaSetting.config = gson.fromJson(content, ConfigBean.class);
         } catch (JsonSyntaxException e) {
             LOGGER.error(e.getMessage());
-        }
-        finally {
+        } finally {
             if (AcaSetting.config == null) {
                 AcaSetting.config = new ConfigBean();
             }

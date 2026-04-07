@@ -16,11 +16,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(WitherEntity.class)
 public class WitherEntity_Mixin extends HostileEntity implements EntityAccessor {
+    @Unique
+    private int count = -1;
+
     protected WitherEntity_Mixin(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
     }
-
-    @Unique private int count = -1;
 
     @Inject(
             method = "tickMovement",
@@ -30,7 +31,6 @@ public class WitherEntity_Mixin extends HostileEntity implements EntityAccessor 
     public void tickMovement_Inject(CallbackInfo ci) {
         if (count > 70) ci.cancel();
     }
-
 
 
     @Inject(

@@ -28,7 +28,7 @@ public class Entity_Mixin {
         if (AcaSetting.fakePeaceOptimization) {
             if (
                     (entity instanceof WardenEntity warden && ((EntityAccessor) warden).aca$getCount() > 70) ||
-                    (entity instanceof WitherEntity wither && ((EntityAccessor) wither).aca$getCount() > 70)
+                            (entity instanceof WitherEntity wither && ((EntityAccessor) wither).aca$getCount() > 70)
             ) {
                 cir.setReturnValue(Vec3d.ZERO);
                 cir.cancel();
