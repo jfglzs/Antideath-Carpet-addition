@@ -4,8 +4,8 @@ plugins {
 }
 
 def modver = property("mod_version")
-def name = "${modver}+build.${new Date().format('yyMMddHHmm')}"
 def minecraftVer = stonecutter.current.version
+def name = "${modver}+mc+${minecraftVer}+build.${new Date().format('yyMMddHHmm')}"
 
 base {
 	archivesName = archives_base_name + name

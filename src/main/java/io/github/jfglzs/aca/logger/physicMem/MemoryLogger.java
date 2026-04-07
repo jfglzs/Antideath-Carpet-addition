@@ -42,8 +42,8 @@ public class MemoryLogger extends AbstractHUDLogger {
             Text[] texts = {
                     Messenger.c(
                             String.format(
-                                    "g Physical: %dM/%dM Virtual: %dM/%dM",
-                                    total - pageTotal - free,
+                                    "g Physical: %dM/%dM Swap: %dM/%dM",
+                                    total - free,
                                     total,
                                     page,
                                     pageTotal
