@@ -1,7 +1,5 @@
 package io.github.jfglzs.aca.mixin.rule.itemPickUpRange;
 
-import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import io.github.jfglzs.aca.AcaSetting;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -10,14 +8,23 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 @Mixin(PlayerEntity.class)
 public class PlayerEntity_Mixin {
+    @Unique
+    Predicate<Entity> rule = entity -> !entity.isSpectator() && entity instanceof ItemEntity;
+    @Unique
+    Predicate<Entity> origin = entity -> !entity.isSpectator();
+
+
     @Inject(
             method = "tickMovement",
             at = @At(value = "TAIL")
@@ -26,20 +33,18 @@ public class PlayerEntity_Mixin {
         if (AcaSetting.itemPickUpRange > 0) {
             PlayerEntity player = ((PlayerEntity) (Object) this);
             Box box = player.getBoundingBox().expand(AcaSetting.itemPickUpRange);
-            for (ItemEntity entity : player.getWorld().getEntitiesByType(EntityType.ITEM, box, itemEntity -> !itemEntity.isRemoved())) {
+            for (ItemEntity entity : player.getWorld().getEntitiesByType(EntityType.ITEM, box, entity -> !entity.isRemoved())) {
                 entity.onPlayerCollision(player);
             }
         }
     }
 
-    @WrapOperation(
+    @Redirect(
             method = "tickMovement",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getOtherEntities(Lnet/minecraft/entity/Entity;Lnet/minecraft/util/math/Box;)Ljava/util/List;")
     )
-    public List<Entity> getOtherEntities_Wrap(World world, Entity entity, Box box, Operation<List<Entity>> original) {
-        if (AcaSetting.itemPickUpRange > 0) {
-            return world.getOtherEntities(entity, box, entity1 -> !entity1.isSpectator() && !(entity1 instanceof ItemEntity));
-        }
-        return original.call(world, entity, box);
+    public List<Entity> getOtherEntities_Redirect(World world, Entity entity, Box box) {
+        Predicate<Entity> predicate = AcaSetting.itemPickUpRange > 0 ? rule : origin;
+        return world.getOtherEntities(entity, box, predicate);
     }
 }
