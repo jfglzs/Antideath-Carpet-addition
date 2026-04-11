@@ -26,7 +26,6 @@ public class SingleTickTask_Mixin<E extends LivingEntity> {
                         && !((entity.age + entity.getId()) % 40 == 0)
         ) {
             cir.setReturnValue(false);
-            cir.cancel();
         }
     }
 }

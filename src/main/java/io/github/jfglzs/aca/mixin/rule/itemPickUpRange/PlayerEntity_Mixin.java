@@ -24,7 +24,6 @@ public class PlayerEntity_Mixin {
     @Unique
     Predicate<Entity> origin = entity -> !entity.isSpectator();
 
-
     @Inject(
             method = "tickMovement",
             at = @At(value = "TAIL")

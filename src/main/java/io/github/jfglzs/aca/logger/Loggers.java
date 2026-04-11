@@ -4,8 +4,8 @@ package io.github.jfglzs.aca.logger;
 import carpet.logging.LoggerRegistry;
 import io.github.jfglzs.aca.logger.cpu.CpuLogger;
 import io.github.jfglzs.aca.logger.memory.MemoryAllocationRateLogger;
+import io.github.jfglzs.aca.logger.memory.MemoryLogger;
 import io.github.jfglzs.aca.logger.network.NetworkLogger;
-import io.github.jfglzs.aca.logger.physicMem.MemoryLogger;
 import oshi.SystemInfo;
 
 public class Loggers {

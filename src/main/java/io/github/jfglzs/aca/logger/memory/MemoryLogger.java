@@ -1,4 +1,4 @@
-package io.github.jfglzs.aca.logger.physicMem;
+package io.github.jfglzs.aca.logger.memory;
 
 import carpet.logging.LoggerRegistry;
 import carpet.utils.Messenger;
