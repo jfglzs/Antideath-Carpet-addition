@@ -14,12 +14,12 @@ import static io.github.jfglzs.aca.AcaExtension.LOGGER;
 import static io.github.jfglzs.aca.AcaSetting.dir;
 
 public class ConfigUtils {
-    public static final String File_NAME = "antideath-carpet-addition.json";
+    public static final String FILE_NAME = "antideath-carpet-addition.json";
     public static final Gson gson = new Gson();
 
     public static String load() {
         try {
-            return Files.readString(dir.resolve(File_NAME), StandardCharsets.UTF_8);
+            return Files.readString(dir.resolve(FILE_NAME), StandardCharsets.UTF_8);
         } catch (IOException e) {
             LOGGER.error(e.getMessage());
             return "Failed";
@@ -28,7 +28,7 @@ public class ConfigUtils {
 
     public static boolean create() {
         try {
-            Files.createFile(dir.resolve(File_NAME));
+            Files.createFile(dir.resolve(FILE_NAME));
             return true;
         } catch (IOException e) {
             LOGGER.error(e.getMessage());
@@ -45,12 +45,12 @@ public class ConfigUtils {
     }
 
     public static boolean exists() {
-        return Files.exists(dir.resolve(File_NAME));
+        return Files.exists(dir.resolve(FILE_NAME));
     }
 
     public static boolean write(String content) {
         try {
-            Files.write(dir.resolve(File_NAME), content.getBytes());
+            Files.write(dir.resolve(FILE_NAME), content.getBytes());
         } catch (IOException e) {
             LOGGER.error(e.getMessage());
             return false;
@@ -66,7 +66,7 @@ public class ConfigUtils {
             }
 
             try (InputStream in = ConfigUtils.class.getResourceAsStream("assets/antideath-carpet-addition")) {
-                Files.copy(in, dir.resolve(File_NAME));
+                Files.copy(in, dir.resolve(FILE_NAME));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

@@ -21,7 +21,7 @@ public class MemoryAllocationRateLogger extends AbstractHUDLogger {
 
     static {
         try {
-            INSTANCE = new MemoryAllocationRateLogger(Loggers.class.getField("__mem"), "MemoryLogger", " ", null, false);
+            INSTANCE = new MemoryAllocationRateLogger(Loggers.class.getField("__mem"), "memAllocate", " ", null, false);
             allocationRateCalculator = new AllocationRateCalculator();
         } catch (NoSuchFieldException e) {
             throw new RuntimeException(e);

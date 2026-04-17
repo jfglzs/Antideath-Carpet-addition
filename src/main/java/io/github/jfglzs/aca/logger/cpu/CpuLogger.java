@@ -21,7 +21,7 @@ public class CpuLogger extends AbstractHUDLogger {
 
     static {
         try {
-            INSTANCE = new CpuLogger(Loggers.class.getField("__cpu"), "CPULogger", "cpu load", new String[]{"percore", "all", "fullcore"}, false);
+            INSTANCE = new CpuLogger(Loggers.class.getField("__cpu"), "cpu", "cpu load", new String[]{"percore", "all", "fullcore"}, false);
         } catch (NoSuchFieldException e) {
             throw new RuntimeException(e);
         }
@@ -100,13 +100,11 @@ public class CpuLogger extends AbstractHUDLogger {
 
         private static Text coreLoad(int core, double load) {
             double percent = load * 100;
-
             String coreInfo = "g C%s: ".formatted(core);
             String coreLoad = "%s %.0f%%".formatted(
                     Messenger.heatmap_color(percent, 100),
                     percent
             );
-
             return Messenger.c(coreInfo, coreLoad);
         }
     }

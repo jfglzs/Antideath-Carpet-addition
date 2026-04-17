@@ -24,20 +24,20 @@ public class NetworkLogger extends AbstractHUDLogger {
 
     static {
         try {
-            INSTANCE = new NetworkLogger(Loggers.class.getField("__network"), "MemoryLogger", " ", null, false);
+            INSTANCE = new NetworkLogger(Loggers.class.getField("__network"), "network", " ", null, false);
         } catch (NoSuchFieldException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public long lastUpdate = 0L;
-    public long lastRecv = 0L;
-    public long lastSent = 0L;
-
     protected NetworkLogger(Field acceleratorField, String logName, String def, String[] options, boolean strictOptions) {
         super(acceleratorField, logName, def, options, strictOptions);
         LogEvent.event.register(this::updateHUD);
     }
+
+    public long lastUpdate = 0L;
+    public long lastRecv   = 0L;
+    public long lastSent   = 0L;
 
     @Override
     public void updateHUD(MinecraftServer server) {

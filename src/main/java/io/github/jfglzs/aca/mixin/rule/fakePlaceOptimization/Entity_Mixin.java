@@ -27,11 +27,9 @@ public class Entity_Mixin {
     private static void adjustMovementForCollisions_Inject(@Nullable Entity entity, Vec3d movement, Box entityBoundingBox, World world, List<VoxelShape> collisions, CallbackInfoReturnable<Vec3d> cir) {
         if (AcaSetting.fakePeaceOptimization) {
             if (
-                    (entity instanceof WardenEntity warden && ((EntityAccessor) warden).aca$getCount() > 70) ||
-                            (entity instanceof WitherEntity wither && ((EntityAccessor) wither).aca$getCount() > 70)
+                    (entity instanceof WardenEntity warden && ((EntityAccessor) warden).aca$getCount() > 70) || (entity instanceof WitherEntity wither && ((EntityAccessor) wither).aca$getCount() > 70)
             ) {
                 cir.setReturnValue(Vec3d.ZERO);
-                cir.cancel();
             }
         }
     }
