@@ -2,7 +2,7 @@ package io.github.jfglzs.aca.mixin.rule.commandPreventer;
 
 import carpet.utils.Messenger;
 import com.mojang.brigadier.ParseResults;
-import io.github.jfglzs.aca.AcaExtension;
+import io.github.jfglzs.aca.ACAEntry;
 import io.github.jfglzs.aca.AcaSetting;
 import io.github.jfglzs.aca.utils.config.ConfigUtils;
 import net.minecraft.server.command.CommandManager;
@@ -45,7 +45,7 @@ public abstract class CommandManager_Mixin {
         results.getContext().getSource().sendFeedback(
                 () -> Messenger.c("r [Command Preventer] Command: %s had prevented ".formatted(command)), true
         );
-        AcaExtension.LOGGER.info("[Command Preventer] Prevented Command: {}", command);
+        ACAEntry.LOGGER.info("[Command Preventer] Prevented Command: {}", command);
         ci.cancel();
     }
 }

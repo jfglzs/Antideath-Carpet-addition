@@ -10,7 +10,7 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
-import static io.github.jfglzs.aca.AcaExtension.LOGGER;
+import static io.github.jfglzs.aca.ACAEntry.LOGGER;
 import static io.github.jfglzs.aca.AcaSetting.dir;
 
 public class ConfigUtils {

@@ -21,7 +21,7 @@ public class CpuLogger extends AbstractHUDLogger {
 
     static {
         try {
-            INSTANCE = new CpuLogger(Loggers.class.getField("__cpu"), "cpu", "cpu load", new String[]{"percore", "all", "fullcore"}, false);
+            INSTANCE = new CpuLogger(Loggers.class.getField("__cpu"), "cpu", "cpu load", new String[]{"percore", "all", "fullcore"}, true);
         } catch (NoSuchFieldException e) {
             throw new RuntimeException(e);
         }
@@ -41,7 +41,7 @@ public class CpuLogger extends AbstractHUDLogger {
 
     static class CpuLoadCalculator {
         private static final OperatingSystemMXBean osBean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
-        private static final List<Text> perCoreLoad = new CopyOnWriteArrayList<>();
+        private static final CopyOnWriteArrayList<Text> perCoreLoad = new CopyOnWriteArrayList<>();
 
         static {
             Thread.startVirtualThread(CpuLoadCalculator::getCpuPerCoreLoad);

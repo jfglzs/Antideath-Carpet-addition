@@ -34,7 +34,7 @@ public class MemoryAllocationRateLogger extends AbstractHUDLogger {
 
     }
 
-    private static long toMiB(long bytes) {
+    private long toMiB(long bytes) {
         return bytes / 1024L / 1024L;
     }
 

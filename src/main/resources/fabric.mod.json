@@ -16,7 +16,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "io.github.jfglzs.aca.AcaExtension"
+      "io.github.jfglzs.aca.ACAEntry"
     ]
   },
   "mixins": [
