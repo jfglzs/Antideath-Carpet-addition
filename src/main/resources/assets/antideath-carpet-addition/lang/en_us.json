@@ -5,7 +5,7 @@
   "carpet.rule.ItemFrameAlwaysStayAttach.desc": "When enabled, item frames always stay attached.",
   "carpet.rule.enableFastOpCommand.desc": "When enabled, provides faster access to OP commands.",
   "carpet.rule.enableEntitySearchCommand.desc": "When enabled, provides faster EntitySearch command support.",
-  "carpet.rule.entitySearchCommandEnableXaeroMapSupport.desc": "When enabled, provides EntitySearch minimap waypoint support.",
+  "carpet.rule.entitySearchXaeroMapSupport.desc": "When enabled, provides EntitySearch minimap waypoint support.",
   "carpet.rule.itemDespawnImmediately.desc": "When enabled, dropped items will despawn instantly.",
   "carpet.rule.itemNeverDespawn.desc": "When enabled, dropped items will never despawn.",
   "carpet.rule.flippinToTemOfUndying.desc": "PCA ported feature.",

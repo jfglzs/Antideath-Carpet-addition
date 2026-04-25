@@ -5,7 +5,7 @@
   "mixins": [
     "Invoker.OpCommand_Invoker",
     "Invoker.TelePortCommand_Invoker",
-    "logger.HUDController_Mixin",
+    "carpet.HUDController_Mixin",
     "rule.anvilNeverDamageByFalling.AnvilBlock_Mixin",
     "rule.beaconOptimization.BeaconBlockEntity_Mixin",
     "rule.commandPreventer.CommandManager_Mixin",

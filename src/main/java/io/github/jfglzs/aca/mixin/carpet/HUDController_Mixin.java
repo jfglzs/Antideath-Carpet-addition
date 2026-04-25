@@ -1,4 +1,4 @@
-package io.github.jfglzs.aca.mixin.logger;
+package io.github.jfglzs.aca.mixin.carpet;
 
 import carpet.logging.HUDController;
 import io.github.jfglzs.aca.event.LogEvent;

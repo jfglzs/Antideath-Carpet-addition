@@ -41,7 +41,7 @@ public class MemoryAllocationRateLogger extends AbstractHUDLogger {
     @Override
     public void updateHUD(MinecraftServer server) {
         if (Loggers.__mem) {
-            long free = Runtime.getRuntime().freeMemory();
+            long free  = Runtime.getRuntime().freeMemory();
             long total = Runtime.getRuntime().totalMemory();
             Text[] texts = {
                     Messenger.c(

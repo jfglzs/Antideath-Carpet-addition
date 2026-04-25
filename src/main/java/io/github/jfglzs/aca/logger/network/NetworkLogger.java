@@ -65,7 +65,7 @@ public class NetworkLogger extends AbstractHUDLogger {
             String message = switch (option) {
                 case "uploadAndDownload"      -> String.format("g Upload: %.3f Mbps Download: %.3f Mbps", uploadMbps, downloadMbps);
                 case "totalUploadAndDownload" -> String.format("g TotalUpload: %s TotalDownload: %s", this.calculate(bytesRecv), this.calculate(bytesSent));
-                default                       -> String.format("g TotalUpload: %s TotalDownload: %s \nUpload: %.3f Mbps Download: %.3f Mbps", this.calculate(bytesRecv), this.calculate(bytesSent), uploadMbps, downloadMbps);
+                default                       -> String.format("g TotalUpload: %s TotalDownload: %s\nUpload: %.3f Mbps Download: %.3f Mbps", this.calculate(bytesSent), this.calculate(bytesRecv), uploadMbps, downloadMbps);
             };
 
             this.lastRecv   = bytesRecv;
@@ -74,15 +74,15 @@ public class NetworkLogger extends AbstractHUDLogger {
 
             return new Text[]{Messenger.c(message)};
         }
-
         return new Text[0];
     }
 
     private String calculate(long bytes) {
-        if (bytes * 8L / DataUtils.MB > 1000) {
-            return String.format("%d GB", bytes * 8 / DataUtils.GB);
+        double d = bytes * 8f / DataUtils.MB;
+        if (d > 1024.0) {
+            return String.format("%.1f Gb", d / 1024.0);
         }
-        return String.format("%d MB", bytes * 8 / DataUtils.MB);
+        return String.format("%.3f Mb", d);
     }
 
     public boolean isPhysicDevice(NetworkIF nif) {
