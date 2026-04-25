@@ -18,11 +18,10 @@ pluginManagement {
 }
 
 plugins {
-    id("dev.kikugie.stonecutter").version "0.9"
+    id("dev.kikugie.stonecutter").version "0.9.2"
 }
 
 stonecutter {
-    // Enable Groovy DSL, as Stonecutter uses Kotlin by default
     kotlinController = false
     centralScript = "build.gradle"
 

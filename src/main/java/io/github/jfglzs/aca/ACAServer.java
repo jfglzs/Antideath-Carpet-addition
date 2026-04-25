@@ -14,8 +14,7 @@ import java.util.Map;
 public class ACAServer implements CarpetExtension {
     public static final ACAServer INSTANCE = new ACAServer();
 
-    private ACAServer() {
-    }
+    private ACAServer() {}
 
     @Override
     public void onGameStarted() {

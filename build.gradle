@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version "1.11-SNAPSHOT"
+    id 'fabric-loom' version "1.16-SNAPSHOT"
     id 'maven-publish'
 }
 
@@ -34,7 +34,7 @@ loom {
     runConfigs.all {
         // to make sure it generates all "Minecraft Client (:subproject_name)" applications
         ideConfigGenerated = true
-        vmArgs '-Dmixin.debug.export=false'
+        vmArgs '-Dmixin.debug.export=true'
         vmArgs '-XX:+AllowEnhancedClassRedefinition'
         runDir '../../run'
     }
@@ -76,7 +76,6 @@ test {
 }
 
 java {
-//	withSourcesJar()
 	sourceCompatibility = JavaVersion.VERSION_21
 	targetCompatibility = JavaVersion.VERSION_21
 }
