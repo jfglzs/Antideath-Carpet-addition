@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version "1.16-SNAPSHOT"
+    id 'net.fabricmc.fabric-loom'
     id 'maven-publish'
 }
 
@@ -31,7 +31,7 @@ repositories {
 loom {
     accessWidenerPath.set(file("aca.accesswidener"))
 
-    runConfigs.all {
+    runConfigs.configureEach {
         // to make sure it generates all "Minecraft Client (:subproject_name)" applications
         ideConfigGenerated = true
         vmArgs '-Dmixin.debug.export=true'
@@ -45,11 +45,12 @@ configurations {
 }
 
 dependencies {
+    println("1111111111111")
 	minecraft "com.mojang:minecraft:${minecraftVer}"
-	mappings "net.fabricmc:yarn:${property("yarn_mappings")}:v2"
-	modImplementation "net.fabricmc:fabric-loader:${property("loader_version")}"
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${property("fabric_version")}"
-    modImplementation("curse.maven:carpet-349239:${property("carpet_core_version")}")
+    mappings loom.officialMojangMappings()
+	implementation "net.fabricmc:fabric-loader:${property("loader_version")}"
+	implementation "net.fabricmc.fabric-api:fabric-api:${property("fabric_version")}"
+    implementation("curse.maven:carpet-349239:${property("carpet_core_version")}")
 }
 
 processResources {
@@ -67,17 +68,17 @@ processResources {
     }
 }
 
-tasks.withType(JavaCompile).configureEach {
-	it.options.release = 21
-}
+//tasks.withType(JavaCompile).configureEach {
+//	it.options.release = 25
+//}
 
 test {
     failOnNoDiscoveredTests = false
 }
 
 java {
-	sourceCompatibility = JavaVersion.VERSION_21
-	targetCompatibility = JavaVersion.VERSION_21
+	sourceCompatibility = JavaVersion.VERSION_25
+	targetCompatibility = JavaVersion.VERSION_25
 }
 
 jar {
@@ -89,15 +90,5 @@ jar {
 }
 
 publishing {
-//	publications {
-//		create("mavenJava", MavenPublication) {
-//			artifactId = project.archives_base_name
-//			from components.java
-//		}
-//	}
-//
-//	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
-//	repositories {
-//	}
 }
 
