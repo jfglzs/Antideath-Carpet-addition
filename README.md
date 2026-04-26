@@ -21,16 +21,16 @@ _**感谢 @[_OptiJava_](https://github.com/OptiJava) 的指导**_
 
 ## 记录器
 
-### /log cpu all/fullcore/percore
+### /log cpu all / fullcore / percore
 **记录服务器CPU的占用情况**
 ![CPUlogger](res/cpu.png)
 ### /log memAllocate
 **客户端Memory Allocate移植功能**
 ![memAllocate](res/memAll.png)
-### /log network
+### /log network uploadAndDownload / totalUploadAndDownload / all(默认)
 **可查看服务器物理网卡的上传/下载速度**
 ![network](res/network.png)
-### /log sysMemory
+### /log sysMemory Physical / Swap / Both(默认)
 **查看物理内存/虚拟内存 使用率/总大小**
 ![Memory](res/mem.png)
 
