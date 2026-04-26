@@ -50,7 +50,7 @@ public class CpuLogger extends AbstractHUDLogger {
         public static Component[] getCpuLoad(String option) {
             double cpuLoad = osBean.getCpuLoad() * 100;
             String color = Messenger.heatmap_color(cpuLoad, 100);
-            Component[] perCoreLoadArray = perCoreLoad.toArray(new Text[0]);
+            Component[] perCoreLoadArray = perCoreLoad.toArray(new Component[0]);
 
             Component fullCore = Messenger.c(
                     "g Cpu Load: ",
@@ -62,7 +62,7 @@ public class CpuLogger extends AbstractHUDLogger {
             } else if (option.equals("percore")) {
                 return perCoreLoadArray;
             } else {
-                return new Text[]{fullCore};
+                return new Component[]{fullCore};
             }
         }
 

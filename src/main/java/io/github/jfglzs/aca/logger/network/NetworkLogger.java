@@ -72,9 +72,9 @@ public class NetworkLogger extends AbstractHUDLogger {
             this.lastSent   = bytesSent;
             this.lastUpdate = System.currentTimeMillis();
 
-            return new Text[]{Messenger.c(message)};
+            return new Component[]{Messenger.c(message)};
         }
-        return new Text[0];
+        return new Component[0];
     }
 
     private String calculate(long bytes) {

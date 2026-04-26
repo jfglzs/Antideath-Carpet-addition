@@ -50,6 +50,6 @@ public class MemoryLogger extends AbstractHUDLogger {
             case "Swap"     -> String.format("g Swap: %dM/%dM", page, pageTotal);
             default         -> String.format("g Physical: %dM/%dM Swap: %dM/%dM", total - free, total, page, pageTotal);
         };
-        return new Text[] {Messenger.c(message)};
+        return new Component[] {Messenger.c(message)};
     }
 }
