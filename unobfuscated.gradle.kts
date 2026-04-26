@@ -1,24 +1,18 @@
-import java.util.Date
 import java.text.SimpleDateFormat
+import java.util.*
 
 plugins {
     id("net.fabricmc.fabric-loom")
-//    id 'maven-publish'
 }
 
-
-//val modver = property("mod_version")
-//val minecraftVer = sc.current.version
-////val name = "${modver}+mc+${minecraftVer}+build.${Date().format('yyMMddHHmm')}"
-////base.archivesName = property("mod.id") as String + archives_base_name
-
-val modver = project.findProperty("mod_version")?.toString()
 val minecraftVer = stonecutter.current.version
-val archivesBaseName = project.findProperty("archives_base_name")?.toString() ?: "mod-id"
-val formattedDate = SimpleDateFormat("yyMMddHHmm").format(Date())
-val customName = "${modver}+mc+${minecraftVer}+build.${formattedDate}"
+//val modver = "${property("mod_version")}"
+val modver = "1.3.0"
+val mod = "${modver}+${minecraftVer}+build.${SimpleDateFormat("yyMMddHHmm").format(Date())}"
+val archivesBaseName = project.findProperty("archives_base_name")
+
 base {
-    archivesName.set("${archivesBaseName}+${customName}")
+    archivesName.set("${archivesBaseName}+${mod}")
 }
 
 
@@ -63,7 +57,6 @@ configurations {
 
 dependencies {
     "minecraft"("com.mojang:minecraft:${minecraftVer}")
-//    "mappings"(loom.officialMojangMappings())
     "implementation"("net.fabricmc:fabric-loader:${property("loader_version")}")
     "implementation"("net.fabricmc.fabric-api:fabric-api:${property("fabric_version")}")
     "implementation"("curse.maven:carpet-349239:${property("carpet_core_version")}")
@@ -72,21 +65,21 @@ dependencies {
 tasks.processResources {
     from("aca.accesswidener")
 
-    inputs.property("version", project.property("modver"))
-    inputs.property("mc", project.property("minecraftVer"))
+    inputs.property("modver", modver)
+    inputs.property("mc", minecraftVer)
 
     filesMatching("fabric.mod.json") {
         val valueMap = mapOf(
-            "version" to (project.property("modver") ),
-            "mc" to (sc.current.version)
+            "version" to modver,
+            "mc" to minecraftVer
         )
         expand(valueMap)
     }
 }
 
-//tasks.withType(JavaCompile).configureEach {
-//	it.options.release = 21
-//}
+tasks.withType<Test> {
+    enabled = false
+}
 
 java {
     sourceCompatibility = JavaVersion.VERSION_25
@@ -103,5 +96,7 @@ tasks.jar {
         }
     }
 }
+
+
 
 

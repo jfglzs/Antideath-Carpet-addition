@@ -7,14 +7,11 @@ import io.github.jfglzs.aca.AcaSetting;
 import io.github.jfglzs.aca.utils.config.ConfigUtils;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
-import net.minecraft.server.level.ServerPlayer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import static io.github.jfglzs.aca.AcaSetting.commandPreventerPreventOP;
 
 @Mixin(Commands.class)
 public abstract class Commands_Mixin {
@@ -39,11 +36,8 @@ public abstract class Commands_Mixin {
 
     @Unique
     private void preventCommand(CallbackInfo ci, String command, ParseResults<CommandSourceStack> results) {
-        ServerPlayer player = results.getContext().getSource().getPlayer();
-        if (!commandPreventerPreventOP && player != null && player.getServer().getPlayer().isOperator(player.getGameProfile()))
-            return;
-        results.getContext().getSource().send(
-                Messenger.c("r [Command Preventer] Command: %s had prevented ".formatted(command)), true
+        results.getContext().getSource().sendSuccess(
+                () -> Messenger.c(String.format("g Prevented Command: %s ", command)), true
         );
         ACAEntry.LOGGER.info("[Command Preventer] Prevented Command: {}", command);
         ci.cancel();

@@ -3,7 +3,7 @@ package io.github.jfglzs.aca.mixin.rule.villagerOptimization;
 import io.github.jfglzs.aca.AcaSetting;
 import io.github.jfglzs.aca.accessors.VillagerAccessor;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.npc.villager.Villager;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.VoxelShape;
