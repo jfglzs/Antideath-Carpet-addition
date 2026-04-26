@@ -1,11 +1,11 @@
 plugins {
-    id 'fabric-loom' version "1.11-SNAPSHOT"
+    id 'fabric-loom'
     id 'maven-publish'
 }
 
 def modver = property("mod_version")
-def name = "${modver}+build.${new Date().format('yyMMddHHmm')}"
 def minecraftVer = stonecutter.current.version
+def name = "${modver}+mc+${minecraftVer}+build.${new Date().format('yyMMddHHmm')}"
 
 base {
 	archivesName = archives_base_name + name
@@ -31,10 +31,10 @@ repositories {
 loom {
     accessWidenerPath.set(file("aca.accesswidener"))
 
-    runConfigs.all {
+    runConfigs.configureEach {
         // to make sure it generates all "Minecraft Client (:subproject_name)" applications
         ideConfigGenerated = true
-        vmArgs '-Dmixin.debug.export=false'
+        vmArgs '-Dmixin.debug.export=true'
         vmArgs '-XX:+AllowEnhancedClassRedefinition'
         runDir '../../run'
     }
@@ -67,16 +67,15 @@ processResources {
     }
 }
 
-tasks.withType(JavaCompile).configureEach {
-	it.options.release = 21
-}
+//tasks.withType(JavaCompile).configureEach {
+//	it.options.release = 21
+//}
 
 test {
     failOnNoDiscoveredTests = false
 }
 
 java {
-//	withSourcesJar()
 	sourceCompatibility = JavaVersion.VERSION_21
 	targetCompatibility = JavaVersion.VERSION_21
 }

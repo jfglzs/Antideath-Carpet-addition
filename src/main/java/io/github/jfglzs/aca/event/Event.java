@@ -1,6 +1,6 @@
 package io.github.jfglzs.aca.event;
 
-import io.github.jfglzs.aca.AcaExtension;
+import io.github.jfglzs.aca.ACAEntry;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -13,7 +13,7 @@ public class Event<T> {
         try {
             this.consumers.forEach(consumer -> consumer.accept(arg));
         } catch (Exception e) {
-            AcaExtension.LOGGER.error("Exception has thrown while processing event", e);
+            ACAEntry.LOGGER.error("Exception has thrown while processing event", e);
         }
     }
 

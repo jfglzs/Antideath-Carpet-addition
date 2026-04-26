@@ -6,7 +6,7 @@ import io.github.jfglzs.aca.event.LogEvent;
 import io.github.jfglzs.aca.logger.AbstractHUDLogger;
 import io.github.jfglzs.aca.logger.Loggers;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 
 import java.lang.management.GarbageCollectorMXBean;
 import java.lang.management.ManagementFactory;
@@ -21,7 +21,7 @@ public class MemoryAllocationRateLogger extends AbstractHUDLogger {
 
     static {
         try {
-            INSTANCE = new MemoryAllocationRateLogger(Loggers.class.getField("__mem"), "MemoryLogger", " ", null, false);
+            INSTANCE = new MemoryAllocationRateLogger(Loggers.class.getField("__mem"), "memAllocate", " ", null, false);
             allocationRateCalculator = new AllocationRateCalculator();
         } catch (NoSuchFieldException e) {
             throw new RuntimeException(e);
@@ -34,16 +34,16 @@ public class MemoryAllocationRateLogger extends AbstractHUDLogger {
 
     }
 
-    private static long toMiB(long bytes) {
+    private long toMiB(long bytes) {
         return bytes / 1024L / 1024L;
     }
 
     @Override
     public void updateHUD(MinecraftServer server) {
         if (Loggers.__mem) {
-            long free = Runtime.getRuntime().freeMemory();
+            long free  = Runtime.getRuntime().freeMemory();
             long total = Runtime.getRuntime().totalMemory();
-            Text[] texts = {
+            Component[] texts = {
                     Messenger.c(
                             String.format(
                                     Locale.ROOT,

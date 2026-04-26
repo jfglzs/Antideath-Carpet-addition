@@ -7,7 +7,7 @@ import io.github.jfglzs.aca.event.LogEvent;
 import io.github.jfglzs.aca.logger.AbstractHUDLogger;
 import io.github.jfglzs.aca.logger.Loggers;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import org.apache.commons.lang3.ArrayUtils;
 import oshi.hardware.CentralProcessor;
 
@@ -21,7 +21,7 @@ public class CpuLogger extends AbstractHUDLogger {
 
     static {
         try {
-            INSTANCE = new CpuLogger(Loggers.class.getField("__cpu"), "CPULogger", "cpu load", new String[]{"percore", "all", "fullcore"}, false);
+            INSTANCE = new CpuLogger(Loggers.class.getField("__cpu"), "cpu", "cpu load", new String[]{"percore", "all", "fullcore"}, true);
         } catch (NoSuchFieldException e) {
             throw new RuntimeException(e);
         }
@@ -41,18 +41,18 @@ public class CpuLogger extends AbstractHUDLogger {
 
     static class CpuLoadCalculator {
         private static final OperatingSystemMXBean osBean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
-        private static final List<Text> perCoreLoad = new CopyOnWriteArrayList<>();
+        private static final CopyOnWriteArrayList<Component> perCoreLoad = new CopyOnWriteArrayList<>();
 
         static {
             Thread.startVirtualThread(CpuLoadCalculator::getCpuPerCoreLoad);
         }
 
-        public static Text[] getCpuLoad(String option) {
+        public static Component[] getCpuLoad(String option) {
             double cpuLoad = osBean.getCpuLoad() * 100;
             String color = Messenger.heatmap_color(cpuLoad, 100);
-            Text[] perCoreLoadArray = perCoreLoad.toArray(new Text[0]);
+            Component[] perCoreLoadArray = perCoreLoad.toArray(new Component[0]);
 
-            Text fullCore = Messenger.c(
+            Component fullCore = Messenger.c(
                     "g Cpu Load: ",
                     String.format("%s %.2f%%", color, cpuLoad)
             );
@@ -62,7 +62,7 @@ public class CpuLogger extends AbstractHUDLogger {
             } else if (option.equals("percore")) {
                 return perCoreLoadArray;
             } else {
-                return new Text[]{fullCore};
+                return new Component[]{fullCore};
             }
         }
 
@@ -98,15 +98,13 @@ public class CpuLogger extends AbstractHUDLogger {
             }
         }
 
-        private static Text coreLoad(int core, double load) {
+        private static Component coreLoad(int core, double load) {
             double percent = load * 100;
-
             String coreInfo = "g C%s: ".formatted(core);
             String coreLoad = "%s %.0f%%".formatted(
                     Messenger.heatmap_color(percent, 100),
                     percent
             );
-
             return Messenger.c(coreInfo, coreLoad);
         }
     }

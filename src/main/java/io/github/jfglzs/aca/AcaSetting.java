@@ -32,7 +32,7 @@ public class AcaSetting {
     public static boolean ItemFrameAlwaysStayAttach = false;
 
     @Rule(categories = {ACA, COMMAND})
-    public static boolean entitySearchCommandEnableXaeroMapSupport = false;
+    public static boolean entitySearchXaeroMapSupport = false;
 
     @Rule(categories = {ACA, SURVIVAL})
     public static boolean itemDespawnImmediately = false;

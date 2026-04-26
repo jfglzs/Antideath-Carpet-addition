@@ -5,27 +5,27 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import io.github.jfglzs.aca.mixin.Invoker.TelePortCommand_Invoker;
-import net.minecraft.command.argument.EntityArgumentType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.commands.arguments.EntityArgument;
+import net.minecraft.world.entity.player.Player;
 
 import java.util.Collections;
 
 import static io.github.jfglzs.aca.AcaSetting.enableSpecTPCommand;
-import static net.minecraft.server.command.CommandManager.argument;
-import static net.minecraft.server.command.CommandManager.literal;
+
 
 public class SpecTeleportCommand {
-    public static void registerCommand(CommandDispatcher<ServerCommandSource> dispatcher) {
-        LiteralArgumentBuilder<ServerCommandSource> argument = literal("sp")
+    public static void registerCommand(CommandDispatcher<CommandSourceStack> dispatcher) {
+        LiteralArgumentBuilder<CommandSourceStack> argument = Commands.literal("sp")
                 .requires((source) -> carpet.utils.CommandHelper.canUseCommand(source, enableSpecTPCommand))
-                .then(argument("player", EntityArgumentType.player()).executes((context) -> execute(context.getSource(), EntityArgumentType.getPlayer(context, "player"))));
+                .then(Commands.argument("player", EntityArgument.player()).executes((context) -> execute(context.getSource(), EntityArgument.getPlayer(context, "player"))));
 
         dispatcher.register(argument);
     }
 
-    private static int execute(ServerCommandSource source, PlayerEntity player1) throws CommandSyntaxException {
-        PlayerEntity player = source.getPlayer();
+    private static int execute(CommandSourceStack source, Player player1) {
+        Player player = source.getPlayer();
         if (player == null) return -1;
         if (player.isSpectator()) {
             return TelePortCommand_Invoker.executeInvoker(source, Collections.singleton(player), player1);

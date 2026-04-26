@@ -3,13 +3,13 @@ package io.github.jfglzs.aca.mixin.rule.flippinToTemOfUndying;
 import carpet.CarpetSettings;
 import carpet.helpers.BlockRotator;
 import com.google.common.util.concurrent.RateLimiter;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Items;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -28,8 +28,8 @@ public abstract class BlockRotator_Mixin {
             cancellable = true
     )
     private static void flippinEligibility_Inject(Entity entity, CallbackInfoReturnable<Boolean> cir) {
-        if (flippinToTemOfUndying && entity instanceof PlayerEntity player) {
-            if (player.getMainHandStack().getItem().equals(Items.TOTEM_OF_UNDYING)) {
+        if (flippinToTemOfUndying && entity instanceof Player player) {
+            if (player.getMainHandItem().getItem().equals(Items.TOTEM_OF_UNDYING)) {
                 cir.setReturnValue(true);
             }
         }
@@ -40,8 +40,8 @@ public abstract class BlockRotator_Mixin {
             at = @At("RETURN"),
             cancellable = true
     )
-    private static void flipBlockWithCactus_Inject(BlockState state, World world, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<Boolean> cir) {
-        if (!player.getAbilities().allowModifyWorld || !flippinToTemOfUndying || !player.getMainHandStack().getItem().equals(Items.TOTEM_OF_UNDYING))
+    private static void flipBlockWithCactus_Inject(BlockState state, Level world, Player player, InteractionHand hand, BlockHitResult hit, CallbackInfoReturnable<Boolean> cir) {
+        if (!flippinToTemOfUndying || !player.getMainHandItem().getItem().equals(Items.TOTEM_OF_UNDYING))
             return;
         if (!limiter.tryAcquire()) return;
 

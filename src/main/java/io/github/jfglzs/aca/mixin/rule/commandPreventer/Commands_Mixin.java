@@ -2,31 +2,28 @@ package io.github.jfglzs.aca.mixin.rule.commandPreventer;
 
 import carpet.utils.Messenger;
 import com.mojang.brigadier.ParseResults;
-import io.github.jfglzs.aca.AcaExtension;
+import io.github.jfglzs.aca.ACAEntry;
 import io.github.jfglzs.aca.AcaSetting;
 import io.github.jfglzs.aca.utils.config.ConfigUtils;
-import net.minecraft.server.command.CommandManager;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import static io.github.jfglzs.aca.AcaSetting.commandPreventerPreventOP;
-
-@Mixin(CommandManager.class)
-public abstract class CommandManager_Mixin {
+@Mixin(Commands.class)
+public abstract class Commands_Mixin {
     @Inject(
-            method = "execute",
+            method = "performCommand",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/server/command/CommandManager;callWithContext(Lnet/minecraft/server/command/ServerCommandSource;Ljava/util/function/Consumer;)V"
+                    target = "Lnet/minecraft/commands/Commands;executeCommandInContext(Lnet/minecraft/commands/CommandSourceStack;Ljava/util/function/Consumer;)V"
             ),
             cancellable = true
     )
-    public void execute_Inject(ParseResults<ServerCommandSource> parseResults, String command, CallbackInfo ci) {
+    public void execute_Inject(ParseResults<CommandSourceStack> parseResults, String command, CallbackInfo ci) {
         if (ConfigUtils.toBoolean(AcaSetting.enableCommandPreventer)) {
             if (AcaSetting.enableCommandPreventerPrefix && AcaSetting.config.CommandPreventPrefixList.stream().anyMatch(command::startsWith))
                 preventCommand(ci, command, parseResults);
@@ -38,14 +35,11 @@ public abstract class CommandManager_Mixin {
     }
 
     @Unique
-    private void preventCommand(CallbackInfo ci, String command, ParseResults<ServerCommandSource> results) {
-        ServerPlayerEntity player = results.getContext().getSource().getPlayer();
-        if (!commandPreventerPreventOP && player != null && player.getServer().getPlayerManager().isOperator(player.getGameProfile()))
-            return;
-        results.getContext().getSource().sendFeedback(
-                () -> Messenger.c("r [Command Preventer] Command: %s had prevented ".formatted(command)), true
+    private void preventCommand(CallbackInfo ci, String command, ParseResults<CommandSourceStack> results) {
+        results.getContext().getSource().sendSuccess(
+                () -> Messenger.c(String.format("g Prevented Command: %s ", command)), true
         );
-        AcaExtension.LOGGER.info("[Command Preventer] Prevented Command: {}", command);
+        ACAEntry.LOGGER.info("[Command Preventer] Prevented Command: {}", command);
         ci.cancel();
     }
 }

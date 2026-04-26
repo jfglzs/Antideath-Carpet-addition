@@ -16,7 +16,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "io.github.jfglzs.aca.AcaExtension"
+      "io.github.jfglzs.aca.ACAEntry"
     ]
   },
   "mixins": [
@@ -24,7 +24,7 @@
   ],
   "accessWidener": "aca.accesswidener",
   "depends": {
-    "fabricloader": "0.17.2",
+    "fabricloader": ">=0.17.2",
     "minecraft": "${mc}",
     "carpet": "*"
   },

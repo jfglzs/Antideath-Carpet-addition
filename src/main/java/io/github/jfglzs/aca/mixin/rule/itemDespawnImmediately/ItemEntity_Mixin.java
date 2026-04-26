@@ -2,7 +2,7 @@ package io.github.jfglzs.aca.mixin.rule.itemDespawnImmediately;
 
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import io.github.jfglzs.aca.AcaSetting;
-import net.minecraft.entity.ItemEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class ItemEntity_Mixin {
 
     @Shadow
-    public abstract void setDespawnImmediately();
+    public abstract void makeFakeItem();
 
     @Inject(
             method = "tick",
@@ -22,7 +22,7 @@ public abstract class ItemEntity_Mixin {
     )
     public void tick(CallbackInfo ci) {
         if (AcaSetting.itemDespawnImmediately) {
-            this.setDespawnImmediately();
+            this.makeFakeItem();
         }
     }
 
@@ -30,7 +30,7 @@ public abstract class ItemEntity_Mixin {
             method = "tick",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/entity/ItemEntity;discard()V",
+                    target = "Lnet/minecraft/world/entity/item/ItemEntity;discard()V",
                     ordinal = 1
             )
     )
