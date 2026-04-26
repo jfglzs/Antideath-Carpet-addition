@@ -1,6 +1,6 @@
 {
-  "carpet.rule.noMiningSlowDown.desc": "挖掘无减速,当玩家处于,流体,蜘蛛网,挖掘疲劳时挖掘无减速",
-  "carpet.rule.noMiningSlowDown.name": "挖掘无减速",
+  "carpet.rule.noMiningSlowDown.desc": "挖掘无减速,当玩家处于,流体,蜘蛛网,挖掘疲劳时挖掘无减速(已移除)",
+  "carpet.rule.noMiningSlowDown.name": "挖掘无减速(已移除)",
   "carpet.rule.anvilNeverDamageByFalling.name": "铁砧掉落不损坏",
   "carpet.rule.anvilNeverDamageByFalling.desc": "启用后铁砧从高处掉落不会损坏。",
   "carpet.rule.beaconLagOptimization.name": "信标性能优化",
@@ -25,8 +25,6 @@
   "carpet.rule.endermanNeverGetAngryByPlayer.desc": "末影人不会被玩家激怒",
   "carpet.rule.commandPreventerPreventOP.name": "命令拦截器是否拦截管理员执行命令",
   "carpet.rule.commandPreventerPreventOP.desc": "命令拦截器是否拦截管理员执行命令",
-  "carpet.rule.doubleClickShiftGetDown.name": "双击Shift趴下",
-  "carpet.rule.doubleClickShiftGetDown.desc": "当玩家双击shift键时让玩家趴下，再次按下shift键起立",
   "carpet.rule.fakePeaceOptimization.name": "伪和平优化",
   "carpet.rule.fakePeaceOptimization.desc": "优化强加在伪和平时的卡顿",
   "carpet.rule.villagerOptimization.name": "刷铁机村民优化",

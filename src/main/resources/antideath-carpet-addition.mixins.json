@@ -18,7 +18,6 @@
     "rule.itemDespawnImmediately.ItemEntity_Mixin",
     "rule.ItemFrameAlwaysStayAttach.ItemFrame_Mixin",
     "rule.itemPickUpRange.Player_Mixin",
-    "rule.noMiningSlowDown.Player_Mixin",
     "rule.softAnvil.FallingBlockEntity_Mixin",
     "rule.superSponge.SpongeBlock_Mixin",
     "rule.villagerOptimization.Brain_Mixin",

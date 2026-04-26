@@ -6,7 +6,7 @@ plugins {
 }
 
 val minecraftVer = stonecutter.current.version
-//val modver = "${property("mod_version")}"
+//val modver = "${property("mod_version")}+"
 val modver = "1.3.0"
 val mod = "${modver}+${minecraftVer}+build.${SimpleDateFormat("yyMMddHHmm").format(Date())}"
 val archivesBaseName = project.findProperty("archives_base_name")
@@ -59,7 +59,7 @@ dependencies {
     "minecraft"("com.mojang:minecraft:${minecraftVer}")
     "implementation"("net.fabricmc:fabric-loader:${property("loader_version")}")
     "implementation"("net.fabricmc.fabric-api:fabric-api:${property("fabric_version")}")
-    "implementation"("curse.maven:carpet-349239:${property("carpet_core_version")}")
+    "implementation"("com.github.gnembon:fabric-carpet:${property("carpet_core_version")}")
 }
 
 tasks.processResources {
@@ -90,8 +90,6 @@ tasks.jar {
     inputs.property("archivesName", base.archivesName)
     from("LICENSE") {
         rename { fileName ->
-            // 在 Kotlin 中，it 指代当前文件名
-            // 必须调用 .get() 获取 Property 的值
             "${fileName}_${base.archivesName.get()}"
         }
     }

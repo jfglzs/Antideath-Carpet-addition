@@ -1,5 +1,5 @@
 {
-  "carpet.rule.noMiningSlowDown.desc": "No mining slowdown when the player is in fluids, cobwebs, or under mining fatigue.",
+  "carpet.rule.noMiningSlowDown.desc": "No mining slowdown when the player is in fluids, cobwebs, or under mining fatigue.(removed)",
   "carpet.rule.anvilNeverDamageByFalling.desc": "When enabled, anvils will not be damaged by falling from heights.",
   "carpet.rule.beaconLagOptimization.desc": "When enabled, reduces performance impact caused by beacons.",
   "carpet.rule.ItemFrameAlwaysStayAttach.desc": "When enabled, item frames always stay attached.",
