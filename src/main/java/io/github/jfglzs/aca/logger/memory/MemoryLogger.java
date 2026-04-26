@@ -7,7 +7,7 @@ import io.github.jfglzs.aca.logger.AbstractHUDLogger;
 import io.github.jfglzs.aca.logger.Loggers;
 import io.github.jfglzs.aca.utils.DataUtils;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 
 import java.lang.reflect.Field;
 
@@ -39,7 +39,7 @@ public class MemoryLogger extends AbstractHUDLogger {
         }
     }
 
-    private Text[] logMemory(String option) {
+    private Component[] logMemory(String option) {
         long free      = toMiB(Loggers.SYSTEM_INFO.getHardware().getMemory().getAvailable());
         long total     = toMiB(Loggers.SYSTEM_INFO.getHardware().getMemory().getTotal());
         long page      = toMiB(Loggers.SYSTEM_INFO.getHardware().getMemory().getVirtualMemory().getSwapUsed());

@@ -2,28 +2,28 @@ package io.github.jfglzs.aca.mixin.rule.villagerOptimization;
 
 import io.github.jfglzs.aca.AcaSetting;
 import io.github.jfglzs.aca.accessors.VillagerAccessor;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.brain.task.SingleTickTask;
-import net.minecraft.entity.passive.VillagerEntity;
-import net.minecraft.server.world.ServerWorld;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.behavior.OneShot;
+import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.server.level.ServerLevel;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(SingleTickTask.class)
-public class SingleTickTask_Mixin<E extends LivingEntity> {
+@Mixin(OneShot.class)
+public class OneShot_Mixin<E extends LivingEntity> {
     @Inject(
-            method = "tryStarting",
+            method = "tryStart",
             at = @At("HEAD"),
             cancellable = true
     )
-    public final void tryStarting_Inject(ServerWorld world, E entity, long time, CallbackInfoReturnable<Boolean> cir) {
+    public final void tryStarting_Inject(ServerLevel world, E entity, long time, CallbackInfoReturnable<Boolean> cir) {
         if (
-                entity instanceof VillagerEntity villager
+                entity instanceof Villager villager
                         && AcaSetting.villagerOptimization
                         && ((VillagerAccessor) villager).aca$canDisableAI()
-                        && !((entity.age + entity.getId()) % 40 == 0)
+                        && !((entity.tickCount + entity.getId()) % 40 == 0)
         ) {
             cir.setReturnValue(false);
         }

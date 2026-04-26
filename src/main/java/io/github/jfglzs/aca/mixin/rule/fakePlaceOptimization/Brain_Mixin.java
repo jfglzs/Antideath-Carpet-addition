@@ -2,10 +2,10 @@ package io.github.jfglzs.aca.mixin.rule.fakePlaceOptimization;
 
 import io.github.jfglzs.aca.AcaSetting;
 import io.github.jfglzs.aca.accessors.EntityAccessor;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.brain.Brain;
-import net.minecraft.entity.mob.WardenEntity;
-import net.minecraft.server.world.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.Brain;
+import net.minecraft.world.entity.monster.warden.Warden;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -25,8 +25,8 @@ public class Brain_Mixin<E extends LivingEntity> {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void tickSensors_Inject(ServerWorld world, E entity, CallbackInfo ci) {
-        if (AcaSetting.fakePeaceOptimization && entity instanceof WardenEntity warden) {
+    private void tickSensors_Inject(ServerLevel world, E entity, CallbackInfo ci) {
+        if (AcaSetting.fakePeaceOptimization && entity instanceof Warden warden) {
             if (((EntityAccessor) warden).aca$getCount() > 70) {
                 ci.cancel();
             }

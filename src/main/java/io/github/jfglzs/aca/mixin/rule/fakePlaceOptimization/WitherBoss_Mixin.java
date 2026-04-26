@@ -2,29 +2,28 @@ package io.github.jfglzs.aca.mixin.rule.fakePlaceOptimization;
 
 import io.github.jfglzs.aca.AcaSetting;
 import io.github.jfglzs.aca.accessors.EntityAccessor;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.boss.WitherEntity;
-import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.Box;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.boss.wither.WitherBoss;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.phys.AABB;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(WitherEntity.class)
-public class WitherEntity_Mixin extends HostileEntity implements EntityAccessor {
+@Mixin(WitherBoss.class)
+public class WitherBoss_Mixin extends Monster implements EntityAccessor {
     @Unique
     private int count = -1;
 
-    protected WitherEntity_Mixin(EntityType<? extends HostileEntity> entityType, World world) {
+    protected WitherBoss_Mixin(EntityType<? extends Monster> entityType, ServerLevel world) {
         super(entityType, world);
     }
 
     @Inject(
-            method = "tickMovement",
+            method = "aiStep",
             at = @At("HEAD"),
             cancellable = true
     )
@@ -34,22 +33,22 @@ public class WitherEntity_Mixin extends HostileEntity implements EntityAccessor 
 
 
     @Inject(
-            method = "mobTick",
+            method = "customServerAiStep",
             at = @At("HEAD"),
             cancellable = true
     )
-    protected void mobTick_Inject(ServerWorld world, CallbackInfo ci) {
+    protected void mobTick_Inject(ServerLevel world, CallbackInfo ci) {
         if (!AcaSetting.fakePeaceOptimization) return;
 
-        if ((this.age + this.getId() % 13) % 200 == 0 || count == -1) {
-            WitherEntity entity = (WitherEntity) ((Object) this);
+        if ((this.tickCount + this.getId() % 13) % 200 == 0 || count == -1) {
+            WitherBoss entity = (WitherBoss) ((Object) this);
 
-            Box box = new Box(
-                    entity.getPos().add(0.5, 0.5, 0.5),
-                    entity.getPos().add(-0.5, -0.5, -0.5)
+            AABB box = new AABB(
+                    entity.position().add(0.5, 0.5, 0.5),
+                    entity.position().add(-0.5, -0.5, -0.5)
             );
 
-            count = world.getEntitiesByType(
+            count = world.getEntities(
                     EntityType.WITHER,
                     box,
                     e -> true

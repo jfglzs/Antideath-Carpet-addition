@@ -1,10 +1,10 @@
 package io.github.jfglzs.aca.mixin.rule.noMiningSlowDown;
 
 import io.github.jfglzs.aca.AcaSetting;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.effect.StatusEffectUtil;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.effect.MobEffectUtil;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.Inventory;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -12,28 +12,28 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(PlayerEntity.class)
-public abstract class PlayerEntity_Mixin {
+@Mixin(Player.class)
+public abstract class Player_Mixin {
     @Shadow
     @Final
-    PlayerInventory inventory;
+    Inventory inventory;
 
     @Inject(
-            method = "getBlockBreakingSpeed",
+            method = "getDestroySpeed",
             at = @At("HEAD"),
             cancellable = true
     )
     public void getBlockBreakingSpeed_Inject(BlockState block, CallbackInfoReturnable<Float> cir) {
         if (AcaSetting.noMiningSlowDown) {
-            PlayerEntity player = (PlayerEntity) (Object) this;
+            Player player = (Player) (Object) this;
             float mineSpeed;
             //? if > 1.21.4 {
-             mineSpeed = inventory.getSelectedStack().getMiningSpeedMultiplier(block);
+             mineSpeed = inventory.getSelectedItem().getDestroySpeed(block);
             //?} else {
-            /*mineSpeed = inventory.getMainHandStack().getMiningSpeedMultiplier(block);
+            /*mineSpeed = inventory.getMainHandItem().getDestroySpeed(block);
             *///?}
-            if (StatusEffectUtil.hasHaste(player)) {
-                mineSpeed *= 1.0F + (float) (StatusEffectUtil.getHasteAmplifier(player) + 1) * 0.2F;
+            if (MobEffectUtil.hasDigSpeed(player)) {
+                mineSpeed *= 1.0F + (float) (MobEffectUtil.getDigSpeedAmplification(player) + 1) * 0.2F;
             }
             cir.setReturnValue(mineSpeed);
         }

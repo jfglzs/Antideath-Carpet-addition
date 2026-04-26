@@ -12,11 +12,13 @@ plugins {
 ////val name = "${modver}+mc+${minecraftVer}+build.${Date().format('yyMMddHHmm')}"
 ////base.archivesName = property("mod.id") as String + archives_base_name
 
-val modver = project.findProperty("mod_version")?.toString() ?: "0.1.0"
+val modver = project.findProperty("mod_version")?.toString()
 val minecraftVer = stonecutter.current.version
-val archivesBaseName = project.findProperty("archives_base_name")?.toString() ?: "mod-id"
+
+val archivesBaseName = project.findProperty("archives_base_name")?.toString()
 val formattedDate = SimpleDateFormat("yyMMddHHmm").format(Date())
 val customName = "${modver}+mc+${minecraftVer}+build.${formattedDate}"
+
 base {
     archivesName.set("${archivesBaseName}+${customName}")
 }
@@ -63,7 +65,7 @@ configurations {
 
 dependencies {
     "minecraft"("com.mojang:minecraft:${minecraftVer}")
-    "mappings"("net.fabricmc:yarn:${property("yarn_mappings")}:v2")
+    "mappings"(loom.officialMojangMappings())
     "modImplementation"("net.fabricmc:fabric-loader:${property("loader_version")}")
     "modImplementation"("net.fabricmc.fabric-api:fabric-api:${property("fabric_version")}")
     "modImplementation"("curse.maven:carpet-349239:${property("carpet_core_version")}")

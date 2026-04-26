@@ -2,7 +2,7 @@ import java.util.Date
 import java.text.SimpleDateFormat
 
 plugins {
-    id("fabric-loom")
+    id("net.fabricmc.fabric-loom")
 //    id 'maven-publish'
 }
 

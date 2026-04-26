@@ -2,7 +2,7 @@ package io.github.jfglzs.aca.mixin.rule.beaconOptimization;
 
 
 import io.github.jfglzs.aca.AcaSetting;
-import net.minecraft.block.entity.BeaconBlockEntity;
+import net.minecraft.world.level.block.entity.BeaconBlockEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Constant;
@@ -28,7 +28,7 @@ public abstract class BeaconBlockEntity_Mixin {
     }
 
     @ModifyVariable(
-            method = "applyPlayerEffects",
+            method = "applyEffects",
             at = @At("STORE"),
             ordinal = 0
     )

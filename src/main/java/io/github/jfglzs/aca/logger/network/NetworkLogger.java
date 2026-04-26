@@ -7,7 +7,7 @@ import io.github.jfglzs.aca.logger.AbstractHUDLogger;
 import io.github.jfglzs.aca.logger.Loggers;
 import io.github.jfglzs.aca.utils.DataUtils;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import oshi.hardware.NetworkIF;
 
 import java.lang.reflect.Field;
@@ -52,7 +52,7 @@ public class NetworkLogger extends AbstractHUDLogger {
         }
     }
 
-    private Text[] logNetwork(String option, NetworkIF nif) {
+    private Component[] logNetwork(String option, NetworkIF nif) {
         long timeDiff = System.currentTimeMillis() - lastUpdate;
 
         if (timeDiff > 0) {
