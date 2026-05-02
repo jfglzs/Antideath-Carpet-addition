@@ -3,26 +3,17 @@ import java.text.SimpleDateFormat
 
 plugins {
     id("fabric-loom")
-//    id 'maven-publish'
+//    id ("maven-publish")
 }
 
-
-//val modver = property("mod_version")
-//val minecraftVer = sc.current.version
-////val name = "${modver}+mc+${minecraftVer}+build.${Date().format('yyMMddHHmm')}"
-////base.archivesName = property("mod.id") as String + archives_base_name
-
 val minecraftVer = stonecutter.current.version
-//val modver = "${property("mod_version")}"
-val modver = "1.3.0"
+val modver = "${property("mod_version")}"
 val mod = "${modver}+${minecraftVer}+build.${SimpleDateFormat("yyMMddHHmm").format(Date())}"
 val archivesBaseName = project.findProperty("archives_base_name")
 
 base {
     archivesName.set("${archivesBaseName}+${mod}")
 }
-
-
 
 repositories {
     mavenCentral()
@@ -49,18 +40,11 @@ loom {
     accessWidenerPath.set(file("aca.accesswidener"))
 
     runConfigs.all {
-//        ideConfigGenerated = true
+        ideConfigGenerated(true)
         vmArgs("-Dmixin.debug.export=true")
         vmArgs("-XX:+AllowEnhancedClassRedefinition")
         runDir("../../run")
     }
-}
-
-configurations {
-//    // 获取 modRuntimeOnly 配置并添加排除规则
-//    named("modRuntimeOnly") {
-//        exclude(group = "net.fabricmc", module = "fabric-loader")
-//    }
 }
 
 dependencies {

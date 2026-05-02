@@ -3,7 +3,7 @@ package io.github.jfglzs.aca.logger.cpu;
 import carpet.logging.LoggerRegistry;
 import carpet.utils.Messenger;
 import com.sun.management.OperatingSystemMXBean;
-import io.github.jfglzs.aca.event.LogEvent;
+import io.github.jfglzs.aca.event.onLogging;
 import io.github.jfglzs.aca.logger.AbstractHUDLogger;
 import io.github.jfglzs.aca.logger.Loggers;
 import net.minecraft.server.MinecraftServer;
@@ -13,7 +13,6 @@ import oshi.hardware.CentralProcessor;
 
 import java.lang.management.ManagementFactory;
 import java.lang.reflect.Field;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class CpuLogger extends AbstractHUDLogger {
@@ -29,7 +28,7 @@ public class CpuLogger extends AbstractHUDLogger {
 
     protected CpuLogger(Field acceleratorField, String logName, String def, String[] options, boolean strictOptions) {
         super(acceleratorField, logName, def, options, strictOptions);
-        LogEvent.event.register(this::updateHUD);
+        onLogging.event.register(this::updateHUD);
     }
 
     @Override
@@ -40,17 +39,17 @@ public class CpuLogger extends AbstractHUDLogger {
     }
 
     static class CpuLoadCalculator {
-        private static final OperatingSystemMXBean osBean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
-        private static final CopyOnWriteArrayList<Component> perCoreLoad = new CopyOnWriteArrayList<>();
+        private static final OperatingSystemMXBean OS_BEAN = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
+        private static final CopyOnWriteArrayList<Component> PER_CORE_LOAD = new CopyOnWriteArrayList<>();
 
         static {
             Thread.startVirtualThread(CpuLoadCalculator::getCpuPerCoreLoad);
         }
 
         public static Component[] getCpuLoad(String option) {
-            double cpuLoad = osBean.getCpuLoad() * 100;
+            double cpuLoad = OS_BEAN.getCpuLoad() * 100;
             String color = Messenger.heatmap_color(cpuLoad, 100);
-            Component[] perCoreLoadArray = perCoreLoad.toArray(new Component[0]);
+            Component[] perCoreLoadArray = PER_CORE_LOAD.toArray(new Component[0]);
 
             Component fullCore = Messenger.c(
                     "g Cpu Load: ",
@@ -85,15 +84,14 @@ public class CpuLogger extends AbstractHUDLogger {
 
                 prevTicks = processor.getProcessorCpuLoadTicks();
 
-                perCoreLoad.clear();
+                PER_CORE_LOAD.clear();
 
                 // 格式化输出
-                for (int i = 0; i < coreLoads.length; i += 2) {
-                    perCoreLoad.add(Messenger.c(
-                            coreLoad(i + 1, coreLoads[i]),
-                            "g  | ",
-                            coreLoad(i + 2, coreLoads[i + 1])
-                    ));
+                for (int i = 0; i < coreLoads.length - 1; i += 2) {
+                    PER_CORE_LOAD.add(Messenger.c(
+                            coreLoad(i + 1, coreLoads[i]), "g  | ", coreLoad(i + 2, coreLoads[i + 1])
+                            )
+                    );
                 }
             }
         }

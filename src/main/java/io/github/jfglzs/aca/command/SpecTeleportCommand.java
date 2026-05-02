@@ -3,7 +3,6 @@ package io.github.jfglzs.aca.command;
 import carpet.utils.Messenger;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import io.github.jfglzs.aca.mixin.Invoker.TelePortCommand_Invoker;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;

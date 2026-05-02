@@ -2,7 +2,7 @@ package io.github.jfglzs.aca.logger.memory;
 
 import carpet.logging.LoggerRegistry;
 import carpet.utils.Messenger;
-import io.github.jfglzs.aca.event.LogEvent;
+import io.github.jfglzs.aca.event.onLogging;
 import io.github.jfglzs.aca.logger.AbstractHUDLogger;
 import io.github.jfglzs.aca.logger.Loggers;
 import net.minecraft.server.MinecraftServer;
@@ -30,7 +30,7 @@ public class MemoryAllocationRateLogger extends AbstractHUDLogger {
 
     protected MemoryAllocationRateLogger(Field acceleratorField, String logName, String def, String[] options, boolean strictOptions) {
         super(acceleratorField, logName, def, options, strictOptions);
-        LogEvent.event.register(this::updateHUD);
+        onLogging.event.register(this::updateHUD);
 
     }
 

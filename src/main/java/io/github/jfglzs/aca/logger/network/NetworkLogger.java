@@ -2,7 +2,7 @@ package io.github.jfglzs.aca.logger.network;
 
 import carpet.logging.LoggerRegistry;
 import carpet.utils.Messenger;
-import io.github.jfglzs.aca.event.LogEvent;
+import io.github.jfglzs.aca.event.onLogging;
 import io.github.jfglzs.aca.logger.AbstractHUDLogger;
 import io.github.jfglzs.aca.logger.Loggers;
 import io.github.jfglzs.aca.utils.DataUtils;
@@ -33,7 +33,7 @@ public class NetworkLogger extends AbstractHUDLogger {
 
     protected NetworkLogger(Field acceleratorField, String logName, String def, String[] options, boolean strictOptions) {
         super(acceleratorField, logName, def, options, strictOptions);
-        LogEvent.event.register(this::updateHUD);
+        onLogging.event.register(this::updateHUD);
     }
 
     public long lastUpdate = 0L;

@@ -20,9 +20,9 @@ import java.util.function.Predicate;
 @Mixin(Player.class)
 public class Player_Mixin {
     @Unique
-    Predicate<Entity> rule = entity -> !entity.isSpectator() && entity instanceof ItemEntity;
+    private static final Predicate<Entity> rule = entity -> !entity.isSpectator() && entity instanceof ItemEntity;
     @Unique
-    Predicate<Entity> origin = entity -> !entity.isSpectator();
+    private static final Predicate<Entity> origin = entity -> !entity.isSpectator();
 
     @Inject(
             method = "aiStep",

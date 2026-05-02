@@ -17,7 +17,7 @@ import static net.minecraft.commands.Commands.literal;
 public class SearchEntityCommand {
     public static void registerCommand(CommandDispatcher<CommandSourceStack> dispatcher) {
         LiteralArgumentBuilder<CommandSourceStack> argument = literal("entitysearch")
-                .requires((source) -> carpet.utils.CommandHelper.canUseCommand(source, AcaSetting.enableEntitySearchCommand))
+                .requires(source -> carpet.utils.CommandHelper.canUseCommand(source, AcaSetting.enableEntitySearchCommand))
                 .then(Commands.argument("targets", EntityArgument.entities())
                         .executes(context ->
                                 execute(
