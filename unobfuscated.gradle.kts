@@ -95,6 +95,12 @@ tasks.jar {
     }
 }
 
+stonecutter {
+    replacements.string(current.parsed > "1.21.11") {
+        replace("net.minecraft.world.entity.npc.Villager", "net.minecraft.world.entity.npc.villager.Villager")
+    }
+}
+
 
 
 

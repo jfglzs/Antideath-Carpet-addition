@@ -35,16 +35,6 @@ _**感谢 @[_OptiJava_](https://github.com/OptiJava) 的指导**_
 ![Memory](res/mem.png)
 
 ## ACA的所有规则
-
-### 挖掘无减速(noMiningSlowDown)
-
-当玩家处于流体/蜘蛛网/漂浮状态/水中时，挖掘方块无减速
-
-- 类型：`布尔值`
-- 默认值：`false`
-- 参考选项：`true`，`false`
-- 分类：`ACA`，`SURVIVAL`
-
 ### 铁砧不会因掉落而损坏(anvilNeverDamageByFalling)
 
 - 类型：`布尔值`

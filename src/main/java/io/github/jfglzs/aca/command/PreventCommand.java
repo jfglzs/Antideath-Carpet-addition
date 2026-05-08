@@ -15,7 +15,7 @@ import static net.minecraft.commands.Commands.literal;
 
 
 public class PreventCommand {
-    private static final String COMMAND_PREVENTER = "g [Command Preventer] ";
+    private static final String COMMAND_PREVENTER_PREFIX = "g [Command Preventer] ";
 
     public static void registerCommand(CommandDispatcher<CommandSourceStack> dispatcher) {
         LiteralArgumentBuilder<CommandSourceStack> argument = literal("preventcmd")
@@ -97,23 +97,23 @@ public class PreventCommand {
     }
 
     private static int listPrefix(CommandContext<CommandSourceStack> context) {
-        context.getSource().sendSuccess(() -> Messenger.c(COMMAND_PREVENTER + "Prefixlist: " + AcaSetting.config.CommandPreventPrefixList), true);
+        context.getSource().sendSuccess(() -> Messenger.c(COMMAND_PREVENTER_PREFIX + "Prefixlist: " + AcaSetting.config.CommandPreventPrefixList), true);
         return 0;
     }
 
     private static int listWhiteList(CommandContext<CommandSourceStack> context) {
-        context.getSource().sendSuccess(() -> Messenger.c(COMMAND_PREVENTER + "WhiteList: " + AcaSetting.config.CommandPreventWhiteList), true);
+        context.getSource().sendSuccess(() -> Messenger.c(COMMAND_PREVENTER_PREFIX + "WhiteList: " + AcaSetting.config.CommandPreventWhiteList), true);
         return 0;
     }
 
     private static int listBlackList(CommandContext<CommandSourceStack> context) {
-        context.getSource().sendSuccess(() -> Messenger.c(COMMAND_PREVENTER + "BlackList: " + AcaSetting.config.CommandPreventBlackList), true);
+        context.getSource().sendSuccess(() -> Messenger.c(COMMAND_PREVENTER_PREFIX + "BlackList: " + AcaSetting.config.CommandPreventBlackList), true);
         return 0;
     }
 
     private static int reload(CommandContext<CommandSourceStack> context) {
         ConfigUtils.loadConfigFile();
-        context.getSource().sendSuccess(() -> Messenger.c(COMMAND_PREVENTER + "Config reloaded"), true);
+        context.getSource().sendSuccess(() -> Messenger.c(COMMAND_PREVENTER_PREFIX + "Config reloaded"), true);
         return 0;
     }
 
@@ -121,10 +121,10 @@ public class PreventCommand {
         String cmd = StringArgumentType.getString(context, "cmd");
         if (isRemove) {
             ConfigUtils.removeConfig(cmd, index);
-            context.getSource().sendSuccess(() -> Messenger.c(COMMAND_PREVENTER + feedback.formatted(cmd)), true);
+            context.getSource().sendSuccess(() -> Messenger.c(COMMAND_PREVENTER_PREFIX + feedback.formatted(cmd)), true);
         } else {
             ConfigUtils.addToConfig(cmd, index);
-            context.getSource().sendSuccess(() -> Messenger.c(COMMAND_PREVENTER + feedback.formatted(cmd)), true);
+            context.getSource().sendSuccess(() -> Messenger.c(COMMAND_PREVENTER_PREFIX + feedback.formatted(cmd)), true);
         }
         return 0;
     }

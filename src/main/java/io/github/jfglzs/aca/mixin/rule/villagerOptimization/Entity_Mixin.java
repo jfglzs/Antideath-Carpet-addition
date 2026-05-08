@@ -1,6 +1,5 @@
 package io.github.jfglzs.aca.mixin.rule.villagerOptimization;
 
-import io.github.jfglzs.aca.AcaSetting;
 import io.github.jfglzs.aca.accessors.VillagerAccessor;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.npc.villager.Villager;
@@ -8,7 +7,6 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -23,10 +21,9 @@ public class Entity_Mixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private static void adjustMovementForCollisions_Inject(@Nullable Entity entity, Vec3 movement, AABB entityBoundingBox, Level world, List<VoxelShape> collisions, CallbackInfoReturnable<Vec3> cir) {
-        if (entity instanceof Villager villager && AcaSetting.villagerOptimization && ((VillagerAccessor) villager).aca$canDisableAI()) {
+    private static void adjustMovementForCollisions_Inject(Entity entity, Vec3 movement, AABB boundingBox, Level level, List<VoxelShape> collisions, CallbackInfoReturnable<Vec3> cir) {
+        if (entity instanceof Villager villager && ((VillagerAccessor) villager).aca$canDisableAI()) {
             cir.setReturnValue(Vec3.ZERO);
-            cir.cancel();
         }
     }
 }

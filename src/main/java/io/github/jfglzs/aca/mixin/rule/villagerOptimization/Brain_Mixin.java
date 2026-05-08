@@ -42,9 +42,7 @@ public class Brain_Mixin<E extends LivingEntity> {
     )
     private boolean tickSensors_WarpOperation(Sensor<?> sensor, ServerLevel world, E entity) {
         if (
-                entity instanceof Villager villager &&
-                        AcaSetting.villagerOptimization &&
-                        ((VillagerAccessor) villager).aca$canDisableAI()
+                entity instanceof Villager villager && ((VillagerAccessor) villager).aca$canDisableAI()
         ) {
             return !SENSORS.contains(sensor.getClass());
         }
@@ -59,18 +57,15 @@ public class Brain_Mixin<E extends LivingEntity> {
                     target = "Lnet/minecraft/world/entity/ai/behavior/BehaviorControl;tickOrStop(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;J)V"
             )
     )
-    private void startTasks_Tick(BehaviorControl behaviorControl, ServerLevel level, E e, long l, Operation<Void> original) {
-
+    private void startTasks_Tick(BehaviorControl behaviorControl, ServerLevel level, E entity, long l, Operation<Void> original) {
         if (
-                e instanceof Villager villager &&
-                        AcaSetting.villagerOptimization &&
-                        ((VillagerAccessor) villager).aca$canDisableAI() &&
-                        BEHAVIOR_CONTROLS.contains(behaviorControl.getClass())
+                entity instanceof Villager villager &&
+                ((VillagerAccessor) villager).aca$canDisableAI() &&
+                BEHAVIOR_CONTROLS.contains(behaviorControl.getClass())
         ) {
             return;
         }
 
-        original.call(behaviorControl, level, e, l);
+        original.call(behaviorControl, level, entity, l);
     }
-
 }

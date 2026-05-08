@@ -40,7 +40,7 @@ public class WitherBoss_Mixin extends Monster implements EntityAccessor {
     protected void mobTick_Inject(ServerLevel world, CallbackInfo ci) {
         if (!AcaSetting.fakePeaceOptimization) return;
 
-        if ((this.tickCount + this.getId() % 13) % 200 == 0 || count == -1) {
+        if ((this.tickCount + this.getId() % 13) % 200 == 0) {
             WitherBoss entity = (WitherBoss) ((Object) this);
 
             AABB box = new AABB(

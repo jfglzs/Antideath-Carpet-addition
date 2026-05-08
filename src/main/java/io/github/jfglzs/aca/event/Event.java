@@ -13,7 +13,7 @@ public class Event<T> {
         try {
             this.consumers.forEach(consumer -> consumer.accept(arg));
         } catch (Exception e) {
-            ACAEntry.LOGGER.error("Exception has thrown while processing event", e);
+            ACAEntry.LOGGER.error("A Exception has thrown while passing event", e);
         }
     }
 

@@ -19,11 +19,8 @@ public class SearchEntityCommand {
         LiteralArgumentBuilder<CommandSourceStack> argument = literal("entitysearch")
                 .requires(source -> carpet.utils.CommandHelper.canUseCommand(source, AcaSetting.enableEntitySearchCommand))
                 .then(Commands.argument("targets", EntityArgument.entities())
-                        .executes(context ->
-                                execute(
-                                        context.getSource(), EntityArgument.getEntities(context, "targets")
-                                )
-                        )
+                .executes(
+                        context -> execute(context.getSource(), EntityArgument.getEntities(context, "targets")))
                 );
         dispatcher.register(argument);
     }
@@ -37,7 +34,7 @@ public class SearchEntityCommand {
         if (AcaSetting.entitySearchXaeroMapSupport) {
             source.sendSuccess(() -> Component.nullToEmpty(String.format("xaero-waypoint:%s:1:%d:%d:%d:2:false:0:External", entity.getDisplayName().getString(), (int) entity.getX(), (int) entity.getY(), (int) entity.getZ())), true);
         } else {
-            source.sendSuccess(() -> Component.nullToEmpty(String.format("%s pos: \n X: %f \n Y: %f \nZ: %f \n", entity.getDisplayName().getString(), entity.getX(), entity.getY(), entity.getZ())), true);
+            source.sendSuccess(() -> Component.nullToEmpty(String.format("%s pos:[%f,%f,%f]", entity.getDisplayName().getString(), entity.getX(), entity.getY(), entity.getZ())), true);
         }
     }
 }
