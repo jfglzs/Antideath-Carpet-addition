@@ -58,7 +58,6 @@ configurations {
 dependencies {
     "minecraft"("com.mojang:minecraft:${minecraftVer}")
     "implementation"("net.fabricmc:fabric-loader:${property("loader_version")}")
-    "implementation"("net.fabricmc.fabric-api:fabric-api:${property("fabric_version")}")
     "implementation"("com.github.gnembon:fabric-carpet:${property("carpet_core_version")}")
 }
 

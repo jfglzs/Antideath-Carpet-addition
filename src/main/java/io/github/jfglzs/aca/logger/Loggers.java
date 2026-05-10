@@ -16,10 +16,14 @@ public class Loggers {
     public static boolean __sysMem  = false;
     public static boolean __network = false;
 
-    public static void registerLogger() {
-        LoggerRegistry.registerLogger(CpuLogger.INSTANCE.name, CpuLogger.INSTANCE);
-        LoggerRegistry.registerLogger(MemoryAllocationRateLogger.INSTANCE.name, MemoryAllocationRateLogger.INSTANCE);
-        LoggerRegistry.registerLogger(NetworkLogger.INSTANCE.name, NetworkLogger.INSTANCE);
-        LoggerRegistry.registerLogger(MemoryLogger.INSTANCE.name, MemoryLogger.INSTANCE);
+    public static void registerLoggers() {
+        registerLogger(CpuLogger.INSTANCE);
+        registerLogger(MemoryLogger.INSTANCE);
+        registerLogger(NetworkLogger.INSTANCE);
+        registerLogger(MemoryAllocationRateLogger.INSTANCE);
+    }
+
+    public static void registerLogger(final AbstractHUDLogger LOGGER_INSTANCE) {
+        LoggerRegistry.registerLogger(LOGGER_INSTANCE.NAME, LOGGER_INSTANCE);
     }
 }

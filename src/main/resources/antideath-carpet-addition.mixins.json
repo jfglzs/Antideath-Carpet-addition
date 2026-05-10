@@ -16,6 +16,7 @@
     "rule.fakePlaceOptimization.Entity_Mixin",
     "rule.fakePlaceOptimization.Warden_Mixin",
     "rule.fakePlaceOptimization.WitherBoss_Mixin",
+    "rule.fastClickPacketLimit.ServerGamePacketListenerImpl_Mixin",
     "rule.flippinToTemOfUndying.BlockRotator_Mixin",
     "rule.itemDespawnImmediately.ItemEntity_Mixin",
     "rule.ItemFrameAlwaysStayAttach.ItemFrame_Mixin",

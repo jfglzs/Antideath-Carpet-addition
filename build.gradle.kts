@@ -51,7 +51,6 @@ dependencies {
     "minecraft"("com.mojang:minecraft:${minecraftVer}")
     "mappings"(loom.officialMojangMappings())
     "modImplementation"("net.fabricmc:fabric-loader:${property("loader_version")}")
-    "modImplementation"("net.fabricmc.fabric-api:fabric-api:${property("fabric_version")}")
     "modImplementation"("curse.maven:carpet-349239:${property("carpet_core_version")}")
 }
 

@@ -72,5 +72,8 @@ public class AcaSetting {
 
     @Rule(categories = {ACA, SURVIVAL})
     public static boolean superSponge = false;
+
+    @Rule(categories = {ACA, SURVIVAL})
+    public static boolean fastClickPacketLimit = false;
 }
 

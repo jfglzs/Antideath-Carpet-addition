@@ -18,10 +18,7 @@ public class SearchEntityCommand {
     public static void registerCommand(CommandDispatcher<CommandSourceStack> dispatcher) {
         LiteralArgumentBuilder<CommandSourceStack> argument = literal("entitysearch")
                 .requires(source -> carpet.utils.CommandHelper.canUseCommand(source, AcaSetting.enableEntitySearchCommand))
-                .then(Commands.argument("targets", EntityArgument.entities())
-                .executes(
-                        context -> execute(context.getSource(), EntityArgument.getEntities(context, "targets")))
-                );
+                .then(Commands.argument("targets", EntityArgument.entities()).executes(context -> execute(context.getSource(), EntityArgument.getEntities(context, "targets"))));
         dispatcher.register(argument);
     }
 

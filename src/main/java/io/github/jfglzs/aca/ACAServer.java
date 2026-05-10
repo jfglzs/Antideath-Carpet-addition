@@ -14,6 +14,7 @@ import net.minecraft.server.MinecraftServer;
 
 import java.util.Map;
 
+//TODO 连点发包限制
 public class ACAServer implements CarpetExtension {
     public static final ACAServer INSTANCE = new ACAServer();
 
@@ -37,7 +38,7 @@ public class ACAServer implements CarpetExtension {
 
     @Override
     public void registerLoggers() {
-        Loggers.registerLogger();
+        Loggers.registerLoggers();
     }
 
     @Override
