@@ -1,7 +1,6 @@
 package io.github.jfglzs.aca.utils.config;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
 import io.github.jfglzs.aca.AcaSetting;
 
 import java.io.File;
@@ -65,10 +64,10 @@ public class ConfigUtils {
                 return;
             }
 
-            try (InputStream in = ConfigUtils.class.getResourceAsStream("assets/antideath-carpet-addition/antideath-carpet-addition.json")) {
+            try (InputStream in = ConfigUtils.class.getResourceAsStream("/antideath-carpet-addition.json")) {
                 Files.copy(in, dir.resolve(FILE_NAME));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            } catch (Exception e) {
+                LOGGER.error(e.getMessage());
             }
         }
 
@@ -76,7 +75,7 @@ public class ConfigUtils {
             String content = ConfigUtils.load();
             if (content.equals("Failed")) return;
             AcaSetting.config = gson.fromJson(content, ConfigBean.class);
-        } catch (JsonSyntaxException e) {
+        } catch (Exception e) {
             LOGGER.error(e.getMessage());
         } finally {
             if (AcaSetting.config == null) {

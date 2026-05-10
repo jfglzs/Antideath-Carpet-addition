@@ -23,7 +23,7 @@ public class NearestLivingEntitySensor_Mixin<T extends LivingEntity> {
     )
     protected void sort_Wrap(List instance, Comparator<? super Entity> comparator, Operation<Void> original, @Local(argsOnly = true) T entity) {
         if (
-                AcaSetting.villagerOptimization && entity instanceof Villager villager && ((VillagerAccessor) villager).aca$canDisableAI()
+                entity instanceof Villager villager && ((VillagerAccessor) villager).aca$canDisableAI()
         ) {
             return;
         }
