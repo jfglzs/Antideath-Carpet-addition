@@ -30,16 +30,6 @@ public class Brain_Mixin<E extends LivingEntity> {
             HurtBySensor.class
     ));
 
-    @Unique
-    private static final ReferenceOpenHashSet<Class<? extends BehaviorControl>> BEHAVIOR_CONTROLS = new ReferenceOpenHashSet<>(Set.of(
-            Swim.class,
-            GiveGiftToHero.class,
-            LookAndFollowTradingPlayerSink.class,
-            TradeWithVillager.class,
-            ShowTradesToPlayer.class,
-            GateBehavior.class
-    ));
-
     @WrapWithCondition(
             method = "tickSensors",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/ai/sensing/Sensor;tick(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;)V")
@@ -52,22 +42,5 @@ public class Brain_Mixin<E extends LivingEntity> {
         }
 
         return true;
-    }
-
-    @WrapOperation(
-            method = "tickEachRunningBehavior",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/world/entity/ai/behavior/BehaviorControl;tickOrStop(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;J)V"
-            )
-    )
-    private void startTasks_Tick(BehaviorControl<?> bc, ServerLevel level, E entity, long l, Operation<Void> original) {
-        if (
-                AcaSetting.villagerOptimization && EntityUtils.canDisableAI(this) && BEHAVIOR_CONTROLS.contains(bc.getClass())
-        ) {
-            return;
-        }
-
-        original.call(bc, level, entity, l);
     }
 }

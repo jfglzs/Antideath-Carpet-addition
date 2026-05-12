@@ -26,11 +26,10 @@
     "rule.villagerOptimization.AcquirePoi_Mixin",
     "rule.villagerOptimization.Brain_Mixin",
     "rule.villagerOptimization.Entity_Mixin",
-    "rule.villagerOptimization.GateBehavior_Mixin",
     "rule.villagerOptimization.LivingEntity_Mixin",
     "rule.villagerOptimization.NearestLivingEntitySensor_Mixin",
-    "rule.villagerOptimization.OneShot_Mixin",
-    "rule.villagerOptimization.Villager_Mixin"
+    "rule.villagerOptimization.Villager_Mixin",
+    "rule.villagerOptimization.VillagerGoalPackages_Mixin"
   ],
   "injectors": {
     "defaultRequire": 1
