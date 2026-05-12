@@ -64,7 +64,7 @@ public class ConfigUtils {
                 return;
             }
 
-            try (InputStream in = ConfigUtils.class.getResourceAsStream("/antideath-carpet-addition.json")) {
+            try (InputStream in = ConfigUtils.class.getResourceAsStream("./antideath-carpet-addition.json")) {
                 Files.copy(in, dir.resolve(FILE_NAME));
             } catch (Exception e) {
                 LOGGER.error(e.getMessage());

@@ -8,7 +8,7 @@ import io.github.jfglzs.aca.accessors.VillagerAccessor;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.sensing.NearestLivingEntitySensor;
-import net.minecraft.world.entity.npc.villager.Villager;
+import net.minecraft.world.entity.npc.Villager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
@@ -21,9 +21,9 @@ public class NearestLivingEntitySensor_Mixin<T extends LivingEntity> {
             method = "doTick",
             at = @At(value = "INVOKE", target = "Ljava/util/List;sort(Ljava/util/Comparator;)V")
     )
-    protected void sort_Wrap(List instance, Comparator<? super Entity> comparator, Operation<Void> original, @Local(argsOnly = true) T entity) {
+    protected void sort_WrapOperation(List instance, Comparator<? super Entity> comparator, Operation<Void> original, @Local(argsOnly = true) T entity) {
         if (
-                entity instanceof Villager villager && ((VillagerAccessor) villager).aca$canDisableAI()
+                AcaSetting.villagerOptimization && entity instanceof Villager villager && ((VillagerAccessor) villager).aca$canDisableAI()
         ) {
             return;
         }

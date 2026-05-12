@@ -23,8 +23,11 @@
     "rule.itemPickUpRange.Player_Mixin",
     "rule.softAnvil.FallingBlockEntity_Mixin",
     "rule.superSponge.SpongeBlock_Mixin",
+    "rule.villagerOptimization.AcquirePoi_Mixin",
     "rule.villagerOptimization.Brain_Mixin",
     "rule.villagerOptimization.Entity_Mixin",
+    "rule.villagerOptimization.GateBehavior_Mixin",
+    "rule.villagerOptimization.LivingEntity_Mixin",
     "rule.villagerOptimization.NearestLivingEntitySensor_Mixin",
     "rule.villagerOptimization.OneShot_Mixin",
     "rule.villagerOptimization.Villager_Mixin"

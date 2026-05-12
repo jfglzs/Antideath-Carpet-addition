@@ -5,7 +5,7 @@ import io.github.jfglzs.aca.accessors.VillagerAccessor;
 import io.github.jfglzs.aca.utils.EntityUtils;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.npc.villager.Villager;
+import net.minecraft.world.entity.npc.Villager;
 //? if > 1.21.5 {
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
@@ -43,7 +43,7 @@ public class Villager_Mixin implements VillagerAccessor {
         if (AcaSetting.villagerOptimization) {
             Villager entity = (Villager) ((Object) this);
 
-            if ((entity.tickCount + entity.getId() % 807) % 401 == 0 && !entity.isSleeping()) {
+            if ((entity.tickCount + entity.getId() % 807) % 400 == 0 && !entity.isSleeping()) {
 
                 AABB box = new AABB(
                         EntityUtils.getEntityPos(entity).add(0.5, 0.5, 0.5),
@@ -57,7 +57,8 @@ public class Villager_Mixin implements VillagerAccessor {
 
     @Override
     public boolean aca$canDisableAI() {
-        return AcaSetting.villagerOptimization && count == 3 && golemCount > 1;
+//        return count == 3 && golemCount > 1;
+    return true;
     }
 
     @Inject(
