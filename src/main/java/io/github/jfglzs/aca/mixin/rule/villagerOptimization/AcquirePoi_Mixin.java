@@ -20,6 +20,7 @@ import java.util.function.Predicate;
 
 @Mixin(AcquirePoi.class)
 public class AcquirePoi_Mixin {
+//TODO POI缓存
 
     //? if >= 26.1 {
     @Inject(
@@ -50,7 +51,8 @@ public class AcquirePoi_Mixin {
             ) {
             *///?} else if = 1.21.1 {
         /*private static void collect(
-                boolean bl, MutableLong mutableLong,
+                boolean bl,
+                MutableLong mutableLong,
                 Long2ObjectMap long2ObjectMap,
                 Predicate predicate,
                 MemoryAccessor memoryAccessor,
@@ -76,7 +78,7 @@ public class AcquirePoi_Mixin {
     ){
         //?}
         if (AcaSetting.villagerOptimization && pathfinderMob instanceof Villager villager && EntityUtils.canDisableAI(villager)) {
-            if ((villager.tickCount + villager.getId() % 807) % 409 != 0) {
+            if ((villager.tickCount + villager.getId() % 13) % 409 != 0) {
                 cir.setReturnValue(true);
             }
         }

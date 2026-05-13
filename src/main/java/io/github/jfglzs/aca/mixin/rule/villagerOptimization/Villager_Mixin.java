@@ -58,7 +58,7 @@ public class Villager_Mixin implements VillagerAccessor {
     @Override
     public boolean aca$canDisableAI() {
 //        return count == 3 && golemCount > 1;
-    return true;
+        return true;
     }
 
     @Inject(

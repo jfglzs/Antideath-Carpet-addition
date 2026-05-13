@@ -32,6 +32,7 @@ public class BehaviorWrapper<E extends LivingEntity> implements BehaviorControl<
         return behaviorControl.getRequiredMemories();
     }
     //?}
+
     @Override
     public boolean tryStart(ServerLevel serverLevel, E livingEntity, long l) {
         if (AcaSetting.villagerOptimization && EntityUtils.canDisableAI(livingEntity)) {
