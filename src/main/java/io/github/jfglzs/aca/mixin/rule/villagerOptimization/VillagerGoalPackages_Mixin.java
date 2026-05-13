@@ -35,7 +35,7 @@ public abstract class VillagerGoalPackages_Mixin {
 
         return ImmutableList.of(
                 Pair.of(0, BehaviorWrapper.Wrap(new Swim(0.8F))),
-                Pair.of(0, InteractWithDoor.create()),
+                Pair.of(0, BehaviorWrapper.Wrap(InteractWithDoor.create())),
                 Pair.of(0, BehaviorWrapper.Wrap(new LookAtTargetSink(45, 90))),
 
                 //刷铁相关AI
@@ -50,7 +50,7 @@ public abstract class VillagerGoalPackages_Mixin {
                 Pair.of(0, BehaviorWrapper.Wrap(ValidateNearbyPoi.create(holder.value().acquirableJobSite(), MemoryModuleType.POTENTIAL_JOB_SITE))),
                 Pair.of(1, BehaviorWrapper.Wrap(new MoveToTargetSink())), Pair.of(2, PoiCompetitorScan.create()),
                 Pair.of(3, BehaviorWrapper.Wrap(new LookAndFollowTradingPlayerSink(f))),
-                new Pair[]{
+                new Pair[] {
                         Pair.of(5, BehaviorWrapper.Wrap(GoToWantedItem.create(f, false, 4))), Pair.of(6, AcquirePoi.create(holder.value().acquirableJobSite(), MemoryModuleType.JOB_SITE, MemoryModuleType.POTENTIAL_JOB_SITE, true, Optional.empty(), (serverLevel, blockPos) -> true)),
                         Pair.of(7, BehaviorWrapper.Wrap(new GoToPotentialJobSite(f))),
                         Pair.of(8, BehaviorWrapper.Wrap(YieldJobSite.create(f))),
@@ -87,18 +87,24 @@ public abstract class VillagerGoalPackages_Mixin {
         return cullAll(original.call(holder, f),null);
     }
 
+    @WrapMethod(
+            method = "getPanicPackage"
+    )
+    private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getPanicPackage(Holder<VillagerProfession> holder, float f, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
+        return cullAll(original.call(holder, f), ImmutableList.of(0));
+    }
 
     @Unique
     private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> cullAll(
             ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> pairs,
-            ImmutableList<Integer> blockList
+            ImmutableList<Integer> except
     ) {
         List<Pair<Integer, ? extends BehaviorControl<? super Villager>>> list = new ArrayList<>();
         pairs.forEach(
                 pair -> {
                     var first = pair.getFirst();
                     var second = pair.getSecond();
-                    if (blockList != null && blockList.contains(first)) {
+                    if (except != null && except.contains(first)) {
                         list.add(new Pair<>(first, second));
                     } else {
                         list.add(new Pair<>(first, BehaviorWrapper.Wrap(second)));
