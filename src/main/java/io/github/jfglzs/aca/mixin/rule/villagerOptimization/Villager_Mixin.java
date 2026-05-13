@@ -5,7 +5,7 @@ import io.github.jfglzs.aca.accessors.VillagerAccessor;
 import io.github.jfglzs.aca.utils.EntityUtils;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.npc.villager.Villager;
 //? if > 1.21.5 {
 import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.level.storage.ValueInput;
@@ -30,11 +30,6 @@ public class Villager_Mixin implements VillagerAccessor {
     private int count = 0;
     @Unique
     private int golemCount = 0;
-    @Unique
-    private int poiRequests = 0;
-    @Unique
-    private Path path = null;
-
 
     @Inject(
             method = "customServerAiStep",
@@ -64,26 +59,6 @@ public class Villager_Mixin implements VillagerAccessor {
     public boolean aca$canDisableAI() {
 //        return count == 3 && golemCount > 1;
     return true;
-    }
-
-    @Override
-    public int aca$getPOIRequests() {
-        return poiRequests;
-    }
-
-    @Override
-    public void aca$addPOIRequest() {
-        this.poiRequests++;
-    }
-
-    @Override
-    public Path aca$getPath() {
-        return this.path;
-    }
-
-    @Override
-    public void aca$setPath(Path path) {
-        this.path = path;
     }
 
     @Inject(
