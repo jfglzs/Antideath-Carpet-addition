@@ -36,9 +36,7 @@ public abstract class Commands_Mixin {
 
     @Unique
     private void preventCommand(CallbackInfo ci, String command, ParseResults<CommandSourceStack> results) {
-        results.getContext().getSource().sendSuccess(
-                () -> Messenger.c(String.format("g Prevented Command: %s ", command)), true
-        );
+        results.getContext().getSource().sendSuccess(() -> Messenger.c(String.format("g Prevented Command: %s ", command)), true);
         ACAEntry.LOGGER.info("[Command Preventer] Prevented Command: {}", command);
         ci.cancel();
     }

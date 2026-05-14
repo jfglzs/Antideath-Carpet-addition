@@ -21,5 +21,6 @@
   "carpet.rule.beaconRange.desc": "beaconRange",
   "carpet.rule.itemPickUpRange.desc": "itemPickUpRange",
   "carpet.rule.softAnvil.desc": "softAnvil",
-  "carpet.rule.superSponge.desc": "superSponge"
+  "carpet.rule.superSponge.desc": "superSponge",
+  "carpet.rule.fastClickPacketLimit.desc": "fastClickPacketLimit"
 }

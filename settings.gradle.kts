@@ -16,11 +16,10 @@ plugins {
 
 stonecutter {
     create(rootProject) {
-        versions("1.21.1", "1.21.4", "1.21.5", "1.21.8", "1.21.11").buildscript("build.gradle.kts")
+        versions("1.21.1", "1.21.4", "1.21.5", "1.21.6", "1.21.8", "1.21.9", "1.21.10", "1.21.11").buildscript("build.gradle.kts")
         version("26.1").buildscript("unobfuscated.gradle.kts")
         vcsVersion = "26.1"
     }
 }
 
 rootProject.name = "antideath-carpet-addition"
-

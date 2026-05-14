@@ -7,8 +7,6 @@
   "carpet.rule.beaconLagOptimization.desc": "启用后减少信标造成的性能消耗。",
   "carpet.rule.ItemFrameAlwaysStayAttach.name": "物品展示框始终保持附着",
   "carpet.rule.ItemFrameAlwaysStayAttach.desc": "启用后物品展示框始终保持附着",
-  "carpet.rule.enableFastOpCommand.name": "快速OP指令",
-  "carpet.rule.enableFastOpCommand.desc": "启用后提供更快捷的OP指令支持",
   "carpet.rule.enableEntitySearchCommand.name": "启用实体查找命令(EntitySearch)",
   "carpet.rule.enableEntitySearchCommand.desc": "启用后提供更快捷的EntitySearch指令支持。",
   "carpet.rule.entitySearchXaeroMapSupport.name": "启用实体查找命令(EntitySearch)Xearo小地图支持",
@@ -36,5 +34,7 @@
   "carpet.rule.softAnvil.name": "易碎铁砧",
   "carpet.rule.softAnvil.desc": "开启后铁砧从高处摔落会直接变成掉落物",
   "carpet.rule.superSponge.name": "超级海绵",
-  "carpet.rule.superSponge.desc": "开启后会大大提升海绵的吸水范围，但放置海绵时会造成一定的卡顿"
+  "carpet.rule.superSponge.desc": "开启后会大大提升海绵的吸水范围，但放置海绵时会造成一定的卡顿",
+  "carpet.rule.fastClickPacketLimit.name": "连点发包限制",
+  "carpet.rule.fastClickPacketLimit.desc": "开启后会可减小网络带宽压力"
 }

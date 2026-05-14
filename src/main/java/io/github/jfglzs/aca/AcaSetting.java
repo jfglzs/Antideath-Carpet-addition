@@ -15,10 +15,6 @@ public class AcaSetting {
     public static final String ACA = "ACA";
     public static ConfigBean config;
 
-
-    @Rule(categories = {ACA, SURVIVAL})
-    public static boolean noMiningSlowDown = false;
-
     @Rule(categories = {ACA, SURVIVAL})
     public static boolean anvilNeverDamageByFalling = false;
 
@@ -54,13 +50,7 @@ public class AcaSetting {
     public static String enableCommandPreventer = FALSE;
 
     @Rule(categories = {ACA, COMMAND}, options = {"1", "2", "3", "4", "true", "false"})
-    public static String enableFastOpCommand = FALSE;
-
-    @Rule(categories = {ACA, COMMAND}, options = {"1", "2", "3", "4", "true", "false"})
     public static String enableEntitySearchCommand = FALSE;
-
-    @Rule(categories = {ACA, COMMAND}, options = {"1", "2", "3", "4", "true", "false"})
-    public static String enableSpecTPCommand = FALSE;
 
     @Rule(categories = {ACA, COMMAND})
     public static boolean enableCommandPreventerWhiteList = false;
@@ -70,9 +60,6 @@ public class AcaSetting {
 
     @Rule(categories = {ACA, COMMAND})
     public static boolean enableCommandPreventerPrefix = false;
-
-    @Rule(categories = {ACA, COMMAND})
-    public static boolean commandPreventerPreventOP = true;
 
     @Rule(categories = {ACA, OPTIMIZATION})
     public static boolean fakePeaceOptimization = false;
@@ -85,5 +72,8 @@ public class AcaSetting {
 
     @Rule(categories = {ACA, SURVIVAL})
     public static boolean superSponge = false;
+
+    @Rule(categories = {ACA, SURVIVAL})
+    public static boolean fastClickPacketLimit = false;
 }
 

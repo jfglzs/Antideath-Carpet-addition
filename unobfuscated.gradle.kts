@@ -6,8 +6,7 @@ plugins {
 }
 
 val minecraftVer = stonecutter.current.version
-//val modver = "${property("mod_version")}+"
-val modver = "1.3.0"
+val modver = "${property("mod_version")}"
 val mod = "${modver}+${minecraftVer}+build.${SimpleDateFormat("yyMMddHHmm").format(Date())}"
 val archivesBaseName = project.findProperty("archives_base_name")
 
@@ -58,7 +57,6 @@ configurations {
 dependencies {
     "minecraft"("com.mojang:minecraft:${minecraftVer}")
     "implementation"("net.fabricmc:fabric-loader:${property("loader_version")}")
-    "implementation"("net.fabricmc.fabric-api:fabric-api:${property("fabric_version")}")
     "implementation"("com.github.gnembon:fabric-carpet:${property("carpet_core_version")}")
 }
 
@@ -92,6 +90,12 @@ tasks.jar {
         rename { fileName ->
             "${fileName}_${base.archivesName.get()}"
         }
+    }
+}
+
+stonecutter {
+    replacements.string(current.parsed > "1.21.11") {
+        replace("net.minecraft.world.entity.npc.Villager", "net.minecraft.world.entity.npc.villager.Villager")
     }
 }
 
