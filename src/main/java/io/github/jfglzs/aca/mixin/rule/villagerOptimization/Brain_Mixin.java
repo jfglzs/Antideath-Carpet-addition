@@ -21,6 +21,7 @@ import java.util.Set;
 
 @Mixin(Brain.class)
 public class Brain_Mixin<E extends LivingEntity> {
+    //TODO sensor wrapper
     @Unique
     private static final ReferenceOpenHashSet<Class<? extends Sensor>> SENSORS = new  ReferenceOpenHashSet<>(Set.of(
             SecondaryPoiSensor.class,
@@ -38,7 +39,6 @@ public class Brain_Mixin<E extends LivingEntity> {
         if (
                 AcaSetting.villagerOptimization && EntityUtils.canDisableAI(entity)
         ) {
-            System.out.println(sensor.getClass());
             return !SENSORS.contains(sensor.getClass());
         }
 

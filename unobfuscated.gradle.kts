@@ -6,8 +6,7 @@ plugins {
 }
 
 val minecraftVer = stonecutter.current.version
-//val modver = "${property("mod_version")}+"
-val modver = "1.3.1"
+val modver = "${property("mod_version")}"
 val mod = "${modver}+${minecraftVer}+build.${SimpleDateFormat("yyMMddHHmm").format(Date())}"
 val archivesBaseName = project.findProperty("archives_base_name")
 

@@ -1,5 +1,6 @@
 package io.github.jfglzs.aca.mixin.rule.villagerOptimization;
 
+import com.llamalad7.mixinextras.sugar.Local;
 import io.github.jfglzs.aca.AcaSetting;
 import io.github.jfglzs.aca.accessors.VillagerAccessor;
 import io.github.jfglzs.aca.utils.EntityUtils;
@@ -19,6 +20,8 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.util.List;
 
 @Mixin(Villager.class)
 public class Villager_Mixin implements VillagerAccessor {
@@ -57,16 +60,24 @@ public class Villager_Mixin implements VillagerAccessor {
 
     @Override
     public boolean aca$canDisableAI() {
-//        return count == 3 && golemCount > 1;
-        return true;
+        return count == 3 && golemCount > 1;
+    }
+
+    @Override
+    public void aca$addCount() {
+        this.golemCount++;
     }
 
     @Inject(
             method = "spawnGolemIfNeeded",
             at = @At(value = "INVOKE", target = "Ljava/util/List;forEach(Ljava/util/function/Consumer;)V")
     )
-    private void foreach_Inject(ServerLevel world, long time, int requiredCount, CallbackInfo ci) {
-        this.golemCount++;
+    private void foreach_Inject(ServerLevel world, long time, int requiredCount, CallbackInfo ci, @Local(ordinal = 0) List<Villager> nearbyVillagers) {
+        if (!(golemCount > 1)) {
+            for (Villager villager : nearbyVillagers) {
+                ((VillagerAccessor) villager).aca$addCount();
+            }
+        }
     }
 
     //? if > 1.21.5 {
