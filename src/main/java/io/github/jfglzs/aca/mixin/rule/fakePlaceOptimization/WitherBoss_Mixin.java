@@ -37,7 +37,11 @@ public class WitherBoss_Mixin extends Monster implements EntityAccessor {
             at = @At("HEAD"),
             cancellable = true
     )
-    protected void mobTick_Inject(ServerLevel world, CallbackInfo ci) {
+    //? if > 1.21.1 {
+    /*protected void mobTick_Inject(ServerLevel world, CallbackInfo ci) {
+    *///?} else {
+    protected void mobTick_Inject(CallbackInfo ci) {
+    //?}
         if (!AcaSetting.fakePeaceOptimization) return;
 
         if ((this.tickCount + this.getId() % 13) % 200 == 0) {
@@ -48,7 +52,7 @@ public class WitherBoss_Mixin extends Monster implements EntityAccessor {
                     entity.position().add(-0.5, -0.5, -0.5)
             );
 
-            count = world.getEntities(
+            count = entity.level().getEntities(
                     EntityType.WITHER,
                     box,
                     e -> true

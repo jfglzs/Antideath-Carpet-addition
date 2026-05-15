@@ -26,7 +26,11 @@ public class Warden_Mixin extends Monster implements EntityAccessor {
             method = "customServerAiStep",
             at = @At("HEAD")
     )
-    protected void mobTick_Inject(ServerLevel world, CallbackInfo ci) {
+    //? if > 1.21.1 {
+    /*protected void mobTick_Inject(ServerLevel world, CallbackInfo ci) {
+     *///?} else {
+    protected void mobTick_Inject(CallbackInfo ci) {
+    //?}
         if (!AcaSetting.fakePeaceOptimization) return;
 
         if ((this.tickCount + this.getId() % 13) % 200 == 0 || count == -1) {
@@ -37,11 +41,7 @@ public class Warden_Mixin extends Monster implements EntityAccessor {
                     entity.position().add(-0.5, -0.5, -0.5)
             );
 
-            System.out.println(count = world.getEntities(
-                    EntityType.WARDEN,
-                    box,
-                    e -> true
-            ).size());
+            count = entity.level().getEntities(EntityType.WARDEN, box, e -> true).size();
         }
     }
 

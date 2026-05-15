@@ -11,11 +11,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(EnderMan.class)
 public abstract class EnderMan_Mixin {
     @Inject(
-            method = "isBeingStaredBy",
+            //? if > 1.21.1 {
+            //method = "isBeingStaredBy",
+            //?} else {
+            method = "isLookingAtMe",
+            //?}
             at = @At("HEAD"),
             cancellable = true
     )
-    void setAngerTime_Inject(Player player, CallbackInfoReturnable<Boolean> cir) {
+    private void setAngerTime_Inject(Player player, CallbackInfoReturnable<Boolean> cir) {
         if (AcaSetting.endermanNeverGetAngryByPlayer) {
             cir.setReturnValue(false);
         }

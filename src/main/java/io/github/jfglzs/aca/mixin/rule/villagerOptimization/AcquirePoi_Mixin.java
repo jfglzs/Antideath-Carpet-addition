@@ -49,8 +49,8 @@ public class AcquirePoi_Mixin {
             long l,
             CallbackInfoReturnable<Boolean> cir
             ) {
-            *///?} else if = 1.21.1 {
-        /*private static void collect(
+            *///?} else if = 1.21.1 || = 1.21 {
+        private static void collect(
                 boolean bl,
                 MutableLong mutableLong,
                 Long2ObjectMap long2ObjectMap,
@@ -62,7 +62,7 @@ public class AcquirePoi_Mixin {
                 long l,
                 CallbackInfoReturnable<Boolean> cir
         ){
-            *///?} else if >= 1.21.8 {
+            //?} else if >= 1.21.8 {
     /*private static void collect(
             boolean bl,
             MutableLong mutableLong,
