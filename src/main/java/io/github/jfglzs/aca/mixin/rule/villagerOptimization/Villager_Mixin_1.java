@@ -9,7 +9,7 @@ import it.unimi.dsi.fastutil.objects.ReferenceOpenHashSet;
 import net.minecraft.world.entity.ai.Brain;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.ai.sensing.*;
-import net.minecraft.world.entity.npc.villager.Villager;
+import net.minecraft.world.entity.npc.Villager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -32,7 +32,7 @@ public class Villager_Mixin_1 {
     ));
 
     //? if < 26.1 {
-    /*@WrapOperation(
+    @WrapOperation(
             method = "brainProvider",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/ai/Brain;provider(Ljava/util/Collection;Ljava/util/Collection;)Lnet/minecraft/world/entity/ai/Brain$Provider;")
     )
@@ -41,8 +41,8 @@ public class Villager_Mixin_1 {
             final Collection<? extends SensorType<? extends Sensor<? super Villager>>> SENSOR_TYPES,
             Operation<Brain.Provider<Villager>> original
     ) {
-    *///?} else {
-    @WrapOperation(
+    //?} else {
+    /*@WrapOperation(
             method = "<clinit>",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/ai/Brain;provider(Ljava/util/Collection;Lnet/minecraft/world/entity/ai/Brain$ActivitySupplier;)Lnet/minecraft/world/entity/ai/Brain$Provider;")
     )
@@ -52,17 +52,23 @@ public class Villager_Mixin_1 {
             final Brain.ActivitySupplier<Villager> ACTIVITIES,
             Operation<Brain.Provider<Villager>> original
     ) {
-    //?}
+    *///?}
         final var WRAPPED_SENSORS = SENSOR_TYPES
                 .stream()
-                .filter(SENSORS::contains)
-                .map(type -> SensorWrapper.wrap(type.create()))
+                .map(type -> {
+                    if (SENSORS.contains(type)) {
+                        return SensorWrapper.wrap(type.create());
+                    }
+                    else {
+                        return type.create();
+                    }
+                })
                 .map(sensor -> SensorType_Invoker.SensorType(() -> sensor))
                 .collect(ImmutableList.toImmutableList());
         //? if < 26.1 {
-         /*return original.call(MEMORY_TYPES, WRAPPED_SENSORS);
-        *///?} else {
-        return original.call(WRAPPED_SENSORS, ACTIVITIES);
-        //?}
+         return original.call(MEMORY_TYPES, WRAPPED_SENSORS);
+        //?} else {
+        /*return original.call(WRAPPED_SENSORS, ACTIVITIES);
+        *///?}
     }
 }

@@ -6,6 +6,10 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.behavior.Behavior;
 import net.minecraft.world.entity.ai.behavior.BehaviorControl;
+//? if >= 26.1 {
+/*import net.minecraft.world.entity.ai.memory.MemoryModuleType;
+import java.util.Set;
+*///?}
 
 public class BehaviorWrapper<E extends LivingEntity> implements BehaviorControl<E> {
     private final BehaviorControl<E> behaviorControl;
@@ -24,11 +28,11 @@ public class BehaviorWrapper<E extends LivingEntity> implements BehaviorControl<
     }
 
     //? if >= 26.1 {
-    @Override
+    /*@Override
     public Set<MemoryModuleType<?>> getRequiredMemories() {
         return behaviorControl.getRequiredMemories();
     }
-    //?}
+    *///?}
 
     @Override
     public boolean tryStart(ServerLevel serverLevel, E livingEntity, long l) {
