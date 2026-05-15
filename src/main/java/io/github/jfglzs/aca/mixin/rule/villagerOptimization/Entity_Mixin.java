@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Entity.class)
 public class Entity_Mixin {
     //? if >= 1.21.1 {
-    /*@Inject(
+    @Inject(
             method = "applyEffectsFromBlocks()V",
             at = @At("HEAD"),
             cancellable = true
@@ -23,5 +23,5 @@ public class Entity_Mixin {
             ci.cancel();
         }
     }
-    *///?}
+    //?}
 }

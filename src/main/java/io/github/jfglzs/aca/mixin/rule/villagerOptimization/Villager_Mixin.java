@@ -6,14 +6,14 @@ import io.github.jfglzs.aca.accessors.VillagerAccessor;
 import io.github.jfglzs.aca.utils.EntityUtils;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.npc.villager.Villager;
 //? if > 1.21.5 {
-/*import net.minecraft.world.level.pathfinder.Path;
+import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
-*///?} else {
-import net.minecraft.nbt.CompoundTag;
-//?}
+//?} else {
+/*import net.minecraft.nbt.CompoundTag;
+*///?}
 import net.minecraft.world.phys.AABB;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -39,10 +39,10 @@ public class Villager_Mixin implements VillagerAccessor {
             at = @At("HEAD")
     )
     //? if > 1.21.1 {
-    /*protected void mobTick_Inject(ServerLevel world, CallbackInfo ci) {
-    *///?} else {
-    protected void mobTick_Inject(CallbackInfo ci) {
-    //?}
+    protected void mobTick_Inject(ServerLevel world, CallbackInfo ci) {
+    //?} else {
+    /*protected void mobTick_Inject(CallbackInfo ci) {
+    *///?}
         if (AcaSetting.villagerOptimization) {
             Villager entity = (Villager) ((Object) this);
 
@@ -81,7 +81,7 @@ public class Villager_Mixin implements VillagerAccessor {
     }
 
     //? if > 1.21.5 {
-    /*@Inject(
+    @Inject(
             method = "addAdditionalSaveData",
             at = @At("HEAD")
     )
@@ -98,8 +98,8 @@ public class Villager_Mixin implements VillagerAccessor {
         count = input.getInt(VILLAGER_COUNT).orElse(0);
         golemCount = input.getInt(GOLEM_COUNT).orElse(0);
     }
-    *///?} else {
-    @Inject(
+    //?} else {
+    /*@Inject(
             method = "addAdditionalSaveData",
             at = @At("HEAD")
     )
@@ -114,12 +114,12 @@ public class Villager_Mixin implements VillagerAccessor {
     )
     public void readAdditionalSaveData(CompoundTag compoundTag, CallbackInfo ci) {
         //? if > 1.21.4 {
-        /*count = compoundTag.getInt(VILLAGER_COUNT).orElse(0);
+        count = compoundTag.getInt(VILLAGER_COUNT).orElse(0);
         golemCount = compoundTag.getInt(GOLEM_COUNT).orElse(0);
-        *///?} else {
-        count = compoundTag.getInt(VILLAGER_COUNT);
+        //?} else {
+        /^count = compoundTag.getInt(VILLAGER_COUNT);
         golemCount = compoundTag.getInt(GOLEM_COUNT);
-        //?}
+        ^///?}
     }
-    //?}
+    *///?}
 }

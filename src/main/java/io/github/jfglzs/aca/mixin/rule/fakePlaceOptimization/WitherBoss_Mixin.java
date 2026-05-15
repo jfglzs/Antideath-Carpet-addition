@@ -38,10 +38,10 @@ public class WitherBoss_Mixin extends Monster implements EntityAccessor {
             cancellable = true
     )
     //? if > 1.21.1 {
-    /*protected void mobTick_Inject(ServerLevel world, CallbackInfo ci) {
-    *///?} else {
-    protected void mobTick_Inject(CallbackInfo ci) {
-    //?}
+    protected void mobTick_Inject(ServerLevel world, CallbackInfo ci) {
+    //?} else {
+    /*protected void mobTick_Inject(CallbackInfo ci) {
+    *///?}
         if (!AcaSetting.fakePeaceOptimization) return;
 
         if ((this.tickCount + this.getId() % 13) % 200 == 0) {

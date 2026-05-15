@@ -12,10 +12,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class EnderMan_Mixin {
     @Inject(
             //? if > 1.21.1 {
-            //method = "isBeingStaredBy",
+            method = "isBeingStaredBy",
             //?} else {
-            method = "isLookingAtMe",
-            //?}
+            /*method = "isLookingAtMe",
+            *///?}
             at = @At("HEAD"),
             cancellable = true
     )
