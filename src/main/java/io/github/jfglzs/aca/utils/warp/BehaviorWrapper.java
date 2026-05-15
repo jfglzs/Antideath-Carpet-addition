@@ -27,11 +27,11 @@ public class BehaviorWrapper<E extends LivingEntity> implements BehaviorControl<
     }
 
     //? if >= 26.1 {
-    @Override
+    /*@Override
     public Set<MemoryModuleType<?>> getRequiredMemories() {
         return behaviorControl.getRequiredMemories();
     }
-    //?}
+    *///?}
 
     @Override
     public boolean tryStart(ServerLevel serverLevel, E livingEntity, long l) {

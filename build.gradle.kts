@@ -10,6 +10,7 @@ val minecraftVer = stonecutter.current.version
 val modver = "${property("mod_version")}"
 val mod = "${modver}+${minecraftVer}+build.${SimpleDateFormat("yyMMddHHmm").format(Date())}"
 val archivesBaseName = project.findProperty("archives_base_name")
+val minecraftRequirementVersion = project.findProperty("minecraft_requirement_version")
 
 base {
     archivesName.set("${archivesBaseName}+${mod}")
@@ -58,12 +59,12 @@ tasks.processResources {
     from("aca.accesswidener")
 
     inputs.property("modver", modver)
-    inputs.property("mc", minecraftVer)
+    inputs.property("mc", minecraftRequirementVersion)
 
     filesMatching("fabric.mod.json") {
         val valueMap = mapOf(
             "version" to modver,
-            "mc" to minecraftVer
+            "mc" to minecraftRequirementVersion
         )
         expand(valueMap)
     }
