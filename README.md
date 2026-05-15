@@ -54,13 +54,6 @@ _**感谢 @[_OptiJava_](https://github.com/OptiJava) 的指导**_
 - 默认值：`false`
 - 参考选项：`true`，`false`
 - 分类：`ACA`，`OPTIMIZATION`
-   
-### 快速获取Op(enableFastOpCommand)
-用于没有MCDR的服务器，快速获取Op权限的指令
-- 类型：`布尔值`
-- 默认值：`false`
-- 参考选项：`true`，`false`
-- 分类：`ACA`，`COMMAND`
 
 ### 掉落物永不消失(itemNeverDespawn)
 掉落物永远都不会消失
@@ -92,14 +85,6 @@ _**感谢 @[_OptiJava_](https://github.com/OptiJava) 的指导**_
 
 ### 实体搜索命令启用小地图支持(entitySearchCommandEnableXaeroMapSupport)
 实体搜索命令启用Xaero小地图支持
-- 类型：`布尔值`
-- 默认值：`false`
-- 参考选项：`true`，`false`
-- 分类：`ACA`，`SURVIVAL`
-
-### 旁观者快捷TP命令(enableSpecTPCommand)
-当玩家处于旁观者模式时，可使用此命令进行快速tp\
-**格式 /sp 玩家**
 - 类型：`布尔值`
 - 默认值：`false`
 - 参考选项：`true`，`false`
@@ -155,6 +140,13 @@ _**感谢 @[_OptiJava_](https://github.com/OptiJava) 的指导**_
 - 分类：`ACA`，`SURVIVAL`
 
 ### 自定义信标范围(beaconRange)
+自定义信标效果范围
+- 类型：`整数`
+- 默认值：0，100, 200, 500, 1000
+- 参考选项：`true`，`false`
+- 分类：`ACA`，`SURVIVAL`
+
+### 自定义物品拾取范围(itemPickUpRange)
 自定义信标效果范围
 - 类型：`整数`
 - 默认值：0，100, 200, 500, 1000

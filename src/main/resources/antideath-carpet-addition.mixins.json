@@ -4,8 +4,7 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "carpet.HUDController_Mixin",
-    "Invoker.OpCommand_Invoker",
-    "Invoker.TelePortCommand_Invoker",
+    "Invoker.SensorType_Invoker",
     "rule.anvilNeverDamageByFalling.AnvilBlock_Mixin",
     "rule.beaconOptimization.BeaconBlockEntity_Mixin",
     "rule.betterPlayerCommand.EntityPlayerActionPack_Mixin",
@@ -29,6 +28,7 @@
     "rule.villagerOptimization.LivingEntity_Mixin",
     "rule.villagerOptimization.NearestLivingEntitySensor_Mixin",
     "rule.villagerOptimization.Villager_Mixin",
+    "rule.villagerOptimization.Villager_Mixin_1",
     "rule.villagerOptimization.VillagerGoalPackages_Mixin"
   ],
   "injectors": {

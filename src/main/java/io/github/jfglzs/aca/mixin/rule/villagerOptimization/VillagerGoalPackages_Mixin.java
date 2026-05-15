@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.mojang.datafixers.util.Pair;
-import io.github.jfglzs.aca.utils.warp.BehaviorWrapper;
+import io.github.jfglzs.aca.utils.wrap.BehaviorWrapper;
 //? if >= 1.21.5 {
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -19,9 +19,7 @@ import net.minecraft.world.entity.npc.villager.VillagerProfession;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Mixin(VillagerGoalPackages.class)
 public abstract class VillagerGoalPackages_Mixin {
@@ -158,17 +156,43 @@ public abstract class VillagerGoalPackages_Mixin {
         //?}
     }
 
+    @WrapMethod(
+            method = "getPlayPackage"
+    )
+    private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getPlayPackage(float f, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
+        return cullAll(original.call(f), null);
+    }
+
+    @WrapMethod(
+            method = "getHidePackage"
+    )
+    //? if >= 1.21.5 && != 26.1 {
+    /*private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getHidePackage(Holder<VillagerProfession> holder, float f, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
+    *///?} else if != 26.1 {
+    /*private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getHidePackage(VillagerProfession holder, float f, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
+    *///?} else {
+    private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getHidePackage(float speedModifier, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
+    //?}
+        //? if < 26.1 {
+        /*return cullAll(original.call(holder, f), ImmutableList.of(0));
+        *///?} else {
+        return cullAll(original.call(speedModifier), ImmutableList.of(0));
+        //?}
+    }
     @Unique
     private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> cullAll(
             ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> pairs,
             ImmutableList<Integer> except
     ) {
         List<Pair<Integer, ? extends BehaviorControl<? super Villager>>> list = new ArrayList<>();
+        ImmutableList<Integer> excepts = except == null ? ImmutableList.of() : except;
+
         pairs.forEach(
                 pair -> {
                     var first = pair.getFirst();
                     var second = pair.getSecond();
-                    if (except != null && except.contains(first)) {
+
+                    if (excepts.contains(first)) {
                         list.add(new Pair<>(first, second));
                     } else {
                         list.add(new Pair<>(first, BehaviorWrapper.Wrap(second)));

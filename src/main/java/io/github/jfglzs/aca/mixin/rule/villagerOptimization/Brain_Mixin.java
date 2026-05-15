@@ -22,26 +22,17 @@ import java.util.Set;
 @Mixin(Brain.class)
 public class Brain_Mixin<E extends LivingEntity> {
     //TODO sensor wrapper
-    @Unique
-    private static final ReferenceOpenHashSet<Class<? extends Sensor>> SENSORS = new  ReferenceOpenHashSet<>(Set.of(
-            SecondaryPoiSensor.class,
-            VillagerBabiesSensor.class,
-            PlayerSensor.class,
-            NearestItemSensor.class,
-            HurtBySensor.class
-    ));
-
-    @WrapWithCondition(
-            method = "tickSensors",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/ai/sensing/Sensor;tick(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;)V")
-    )
-    private boolean tickSensors_Wrap(Sensor<?> sensor, ServerLevel world, E entity) {
-        if (
-                AcaSetting.villagerOptimization && EntityUtils.canDisableAI(entity)
-        ) {
-            return !SENSORS.contains(sensor.getClass());
-        }
-
-        return true;
-    }
+//    @WrapWithCondition(
+//            method = "tickSensors",
+//            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/ai/sensing/Sensor;tick(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;)V")
+//    )
+//    private boolean tickSensors_Wrap(Sensor<?> sensor, ServerLevel world, E entity) {
+//        if (
+//                AcaSetting.villagerOptimization && EntityUtils.canDisableAI(entity)
+//        ) {
+//            return !SENSORS.contains(sensor.getClass());
+//        }
+//
+//        return true;
+//    }
 }

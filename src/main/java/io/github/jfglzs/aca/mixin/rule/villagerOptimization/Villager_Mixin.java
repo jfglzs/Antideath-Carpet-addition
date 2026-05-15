@@ -8,7 +8,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.npc.villager.Villager;
 //? if > 1.21.5 {
-import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 //?} else {
@@ -44,9 +43,9 @@ public class Villager_Mixin implements VillagerAccessor {
     /*protected void mobTick_Inject(CallbackInfo ci) {
     *///?}
         if (AcaSetting.villagerOptimization) {
-            Villager entity = (Villager) ((Object) this);
+            Villager entity = ((Villager) (Object) this);
 
-            if ((entity.tickCount + entity.getId() % 807) % 400 == 0 && !entity.isSleeping()) {
+            if ((entity.tickCount + entity.getId() % 807) % 409 == 0 && !entity.isSleeping()) {
 
                 AABB box = new AABB(
                         EntityUtils.getEntityPos(entity).add(0.5, 0.5, 0.5),
@@ -60,7 +59,7 @@ public class Villager_Mixin implements VillagerAccessor {
 
     @Override
     public boolean aca$canDisableAI() {
-        return count == 3 && golemCount > 1;
+        return this.count == 3 && this.golemCount > 1;
     }
 
     @Override
@@ -73,7 +72,7 @@ public class Villager_Mixin implements VillagerAccessor {
             at = @At(value = "INVOKE", target = "Ljava/util/List;forEach(Ljava/util/function/Consumer;)V")
     )
     private void foreach_Inject(ServerLevel world, long time, int requiredCount, CallbackInfo ci, @Local(ordinal = 0) List<Villager> nearbyVillagers) {
-        if (!(golemCount > 1)) {
+        if (golemCount < 1) {
             for (Villager villager : nearbyVillagers) {
                 ((VillagerAccessor) villager).aca$addCount();
             }
