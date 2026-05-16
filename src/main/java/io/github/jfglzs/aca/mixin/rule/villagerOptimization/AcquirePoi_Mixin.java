@@ -2,13 +2,11 @@ package io.github.jfglzs.aca.mixin.rule.villagerOptimization;
 
 import io.github.jfglzs.aca.AcaSetting;
 import io.github.jfglzs.aca.accessors.VillagerAccessor;
-import io.github.jfglzs.aca.utils.EntityUtils;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.behavior.AcquirePoi;
 import net.minecraft.world.entity.ai.behavior.declarative.MemoryAccessor;
-import net.minecraft.world.entity.npc.Villager;
 import org.apache.commons.lang3.mutable.MutableLong;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -24,20 +22,20 @@ public class AcquirePoi_Mixin {
 //TODO POI缓存
 
     //? if >= 26.1 {
-    /*@Inject(
+    @Inject(
             method = "lambda$create$3",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/ai/village/poi/PoiManager;findAllClosestFirstWithType(Ljava/util/function/Predicate;Ljava/util/function/Predicate;Lnet/minecraft/core/BlockPos;ILnet/minecraft/world/entity/ai/village/poi/PoiManager$Occupancy;)Ljava/util/stream/Stream;"),
             cancellable = true
     )
-    *///?} else {
-    @Inject(
+    //?} else {
+    /*@Inject(
             method = "method_46885",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/ai/village/poi/PoiManager;findAllClosestFirstWithType(Ljava/util/function/Predicate;Ljava/util/function/Predicate;Lnet/minecraft/core/BlockPos;ILnet/minecraft/world/entity/ai/village/poi/PoiManager$Occupancy;)Ljava/util/stream/Stream;"),
             cancellable = true
     )
-    //?}
+    *///?}
     //? if > 1.21.1 && < 1.21.8 {
-    private static void collect(
+    /*private static void collect(
             boolean bl,
             MutableLong mutableLong,
             Long2ObjectMap long2ObjectMap,
@@ -50,7 +48,7 @@ public class AcquirePoi_Mixin {
             long l,
             CallbackInfoReturnable<Boolean> cir
             ) {
-            //?} else if = 1.21.1 || = 1.21 {
+            *///?} else if = 1.21.1 || = 1.21 {
         /*private static void collect(
                 boolean bl,
                 MutableLong mutableLong,
@@ -64,7 +62,7 @@ public class AcquirePoi_Mixin {
                 CallbackInfoReturnable<Boolean> cir
         ){
             *///?} else if >= 1.21.8 {
-    /*private static void collect(
+    private static void collect(
             boolean bl,
             MutableLong mutableLong,
             Long2ObjectMap long2ObjectMap,
@@ -77,7 +75,7 @@ public class AcquirePoi_Mixin {
             long l,
             CallbackInfoReturnable<Boolean> cir
     ){
-        *///?}
+        //?}
         if (
                 AcaSetting.villagerOptimization
                 && pathfinderMob instanceof VillagerAccessor villager
