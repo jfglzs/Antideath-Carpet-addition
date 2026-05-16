@@ -28,7 +28,6 @@
     "rule.villagerOptimization.LivingEntity_Mixin",
     "rule.villagerOptimization.NearestLivingEntitySensor_Mixin",
     "rule.villagerOptimization.Villager_Mixin",
-    "rule.villagerOptimization.Villager_Mixin_1",
     "rule.villagerOptimization.VillagerGoalPackages_Mixin"
   ],
   "injectors": {

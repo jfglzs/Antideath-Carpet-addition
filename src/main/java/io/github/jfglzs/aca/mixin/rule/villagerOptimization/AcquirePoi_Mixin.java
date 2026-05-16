@@ -1,6 +1,7 @@
 package io.github.jfglzs.aca.mixin.rule.villagerOptimization;
 
 import io.github.jfglzs.aca.AcaSetting;
+import io.github.jfglzs.aca.accessors.VillagerAccessor;
 import io.github.jfglzs.aca.utils.EntityUtils;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import net.minecraft.server.level.ServerLevel;
@@ -77,11 +78,14 @@ public class AcquirePoi_Mixin {
             CallbackInfoReturnable<Boolean> cir
     ){
         *///?}
-        if (AcaSetting.villagerOptimization && pathfinderMob instanceof Villager villager && EntityUtils.canDisableAI(villager)) {
-            if ((villager.tickCount + villager.getId() % 13) % 409 != 0) {
+        if (
+                AcaSetting.villagerOptimization
+                && pathfinderMob instanceof VillagerAccessor villager
+                && villager.aca$canDisableAI()
+        ) {
+            if ((pathfinderMob.tickCount + pathfinderMob.getId() % 807) % 1609 != 0) {
                 cir.setReturnValue(true);
             }
         }
     }
-
 }

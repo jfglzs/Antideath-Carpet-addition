@@ -18,9 +18,11 @@ public class LivingEntity_Mixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void travelInAir_Inject(Vec3 vec3, CallbackInfo ci) {
+    private void travel_Inject(Vec3 vec3, CallbackInfo ci) {
         if (
-                AcaSetting.villagerOptimization && EntityUtils.canDisableAI(this)
+                AcaSetting.villagerOptimization
+                && this instanceof VillagerAccessor villager
+                && villager.aca$canDisableAI()
         ) {
             ci.cancel();
         }
