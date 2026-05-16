@@ -2,7 +2,7 @@ package io.github.jfglzs.aca.mixin.rule.villagerOptimization;
 
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import io.github.jfglzs.aca.AcaSetting;
-import io.github.jfglzs.aca.accessors.VillagerAccessor;
+import io.github.jfglzs.aca.accessors.IVillagerAccessor;
 import it.unimi.dsi.fastutil.objects.ReferenceOpenHashSet;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
@@ -33,7 +33,7 @@ public class Brain_Mixin<E extends LivingEntity> {
     private boolean tickSensors_Wrap(Sensor<?> sensor, ServerLevel world, E entity) {
         if (
                 AcaSetting.villagerOptimization
-                        && entity instanceof VillagerAccessor villager
+                        && entity instanceof IVillagerAccessor villager
                         && villager.aca$canDisableAI()
         ) {
             return !SENSORS.contains(sensor.getClass());

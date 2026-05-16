@@ -1,10 +1,8 @@
 package io.github.jfglzs.aca.mixin.rule.villagerOptimization;
 
 import io.github.jfglzs.aca.AcaSetting;
-import io.github.jfglzs.aca.accessors.VillagerAccessor;
-import io.github.jfglzs.aca.utils.EntityUtils;
+import io.github.jfglzs.aca.accessors.IVillagerAccessor;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.npc.villager.Villager;
 import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -21,7 +19,7 @@ public class LivingEntity_Mixin {
     private void travel_Inject(Vec3 vec3, CallbackInfo ci) {
         if (
                 AcaSetting.villagerOptimization
-                && this instanceof VillagerAccessor villager
+                && this instanceof IVillagerAccessor villager
                 && villager.aca$canDisableAI()
         ) {
             ci.cancel();

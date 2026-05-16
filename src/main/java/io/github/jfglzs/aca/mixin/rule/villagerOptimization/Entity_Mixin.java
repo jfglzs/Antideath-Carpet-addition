@@ -1,8 +1,7 @@
 package io.github.jfglzs.aca.mixin.rule.villagerOptimization;
 
 import io.github.jfglzs.aca.AcaSetting;
-import io.github.jfglzs.aca.accessors.VillagerAccessor;
-import io.github.jfglzs.aca.utils.EntityUtils;
+import io.github.jfglzs.aca.accessors.IVillagerAccessor;
 import net.minecraft.world.entity.Entity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,7 +18,7 @@ public class Entity_Mixin {
     )
     private void applyEffectsFromBlocks_Inject(CallbackInfo ci) {
         if (
-                AcaSetting.villagerOptimization && this instanceof VillagerAccessor villager && villager.aca$canDisableAI()
+                AcaSetting.villagerOptimization && this instanceof IVillagerAccessor villager && villager.aca$canDisableAI()
         ) {
             ci.cancel();
         }

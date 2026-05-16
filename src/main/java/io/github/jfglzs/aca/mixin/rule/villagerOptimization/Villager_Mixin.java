@@ -2,7 +2,7 @@ package io.github.jfglzs.aca.mixin.rule.villagerOptimization;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import io.github.jfglzs.aca.AcaSetting;
-import io.github.jfglzs.aca.accessors.VillagerAccessor;
+import io.github.jfglzs.aca.accessors.IVillagerAccessor;
 import io.github.jfglzs.aca.utils.EntityUtils;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EntityType;
@@ -23,7 +23,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.List;
 
 @Mixin(Villager.class)
-public class Villager_Mixin implements VillagerAccessor {
+public class Villager_Mixin implements IVillagerAccessor {
     @Unique
     private static final String VILLAGER_COUNT = "VillagerCount";
     @Unique
@@ -32,6 +32,8 @@ public class Villager_Mixin implements VillagerAccessor {
     private int count = 0;
     @Unique
     private int golemCount = 0;
+    @Unique
+    private int poiCount = 0;
 
     @Inject(
             method = "customServerAiStep",
@@ -74,7 +76,7 @@ public class Villager_Mixin implements VillagerAccessor {
     private void foreach_Inject(ServerLevel world, long time, int requiredCount, CallbackInfo ci, @Local(ordinal = 0) List<Villager> nearbyVillagers) {
         if (golemCount < 1) {
             for (Villager villager : nearbyVillagers) {
-                ((VillagerAccessor) villager).aca$addCount();
+                ((IVillagerAccessor) villager).aca$addCount();
             }
         }
     }

@@ -1,12 +1,9 @@
 package io.github.jfglzs.aca.utils.wrap;
 
-import io.github.jfglzs.aca.AcaSetting;
-import io.github.jfglzs.aca.accessors.VillagerAccessor;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.behavior.Behavior;
 import net.minecraft.world.entity.ai.behavior.BehaviorControl;
-import net.minecraft.world.entity.npc.villager.Villager;
 //? if >= 26.1 {
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import java.util.Set;

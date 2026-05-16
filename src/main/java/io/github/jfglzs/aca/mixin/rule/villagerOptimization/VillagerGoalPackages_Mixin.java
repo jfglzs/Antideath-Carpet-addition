@@ -5,8 +5,8 @@ import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.mojang.datafixers.util.Pair;
 import io.github.jfglzs.aca.utils.wrap.BehaviorWrapper;
-//? if >= 1.21.5 {
 import io.github.jfglzs.aca.utils.wrap.FullSuppressBehaviorWrapper;
+//? if >= 1.21.5 {
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
@@ -157,46 +157,6 @@ public abstract class VillagerGoalPackages_Mixin {
         *///?} else {
         return cullAll(original.call(speedModifier), ImmutableList.of(0));
         //?}
-    }
-
-//    @WrapMethod(
-//            method = "getPlayPackage"
-//    )
-//    private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getPlayPackage(float f, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
-//        return cullAll(original.call(f), null);
-//    }
-//
-//    @WrapMethod(
-//            method = "getHidePackage"
-//    )
-//    //? if >= 1.21.5 && != 26.1 {
-//    /*private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getHidePackage(Holder<VillagerProfession> holder, float f, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
-//    *///?} else if != 26.1 {
-//    /*private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getHidePackage(VillagerProfession holder, float f, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
-//    *///?} else {
-//    private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getHidePackage(float speedModifier, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
-//    //?}
-//        //? if < 26.1 {
-//        /*return cullAll(original.call(holder, f), ImmutableList.of(0));
-//        *///?} else {
-//        return cullAll(original.call(speedModifier), ImmutableList.of(0));
-//        //?}
-//    }
-
-    @WrapMethod(
-            method = "getFullLookBehavior"
-    )
-    private static Pair<Integer, BehaviorControl<LivingEntity>> getFullLookBehavior(Operation<Pair<Integer, BehaviorControl<LivingEntity>>> original) {
-        var pair = original.call();
-        return new Pair<>(pair.getFirst(), FullSuppressBehaviorWrapper.full_Wrap(pair.getSecond()));
-    }
-
-    @WrapMethod(
-            method = "getMinimalLookBehavior"
-    )
-    private static Pair<Integer, BehaviorControl<LivingEntity>> getMinimalLookBehavior(Operation<Pair<Integer, BehaviorControl<LivingEntity>>> original) {
-        var pair = original.call();
-        return new Pair<>(pair.getFirst(), FullSuppressBehaviorWrapper.full_Wrap(pair.getSecond()));
     }
 
     @Unique

@@ -1,19 +1,12 @@
 package io.github.jfglzs.aca.mixin.rule.villagerOptimization;
 
 import io.github.jfglzs.aca.AcaSetting;
-import io.github.jfglzs.aca.accessors.VillagerAccessor;
+import io.github.jfglzs.aca.accessors.IVillagerAccessor;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.GlobalPos;
-import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.behavior.AcquirePoi;
-import net.minecraft.world.entity.ai.behavior.BehaviorControl;
 import net.minecraft.world.entity.ai.behavior.declarative.MemoryAccessor;
-import net.minecraft.world.entity.ai.memory.MemoryModuleType;
-import net.minecraft.world.entity.ai.village.poi.PoiType;
 import org.apache.commons.lang3.mutable.MutableLong;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -106,7 +99,7 @@ public class AcquirePoi_Mixin {
         //?}
         if (
                 AcaSetting.villagerOptimization
-                && pathfinderMob instanceof VillagerAccessor villager
+                && pathfinderMob instanceof IVillagerAccessor villager
                 && villager.aca$canDisableAI()
         ) {
             if ((pathfinderMob.tickCount + pathfinderMob.getId() % 807) % 1609 != 0) {

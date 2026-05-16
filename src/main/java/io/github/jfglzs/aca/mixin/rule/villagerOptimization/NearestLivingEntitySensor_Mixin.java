@@ -4,12 +4,10 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import io.github.jfglzs.aca.AcaSetting;
-import io.github.jfglzs.aca.accessors.VillagerAccessor;
-import io.github.jfglzs.aca.utils.EntityUtils;
+import io.github.jfglzs.aca.accessors.IVillagerAccessor;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.sensing.NearestLivingEntitySensor;
-import net.minecraft.world.entity.npc.villager.Villager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
@@ -24,7 +22,7 @@ public class NearestLivingEntitySensor_Mixin<T extends LivingEntity> {
     )
     protected void sort_WrapOperation(List instance, Comparator<? super Entity> comparator, Operation<Void> original, @Local(argsOnly = true) T entity) {
         if (
-                AcaSetting.villagerOptimization && entity instanceof VillagerAccessor villager && villager.aca$canDisableAI()
+                AcaSetting.villagerOptimization && entity instanceof IVillagerAccessor villager && villager.aca$canDisableAI()
         ) {
             return;
         }
