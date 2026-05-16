@@ -6,6 +6,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.mojang.datafixers.util.Pair;
 import io.github.jfglzs.aca.utils.wrap.BehaviorWrapper;
 //? if >= 1.21.5 {
+import io.github.jfglzs.aca.utils.wrap.FullSuppressBehaviorWrapper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
@@ -58,9 +59,9 @@ public abstract class VillagerGoalPackages_Mixin {
     /*private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getCorePackage_Wrap(VillagerProfession holder, float f, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
     *///?}
         return ImmutableList.of(
-                Pair.of(0, BehaviorWrapper.Wrap(new Swim(0.8F))),
-                Pair.of(0, BehaviorWrapper.Wrap(InteractWithDoor.create())),
-                Pair.of(0, BehaviorWrapper.Wrap(new LookAtTargetSink(45, 90))),
+                Pair.of(0, FullSuppressBehaviorWrapper.full_Wrap(new Swim(0.8F))),
+                Pair.of(0, FullSuppressBehaviorWrapper.full_Wrap(InteractWithDoor.create())),
+                Pair.of(0, FullSuppressBehaviorWrapper.full_Wrap(new LookAtTargetSink(45, 90))),
 
                 //刷铁相关AI
                 Pair.of(0, new VillagerPanicTrigger()),
@@ -69,27 +70,27 @@ public abstract class VillagerGoalPackages_Mixin {
                 //刷铁相关AI
                 Pair.of(0, ReactToBell.create()),
 
-                Pair.of(0, BehaviorWrapper.Wrap(SetRaidStatus.create())),
+                Pair.of(0, FullSuppressBehaviorWrapper.full_Wrap(SetRaidStatus.create())),
                 //? if >= 1.21.5 {
-                Pair.of(0, BehaviorWrapper.Wrap(ValidateNearbyPoi.create(holder.value().heldJobSite(), MemoryModuleType.JOB_SITE))),
-                Pair.of(0, BehaviorWrapper.Wrap(ValidateNearbyPoi.create(holder.value().acquirableJobSite(), MemoryModuleType.POTENTIAL_JOB_SITE))),
+                Pair.of(0, FullSuppressBehaviorWrapper.full_Wrap(ValidateNearbyPoi.create(holder.value().heldJobSite(), MemoryModuleType.JOB_SITE))),
+                Pair.of(0, FullSuppressBehaviorWrapper.full_Wrap(ValidateNearbyPoi.create(holder.value().acquirableJobSite(), MemoryModuleType.POTENTIAL_JOB_SITE))),
                 //?} else {
-                /*Pair.of(0, BehaviorWrapper.Wrap(ValidateNearbyPoi.create(holder.heldJobSite(), MemoryModuleType.JOB_SITE))),
-                Pair.of(0, BehaviorWrapper.Wrap(ValidateNearbyPoi.create(holder.acquirableJobSite(), MemoryModuleType.POTENTIAL_JOB_SITE))),
+                /*Pair.of(0, FullSuppressBehaviorWrapper.full_Wrap(ValidateNearbyPoi.create(holder.heldJobSite(), MemoryModuleType.JOB_SITE))),
+                Pair.of(0, FullSuppressBehaviorWrapper.full_Wrap(ValidateNearbyPoi.create(holder.acquirableJobSite(), MemoryModuleType.POTENTIAL_JOB_SITE))),
                 *///?}
-                Pair.of(1, BehaviorWrapper.Wrap(new MoveToTargetSink())), Pair.of(2, PoiCompetitorScan.create()),
-                Pair.of(3, BehaviorWrapper.Wrap(new LookAndFollowTradingPlayerSink(f))),
+                Pair.of(1, FullSuppressBehaviorWrapper.full_Wrap(new MoveToTargetSink())), Pair.of(2, PoiCompetitorScan.create()),
+                Pair.of(3, FullSuppressBehaviorWrapper.full_Wrap(new LookAndFollowTradingPlayerSink(f))),
                 new Pair[]{
 
                         //? if >= 1.21.5 {
-                        Pair.of(5, BehaviorWrapper.Wrap(GoToWantedItem.create(f, false, 4))),
+                        Pair.of(5, FullSuppressBehaviorWrapper.full_Wrap(GoToWantedItem.create(f, false, 4))),
                         Pair.of(6, AcquirePoi.create(holder.value().acquirableJobSite(), MemoryModuleType.JOB_SITE, MemoryModuleType.POTENTIAL_JOB_SITE, true, Optional.empty(), (serverLevel, blockPos) -> true)),
                         //?} else {
-                        /*Pair.of(5, BehaviorWrapper.Wrap(GoToWantedItem.create(f, false, 4))),
+                        /*Pair.of(5, FullSuppressBehaviorWrapper.full_Wrap(GoToWantedItem.create(f, false, 4))),
                         Pair.of(0, ValidateNearbyPoi.create(holder.acquirableJobSite(), MemoryModuleType.POTENTIAL_JOB_SITE)),
                         *///?}
-                        Pair.of(7, BehaviorWrapper.Wrap(new GoToPotentialJobSite(f))),
-                        Pair.of(8, BehaviorWrapper.Wrap(YieldJobSite.create(f))),
+                        Pair.of(7, FullSuppressBehaviorWrapper.full_Wrap(new GoToPotentialJobSite(f))),
+                        Pair.of(8, FullSuppressBehaviorWrapper.full_Wrap(YieldJobSite.create(f))),
 
                         //刷铁相关AI
                         //? if >= 1.21.5 {
@@ -98,8 +99,8 @@ public abstract class VillagerGoalPackages_Mixin {
                         /*Pair.of(10, AcquirePoi.create((holderx) -> holderx.is(PoiTypes.HOME), MemoryModuleType.HOME, false, Optional.of((byte) 14))),
                         *///?}
 
-                        Pair.of(10, BehaviorWrapper.Wrap(AcquirePoi.create((holderx) -> holderx.is(PoiTypes.MEETING), MemoryModuleType.MEETING_POINT, true, Optional.of((byte) 14)))),
-                        Pair.of(10, BehaviorWrapper.Wrap(AssignProfessionFromJobSite.create())),
+                        Pair.of(10, FullSuppressBehaviorWrapper.full_Wrap(AcquirePoi.create((holderx) -> holderx.is(PoiTypes.MEETING), MemoryModuleType.MEETING_POINT, true, Optional.of((byte) 14)))),
+                        Pair.of(10, FullSuppressBehaviorWrapper.full_Wrap(AssignProfessionFromJobSite.create())),
 
                         //刷铁相关AI
                         Pair.of(10, ResetProfession.create())
@@ -158,36 +159,36 @@ public abstract class VillagerGoalPackages_Mixin {
         //?}
     }
 
-    @WrapMethod(
-            method = "getPlayPackage"
-    )
-    private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getPlayPackage(float f, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
-        return cullAll(original.call(f), null);
-    }
-
-    @WrapMethod(
-            method = "getHidePackage"
-    )
-    //? if >= 1.21.5 && != 26.1 {
-    /*private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getHidePackage(Holder<VillagerProfession> holder, float f, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
-    *///?} else if != 26.1 {
-    /*private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getHidePackage(VillagerProfession holder, float f, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
-    *///?} else {
-    private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getHidePackage(float speedModifier, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
-    //?}
-        //? if < 26.1 {
-        /*return cullAll(original.call(holder, f), ImmutableList.of(0));
-        *///?} else {
-        return cullAll(original.call(speedModifier), ImmutableList.of(0));
-        //?}
-    }
+//    @WrapMethod(
+//            method = "getPlayPackage"
+//    )
+//    private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getPlayPackage(float f, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
+//        return cullAll(original.call(f), null);
+//    }
+//
+//    @WrapMethod(
+//            method = "getHidePackage"
+//    )
+//    //? if >= 1.21.5 && != 26.1 {
+//    /*private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getHidePackage(Holder<VillagerProfession> holder, float f, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
+//    *///?} else if != 26.1 {
+//    /*private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getHidePackage(VillagerProfession holder, float f, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
+//    *///?} else {
+//    private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getHidePackage(float speedModifier, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
+//    //?}
+//        //? if < 26.1 {
+//        /*return cullAll(original.call(holder, f), ImmutableList.of(0));
+//        *///?} else {
+//        return cullAll(original.call(speedModifier), ImmutableList.of(0));
+//        //?}
+//    }
 
     @WrapMethod(
             method = "getFullLookBehavior"
     )
     private static Pair<Integer, BehaviorControl<LivingEntity>> getFullLookBehavior(Operation<Pair<Integer, BehaviorControl<LivingEntity>>> original) {
         var pair = original.call();
-        return new Pair<>(pair.getFirst(), BehaviorWrapper.Wrap(pair.getSecond()));
+        return new Pair<>(pair.getFirst(), FullSuppressBehaviorWrapper.full_Wrap(pair.getSecond()));
     }
 
     @WrapMethod(
@@ -195,9 +196,8 @@ public abstract class VillagerGoalPackages_Mixin {
     )
     private static Pair<Integer, BehaviorControl<LivingEntity>> getMinimalLookBehavior(Operation<Pair<Integer, BehaviorControl<LivingEntity>>> original) {
         var pair = original.call();
-        return new Pair<>(pair.getFirst(), BehaviorWrapper.Wrap(pair.getSecond()));
+        return new Pair<>(pair.getFirst(), FullSuppressBehaviorWrapper.full_Wrap(pair.getSecond()));
     }
-
 
     @Unique
     private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> cullAll(
@@ -216,7 +216,7 @@ public abstract class VillagerGoalPackages_Mixin {
                         list.add(new Pair<>(first, second));
                     }
                     else {
-                        list.add(new Pair<>(first, BehaviorWrapper.Wrap(second)));
+                        list.add(new Pair<>(first, FullSuppressBehaviorWrapper.full_Wrap(second)));
                     }
                 }
         );

@@ -3,10 +3,17 @@ package io.github.jfglzs.aca.mixin.rule.villagerOptimization;
 import io.github.jfglzs.aca.AcaSetting;
 import io.github.jfglzs.aca.accessors.VillagerAccessor;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.GlobalPos;
+import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.behavior.AcquirePoi;
+import net.minecraft.world.entity.ai.behavior.BehaviorControl;
 import net.minecraft.world.entity.ai.behavior.declarative.MemoryAccessor;
+import net.minecraft.world.entity.ai.memory.MemoryModuleType;
+import net.minecraft.world.entity.ai.village.poi.PoiType;
 import org.apache.commons.lang3.mutable.MutableLong;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -21,6 +28,27 @@ import java.util.function.Predicate;
 public class AcquirePoi_Mixin {
 //TODO POI缓存
 
+//    @Inject(
+//            method = "create(Ljava/util/function/Predicate;Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;ZLjava/util/Optional;Ljava/util/function/BiPredicate;)Lnet/minecraft/world/entity/ai/behavior/BehaviorControl;",
+//            at = @At(
+//                    value = "INVOKE",
+//                    target = "Lnet/minecraft/world/entity/ai/behavior/declarative/BehaviorBuilder;create(Ljava/util/function/Function;)Lnet/minecraft/world/entity/ai/behavior/OneShot;",
+//                    ordinal = 1
+//            )
+//    )
+//    private static void create(
+//            Predicate<Holder<PoiType>> predicate,
+//            MemoryModuleType<GlobalPos> memoryModuleType,
+//            MemoryModuleType<GlobalPos> memoryModuleType2,
+//            boolean bl, Optional<Byte> optional,
+//            BiPredicate<ServerLevel, BlockPos> biPredicate,
+//            CallbackInfoReturnable<BehaviorControl<PathfinderMob>> cir
+//    ) {
+//
+//    }
+
+//TODO optimize???? method_46878
+
     //? if >= 26.1 {
     @Inject(
             method = "lambda$create$3",
@@ -30,7 +58,7 @@ public class AcquirePoi_Mixin {
     //?} else {
     /*@Inject(
             method = "method_46885",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/ai/village/poi/PoiManager;findAllClosestFirstWithType(Ljava/util/function/Predicate;Ljava/util/function/Predicate;Lnet/minecraft/core/BlockPos;ILnet/minecraft/world/entity/ai/village/poi/PoiManager$Occupancy;)Ljava/util/stream/Stream;"),
+            at = @At(value = "HEAD"),
             cancellable = true
     )
     *///?}
