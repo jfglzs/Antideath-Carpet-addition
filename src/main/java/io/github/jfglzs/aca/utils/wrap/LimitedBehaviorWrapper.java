@@ -9,13 +9,13 @@ import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import java.util.Set;
 //?}
 
-public class FullSuppressBehaviorWrapper<E extends LivingEntity> extends BehaviorWrapper<E> {
-    protected FullSuppressBehaviorWrapper(BehaviorControl<E> behavior) {
+public class LimitedBehaviorWrapper<E extends LivingEntity> extends BehaviorWrapper<E> {
+    protected LimitedBehaviorWrapper(BehaviorControl<E> behavior) {
         super(behavior);
     }
 
     public static <E extends LivingEntity> BehaviorWrapper<E> wrap(BehaviorControl<E> behavior) {
-        return new FullSuppressBehaviorWrapper<>(behavior);
+        return new LimitedBehaviorWrapper<>(behavior);
     }
 
     //? if >= 26.1 {
@@ -25,23 +25,21 @@ public class FullSuppressBehaviorWrapper<E extends LivingEntity> extends Behavio
     }
     //?}
 
-
     @Override
     public boolean tryStart(ServerLevel serverLevel, E livingEntity, long l) {
-        return EntityUtils.shouldSkip(livingEntity) || super.tryStart(serverLevel, livingEntity, l);
+        if (EntityUtils.shouldSkip(livingEntity)) {
+            return ((livingEntity.tickCount + livingEntity.getId()) & 511) == 0 && super.tryStart(serverLevel, livingEntity, l);
+        }
+        return super.tryStart(serverLevel, livingEntity, l);
     }
 
     @Override
     public void doStop(ServerLevel serverLevel, E livingEntity, long l) {
-        if (!EntityUtils.shouldSkip(livingEntity)) {
-            super.doStop(serverLevel, livingEntity, l);
-        }
+        super.doStop(serverLevel, livingEntity, l);
     }
 
     @Override
     public void tickOrStop(ServerLevel serverLevel, E livingEntity, long l) {
-        if (!EntityUtils.shouldSkip(livingEntity)) {
-            super.tickOrStop(serverLevel, livingEntity, l);
-        }
+        super.tickOrStop(serverLevel, livingEntity, l);
     }
 }
