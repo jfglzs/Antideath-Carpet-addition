@@ -24,7 +24,7 @@ public abstract class BehaviorWrapper<E extends LivingEntity> implements Behavio
     //? if >= 26.1 {
     @Override
     public Set<MemoryModuleType<?>> getRequiredMemories() {
-        return behaviorControl.getRequiredMemories();
+        return this.behaviorControl.getRequiredMemories();
     }
     //?}
 

@@ -32,8 +32,6 @@ public class Villager_Mixin implements IVillagerAccessor {
     private int count = 0;
     @Unique
     private int golemCount = 0;
-    @Unique
-    private int poiCount = 0;
 
     @Inject(
             method = "customServerAiStep",

@@ -17,9 +17,11 @@ public class Entity_Mixin {
             cancellable = true
     )
     private void applyEffectsFromBlocks_Inject(CallbackInfo ci) {
-        if (
-                AcaSetting.villagerOptimization && this instanceof IVillagerAccessor villager && villager.aca$canDisableAI()
-        ) {
+        if (!AcaSetting.villagerOptimization) {
+            return;
+        }
+
+        if (this instanceof IVillagerAccessor villager && villager.aca$canDisableAI()) {
             ci.cancel();
         }
     }

@@ -30,7 +30,7 @@ public class ConfigUtils {
             Files.createFile(dir.resolve(FILE_NAME));
             return true;
         } catch (IOException e) {
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
             return false;
         }
     }
@@ -51,7 +51,7 @@ public class ConfigUtils {
         try {
             Files.write(dir.resolve(FILE_NAME), content.getBytes());
         } catch (IOException e) {
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
             return false;
         }
         return true;

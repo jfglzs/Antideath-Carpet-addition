@@ -4,16 +4,13 @@ import com.google.common.collect.ImmutableList;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.mojang.datafixers.util.Pair;
-import io.github.jfglzs.aca.utils.wrap.BehaviorWrapper;
 import io.github.jfglzs.aca.utils.wrap.FullSuppressBehaviorWrapper;
 //? if >= 1.21.5 {
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Shadow;
 import net.minecraft.core.Holder;
 //?}
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.behavior.*;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.ai.village.poi.PoiTypes;

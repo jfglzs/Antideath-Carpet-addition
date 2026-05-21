@@ -2,6 +2,7 @@ package io.github.jfglzs.aca.utils.wrap;
 
 import io.github.jfglzs.aca.AcaSetting;
 import io.github.jfglzs.aca.accessors.IVillagerAccessor;
+import io.github.jfglzs.aca.utils.EntityUtils;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.behavior.BehaviorControl;
@@ -26,33 +27,23 @@ public class FullSuppressBehaviorWrapper<E extends LivingEntity> extends Behavio
     }
     //?}
 
+
     @Override
     public boolean tryStart(ServerLevel serverLevel, E livingEntity, long l) {
-        if (
-                AcaSetting.villagerOptimization && livingEntity instanceof IVillagerAccessor villager && villager.aca$canDisableAI()
-        ) {
-            return true;
-        }
-        return super.tryStart(serverLevel, livingEntity, l);
+        return EntityUtils.shouldSkip(livingEntity) || super.tryStart(serverLevel, livingEntity, l);
     }
 
     @Override
     public void doStop(ServerLevel serverLevel, E livingEntity, long l) {
-        if (
-                AcaSetting.villagerOptimization && livingEntity instanceof IVillagerAccessor villager && villager.aca$canDisableAI()
-        ) {
-            return;
+        if (!EntityUtils.shouldSkip(livingEntity)) {
+            super.doStop(serverLevel, livingEntity, l);
         }
-        super.doStop(serverLevel, livingEntity, l);
     }
 
     @Override
     public void tickOrStop(ServerLevel serverLevel, E livingEntity, long l) {
-        if (
-                AcaSetting.villagerOptimization && livingEntity instanceof IVillagerAccessor villager && villager.aca$canDisableAI()
-        ) {
-            return;
+        if (!EntityUtils.shouldSkip(livingEntity)) {
+            super.tickOrStop(serverLevel, livingEntity, l);
         }
-        super.tickOrStop(serverLevel, livingEntity, l);
     }
 }
