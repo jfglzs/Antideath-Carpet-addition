@@ -162,7 +162,6 @@ java {
     sourceCompatibility = javaVersion
     targetCompatibility = javaVersion
     withSourcesJar()
-    withJavadocJar()
 }
 
 tasks.jar {
