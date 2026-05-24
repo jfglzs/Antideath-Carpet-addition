@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "id": "antideath-carpet-addition",
+  "id": "${id}",
   "version": "${version}",
-  "name": "Antideath-Carpet-Addition",
+  "name": "${name}",
   "description": "A carpet addition provided something useful features.",
   "authors": [
     "Antideath"
@@ -24,11 +24,8 @@
   ],
   "accessWidener": "aca.accesswidener",
   "depends": {
-    "fabricloader": ">=0.17.2",
+    "fabricloader": "${loader}",
     "minecraft": "${mc}",
     "carpet": "*"
-  },
-  "suggests": {
-    "another-mod": "*"
   }
 }

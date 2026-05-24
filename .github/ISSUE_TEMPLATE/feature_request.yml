@@ -1,0 +1,44 @@
+# Source: https://github.com/TISUnion/Carpet-TIS-Addition/blob/master/.github/ISSUE_TEMPLATE/feature_request.yml
+#
+# This file is part of the Carpet TIS Addition project, licensed under the
+# GNU Lesser General Public License v3.0
+#
+# Copyright (C) 2023  Fallen_Breath and contributors
+#
+# Carpet TIS Addition is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Carpet TIS Addition is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with Carpet TIS Addition.  If not, see <https://www.gnu.org/licenses/>.
+name: Feature Request
+description: Suggest an idea for this project
+labels: []
+body:
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation
+      description: Why do you want this feature? What problem do you want to solve? How can the suggested feature help with that?
+      placeholder: Tell us what you want!
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the feature you want, as detailed as possible
+      placeholder: I want to see a fancy starry sky when I look up at midnight.
+    validations:
+      required: true
+  - type: textarea
+    id: other-information
+    attributes:
+      label: Other information
+      description: Other useful information to this feature request. Leave empty if there is none.
