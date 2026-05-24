@@ -22,6 +22,7 @@
 # Modified:
 # - added a settings.json generation step before running summary.py
 # - excluded javadoc jars when collecting user-facing mod artifacts
+# - change runtime dir
 name: _step.build
 
 on:
@@ -78,7 +79,9 @@ jobs:
         timeout-minutes: 10
         run: |
           mkdir -p ./run
+          mkdir -p ./run-obsuscated
           echo eula=true > ./run/eula.txt
+          echo eula=true > ./run-obsuscated/eula.txt
           ./gradlew runClientMixinAudit
 
       - name: Upload artifacts
