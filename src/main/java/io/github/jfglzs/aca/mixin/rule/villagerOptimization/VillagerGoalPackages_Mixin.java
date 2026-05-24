@@ -34,9 +34,9 @@ public abstract class VillagerGoalPackages_Mixin {
     @WrapMethod(
             method = "getIdlePackage"
     )
-    //? if >= 1.21.5 && != 26.1 {
+    //? if >= 1.21.5 && < 26.1 {
     /*private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getIdlePackage(Holder<VillagerProfession> holder, float f, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
-    *///?} else if != 26.1 {
+    *///?} else if < 26.1 {
     /*private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getIdlePackage(VillagerProfession holder, float f, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
     *///?} else {
     private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getIdlePackage(float speedModifier, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
@@ -53,7 +53,7 @@ public abstract class VillagerGoalPackages_Mixin {
     )
     //? if >= 1.21.5 {
     private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getCorePackage_Wrap(Holder<VillagerProfession> holder, float f, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
-    //?} else if != 26.1 {
+    //?} else if < 26.1 {
     /*private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getCorePackage_Wrap(VillagerProfession holder, float f, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
     *///?}
         return ImmutableList.of(
@@ -109,9 +109,9 @@ public abstract class VillagerGoalPackages_Mixin {
     @WrapMethod(
             method = "getPreRaidPackage"
     )
-    //? if >= 1.21.5 && != 26.1  {
+    //? if >= 1.21.5 && < 26.1  {
     /*private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getPreRaidPackage(Holder<VillagerProfession> holder, float f, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
-    *///?} else if != 26.1 {
+    *///?} else if < 26.1 {
     /*private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getPreRaidPackage(VillagerProfession holder, float f, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
     *///?} else {
     private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getPreRaidPackage(float speedModifier, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
@@ -126,9 +126,9 @@ public abstract class VillagerGoalPackages_Mixin {
     @WrapMethod(
             method = "getRaidPackage"
     )
-    //? if >= 1.21.5 && != 26.1 {
+    //? if >= 1.21.5 && < 26.1 {
     /*private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getRaidPackage(Holder<VillagerProfession> holder, float f, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
-    *///?} else if != 26.1 {
+    *///?} else if < 26.1 {
     /*private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getRaidPackage(VillagerProfession holder, float f, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
     *///?} else {
     private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getRaidPackage(float speedModifier, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
@@ -143,9 +143,9 @@ public abstract class VillagerGoalPackages_Mixin {
     @WrapMethod(
             method = "getPanicPackage"
     )
-    //? if >= 1.21.5 && != 26.1 {
+    //? if >= 1.21.5 && < 26.1 {
     /*private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getPanicPackage(Holder<VillagerProfession> holder, float f, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
-    *///?} else if != 26.1 {
+    *///?} else if < 26.1 {
     /*private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getPanicPackage(VillagerProfession holder, float f, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
     *///?} else {
     private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getPanicPackage(float speedModifier, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {

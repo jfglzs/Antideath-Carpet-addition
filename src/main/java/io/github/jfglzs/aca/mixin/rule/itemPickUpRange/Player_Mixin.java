@@ -2,9 +2,9 @@ package io.github.jfglzs.aca.mixin.rule.itemPickUpRange;
 
 import io.github.jfglzs.aca.AcaSetting;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.entity.EntityTypeTest;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
@@ -32,7 +32,7 @@ public class Player_Mixin {
         if (AcaSetting.itemPickUpRange > 0) {
             Player player = ((Player) (Object) this);
             AABB box = player.getBoundingBox().inflate(AcaSetting.itemPickUpRange);
-            for (ItemEntity entity : player.level().getEntities(EntityType.ITEM, box, entity -> !entity.isRemoved())) {
+            for (ItemEntity entity : player.level().getEntities(EntityTypeTest.forClass(ItemEntity.class), box, entity -> !entity.isRemoved())) {
                 entity.playerTouch(player);
             }
         }

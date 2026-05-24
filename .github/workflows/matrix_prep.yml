@@ -1,0 +1,56 @@
+# Source: https://github.com/TISUnion/Carpet-TIS-Addition/blob/master/.github/workflows/matrix_prep.yml
+#
+# This file is part of the Carpet TIS Addition project, licensed under the
+# GNU Lesser General Public License v3.0
+#
+# Copyright (C) 2023  Fallen_Breath and contributors
+#
+# Carpet TIS Addition is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Carpet TIS Addition is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with Carpet TIS Addition.  If not, see <https://www.gnu.org/licenses/>.
+#
+# Modified by: jasonxue
+# Modified: added a settings.json generation step before running matrix.py
+name: _step.matrix_prepare
+
+on:
+  workflow_call:
+    inputs:
+      target_subproject:
+        description: see release.yml, for generating matrix entries
+        type: string
+        required: false
+        default: ""
+    outputs:
+      matrix:
+        description: The generated run matrix
+        value: ${{ jobs.matrix_prep.outputs.matrix }}
+
+jobs:
+  matrix_prep:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: 3.14
+
+      - name: Generate settings.json
+        run: python .github/workflows/scripts/generate_settings.py
+
+      - id: setmatrix
+        run: python .github/workflows/scripts/matrix.py
+        env:
+          TARGET_SUBPROJECT: ${{ inputs.target_subproject }}
+
+    outputs:
+      matrix: ${{ steps.setmatrix.outputs.matrix }}
