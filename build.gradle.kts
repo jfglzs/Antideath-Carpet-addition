@@ -60,23 +60,6 @@ version = fullProjectVersion
 
 repositories {
     mavenCentral()
-    // 阿里云镜像
-    maven {
-        url = uri("https://maven.aliyun.com/repository/public/")
-    }
-    // CurseMaven
-    maven {
-        url = uri("https://www.cursemaven.com")
-    }
-    // Modrinth
-    maven {
-        name = "Modrinth"
-        url = uri("https://api.modrinth.com/maven")
-    }
-    // JitPack
-    maven {
-        url = uri("https://jitpack.io")
-    }
     maven {
         url = uri("https://masa.dy.fi/maven")
         content { includeGroup("carpet") }
@@ -179,7 +162,6 @@ java {
     sourceCompatibility = javaVersion
     targetCompatibility = javaVersion
     withSourcesJar()
-    withJavadocJar()
 }
 
 tasks.jar {
