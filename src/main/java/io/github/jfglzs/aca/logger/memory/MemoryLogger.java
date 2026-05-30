@@ -45,7 +45,7 @@ public class MemoryLogger extends AbstractHUDLogger {
         long page      = toMiB(Loggers.SYSTEM_INFO.getHardware().getMemory().getVirtualMemory().getSwapUsed());
         long pageTotal = toMiB(Loggers.SYSTEM_INFO.getHardware().getMemory().getVirtualMemory().getSwapTotal());
 
-        String message = switch (option) {
+        var message = switch (option) {
             case "Physical" -> String.format("g Physical: %dM/%dM", total - free, total);
             case "Swap"     -> String.format("g Swap: %dM/%dM", page, pageTotal);
             default         -> String.format("g Physical: %dM/%dM Swap: %dM/%dM", total - free, total, page, pageTotal);

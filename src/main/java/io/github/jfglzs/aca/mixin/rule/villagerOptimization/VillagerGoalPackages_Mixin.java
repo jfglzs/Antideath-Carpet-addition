@@ -5,8 +5,8 @@ import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.mojang.datafixers.util.Pair;
 import io.github.jfglzs.aca.utils.wrap.FullSuppressBehaviorWrapper;
-//? if >= 1.21.5 {
 import io.github.jfglzs.aca.utils.wrap.LimitedBehaviorWrapper;
+//? if >= 1.21.5 {
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import org.spongepowered.asm.mixin.Shadow;
@@ -73,8 +73,8 @@ public abstract class VillagerGoalPackages_Mixin {
                 Pair.of(0, FullSuppressBehaviorWrapper.wrap(ValidateNearbyPoi.create(holder.value().heldJobSite(), MemoryModuleType.JOB_SITE))),
                 Pair.of(0, FullSuppressBehaviorWrapper.wrap(ValidateNearbyPoi.create(holder.value().acquirableJobSite(), MemoryModuleType.POTENTIAL_JOB_SITE))),
                 //?} else {
-                /*Pair.of(0, FullSuppressBehaviorWrapper.full_Wrap(ValidateNearbyPoi.create(holder.heldJobSite(), MemoryModuleType.JOB_SITE))),
-                Pair.of(0, FullSuppressBehaviorWrapper.full_Wrap(ValidateNearbyPoi.create(holder.acquirableJobSite(), MemoryModuleType.POTENTIAL_JOB_SITE))),
+                /*Pair.of(0, FullSuppressBehaviorWrapper.wrap(ValidateNearbyPoi.create(holder.heldJobSite(), MemoryModuleType.JOB_SITE))),
+                Pair.of(0, FullSuppressBehaviorWrapper.wrap(ValidateNearbyPoi.create(holder.acquirableJobSite(), MemoryModuleType.POTENTIAL_JOB_SITE))),
                 *///?}
                 Pair.of(1, FullSuppressBehaviorWrapper.wrap(new MoveToTargetSink())), Pair.of(2, PoiCompetitorScan.create()),
                 Pair.of(3, FullSuppressBehaviorWrapper.wrap(new LookAndFollowTradingPlayerSink(f))),
@@ -84,7 +84,7 @@ public abstract class VillagerGoalPackages_Mixin {
                         Pair.of(5, FullSuppressBehaviorWrapper.wrap(GoToWantedItem.create(f, false, 4))),
                         Pair.of(6, LimitedBehaviorWrapper.wrap(AcquirePoi.create(holder.value().acquirableJobSite(), MemoryModuleType.JOB_SITE, MemoryModuleType.POTENTIAL_JOB_SITE, true, Optional.empty(), (serverLevel, blockPos) -> true))),
                         //?} else {
-                        /*Pair.of(5, FullSuppressBehaviorWrapper.full_Wrap(GoToWantedItem.create(f, false, 4))),
+                        /*Pair.of(5, FullSuppressBehaviorWrapper.wrap(GoToWantedItem.create(f, false, 4))),
                         Pair.of(0, LimitedBehaviorWrapper.wrap(ValidateNearbyPoi.create(holder.acquirableJobSite(), MemoryModuleType.POTENTIAL_JOB_SITE))),
                         *///?}
                         Pair.of(7, FullSuppressBehaviorWrapper.wrap(new GoToPotentialJobSite(f))),

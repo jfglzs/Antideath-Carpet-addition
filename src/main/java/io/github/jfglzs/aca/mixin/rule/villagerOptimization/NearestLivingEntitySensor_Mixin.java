@@ -20,7 +20,7 @@ public class NearestLivingEntitySensor_Mixin<T extends LivingEntity> {
             method = "doTick",
             at = @At(value = "INVOKE", target = "Ljava/util/List;sort(Ljava/util/Comparator;)V")
     )
-    protected void sort_WrapOperation(List instance, Comparator<? super Entity> comparator, Operation<Void> original, @Local(argsOnly = true) T entity) {
+    protected void sort_WrapOperation(List<?> instance, Comparator<? super Entity> comparator, Operation<Void> original, @Local(argsOnly = true) T entity) {
         if (
                 AcaSetting.villagerOptimization
                 && entity instanceof IVillagerAccessor villager

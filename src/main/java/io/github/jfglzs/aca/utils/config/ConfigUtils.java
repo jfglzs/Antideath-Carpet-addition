@@ -13,7 +13,7 @@ import static io.github.jfglzs.aca.ACAEntry.LOGGER;
 import static io.github.jfglzs.aca.AcaSetting.dir;
 
 public class ConfigUtils {
-    public static final String FILE_NAME = "assets/antideath-carpet-addition/antideath-carpet-addition.json";
+    public static final String FILE_NAME = "antideath-carpet-addition.json";
     public static final Gson gson = new Gson();
 
     public static String load() {
@@ -64,7 +64,7 @@ public class ConfigUtils {
                 return;
             }
 
-            try (InputStream in = ConfigUtils.class.getResourceAsStream("/assets/antideath-carpet-addition/antideath-carpet-addition.json")) {
+            try (InputStream in = ConfigUtils.class.getResourceAsStream("/antideath-carpet-addition.json")) {
                 Files.copy(in, dir.resolve(FILE_NAME));
             } catch (Exception e) {
                 LOGGER.error(e.getMessage());

@@ -45,7 +45,7 @@ public class Villager_Mixin implements IVillagerAccessor {
         if (AcaSetting.villagerOptimization) {
             Villager entity = ((Villager) (Object) this);
 
-            if ((entity.tickCount + entity.getId() % 807) % 409 == 0 && !entity.isSleeping()) {
+            if (((entity.tickCount ^ entity.getId()) & 511) == 0 && !entity.isSleeping()) {
 
                 AABB box = new AABB(
                         EntityUtils.getEntityPos(entity).add(0.5, 0.5, 0.5),
