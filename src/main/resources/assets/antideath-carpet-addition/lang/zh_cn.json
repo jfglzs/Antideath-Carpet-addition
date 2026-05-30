@@ -38,5 +38,7 @@
   "carpet.rule.fastClickPacketLimit.name": "连点发包限制",
   "carpet.rule.fastClickPacketLimit.desc": "开启后会可减小网络带宽压力",
   "carpet.rule.boatOptimization.name": "船吸优化",
-  "carpet.rule.boatOptimization.desc": "开启后会优化船的卡顿"
+  "carpet.rule.boatOptimization.desc": "开启后会优化船的卡顿",
+  "carpet.rule.villagerOptimizationEjectSupport.name": "村民优化弹射式刷铁机支持",
+  "carpet.rule.villagerOptimizationEjectSupport.desc": "村民优化弹射式刷铁机支持"
 }

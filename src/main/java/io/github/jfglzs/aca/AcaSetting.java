@@ -67,6 +67,9 @@ public class AcaSetting {
     @Rule(categories = {ACA, OPTIMIZATION})
     public static boolean villagerOptimization = false;
 
+    @Rule(categories = {ACA, OPTIMIZATION})
+    public static boolean villagerOptimizationEjectSupport = false;
+
     @Rule(categories = {ACA, SURVIVAL}, strict = false, options = {"0", "10", "100"}, validators = GreaterThanZeroValidator.class)
     public static int itemPickUpRange = 0;
 
@@ -77,6 +80,6 @@ public class AcaSetting {
     public static boolean fastClickPacketLimit = false;
 
     @Rule(categories = {ACA, SURVIVAL})
-    public static boolean boatOptimization;
+    public static boolean boatOptimization = false;
 }
 

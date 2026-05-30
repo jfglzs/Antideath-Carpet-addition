@@ -23,5 +23,6 @@
   "carpet.rule.softAnvil.desc": "softAnvil",
   "carpet.rule.superSponge.desc": "superSponge",
   "carpet.rule.fastClickPacketLimit.desc": "fastClickPacketLimit",
-  "carpet.rule.boatOptimization.desc": "boatOptimization"
+  "carpet.rule.boatOptimization.desc": "boatOptimization",
+  "carpet.rule.villagerOptimizationEjectSupport.desc": "villagerOptimizationEjectSupport"
 }

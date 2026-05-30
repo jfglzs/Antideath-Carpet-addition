@@ -38,14 +38,14 @@ public class Villager_Mixin implements IVillagerAccessor {
             at = @At("HEAD")
     )
     //? if > 1.21.1 {
-    protected void mobTick_Inject(ServerLevel world, CallbackInfo ci) {
+    protected void mobTick_Inject(ServerLevel level, CallbackInfo ci) {
     //?} else {
     /*protected void mobTick_Inject(CallbackInfo ci) {
     *///?}
         if (AcaSetting.villagerOptimization) {
             Villager entity = ((Villager) (Object) this);
 
-            if (((entity.tickCount ^ entity.getId()) & 511) == 0 && !entity.isSleeping()) {
+            if (((entity.tickCount + entity.getId() % 809) % 511) == 0 && !entity.isSleeping()) {
 
                 AABB box = new AABB(
                         EntityUtils.getEntityPos(entity).add(0.5, 0.5, 0.5),

@@ -19,6 +19,7 @@ public class LivingEntity_Mixin {
     private void travel_Inject(Vec3 vec3, CallbackInfo ci) {
         if (
                 AcaSetting.villagerOptimization
+                && !AcaSetting.villagerOptimizationEjectSupport
                 && this instanceof IVillagerAccessor villager
                 && villager.aca$canDisableAI()
         ) {

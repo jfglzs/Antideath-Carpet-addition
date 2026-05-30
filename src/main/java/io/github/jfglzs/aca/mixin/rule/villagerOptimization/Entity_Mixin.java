@@ -16,8 +16,8 @@ public class Entity_Mixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void applyEffectsFromBlocks_Inject(CallbackInfo ci) {
-        if (AcaSetting.villagerOptimization && this instanceof IVillagerAccessor villager && villager.aca$canDisableAI()) {
+    private void tickBlockCollision_Inject(CallbackInfo ci) {
+        if (AcaSetting.villagerOptimization && !AcaSetting.villagerOptimizationEjectSupport && this instanceof IVillagerAccessor villager && villager.aca$canDisableAI()) {
             ci.cancel();
         }
     }

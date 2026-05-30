@@ -28,7 +28,7 @@ public class LimitedBehaviorWrapper<E extends LivingEntity> extends BehaviorWrap
     @Override
     public boolean tryStart(ServerLevel serverLevel, E livingEntity, long l) {
         if (EntityUtils.shouldSkip(livingEntity)) {
-            return ((livingEntity.tickCount + livingEntity.getId()) & 511) == 0 && super.tryStart(serverLevel, livingEntity, l);
+            return ((livingEntity.tickCount + livingEntity.getId() % 807) % 407) == 0 && super.tryStart(serverLevel, livingEntity, l);
         }
         return super.tryStart(serverLevel, livingEntity, l);
     }
