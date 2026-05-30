@@ -19,7 +19,11 @@ public class FallingBlockEntity_Mixin {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/util/RandomSource;nextFloat()F"),
             cancellable = true
     )
+    //? if > 1.21.4 {
     public void handleFallDamage_Inject(double fallDistance, float damagePerDistance, DamageSource damageSource, CallbackInfoReturnable<Boolean> cir) {
+    //?} else {
+    /*public void handleFallDamage_Inject(float f, float g, DamageSource damageSource, CallbackInfoReturnable<Boolean> cir) {
+    *///?}
         if (AcaSetting.softAnvil) {
             this.cancelDrop = true;
             cir.setReturnValue(false);
