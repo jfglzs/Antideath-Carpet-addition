@@ -10,20 +10,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Entity.class)
 public class Entity_Mixin {
-    //? if >= 1.21.1 {
+    //~ if >= 1.21.1 'checkInsideBlocks' -> 'applyEffectsFromBlocks()V' {
     @Inject(
             method = "applyEffectsFromBlocks()V",
             at = @At("HEAD"),
             cancellable = true
     )
     private void applyEffectsFromBlocks_Inject(CallbackInfo ci) {
-        if (!AcaSetting.villagerOptimization) {
-            return;
-        }
-
-        if (this instanceof IVillagerAccessor villager && villager.aca$canDisableAI()) {
+        if (AcaSetting.villagerOptimization && this instanceof IVillagerAccessor villager && villager.aca$canDisableAI()) {
             ci.cancel();
         }
     }
-    //?}
+    //~}
 }

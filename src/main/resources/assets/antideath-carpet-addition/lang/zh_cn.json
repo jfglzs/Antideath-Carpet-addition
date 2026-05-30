@@ -36,5 +36,7 @@
   "carpet.rule.superSponge.name": "超级海绵",
   "carpet.rule.superSponge.desc": "开启后会大大提升海绵的吸水范围，但放置海绵时会造成一定的卡顿",
   "carpet.rule.fastClickPacketLimit.name": "连点发包限制",
-  "carpet.rule.fastClickPacketLimit.desc": "开启后会可减小网络带宽压力"
+  "carpet.rule.fastClickPacketLimit.desc": "开启后会可减小网络带宽压力",
+  "carpet.rule.boatOptimization.name": "船吸优化",
+  "carpet.rule.boatOptimization.desc": "开启后会优化船的卡顿"
 }

@@ -9,6 +9,8 @@
     "rule.beaconOptimization.BeaconBlockEntity_Mixin",
     "rule.betterPlayerCommand.EntityPlayerActionPack_Mixin",
     "rule.betterPlayerCommand.PlayerCommand_Mixin",
+    "rule.boatOptimization.AbstractBoat_Mixin",
+    "rule.boatOptimization.Entity_Mixin",
     "rule.commandPreventer.Commands_Mixin",
     "rule.endermanNeverGetAngryByPlayer.EnderMan_Mixin",
     "rule.fakePlaceOptimization.Brain_Mixin",

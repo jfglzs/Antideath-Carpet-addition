@@ -18,6 +18,5 @@ public class ACAEntry implements ModInitializer {
         if (!ConfigUtils.init()) {
             LOGGER.error("cannot create config directory, Use default settings");
         }
-        ConfigUtils.loadConfigFile();
     }
 }

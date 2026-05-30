@@ -20,7 +20,7 @@ import static io.github.jfglzs.aca.AcaSetting.flippinToTemOfUndying;
 
 @Mixin(BlockRotator.class)
 public abstract class BlockRotator_Mixin {
-    private static final RateLimiter limiter = RateLimiter.create(10);
+    private static final RateLimiter limiter = RateLimiter.create(1);
 
     @Inject(
             method = "flippinEligibility",

@@ -13,7 +13,7 @@ public class AcaSetting {
     public static final Path dir = FabricLoader.getInstance().getConfigDir().resolve("antideath-carpet-addition");
     public static final String FALSE = "false";
     public static final String ACA = "ACA";
-    public static ConfigBean config;
+    public static ConfigBean config = new ConfigBean();
 
     @Rule(categories = {ACA, SURVIVAL})
     public static boolean anvilNeverDamageByFalling = false;
@@ -75,5 +75,8 @@ public class AcaSetting {
 
     @Rule(categories = {ACA, SURVIVAL})
     public static boolean fastClickPacketLimit = false;
+
+    @Rule(categories = {ACA, SURVIVAL})
+    public static boolean boatOptimization;
 }
 
