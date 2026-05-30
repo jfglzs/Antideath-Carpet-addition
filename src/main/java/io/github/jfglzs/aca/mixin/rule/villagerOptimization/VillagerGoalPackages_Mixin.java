@@ -66,7 +66,7 @@ public abstract class VillagerGoalPackages_Mixin {
                 //刷铁相关AI
                 Pair.of(0, WakeUp.create()),
                 //刷铁相关AI
-                Pair.of(0, FullSuppressBehaviorWrapper.wrap(ReactToBell.create())),
+                Pair.of(0, ReactToBell.create()),
 
                 Pair.of(0, FullSuppressBehaviorWrapper.wrap(SetRaidStatus.create())),
                 //? if >= 1.21.5 {
