@@ -43,6 +43,7 @@ public class MemoryAllocationRateLogger extends AbstractHUDLogger {
         if (Loggers.__mem) {
             long free  = Runtime.getRuntime().freeMemory();
             long total = Runtime.getRuntime().totalMemory();
+
             Component[] texts = {
                     Messenger.c(
                             String.format(

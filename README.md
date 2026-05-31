@@ -167,4 +167,23 @@ _**感谢 @[_OptiJava_](https://github.com/OptiJava) 的指导**_
 - 参考选项：`true`，`false`
 - 分类：`ACA`，`OPTIMIZATION`
 
+### 船吸优化(boatOptimization)
+- 类型：`布尔值`
+- 默认值：`false`
+- 参考选项：`true`，`false`
+- 分类：`ACA`，`OPTIMIZATION`
+
+### 蜜蜂优化(BeeOptimization)
+- 类型：`布尔值`
+- 默认值：`false`
+- 参考选项：`true`，`false`
+- 分类：`ACA`，`OPTIMIZATION`
+
+### MCDR前缀兼容(mcdrPrefixCompatible)
+可以让带有玩家名称前缀/后缀的服务器 兼容MCDR
+- 类型：`布尔值`
+- 默认值：`false`
+- 参考选项：`true`，`false`
+- 分类：`ACA`，`OPTIMIZATION`
+
 

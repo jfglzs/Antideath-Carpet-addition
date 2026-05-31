@@ -40,5 +40,9 @@
   "carpet.rule.boatOptimization.name": "船吸优化",
   "carpet.rule.boatOptimization.desc": "开启后会优化船的卡顿",
   "carpet.rule.villagerOptimizationEjectSupport.name": "村民优化弹射式刷铁机支持",
-  "carpet.rule.villagerOptimizationEjectSupport.desc": "村民优化弹射式刷铁机支持"
+  "carpet.rule.villagerOptimizationEjectSupport.desc": "村民优化弹射式刷铁机支持",
+  "carpet.rule.beeOptimization.name": "蜜蜂机优化",
+  "carpet.rule.beeOptimization.desc": "蜜蜂机优化",
+  "carpet.rule.mcdrPrefixCompatible.name": "MCDR前缀兼容",
+  "carpet.rule.mcdrPrefixCompatible.desc": "可以让带有玩家名称前缀/后缀的服务器 兼容MCDR"
 }

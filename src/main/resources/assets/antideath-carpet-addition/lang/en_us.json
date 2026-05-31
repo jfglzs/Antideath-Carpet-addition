@@ -24,5 +24,7 @@
   "carpet.rule.superSponge.desc": "superSponge",
   "carpet.rule.fastClickPacketLimit.desc": "fastClickPacketLimit",
   "carpet.rule.boatOptimization.desc": "boatOptimization",
-  "carpet.rule.villagerOptimizationEjectSupport.desc": "villagerOptimizationEjectSupport"
+  "carpet.rule.villagerOptimizationEjectSupport.desc": "villagerOptimizationEjectSupport",
+  "carpet.rule.beeOptimization.desc": "beeOptimization",
+  "carpet.rule.mcdrPrefixCompatible.desc": "mcdrPrefixCompatible"
 }
