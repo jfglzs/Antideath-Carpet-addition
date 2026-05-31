@@ -74,7 +74,6 @@ repositories {
     }
 }
 
-loomExtension.accessWidenerPath.set(file("aca.accesswidener"))
 val commonVmArgs = listOf(
     "--sun-misc-unsafe-memory-access=allow",
     "-Dmixin.debug.export=true"
@@ -127,7 +126,6 @@ dependencies {
 }
 
 tasks.processResources {
-    from("aca.accesswidener")
 
     inputs.property("modver", modVersion)
     inputs.property("mc", minecraftRequirementVersion)
