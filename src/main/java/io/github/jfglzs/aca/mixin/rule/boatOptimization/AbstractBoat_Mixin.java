@@ -58,7 +58,7 @@ public class AbstractBoat_Mixin implements IVehicleAccessor {
     *///?} else {
      public void tick(AbstractBoat instance, Operation<Void> original) {
     //?}
-        if (!AcaSetting.boatOptimization && rideCount > 10) {
+        if (!AcaSetting.boatOptimization && rideCount < 10) {
             original.call(instance);
         }
     }
