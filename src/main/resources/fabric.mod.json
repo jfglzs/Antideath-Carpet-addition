@@ -22,7 +22,6 @@
   "mixins": [
     "antideath-carpet-addition.mixins.json"
   ],
-  "accessWidener": "aca.accesswidener",
   "depends": {
     "fabricloader": "${loader}",
     "minecraft": "${mc}",
