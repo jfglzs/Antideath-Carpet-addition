@@ -42,25 +42,26 @@ public class AbstractBoat_Mixin implements IVehicleAccessor {
     @Unique
     private Boat.Status lastStatus;
 
-    //~ if <= 1.21.1 'AbstractBoat' -> 'Boat' {
+
     @WrapOperation(
             method = "tick",
             //? if < 1.21.4 {
-            /*at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/vehicle/AbstractBoat;checkInsideBlocks()V")
+            /*at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/vehicle/Boat;checkInsideBlocks()V")
+            *///?} else < 26.1 && != 1.21.11 {
+            /*at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/vehicle/AbstractBoat;applyEffectsFromBlocks()V")
             *///?} else {
-
-            //~ if < 1.21.11 'Lnet/minecraft/world/entity/vehicle/boat/Boat;applyEffectsFromBlocks()V' -> 'Lnet/minecraft/world/entity/vehicle/Boat;applyEffectsFromBlocks()V' {
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/vehicle/boat/Boat;applyEffectsFromBlocks()V")
-            //~}
-
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/vehicle/boat/AbstractBoat;applyEffectsFromBlocks()V")
             //?}
     )
-    public void tick(AbstractBoat instance, Operation<Void> original) {
+    //? if < 1.21.4 {
+    /*public void tick(Boat instance, Operation<Void> original) {
+    *///?} else {
+     public void tick(AbstractBoat instance, Operation<Void> original) {
+    //?}
         if (!AcaSetting.boatOptimization && rideCount > 10) {
             original.call(instance);
         }
     }
-    //~}
 
     @Inject(
             method = "isUnderwater",
@@ -78,7 +79,7 @@ public class AbstractBoat_Mixin implements IVehicleAccessor {
             at = @At("RETURN")
     )
     private void isUnderwater(CallbackInfoReturnable<Boat.Status> cir) {
-        if (AcaSetting.boatOptimization) {
+        if (AcaSetting.boatOptimization && lastStatus == null) {
             this.lastStatus = cir.getReturnValue();
         }
     }

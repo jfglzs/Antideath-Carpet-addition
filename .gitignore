@@ -31,7 +31,7 @@ bin/
 # fabric
 
 run/
-
+run-obsuscated/
 # java
 
 hs_err_*.log
