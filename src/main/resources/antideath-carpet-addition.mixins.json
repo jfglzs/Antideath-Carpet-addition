@@ -1,7 +1,7 @@
 {
   "required": true,
   "package": "io.github.jfglzs.aca.mixin",
-  "compatibilityLevel": "JAVA_21",
+  "compatibilityLevel": "${compatibility_level}",
   "mixins": [
     "carpet.HUDController_Mixin",
     "Invoker.SensorType_Invoker",
