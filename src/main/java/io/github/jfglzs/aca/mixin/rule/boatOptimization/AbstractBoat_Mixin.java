@@ -12,8 +12,8 @@ import net.minecraft.world.entity.vehicle.AbstractBoat;
 import net.minecraft.world.entity.vehicle.boat.Boat;
 import net.minecraft.world.entity.vehicle.boat.AbstractBoat;
 //?} else {
-//import net.minecraft.world.entity.vehicle.Boat;
-//?}
+/*import net.minecraft.world.entity.vehicle.Boat;
+*///?}
 
 //? if > 1.21.5 {
 import net.minecraft.world.level.storage.ValueInput;
@@ -49,8 +49,8 @@ public class AbstractBoat_Mixin implements IVehicleAccessor {
             /*at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/vehicle/AbstractBoat;checkInsideBlocks()V")
             *///?} else {
 
-            //~ if < 1.21.11 'Lnet/minecraft/world/entity/vehicle/boat/AbstractBoat;applyEffectsFromBlocks()V' -> 'Lnet/minecraft/world/entity/vehicle/AbstractBoat;applyEffectsFromBlocks()V' {
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/vehicle/boat/AbstractBoat;applyEffectsFromBlocks()V")
+            //~ if < 1.21.11 'Lnet/minecraft/world/entity/vehicle/boat/Boat;applyEffectsFromBlocks()V' -> 'Lnet/minecraft/world/entity/vehicle/Boat;applyEffectsFromBlocks()V' {
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/vehicle/boat/Boat;applyEffectsFromBlocks()V")
             //~}
 
             //?}

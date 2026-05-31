@@ -23,9 +23,10 @@ public class Entity_Mixin {
         }
     }
 
+    //~ if < 26.1 'updateFluidInteraction()Z' -> 'updateInWaterStateAndDoFluidPushing()Z' {
     @Inject(
             method = "baseTick",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;updateInWaterStateAndDoFluidPushing()Z"),
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;updateFluidInteraction()Z"),
             cancellable = true
     )
     public void baseTick(CallbackInfo ci) {
@@ -33,4 +34,5 @@ public class Entity_Mixin {
             ci.cancel();
         }
     }
+    //~}
 }

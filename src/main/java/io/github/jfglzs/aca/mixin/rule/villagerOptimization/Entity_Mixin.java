@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Entity.class)
 public class Entity_Mixin {
-    //~ if >= 1.21.1 'checkInsideBlocks' -> 'applyEffectsFromBlocks()V' {
+    //~ if > 1.21.1 'checkInsideBlocks' -> 'applyEffectsFromBlocks()V' {
     @Inject(
             method = "applyEffectsFromBlocks()V",
             at = @At("HEAD"),
