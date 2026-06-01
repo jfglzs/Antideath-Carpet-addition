@@ -17,7 +17,8 @@ public class MemoryLogger extends AbstractHUDLogger {
     static {
         try {
             INSTANCE = new MemoryLogger(Loggers.class.getField("__sysMem"), "sysMemory", " ", new String[]{"Physical","Swap","Both"}, true);
-        } catch (NoSuchFieldException e) {
+        }
+        catch (NoSuchFieldException e) {
             throw new RuntimeException(e);
         }
     }
@@ -35,7 +36,7 @@ public class MemoryLogger extends AbstractHUDLogger {
     @Override
     public void updateHUD(MinecraftServer server) {
         if (Loggers.__sysMem) {
-            LoggerRegistry.getLogger("sysMemory").log(this::logMemory);
+            LoggerRegistry.getLogger(this.NAME).log(this::logMemory);
         }
     }
 

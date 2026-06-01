@@ -34,7 +34,7 @@ public class CpuLogger extends AbstractHUDLogger {
     @Override
     public void updateHUD(MinecraftServer server) {
         if (Loggers.__cpu) {
-            LoggerRegistry.getLogger("cpu").log(CpuLoadCalculator::getCpuLoad);
+            LoggerRegistry.getLogger(this.NAME).log(CpuLoadCalculator::getCpuLoad);
         }
     }
 

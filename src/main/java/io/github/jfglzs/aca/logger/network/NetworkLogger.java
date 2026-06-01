@@ -45,7 +45,7 @@ public class NetworkLogger extends AbstractHUDLogger {
         if (Loggers.__network) {
             for (NetworkIF nif : Loggers.SYSTEM_INFO.getHardware().getNetworkIFs()) {
                 if (this.isPhysicDevice(nif)) {
-                    LoggerRegistry.getLogger("network").log(option -> this.logNetwork(option, nif));
+                    LoggerRegistry.getLogger(this.NAME).log(option -> this.logNetwork(option, nif));
                     return;
                 }
             }
@@ -56,7 +56,6 @@ public class NetworkLogger extends AbstractHUDLogger {
         long timeDiff = System.currentTimeMillis() - lastUpdate;
 
         if (timeDiff > 0) {
-            nif.updateAttributes();
             long bytesRecv      = nif.getBytesRecv();
             long bytesSent      = nif.getBytesSent();
             double uploadMbps   = ((bytesSent - this.lastSent) * 8.0 / (1024 * 1024)) / (timeDiff / 1000.0);

@@ -56,7 +56,7 @@ public class PlayerLockCommand {
                 return 1;
             }
             else {
-                Messenger.m(ctx.getSource(), "g player %s is unlocked".formatted(player.getName()));
+                Messenger.m(ctx.getSource(), "g player %s is unlocked".formatted(player.getName().getString()));
                 accessor.aca$setLockState(false);
             }
         }
