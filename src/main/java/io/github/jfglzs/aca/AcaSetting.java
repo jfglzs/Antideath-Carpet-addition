@@ -52,6 +52,9 @@ public class AcaSetting {
     @Rule(categories = {ACA, COMMAND}, options = {"1", "2", "3", "4", "true", "false"})
     public static String enableEntitySearchCommand = FALSE;
 
+    @Rule(categories = {ACA, COMMAND}, options = {"1", "2", "3", "4", "true", "false"})
+    public static String enablePlayerLockCommand = FALSE;
+
     @Rule(categories = {ACA, COMMAND})
     public static boolean enableCommandPreventerWhiteList = false;
 

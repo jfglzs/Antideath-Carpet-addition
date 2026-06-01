@@ -44,5 +44,7 @@
   "carpet.rule.beeOptimization.name": "蜜蜂机优化",
   "carpet.rule.beeOptimization.desc": "蜜蜂机优化",
   "carpet.rule.mcdrPrefixCompatible.name": "MCDR前缀兼容",
-  "carpet.rule.mcdrPrefixCompatible.desc": "可以让带有玩家名称前缀/后缀的服务器 兼容MCDR"
+  "carpet.rule.mcdrPrefixCompatible.desc": "可以让带有玩家名称前缀/后缀的服务器 兼容MCDR",
+  "carpet.rule.enablePlayerLockCommand.name": "假人锁定命令",
+  "carpet.rule.enablePlayerLockCommand.desc": "输入player xxx lock/unlock 可锁定/解锁一个玩家 如果假人被锁定，那么必须要解锁才能下线"
 }

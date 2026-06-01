@@ -1,5 +1,6 @@
 package io.github.jfglzs.aca.command;
 
+import carpet.utils.CommandHelper;
 import carpet.utils.Messenger;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -9,7 +10,6 @@ import io.github.jfglzs.aca.AcaSetting;
 import io.github.jfglzs.aca.utils.config.ConfigUtils;
 import net.minecraft.commands.CommandSourceStack;
 
-import static io.github.jfglzs.aca.AcaSetting.enableCommandPreventer;
 import static net.minecraft.commands.Commands.argument;
 import static net.minecraft.commands.Commands.literal;
 
@@ -19,7 +19,7 @@ public class PreventCommand {
 
     public static void registerCommand(CommandDispatcher<CommandSourceStack> dispatcher) {
         LiteralArgumentBuilder<CommandSourceStack> argument = literal("preventcmd")
-                .requires((source) -> carpet.utils.CommandHelper.canUseCommand(source, enableCommandPreventer))
+                .requires((source) -> CommandHelper.canUseCommand(source, AcaSetting.enableCommandPreventer))
                 .then(literal("whitelist")
                         .then(literal("add")
                                 .then(argument("cmd", StringArgumentType.word())

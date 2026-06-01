@@ -26,5 +26,7 @@
   "carpet.rule.boatOptimization.desc": "boatOptimization",
   "carpet.rule.villagerOptimizationEjectSupport.desc": "villagerOptimizationEjectSupport",
   "carpet.rule.beeOptimization.desc": "beeOptimization",
-  "carpet.rule.mcdrPrefixCompatible.desc": "mcdrPrefixCompatible"
+  "carpet.rule.mcdrPrefixCompatible.desc": "mcdrPrefixCompatible",
+  "carpet.rule.enablePlayerLockCommand.desc": "fakePlayerLockCommand"
+
 }

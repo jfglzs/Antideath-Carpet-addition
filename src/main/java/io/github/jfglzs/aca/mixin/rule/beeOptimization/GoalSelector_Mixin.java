@@ -15,10 +15,7 @@ public class GoalSelector_Mixin {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/ai/goal/WrappedGoal;tick()V")
     )
     public boolean tickRunningGoals_Mixin(WrappedGoal instance) {
-        if (AcaSetting.beeOptimization) {
-            return ((GoalAccessor) instance.getGoal()).aca$getAccessiblie();
-        }
-        return true;
+        return !AcaSetting.beeOptimization || ((GoalAccessor) instance.getGoal()).aca$getAccessiblie();
     }
 
     @WrapWithCondition(
@@ -26,9 +23,6 @@ public class GoalSelector_Mixin {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/ai/goal/WrappedGoal;start()V")
     )
     public boolean tick(WrappedGoal instance) {
-        if (AcaSetting.beeOptimization) {
-            return ((GoalAccessor) instance.getGoal()).aca$getAccessiblie();
-        }
-        return true;
+        return !AcaSetting.beeOptimization || ((GoalAccessor) instance.getGoal()).aca$getAccessiblie();
     }
 }

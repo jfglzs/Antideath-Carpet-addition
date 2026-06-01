@@ -6,12 +6,12 @@ import io.github.jfglzs.aca.AcaSetting;
 import io.github.jfglzs.aca.accessors.IVehicleAccessor;
 import net.minecraft.world.entity.Entity;
 //? if < 1.21.11 && > 1.21.1 {
-/*import net.minecraft.world.entity.vehicle.Boat;
+import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.entity.vehicle.AbstractBoat;
-*///?} else if > 1.21.10 {
-import net.minecraft.world.entity.vehicle.boat.Boat;
+//?} else if > 1.21.10 {
+/*import net.minecraft.world.entity.vehicle.boat.Boat;
 import net.minecraft.world.entity.vehicle.boat.AbstractBoat;
-//?} else {
+*///?} else {
 /*import net.minecraft.world.entity.vehicle.Boat;
 *///?}
 
@@ -42,16 +42,15 @@ public class AbstractBoat_Mixin implements IVehicleAccessor {
     @Unique
     private Boat.Status lastStatus;
 
-
     @WrapOperation(
             method = "tick",
             //? if < 1.21.4 {
             /*at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/vehicle/Boat;checkInsideBlocks()V")
             *///?} else < 26.1 && != 1.21.11 {
-            /*at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/vehicle/AbstractBoat;applyEffectsFromBlocks()V")
-            *///?} else {
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/vehicle/boat/AbstractBoat;applyEffectsFromBlocks()V")
-            //?}
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/vehicle/AbstractBoat;applyEffectsFromBlocks()V")
+            //?} else {
+            /*at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/vehicle/boat/AbstractBoat;applyEffectsFromBlocks()V")
+            *///?}
     )
     //? if < 1.21.4 {
     /*public void tick(Boat instance, Operation<Void> original) {

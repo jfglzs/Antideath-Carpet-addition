@@ -20,8 +20,7 @@ public class ACAServer implements CarpetExtension {
     @Override
     public void onGameStarted() {
         CarpetServer.settingsManager.parseSettingsClass(AcaSetting.class);
-        CarpetServer.settingsManager.registerRuleObserver(((source, rule, s) -> {
-        }));
+        CarpetServer.settingsManager.registerRuleObserver(((source, rule, s) ->{}));
     }
 
     @Override
@@ -44,6 +43,7 @@ public class ACAServer implements CarpetExtension {
     public void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext commandBuildContext) {
         SearchEntityCommand.registerCommand(dispatcher);
         PreventCommand.registerCommand(dispatcher);
+        PlayerLockCommand.registerCommand(dispatcher);
     }
 
     @Override

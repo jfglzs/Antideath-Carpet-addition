@@ -5,9 +5,9 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.behavior.BehaviorControl;
 //? if >= 26.1 {
-import net.minecraft.world.entity.ai.memory.MemoryModuleType;
+/*import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import java.util.Set;
-//?}
+*///?}
 
 public class FullSuppressBehaviorWrapper<E extends LivingEntity> extends BehaviorWrapper<E> {
     protected FullSuppressBehaviorWrapper(BehaviorControl<E> behavior) {
@@ -19,11 +19,11 @@ public class FullSuppressBehaviorWrapper<E extends LivingEntity> extends Behavio
     }
 
     //? if >= 26.1 {
-    @Override
+    /*@Override
     public Set<MemoryModuleType<?>> getRequiredMemories() {
         return behaviorControl.getRequiredMemories();
     }
-    //?}
+    *///?}
 
 
     @Override
