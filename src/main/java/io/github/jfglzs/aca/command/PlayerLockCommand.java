@@ -21,12 +21,8 @@ public class PlayerLockCommand {
         LiteralArgumentBuilder<CommandSourceStack> argument = literal("player")
                 .requires((source) -> CommandHelper.canUseCommand(source, AcaSetting.enablePlayerLockCommand))
                 .then(Commands.argument("player", StringArgumentType.word())
-                .then(Commands.literal("lock")
-                        .executes(PlayerLockCommand::lockPlayer)
-                )
-                .then(Commands.literal("unlock")
-                        .executes(PlayerLockCommand::unlockPlayer)
-                ));
+                .then(Commands.literal("lock").executes(PlayerLockCommand::lockPlayer))
+                .then(Commands.literal("unlock").executes(PlayerLockCommand::unlockPlayer)));
         dispatcher.register(argument);
     }
 
@@ -42,8 +38,11 @@ public class PlayerLockCommand {
                 Messenger.m(ctx.getSource(), "g player %s is locked".formatted(player.getName().getString()));
             }
         }
-        else {
+        else if (player instanceof ServerPlayer) {
             Messenger.m(ctx.getSource(), "r you cant lock real player");
+        }
+        else {
+            Messenger.m(ctx.getSource(), "r player doesnt exist");
         }
         return 0;
     }

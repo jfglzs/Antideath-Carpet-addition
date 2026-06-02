@@ -12,7 +12,8 @@ public class Event<T> {
     public void update(T arg) {
         try {
             this.consumers.forEach(consumer -> consumer.accept(arg));
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             ACAEntry.LOGGER.error("A Exception has thrown while passing event", e);
         }
     }

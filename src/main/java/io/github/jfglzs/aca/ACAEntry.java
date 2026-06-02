@@ -15,8 +15,5 @@ public class ACAEntry implements ModInitializer {
     public void onInitialize() {
         LOGGER.info(MOD_ID + " is loading...");
         CarpetServer.manageExtension(ACAServer.INSTANCE);
-        if (!ConfigUtils.init()) {
-            LOGGER.error("cannot create config directory, Use default settings");
-        }
     }
 }

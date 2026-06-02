@@ -6,7 +6,7 @@ import io.github.jfglzs.aca.accessors.GoalAccessor;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.GoalSelector;
 //~ if >= 1.21.11 '.animal.Bee' -> '.animal.bee.Bee' {
-import net.minecraft.world.entity.animal.Bee;
+import net.minecraft.world.entity.animal.bee.Bee;
 //~}
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;

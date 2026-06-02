@@ -19,7 +19,8 @@ public class ConfigUtils {
     public static String load() {
         try {
             return Files.readString(dir.resolve(FILE_NAME), StandardCharsets.UTF_8);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             LOGGER.error(e.getMessage());
             return "Failed";
         }
@@ -29,7 +30,8 @@ public class ConfigUtils {
         try {
             Files.createFile(dir.resolve(FILE_NAME));
             return true;
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             LOGGER.error(e.getMessage(), e);
             return false;
         }
@@ -50,7 +52,8 @@ public class ConfigUtils {
     public static boolean write(String content) {
         try {
             Files.write(dir.resolve(FILE_NAME), content.getBytes());
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             LOGGER.error(e.getMessage(), e);
             return false;
         }
@@ -64,9 +67,10 @@ public class ConfigUtils {
                 return;
             }
 
-            try (InputStream in = ConfigUtils.class.getResourceAsStream("/antideath-carpet-addition.json")) {
-                Files.copy(in, dir.resolve(FILE_NAME));
-            } catch (Exception e) {
+            try {
+                ConfigUtils.write(gson.toJson(AcaSetting.config));
+            }
+            catch (Exception e) {
                 LOGGER.error(e.getMessage());
             }
         }
@@ -75,9 +79,11 @@ public class ConfigUtils {
             String content = ConfigUtils.load();
             if (content.equals("Failed")) return;
             AcaSetting.config = gson.fromJson(content, ConfigBean.class);
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             LOGGER.error(e.getMessage());
-        } finally {
+        }
+        finally {
             if (AcaSetting.config == null) {
                 AcaSetting.config = new ConfigBean();
             }

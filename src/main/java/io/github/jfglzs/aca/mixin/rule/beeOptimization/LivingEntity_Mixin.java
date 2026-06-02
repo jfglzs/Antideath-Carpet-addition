@@ -3,7 +3,7 @@ package io.github.jfglzs.aca.mixin.rule.beeOptimization;
 import io.github.jfglzs.aca.AcaSetting;
 import net.minecraft.world.entity.LivingEntity;
 //~ if >= 1.21.11 '.animal.Bee' -> '.animal.bee.Bee' {
-import net.minecraft.world.entity.animal.Bee;
+import net.minecraft.world.entity.animal.bee.Bee;
 //~}
 import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;

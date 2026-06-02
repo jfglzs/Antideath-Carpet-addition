@@ -19,8 +19,8 @@ public class ACAServer implements CarpetExtension {
 
     @Override
     public void onGameStarted() {
+        this.initConfig();
         CarpetServer.settingsManager.parseSettingsClass(AcaSetting.class);
-        CarpetServer.settingsManager.registerRuleObserver(((source, rule, s) ->{}));
     }
 
     @Override
@@ -49,5 +49,14 @@ public class ACAServer implements CarpetExtension {
     @Override
     public String version() {
         return ACAEntry.MOD_ID;
+    }
+
+    public void initConfig() {
+        if (!ConfigUtils.init()) {
+            ACAEntry.LOGGER.error("cannot create config directory, Use default settings");
+        }
+        else {
+            ConfigUtils.loadConfigFile();
+        }
     }
 }

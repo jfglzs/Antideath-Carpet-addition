@@ -6,7 +6,7 @@ import io.github.jfglzs.aca.accessors.IVillagerAccessor;
 import io.github.jfglzs.aca.utils.EntityUtils;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.npc.villager.Villager;
 //? if > 1.21.5 {
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
