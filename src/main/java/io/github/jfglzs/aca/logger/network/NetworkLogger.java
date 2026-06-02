@@ -25,7 +25,7 @@ public class NetworkLogger extends AbstractHUDLogger {
 
     static {
         try {
-            INSTANCE = new NetworkLogger(Loggers.class.getField("__network"), "network", " ", new String[]{"uploadAndDownload","totalUploadAndDownload","all"}, true);
+            INSTANCE = new NetworkLogger(Loggers.class.getField("__network"), "network", " ", new String[]{"uploadAndDownload","totalUploadAndDownload","both"}, true);
         } catch (NoSuchFieldException e) {
             throw new RuntimeException(e);
         }

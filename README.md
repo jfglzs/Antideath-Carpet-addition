@@ -20,18 +20,25 @@ _**感谢 @[_OptiJava_](https://github.com/OptiJava) 的指导**_
 
 ## 记录器
 
-### /log cpu all / fullcore / percore
-**记录服务器CPU的占用情况**
+### /log cpu all / fullcore(默认) / percore
 ![CPUlogger](res/cpu.png)
+**记录服务器CPU的占用情况**
+
 ### /log memAllocate
 **客户端Memory Allocate移植功能**
 ![memAllocate](res/memAll.png)
-### /log network uploadAndDownload / totalUploadAndDownload / all(默认)
+
+### /log network uploadAndDownload / totalUploadAndDownload / both (默认)
 **可查看服务器物理网卡的上传/下载速度**
 ![network](res/network.png)
-### /log sysMemory Physical / Swap / Both(默认)
+
+### /log sysMemory Physical / Swap / Both (默认)
 **查看物理内存/虚拟内存 使用率/总大小**
 ![Memory](res/mem.png)
+
+### /log disk ReadAndWrite / Storage / Both (默认)
+**查看物理内存/虚拟内存 使用率/总大小**
+![Disk](res/disk.png)
 
 ## ACA的所有规则
 ### 铁砧不会因掉落而损坏(anvilNeverDamageByFalling)
