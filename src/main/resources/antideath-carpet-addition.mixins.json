@@ -7,7 +7,6 @@
     "carpet.HUDController_Mixin",
     "carpet.PlayerCommand_Invoker",
     "carpet.PlayerCommand_Mixin",
-    "Invoker.SensorType_Invoker",
     "rule.anvilNeverDamageByFalling.AnvilBlock_Mixin",
     "rule.beaconOptimization.BeaconBlockEntity_Mixin",
     "rule.beeOptimization.Bee_Mixin",

@@ -11,40 +11,52 @@ import net.minecraft.world.entity.animal.bee.Bee;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Bee.class)
 public class Bee_Mixin {
     @Unique
-    private boolean[] aca$list = new boolean[] {
-            false,  // 0: BeeAttackGoal
-            true,   // 1: BeeEnterHiveGoal
-            false,  // 2: BreedGoal
-            false,  // 3: TemptGoal
-            true,   // 4: ValidateHiveGoal
-            true,   // 5: ValidateFlowerGoal
-            false,  // 6: BeePollinateGoal
-            false,  // 7: FollowParentGoal
-            true,   // 8: BeeLocateHiveGoal
-            true,   // 9: BeeGoToHiveGoal
-            true,   // 10: BeeGoToKnownFlowerGoal
-            false,  // 11: BeeGrowCropGoal
-            false,  // 12: BeeWanderGoal
-            false,  // 13: FloatGoal
-            false,  // 14: BeeHurtByOtherGoal
-            false,  // 15: BeeBecomeAngryTargetGoal
-            false   // 16: ResetUniversalAngerTargetGoal
-    };
+    private boolean[] aca$list;
 
     @Unique
     private int aca$count = 0;
+
+    @Unique
+    private boolean aca$ensureInit() {
+        if (aca$list == null) {
+            this.aca$list = new boolean[] {
+                    false,  // 0: BeeAttackGoal
+                    true,   // 1: BeeEnterHiveGoal
+                    false,  // 2: BreedGoal
+                    false,  // 3: TemptGoal
+                    true,   // 4: ValidateHiveGoal
+                    true,   // 5: ValidateFlowerGoal
+                    false,  // 6: BeePollinateGoal
+                    false,  // 7: FollowParentGoal
+                    true,   // 8: BeeLocateHiveGoal
+                    true,   // 9: BeeGoToHiveGoal
+                    true,   // 10: BeeGoToKnownFlowerGoal
+                    false,  // 11: BeeGrowCropGoal
+                    false,  // 12: BeeWanderGoal
+                    false,  // 13: FloatGoal
+                    false,  // 14: BeeHurtByOtherGoal
+                    false,  // 15: BeeBecomeAngryTargetGoal
+                    false   // 16: ResetUniversalAngerTargetGoal
+            };
+        }
+        return true;
+    }
 
     @WrapOperation(
             method = "registerGoals",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/world/entity/ai/goal/Goal;)V")
     )
     protected void registerGoals(GoalSelector instance, int priority, Goal goal, Operation<Void> original) {
-        ((GoalAccessor) goal).aca$setAccessible(aca$list[aca$count]);
-        aca$count++;
-        original.call(instance, priority, goal);
+        if (aca$ensureInit()) {
+            ((GoalAccessor) goal).aca$setAccessible(this.aca$list[aca$count]);
+            aca$count++;
+            original.call(instance, priority, goal);
+        }
     }
 }

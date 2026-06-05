@@ -21,7 +21,8 @@ public class CpuLogger extends AbstractHUDLogger {
     static {
         try {
             INSTANCE = new CpuLogger(Loggers.class.getField("__cpu"), "cpu", "cpu load", new String[]{"percore", "both", "fullcore"}, true);
-        } catch (NoSuchFieldException e) {
+        }
+        catch (NoSuchFieldException e) {
             throw new RuntimeException(e);
         }
     }
@@ -58,9 +59,11 @@ public class CpuLogger extends AbstractHUDLogger {
 
             if (option.equals("all")) {
                 return ArrayUtils.add(perCoreLoadArray, fullCore);
-            } else if (option.equals("percore")) {
+            }
+            else if (option.equals("percore")) {
                 return perCoreLoadArray;
-            } else {
+            }
+            else {
                 return new Component[]{fullCore};
             }
         }
@@ -75,7 +78,8 @@ public class CpuLogger extends AbstractHUDLogger {
 
                 try {
                     Thread.sleep(1000);
-                } catch (InterruptedException e) {
+                }
+                catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
 

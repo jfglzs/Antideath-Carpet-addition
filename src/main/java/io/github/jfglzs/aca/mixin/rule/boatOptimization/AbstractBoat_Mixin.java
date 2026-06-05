@@ -34,7 +34,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 //~}
 public class AbstractBoat_Mixin implements IVehicleAccessor {
     @Unique
-    private int rideCount = 0;
+    private int aca$RideCount = 0;
 
     @Unique
     private static String RIDE_COUNT = "RideCount";
@@ -57,9 +57,8 @@ public class AbstractBoat_Mixin implements IVehicleAccessor {
     *///?} else {
      public void tick(AbstractBoat instance, Operation<Void> original) {
     //?}
-        if (!AcaSetting.boatOptimization && rideCount < 10) {
-            original.call(instance);
-        }
+        if (AcaSetting.boatOptimization && this.aca$RideCount > 10) return;
+        original.call(instance);
     }
 
     @Inject(
@@ -68,7 +67,7 @@ public class AbstractBoat_Mixin implements IVehicleAccessor {
             cancellable = true
     )
     private void isUnderwater_Cache(CallbackInfoReturnable<Boat.Status> cir) {
-        if (AcaSetting.boatOptimization && rideCount > 10 && this.lastStatus != null) {
+        if (AcaSetting.boatOptimization && this.aca$RideCount > 10 && this.lastStatus != null) {
             cir.setReturnValue(lastStatus);
         }
     }
@@ -89,13 +88,13 @@ public class AbstractBoat_Mixin implements IVehicleAccessor {
     )
     public boolean startRiding(Entity instance, Entity entity, Operation<Boolean> original) {
         var bl = original.call(instance, entity);
-        if (bl) rideCount++;
+        if (bl) aca$RideCount++;
         return bl;
     }
 
     @Override
     public int aca$getRideCount() {
-        return rideCount;
+        return aca$RideCount;
     }
 
     //? if > 1.21.5 {
@@ -104,7 +103,7 @@ public class AbstractBoat_Mixin implements IVehicleAccessor {
             at = @At("HEAD")
     )
     protected void addAdditionalSaveData(ValueOutput output, CallbackInfo ci) {
-        output.putInt(RIDE_COUNT, rideCount);
+        output.putInt(RIDE_COUNT, aca$RideCount);
     }
 
     @Inject(
@@ -112,7 +111,7 @@ public class AbstractBoat_Mixin implements IVehicleAccessor {
             at = @At("HEAD")
     )
     protected void readAdditionalSaveData(ValueInput input, CallbackInfo ci) {
-        rideCount = input.getInt(RIDE_COUNT).orElse(0);
+        aca$RideCount = input.getInt(RIDE_COUNT).orElse(0);
     }
     //?} else {
     /*@Inject(
@@ -120,7 +119,7 @@ public class AbstractBoat_Mixin implements IVehicleAccessor {
             at = @At("HEAD")
     )
     public void addAdditionalSaveData(CompoundTag compoundTag, CallbackInfo ci) {
-        compoundTag.putInt(RIDE_COUNT, rideCount);
+        compoundTag.putInt(RIDE_COUNT, aca$RideCount);
     }
 
     @Inject(
@@ -129,9 +128,9 @@ public class AbstractBoat_Mixin implements IVehicleAccessor {
     )
     public void readAdditionalSaveData(CompoundTag compoundTag, CallbackInfo ci) {
         //? if > 1.21.4 {
-        rideCount = compoundTag.getInt(RIDE_COUNT).orElse(0);
+        aca$RideCount = compoundTag.getInt(RIDE_COUNT).orElse(0);
         //?} else {
-        /^rideCount = compoundTag.getInt(RIDE_COUNT);
+        /^aca$RideCount = compoundTag.getInt(RIDE_COUNT);
         ^///?}
     }
     *///?}
