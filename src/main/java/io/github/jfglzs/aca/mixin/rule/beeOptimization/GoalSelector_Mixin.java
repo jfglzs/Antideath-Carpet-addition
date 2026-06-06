@@ -19,7 +19,7 @@ public class GoalSelector_Mixin {
     )
     public boolean tickRunningGoals_Mixin(WrappedGoal instance) {
         var goal = ((GoalAccessor) instance.getGoal());
-        return !AcaSetting.beeOptimization || !(goal.aca$getEntity() instanceof Bee && goal.aca$getAccessiblie());
+        return !AcaSetting.beeOptimization || goal.aca$getEntity() instanceof Bee && goal.aca$getAccessiblie();
     }
 
     @WrapWithCondition(
@@ -28,6 +28,6 @@ public class GoalSelector_Mixin {
     )
     public boolean tick(WrappedGoal instance) {
         var goal = ((GoalAccessor) instance.getGoal());
-        return !AcaSetting.beeOptimization || !(goal.aca$getEntity() instanceof Bee && goal.aca$getAccessiblie());
+        return !AcaSetting.beeOptimization || goal.aca$getEntity() instanceof Bee && goal.aca$getAccessiblie();
     }
 }
