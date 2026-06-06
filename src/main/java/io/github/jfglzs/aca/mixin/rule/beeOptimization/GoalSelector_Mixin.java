@@ -5,6 +5,7 @@ import io.github.jfglzs.aca.AcaSetting;
 import io.github.jfglzs.aca.accessors.GoalAccessor;
 import net.minecraft.world.entity.ai.goal.GoalSelector;
 import net.minecraft.world.entity.ai.goal.WrappedGoal;
+import net.minecraft.world.entity.animal.bee.Bee;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
@@ -15,7 +16,8 @@ public class GoalSelector_Mixin {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/ai/goal/WrappedGoal;tick()V")
     )
     public boolean tickRunningGoals_Mixin(WrappedGoal instance) {
-        return !AcaSetting.beeOptimization || ((GoalAccessor) instance.getGoal()).aca$getAccessiblie();
+        var goal = ((GoalAccessor) instance.getGoal());
+        return !AcaSetting.beeOptimization || !(goal.aca$getEntity() instanceof Bee && goal.aca$getAccessiblie());
     }
 
     @WrapWithCondition(
@@ -23,6 +25,7 @@ public class GoalSelector_Mixin {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/ai/goal/WrappedGoal;start()V")
     )
     public boolean tick(WrappedGoal instance) {
-        return !AcaSetting.beeOptimization || ((GoalAccessor) instance.getGoal()).aca$getAccessiblie();
+        var goal = ((GoalAccessor) instance.getGoal());
+        return !AcaSetting.beeOptimization || !(goal.aca$getEntity() instanceof Bee && goal.aca$getAccessiblie());
     }
 }
