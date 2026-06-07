@@ -86,6 +86,7 @@ jobs:
       release: true
 
   release:
+    environment: mdr_token
     needs:
       - matrix_prep
       - build
@@ -193,8 +194,8 @@ jobs:
       - name: Publish Minecraft Mods
         uses: Kira-NT/mc-publish@v3.3
         with:
-          # modrinth-id: 00000000
-          # modrinth-token: ${{ secrets.MODRINTH_API_TOKEN }}
+          modrinth-id: tBXZO2TH
+          modrinth-token: ${{ secrets.MDR_TOKEN }}
 
           # curseforge-id: 000000
           # curseforge-token: ${{ secrets.CF_API_TOKEN }}
