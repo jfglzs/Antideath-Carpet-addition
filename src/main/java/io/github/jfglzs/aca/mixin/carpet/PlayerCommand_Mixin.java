@@ -33,4 +33,13 @@ public abstract class PlayerCommand_Mixin {
             }
         }
     }
+
+    @Inject(
+            method = "cantSpawn",
+            at = @At("HEAD"),
+            cancellable = true
+    )
+    private static void cantSpawn(CommandContext<CommandSourceStack> context, CallbackInfoReturnable<Integer> cir) {
+
+    }
 }

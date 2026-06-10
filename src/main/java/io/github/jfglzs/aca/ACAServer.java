@@ -43,7 +43,7 @@ public class ACAServer implements CarpetExtension {
     public void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext commandBuildContext) {
         SearchEntityCommand.registerCommand(dispatcher);
         PreventCommand.registerCommand(dispatcher);
-        PlayerLockCommand.registerCommand(dispatcher);
+        PlayerCommand.registerCommand(dispatcher);
     }
 
     @Override

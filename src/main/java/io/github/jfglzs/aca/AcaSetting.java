@@ -90,5 +90,8 @@ public class AcaSetting {
 
     @Rule(categories = {ACA, SURVIVAL})
     public static boolean mcdrPrefixCompatible = false;
+
+    @Rule(categories = {ACA, EXPERIMENTAL})
+    public static boolean fixNbtFold = false;
 }
 

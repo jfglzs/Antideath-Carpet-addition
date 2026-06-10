@@ -20,7 +20,7 @@ public class CpuLogger extends AbstractHUDLogger {
 
     static {
         try {
-            INSTANCE = new CpuLogger(Loggers.class.getField("__cpu"), "cpu", "cpu load", new String[]{"percore", "both", "fullcore"}, true);
+            INSTANCE = new CpuLogger(Loggers.class.getField("__cpu"), "cpu", "cpu load", new String[]{"percore", "all", "fullcore"}, true);
         }
         catch (NoSuchFieldException e) {
             throw new RuntimeException(e);

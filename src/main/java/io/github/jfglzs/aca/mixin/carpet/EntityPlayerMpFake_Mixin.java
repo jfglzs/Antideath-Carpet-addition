@@ -10,6 +10,7 @@ public class EntityPlayerMpFake_Mixin implements EntityPlayerMPFakeAccessor {
     @Unique
     private boolean isLocked = false;
 
+
     @Override
     public void aca$setLockState(boolean locked) {
         this.isLocked = locked;

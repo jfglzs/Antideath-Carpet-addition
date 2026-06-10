@@ -3,6 +3,7 @@
   "package": "io.github.jfglzs.aca.mixin",
   "compatibilityLevel": "${compatibility_level}",
   "mixins": [
+    "rule.fixNbtFold.TextComponentTagVisitor_Mixin",
     "carpet.EntityPlayerMpFake_Mixin",
     "carpet.HUDController_Mixin",
     "carpet.PlayerCommand_Invoker",

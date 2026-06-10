@@ -66,7 +66,7 @@ public abstract class VillagerGoalPackages_Mixin {
                 //刷铁相关AI
                 Pair.of(0, WakeUp.create()),
                 //刷铁相关AI
-                Pair.of(0, FullSuppressBehaviorWrapper.wrap(ReactToBell.create())),
+                Pair.of(0, ReactToBell.create()),
 
                 Pair.of(0, FullSuppressBehaviorWrapper.wrap(SetRaidStatus.create())),
                 //? if >= 1.21.5 {
@@ -76,7 +76,8 @@ public abstract class VillagerGoalPackages_Mixin {
                 /*Pair.of(0, FullSuppressBehaviorWrapper.wrap(ValidateNearbyPoi.create(holder.heldJobSite(), MemoryModuleType.JOB_SITE))),
                 Pair.of(0, FullSuppressBehaviorWrapper.wrap(ValidateNearbyPoi.create(holder.acquirableJobSite(), MemoryModuleType.POTENTIAL_JOB_SITE))),
                 *///?}
-                Pair.of(1, FullSuppressBehaviorWrapper.wrap(new MoveToTargetSink())), Pair.of(2, PoiCompetitorScan.create()),
+                Pair.of(1, FullSuppressBehaviorWrapper.wrap(new MoveToTargetSink())),
+                Pair.of(2, FullSuppressBehaviorWrapper.wrap(PoiCompetitorScan.create())),
                 Pair.of(3, FullSuppressBehaviorWrapper.wrap(new LookAndFollowTradingPlayerSink(f))),
                 new Pair[] {
 

@@ -11,8 +11,6 @@ public class EntityUtils {
     }
 
     public static boolean shouldSkip(Entity entity) {
-        return AcaSetting.villagerOptimization
-                && entity instanceof IVillagerAccessor villager
-                && villager.aca$canDisableAI();
+        return entity instanceof IVillagerAccessor villager && villager.aca$canDisableAI();
     }
 }
