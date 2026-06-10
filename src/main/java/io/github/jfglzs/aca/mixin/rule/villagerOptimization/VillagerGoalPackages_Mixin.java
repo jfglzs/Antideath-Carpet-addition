@@ -80,7 +80,6 @@ public abstract class VillagerGoalPackages_Mixin {
                 Pair.of(2, FullSuppressBehaviorWrapper.wrap(PoiCompetitorScan.create())),
                 Pair.of(3, FullSuppressBehaviorWrapper.wrap(new LookAndFollowTradingPlayerSink(f))),
                 new Pair[] {
-
                         //? if >= 1.21.5 {
                         Pair.of(5, FullSuppressBehaviorWrapper.wrap(GoToWantedItem.create(f, false, 4))),
                         Pair.of(6, LimitedBehaviorWrapper.wrap(AcquirePoi.create(holder.value().acquirableJobSite(), MemoryModuleType.JOB_SITE, MemoryModuleType.POTENTIAL_JOB_SITE, true, Optional.empty(), (serverLevel, blockPos) -> true))),
@@ -172,10 +171,10 @@ public abstract class VillagerGoalPackages_Mixin {
                     var second = pair.getSecond();
 
                     if (excepts.contains(first)) {
-                        list.add(new Pair<>(first, second));
+                        list.add(Pair.of(first, second));
                     }
                     else {
-                        list.add(new Pair<>(first, FullSuppressBehaviorWrapper.wrap(second)));
+                        list.add(Pair.of(first, FullSuppressBehaviorWrapper.wrap(second)));
                     }
                 }
         );

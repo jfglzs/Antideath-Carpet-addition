@@ -15,7 +15,7 @@ import java.util.Set;
 
 public class FullSuppressBehaviorWrapper<E extends LivingEntity> implements BehaviorControl<E> {
     private final BehaviorControl<E> behaviorControl;
-    private boolean shouldSkip = true;
+    private boolean shouldSkip = false;
 
     private FullSuppressBehaviorWrapper(BehaviorControl<E> behavior) {
         this.behaviorControl = behavior;
@@ -39,8 +39,8 @@ public class FullSuppressBehaviorWrapper<E extends LivingEntity> implements Beha
 
     @Override
     public boolean tryStart(ServerLevel serverLevel, E livingEntity, long l) {
-        this.shouldSkip = this.shouldSkip && AcaSetting.villagerOptimization;
         if ((livingEntity.tickCount ^ livingEntity.getId() & 511) == 0) this.shouldSkip = EntityUtils.shouldSkip(livingEntity);
+        this.shouldSkip = this.shouldSkip && AcaSetting.villagerOptimization;
         return this.shouldSkip || this.behaviorControl.tryStart(serverLevel, livingEntity, l);
     }
 

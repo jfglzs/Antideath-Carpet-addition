@@ -43,16 +43,16 @@ public class Villager_Mixin implements IVillagerAccessor {
     /*protected void mobTick_Inject(CallbackInfo ci) {
     *///?}
         if (AcaSetting.villagerOptimization) {
-            Villager entity = ((Villager) (Object) this);
+            var villager = ((Villager) (Object) this);
 
-            if (((entity.tickCount ^ entity.getId()) & 511) == 0 && !entity.isSleeping()) {
+            if (((villager.tickCount ^ villager.getId()) & 511) == 0 && !villager.isSleeping()) {
 
                 AABB box = new AABB(
-                        EntityUtils.getEntityPos(entity).add(0.5, 0.5, 0.5),
-                        EntityUtils.getEntityPos(entity).add(-0.5, -0.5, -0.5)
+                        EntityUtils.getEntityPos(villager).add(0.5, 0.5, 0.5),
+                        EntityUtils.getEntityPos(villager).add(-0.5, -0.5, -0.5)
                 );
 
-                count = entity.level().getEntities(EntityType.VILLAGER, box, e -> true).size();
+                this.count = villager.level().getEntities(EntityType.VILLAGER, box, e -> true).size();
             }
         }
     }

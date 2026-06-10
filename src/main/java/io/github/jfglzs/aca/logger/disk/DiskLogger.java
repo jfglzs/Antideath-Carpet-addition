@@ -27,7 +27,8 @@ public class DiskLogger extends AbstractHUDLogger {
             INSTANCE = new DiskLogger(Loggers.class.getField("___disk"), "disk", null, new String[]{"ReadAndWrite", "Storage"}, true);
             LAST_READ_AND_WRITE = new HashMap<>();
             onLogging.event.register(INSTANCE::updateHUD);
-        } catch (NoSuchFieldException e) {
+        }
+        catch (NoSuchFieldException e) {
             throw new RuntimeException(e);
         }
     }
