@@ -5,7 +5,6 @@ import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.mojang.datafixers.util.Pair;
 import io.github.jfglzs.aca.utils.wrap.FullSuppressBehaviorWrapper;
-import io.github.jfglzs.aca.utils.wrap.LimitedBehaviorWrapper;
 //? if >= 1.21.5 {
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -82,19 +81,19 @@ public abstract class VillagerGoalPackages_Mixin {
                 new Pair[] {
                         //? if >= 1.21.5 {
                         Pair.of(5, FullSuppressBehaviorWrapper.wrap(GoToWantedItem.create(f, false, 4))),
-                        Pair.of(6, LimitedBehaviorWrapper.wrap(AcquirePoi.create(holder.value().acquirableJobSite(), MemoryModuleType.JOB_SITE, MemoryModuleType.POTENTIAL_JOB_SITE, true, Optional.empty(), (serverLevel, blockPos) -> true))),
+                        Pair.of(6, FullSuppressBehaviorWrapper.wrap(AcquirePoi.create(holder.value().acquirableJobSite(), MemoryModuleType.JOB_SITE, MemoryModuleType.POTENTIAL_JOB_SITE, true, Optional.empty(), (serverLevel, blockPos) -> true))),
                         //?} else {
                         /*Pair.of(5, FullSuppressBehaviorWrapper.wrap(GoToWantedItem.create(f, false, 4))),
-                        Pair.of(0, LimitedBehaviorWrapper.wrap(ValidateNearbyPoi.create(holder.acquirableJobSite(), MemoryModuleType.POTENTIAL_JOB_SITE))),
+                        Pair.of(0, FullSuppressBehaviorWrapper.wrap(ValidateNearbyPoi.create(holder.acquirableJobSite(), MemoryModuleType.POTENTIAL_JOB_SITE))),
                         *///?}
                         Pair.of(7, FullSuppressBehaviorWrapper.wrap(new GoToPotentialJobSite(f))),
                         Pair.of(8, FullSuppressBehaviorWrapper.wrap(YieldJobSite.create(f))),
 
                         //刷铁相关AI
                         //? if >= 1.21.5 {
-                        Pair.of(10, LimitedBehaviorWrapper.wrap(AcquirePoi.create((holderx) -> holderx.is(PoiTypes.HOME), MemoryModuleType.HOME, false, Optional.of((byte) 14), VillagerGoalPackages_Mixin::validateBedPoi))),
+                        Pair.of(10, FullSuppressBehaviorWrapper.wrap(AcquirePoi.create((holderx) -> holderx.is(PoiTypes.HOME), MemoryModuleType.HOME, false, Optional.of((byte) 14), VillagerGoalPackages_Mixin::validateBedPoi))),
                         //?} else {
-                        /*Pair.of(10, LimitedBehaviorWrapper.wrap(AcquirePoi.create((holderx) -> holderx.is(PoiTypes.HOME), MemoryModuleType.HOME, false, Optional.of((byte) 14)))),
+                        /*Pair.of(10, FullSuppressBehaviorWrapper.wrap(AcquirePoi.create((holderx) -> holderx.is(PoiTypes.HOME), MemoryModuleType.HOME, false, Optional.of((byte) 14)))),
                         *///?}
 
                         Pair.of(10, FullSuppressBehaviorWrapper.wrap(AcquirePoi.create((holderx) -> holderx.is(PoiTypes.MEETING), MemoryModuleType.MEETING_POINT, true, Optional.of((byte) 14)))),

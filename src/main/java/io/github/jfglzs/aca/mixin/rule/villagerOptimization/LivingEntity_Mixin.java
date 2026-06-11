@@ -16,12 +16,25 @@ public class LivingEntity_Mixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void travel_Inject(Vec3 vec3, CallbackInfo ci) {
+    private void travel(Vec3 vec3, CallbackInfo ci) {
         if (
                 AcaSetting.villagerOptimization
                 && !AcaSetting.villagerOptimizationEjectSupport
                 && this instanceof IVillagerAccessor villager
                 && villager.aca$canDisableAI()
+        ) {
+            ci.cancel();
+        }
+    }
+
+    @Inject(
+            method = "pushEntities",
+            at = @At("HEAD"),
+            cancellable = true
+    )
+    private void pushEntities(CallbackInfo ci) {
+        if (
+                AcaSetting.villagerOptimization && this instanceof IVillagerAccessor villager && villager.aca$canDisableAI()
         ) {
             ci.cancel();
         }

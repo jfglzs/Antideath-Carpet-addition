@@ -27,7 +27,7 @@ public class FullSuppressBehaviorWrapper<E extends LivingEntity> implements Beha
 
     @Override
     public Behavior.Status getStatus() {
-        return this.shouldSkip ? Behavior.Status.RUNNING : this.behaviorControl.getStatus();
+        return this.shouldSkip ? null : this.behaviorControl.getStatus();
     }
 
     //? if >= 26.1 {

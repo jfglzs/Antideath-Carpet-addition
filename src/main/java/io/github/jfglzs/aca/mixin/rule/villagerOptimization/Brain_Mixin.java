@@ -22,7 +22,7 @@ public class Brain_Mixin<E extends LivingEntity> {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/ai/sensing/Sensor;tick(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;)V")
     )
     private boolean tickSensors_Wrap(Sensor<?> sensor, ServerLevel world, E entity) {
-        if (!AcaSetting.villagerOptimization && entity instanceof IVillagerAccessor villager && villager.aca$canDisableAI()) {
+        if (AcaSetting.villagerOptimization && entity instanceof IVillagerAccessor villager && villager.aca$canDisableAI()) {
             Class<?> clazz = sensor.getClass();
             return clazz != SecondaryPoiSensor.class
                     && clazz != VillagerBabiesSensor.class
