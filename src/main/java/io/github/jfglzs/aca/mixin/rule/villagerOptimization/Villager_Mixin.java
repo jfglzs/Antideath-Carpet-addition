@@ -29,9 +29,9 @@ public class Villager_Mixin implements IVillagerAccessor {
     @Unique
     private static final String GOLEM_COUNT = "GolemCount";
     @Unique
-    private int count = 0;
+    private int aca$count = 0;
     @Unique
-    private int golemCount = 0;
+    private int aca$golemCount = 0;
 
     @Inject(
             method = "customServerAiStep",
@@ -45,26 +45,26 @@ public class Villager_Mixin implements IVillagerAccessor {
         if (AcaSetting.villagerOptimization) {
             var villager = ((Villager) (Object) this);
 
-            if (((villager.tickCount ^ villager.getId()) & 511) == 0 && !villager.isSleeping()) {
+            if (((villager.tickCount ^ villager.getId()) & 1023) == 0 && !villager.isSleeping()) {
 
                 AABB box = new AABB(
                         EntityUtils.getEntityPos(villager).add(0.5, 0.5, 0.5),
                         EntityUtils.getEntityPos(villager).add(-0.5, -0.5, -0.5)
                 );
 
-                this.count = villager.level().getEntities(EntityType.VILLAGER, box, e -> true).size();
+                this.aca$count = villager.level().getEntities(EntityType.VILLAGER, box, e -> true).size();
             }
         }
     }
 
     @Override
     public boolean aca$canDisableAI() {
-        return this.count == 3 && this.golemCount >= 1;
+        return this.aca$count == 3 && this.aca$golemCount >= 1;
     }
 
     @Override
     public void aca$addCount() {
-        this.golemCount++;
+        this.aca$golemCount++;
     }
 
     @Inject(
@@ -72,7 +72,7 @@ public class Villager_Mixin implements IVillagerAccessor {
             at = @At(value = "INVOKE", target = "Ljava/util/List;forEach(Ljava/util/function/Consumer;)V")
     )
     private void foreach_Inject(ServerLevel world, long time, int requiredCount, CallbackInfo ci, @Local(ordinal = 0) List<Villager> nearbyVillagers) {
-        if (golemCount < 1) {
+        if (this.aca$golemCount < 1) {
             for (Villager villager : nearbyVillagers) {
                 ((IVillagerAccessor) villager).aca$addCount();
             }
@@ -85,8 +85,8 @@ public class Villager_Mixin implements IVillagerAccessor {
             at = @At("HEAD")
     )
     protected void addAdditionalSaveData(ValueOutput output, CallbackInfo ci) {
-        output.putInt(VILLAGER_COUNT, count);
-        output.putInt(GOLEM_COUNT, golemCount);
+        output.putInt(VILLAGER_COUNT, this.aca$count);
+        output.putInt(GOLEM_COUNT, this.aca$golemCount);
     }
 
     @Inject(
@@ -94,8 +94,8 @@ public class Villager_Mixin implements IVillagerAccessor {
             at = @At("HEAD")
     )
     protected void readAdditionalSaveData(ValueInput input, CallbackInfo ci) {
-        count = input.getInt(VILLAGER_COUNT).orElse(0);
-        golemCount = input.getInt(GOLEM_COUNT).orElse(0);
+        this.aca$count = input.getInt(VILLAGER_COUNT).orElse(0);
+        this.aca$golemCount = input.getInt(GOLEM_COUNT).orElse(0);
     }
     //?} else {
     /*@Inject(
@@ -103,8 +103,8 @@ public class Villager_Mixin implements IVillagerAccessor {
             at = @At("HEAD")
     )
     public void addAdditionalSaveData(CompoundTag compoundTag, CallbackInfo ci) {
-        compoundTag.putInt(GOLEM_COUNT, golemCount);
-        compoundTag.putInt(VILLAGER_COUNT, count);
+        compoundTag.putInt(GOLEM_COUNT, this.aca$golemCount);
+        compoundTag.putInt(VILLAGER_COUNT, this.aca$count);
     }
 
     @Inject(
@@ -113,11 +113,11 @@ public class Villager_Mixin implements IVillagerAccessor {
     )
     public void readAdditionalSaveData(CompoundTag compoundTag, CallbackInfo ci) {
         //? if > 1.21.4 {
-        count = compoundTag.getInt(VILLAGER_COUNT).orElse(0);
-        golemCount = compoundTag.getInt(GOLEM_COUNT).orElse(0);
+        this.aca$count = compoundTag.getInt(VILLAGER_COUNT).orElse(0);
+        this.aca$golemCount = compoundTag.getInt(GOLEM_COUNT).orElse(0);
         //?} else {
-        /^count = compoundTag.getInt(VILLAGER_COUNT);
-        golemCount = compoundTag.getInt(GOLEM_COUNT);
+        /^this.aca$count = compoundTag.getInt(VILLAGER_COUNT);
+        this.aca$golemCount = compoundTag.getInt(GOLEM_COUNT);
         ^///?}
     }
     *///?}
