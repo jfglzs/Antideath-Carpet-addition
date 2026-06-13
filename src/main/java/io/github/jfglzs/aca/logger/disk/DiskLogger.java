@@ -88,7 +88,7 @@ public class DiskLogger extends AbstractHUDLogger {
             double readSpeedMB = (readBytesDelta / (double) timeDeltaMs) * (1000.0 / 1024.0 / 1024.0);
             double writeSpeedMB = (writeBytesDelta / (double) timeDeltaMs) * (1000.0 / 1024.0 / 1024.0);
 
-            disks.add(Messenger.c(String.format("g W: %.3f MB/s R: %.3f MB/S", readSpeedMB, writeSpeedMB)));
+            disks.add(Messenger.c(String.format("g R: %.3f MB/s W: %.3f MB/S", readSpeedMB, writeSpeedMB)));
             LAST_READ_AND_WRITE.put(store.getName(), new DiskSnapShot(currentRead, currentWrite));
         }
     }

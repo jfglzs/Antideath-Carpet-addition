@@ -46,6 +46,7 @@ public class Villager_Mixin implements IVillagerAccessor {
             var villager = ((Villager) (Object) this);
 
             if (((villager.tickCount ^ villager.getId()) & 1023) == 0 && !villager.isSleeping()) {
+                if (this.aca$count == 3) return;
 
                 AABB box = new AABB(
                         EntityUtils.getEntityPos(villager).add(0.5, 0.5, 0.5),
