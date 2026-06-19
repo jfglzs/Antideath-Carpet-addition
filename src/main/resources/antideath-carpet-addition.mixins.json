@@ -3,7 +3,6 @@
   "package": "io.github.jfglzs.aca.mixin",
   "compatibilityLevel": "${compatibility_level}",
   "mixins": [
-    "rule.fixNbtFold.TextComponentTagVisitor_Mixin",
     "carpet.EntityPlayerMpFake_Mixin",
     "carpet.HUDController_Mixin",
     "carpet.PlayerCommand_Invoker",
@@ -25,6 +24,7 @@
     "rule.fakePlaceOptimization.Warden_Mixin",
     "rule.fakePlaceOptimization.WitherBoss_Mixin",
     "rule.fastClickPacketLimit.ServerGamePacketListenerImpl_Mixin",
+    "rule.fixNbtFold.TextComponentTagVisitor_Mixin",
     "rule.flippinToTemOfUndying.BlockRotator_Mixin",
     "rule.itemDespawnImmediately.ItemEntity_Mixin",
     "rule.ItemFrameAlwaysStayAttach.ItemFrame_Mixin",
