@@ -51,12 +51,14 @@ public class EntityLogger extends AbstractHUDLogger {
     }
 
     private String getDimension(ResourceKey<Level> key) {
+        //~ if < 1.21.11 'identifier' -> 'location' {
         return switch (key.identifier().toString()) {
             case "minecraft:overworld" -> "OW";
             case "minecraft:the_nether" -> "NE";
             case "minecraft:the_end" -> "EN";
             default -> key.identifier().getPath();
         };
+        //~}
     }
 }
 
