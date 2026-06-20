@@ -78,6 +78,11 @@ _**感谢 @[_OptiJava_](https://github.com/OptiJava) 的指导**_
 - `Storage`：磁盘已用容量/总容量
 - `Both`：同时显示读写速度与存储容量信息（默认）
 
+### /log entities
+![Entities](res/entities.png)
+
+查看每个维度的实体数量
+
 ## ACA的所有规则
 ### 铁砧不会因掉落而损坏(anvilNeverDamageByFalling)
 
