@@ -1,5 +1,8 @@
 package io.github.jfglzs.aca.mixin.rule.fakePlaceOptimization;
 
+//? if >= 26.2 {
+/*import net.minecraft.world.entity.EntityTypes;
+*///?}
 import io.github.jfglzs.aca.AcaSetting;
 import io.github.jfglzs.aca.accessors.EntityAccessor;
 import net.minecraft.world.entity.EntityType;
@@ -52,11 +55,9 @@ public class WitherBoss_Mixin extends Monster implements EntityAccessor {
                     entity.position().add(-0.5, -0.5, -0.5)
             );
 
-            count = entity.level().getEntities(
-                    EntityType.WITHER,
-                    box,
-                    e -> true
-            ).size();
+            //~ if < 26.2 'EntityTypes' -> 'EntityType' {
+            count = entity.level().getEntities(EntityType.WITHER, box, e -> true).size();
+            //~}
         }
 
         if (count > 70) ci.cancel();

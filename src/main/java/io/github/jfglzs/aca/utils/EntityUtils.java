@@ -1,6 +1,5 @@
 package io.github.jfglzs.aca.utils;
 
-import io.github.jfglzs.aca.AcaSetting;
 import io.github.jfglzs.aca.accessors.IVillagerAccessor;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;

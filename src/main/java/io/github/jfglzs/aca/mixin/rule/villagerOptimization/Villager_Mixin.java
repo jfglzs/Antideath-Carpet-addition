@@ -1,5 +1,5 @@
 package io.github.jfglzs.aca.mixin.rule.villagerOptimization;
-
+//~ if < 26.2 'EntityTypes' -> 'EntityType' {
 import com.llamalad7.mixinextras.sugar.Local;
 import io.github.jfglzs.aca.AcaSetting;
 import io.github.jfglzs.aca.accessors.IVillagerAccessor;
@@ -123,3 +123,4 @@ public class Villager_Mixin implements IVillagerAccessor {
     }
     *///?}
 }
+//~}

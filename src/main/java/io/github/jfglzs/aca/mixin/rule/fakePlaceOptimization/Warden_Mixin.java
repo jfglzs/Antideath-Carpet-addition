@@ -1,8 +1,10 @@
 package io.github.jfglzs.aca.mixin.rule.fakePlaceOptimization;
-
+import net.minecraft.world.entity.EntityType;
+//? if >= 26.2 {
+/*import net.minecraft.world.entity.EntityTypes;
+*///?}
 import io.github.jfglzs.aca.AcaSetting;
 import io.github.jfglzs.aca.accessors.EntityAccessor;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.warden.Warden;
 import net.minecraft.server.level.ServerLevel;
@@ -41,7 +43,9 @@ public class Warden_Mixin extends Monster implements EntityAccessor {
                     entity.position().add(-0.5, -0.5, -0.5)
             );
 
+            //~ if < 26.2 'EntityTypes' -> 'EntityType' {
             count = entity.level().getEntities(EntityType.WARDEN, box, e -> true).size();
+            //~}
         }
     }
 
