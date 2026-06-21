@@ -96,7 +96,7 @@ public class DiskLogger extends AbstractHUDLogger {
     private void logStorage(HWDiskStore store, List<Component> disks) {
         for (HWPartition partition : store.getPartitions()) {
             var mountPoint = partition.getMountPoint();
-            if (mountPoint == null || mountPoint.isEmpty() || mountPoint.equalsIgnoreCase("unknown")) continue;
+            if (mountPoint == null || mountPoint.isEmpty() || mountPoint.trim().contains("unknown")) continue;
 
             File f = new File(mountPoint);
 

@@ -1,6 +1,5 @@
 package io.github.jfglzs.aca.logger;
 
-
 import carpet.logging.LoggerRegistry;
 import io.github.jfglzs.aca.logger.cpu.CpuLogger;
 import io.github.jfglzs.aca.logger.disk.DiskLogger;
@@ -21,15 +20,15 @@ public class Loggers {
     public static boolean __entities = false;
 
     public static void registerLoggers() {
-        registerLogger(CpuLogger.INSTANCE);
-        registerLogger(MemoryLogger.INSTANCE);
-        registerLogger(NetworkLogger.INSTANCE);
         registerLogger(MemoryAllocationRateLogger.INSTANCE);
-        registerLogger(DiskLogger.INSTANCE);
+        registerLogger(NetworkLogger.INSTANCE);
         registerLogger(EntityLogger.INSTANCE);
+        registerLogger(MemoryLogger.INSTANCE);
+        registerLogger(DiskLogger.INSTANCE);
+        registerLogger(CpuLogger.INSTANCE);
     }
 
-    public static void registerLogger(final AbstractHUDLogger LOGGER_INSTANCE) {
-        LoggerRegistry.registerLogger(LOGGER_INSTANCE.NAME, LOGGER_INSTANCE);
+    public static void registerLogger(final AbstractHUDLogger INSTANCE) {
+        LoggerRegistry.registerLogger(INSTANCE.NAME, INSTANCE);
     }
 }

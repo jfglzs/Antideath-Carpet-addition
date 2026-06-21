@@ -78,10 +78,7 @@ public class NetworkLogger extends AbstractHUDLogger {
 
     private String calculate(long bytes) {
         double d = bytes * 8f / DataUtils.MB;
-        if (d > 1024.0) {
-            return String.format("%.1f Gb", d / 1024.0);
-        }
-        return String.format("%.3f Mb", d);
+        return d > 1024.0 ? String.format("%.1f Gb", d / 1024.0) : String.format("%.3f Mb", d);
     }
 
     public boolean isPhysicDevice(NetworkIF nif) {

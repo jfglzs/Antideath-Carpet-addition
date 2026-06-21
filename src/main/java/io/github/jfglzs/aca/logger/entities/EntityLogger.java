@@ -13,10 +13,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class EntityLogger extends AbstractHUDLogger {
     public static final EntityLogger INSTANCE;
