@@ -85,9 +85,6 @@ public class AcaSetting {
     @Rule(categories = {ACA, OPTIMIZATION})
     public static boolean boatOptimization = false;
 
-    @Rule(categories = {ACA, OPTIMIZATION})
-    public static boolean beeOptimization = false;
-
     @Rule(categories = {ACA, SURVIVAL})
     public static boolean mcdrPrefixCompatible = false;
 
