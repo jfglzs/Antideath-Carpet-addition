@@ -28,6 +28,6 @@
   "carpet.rule.beeOptimization.desc": "beeOptimization",
   "carpet.rule.mcdrPrefixCompatible.desc": "mcdrPrefixCompatible",
   "carpet.rule.enablePlayerLockCommand.desc": "fakePlayerLockCommand",
-  "carpet.rule.fixNbtFold.desc": "fixNbtFold"
-
+  "carpet.rule.fixNbtFold.desc": "fixNbtFold",
+  "carpet.rule.neverDropLeashBySpectator.desc": "leadNeverDropLeashBySpectator"
 }

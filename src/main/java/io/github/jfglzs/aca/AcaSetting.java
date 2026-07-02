@@ -90,5 +90,8 @@ public class AcaSetting {
 
     @Rule(categories = {ACA, EXPERIMENTAL})
     public static boolean fixNbtFold = false;
+
+    @Rule(categories = {ACA, SURVIVAL})
+    public static boolean neverDropLeashBySpectator = false;
 }
 

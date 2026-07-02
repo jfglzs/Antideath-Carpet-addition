@@ -47,6 +47,8 @@
   "carpet.rule.mcdrPrefixCompatible.desc": "可以让带有玩家名称前缀/后缀的服务器 兼容MCDR",
   "carpet.rule.enablePlayerLockCommand.name": "假人锁定命令",
   "carpet.rule.enablePlayerLockCommand.desc": "输入player xxx lock/unlock 可锁定/解锁一个玩家 如果假人被锁定，那么必须要解锁才能下线",
-  "carpet.rule.fixNbtFold.name": "修复1.21.XNbt自动折叠",
-  "carpet.rule.fixNbtFold.desc": "修复NbtCompound长度≥64自动折叠的问题，用于修复假人全物品的getStorageData命令在1.21.X查找聊天消息会被折叠的问题"
+  "carpet.rule.fixNbtFold.name": "修复1.21.4-Nbt自动折叠",
+  "carpet.rule.fixNbtFold.desc": "修复NbtCompound长度≥64自动折叠的问题，用于修复假人全物品的getStorageData命令在1.21.4-查找聊天消息会被折叠的问题",
+  "carpet.rule.neverDropLeashBySpectator.name": "旁观者栓绳不会断裂",
+  "carpet.rule.neverDropLeashBySpectator.desc": "旁观者栓绳不会断裂"
 }

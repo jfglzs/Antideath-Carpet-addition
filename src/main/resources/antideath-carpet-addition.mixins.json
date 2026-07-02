@@ -26,6 +26,7 @@
     "rule.itemDespawnImmediately.ItemEntity_Mixin",
     "rule.ItemFrameAlwaysStayAttach.ItemFrame_Mixin",
     "rule.itemPickUpRange.Player_Mixin",
+    "rule.neverDropLeashBySpectator.Leashable_Mixin",
     "rule.mcdrPrefixCompatible.PlayerList_Mixin",
     "rule.softAnvil.FallingBlockEntity_Mixin",
     "rule.superSponge.SpongeBlock_Mixin",
