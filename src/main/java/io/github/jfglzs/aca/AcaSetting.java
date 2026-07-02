@@ -93,5 +93,8 @@ public class AcaSetting {
 
     @Rule(categories = {ACA, SURVIVAL})
     public static boolean neverDropLeashBySpectator = false;
+
+    @Rule(categories = {ACA, SURVIVAL})
+    public static boolean beeOptimization = false;
 }
 

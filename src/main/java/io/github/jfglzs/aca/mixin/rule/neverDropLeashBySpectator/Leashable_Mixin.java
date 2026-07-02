@@ -3,6 +3,7 @@ package io.github.jfglzs.aca.mixin.rule.neverDropLeashBySpectator;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import io.github.jfglzs.aca.AcaSetting;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Leashable;
 import net.minecraft.world.entity.player.Player;
@@ -22,7 +23,7 @@ public interface Leashable_Mixin {
     )
      private static boolean dropLeash(Entity entity, Operation<Boolean> original) {
         if (AcaSetting.neverDropLeashBySpectator) {
-            if (entity instanceof Player player && player.isSpectator()) {
+            if (entity instanceof ServerPlayer player && player.isSpectator()) {
                 return true;
             }
         }
