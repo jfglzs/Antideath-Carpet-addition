@@ -67,7 +67,7 @@ public class PlayerCommand {
         return 0;
     }
 
-    public static int makePrivate(CommandContext<CommandSourceStack> ctx) {
+//    public static int makePrivate(CommandContext<CommandSourceStack> ctx) {
 //        var player_ = PlayerCommand_Invoker.getPlayer(ctx);
 //        var fakesAndOwners = AcaSetting.config.privateFakesAndOwners;
 //        if (player_ instanceof EntityPlayerMPFake fakePlayer) {
@@ -93,13 +93,13 @@ public class PlayerCommand {
 //                return 0;
 //            }
 //        }
-        return 1;
-    }
+//        return 1;
+//    }
 
-    private static int makePublic(CommandContext<CommandSourceStack> context) {
-        if (context.getSource().getPlayer() instanceof ServerPlayer) {
-
-        }
-        return 0;
-    }
+//    private static int makePublic(CommandContext<CommandSourceStack> context) {
+//        if (context.getSource().getPlayer() instanceof ServerPlayer) {
+//
+//        }
+//        return 0;
+//    }
 }
