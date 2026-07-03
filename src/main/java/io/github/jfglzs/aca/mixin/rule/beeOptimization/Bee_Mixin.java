@@ -2,7 +2,6 @@ package io.github.jfglzs.aca.mixin.rule.beeOptimization;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.llamalad7.mixinextras.sugar.Local;
 import io.github.jfglzs.aca.accessors.GoalAccessor;
 import io.github.jfglzs.aca.accessors.GoalSelectorAccessor;
 import net.minecraft.world.entity.EntityType;

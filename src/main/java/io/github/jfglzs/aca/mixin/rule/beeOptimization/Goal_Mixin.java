@@ -1,7 +1,6 @@
 package io.github.jfglzs.aca.mixin.rule.beeOptimization;
 
 import io.github.jfglzs.aca.accessors.GoalAccessor;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.goal.Goal;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;

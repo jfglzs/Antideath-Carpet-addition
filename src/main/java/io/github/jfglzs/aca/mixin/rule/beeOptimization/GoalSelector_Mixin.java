@@ -8,7 +8,9 @@ import io.github.jfglzs.aca.accessors.GoalSelectorAccessor;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.goal.GoalSelector;
 import net.minecraft.world.entity.ai.goal.WrappedGoal;
+//~ if >= 1.21.11 '.animal.Bee' -> '.animal.bee.Bee' {
 import net.minecraft.world.entity.animal.bee.Bee;
+//~}
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
