@@ -1,6 +1,5 @@
 package io.github.jfglzs.aca.mixin.rule.minecartOptimization;
 
-import io.github.jfglzs.aca.AcaSetting;
 import io.github.jfglzs.aca.accessors.AbstractMinecartAccessor;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -32,7 +31,6 @@ public abstract class LivingEntity_Mixin extends Entity {
     )
     private void tick(CallbackInfo ci) {
         this.aca$canDisable =
-                AcaSetting.minecartOptimization &&
                 this.getVehicle() instanceof AbstractMinecartAccessor accessor &&
                 accessor.aca$canDisable();
     }

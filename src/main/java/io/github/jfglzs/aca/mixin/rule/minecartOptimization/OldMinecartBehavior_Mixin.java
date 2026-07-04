@@ -23,7 +23,7 @@ public abstract class OldMinecartBehavior_Mixin extends MinecartBehavior {
             cancellable = true
     )
     private void pushAndPickupEntities(CallbackInfoReturnable<Boolean> cir){
-        if (AcaSetting.minecartOptimization && this.minecart instanceof AbstractMinecartAccessor accessor && accessor.aca$canDisable()) {
+        if (this.minecart instanceof AbstractMinecartAccessor accessor && accessor.aca$canDisable()) {
             cir.setReturnValue(false);
         }
     }

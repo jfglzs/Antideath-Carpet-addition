@@ -19,7 +19,7 @@ public abstract class Entity_Mixin {
     )
     public final void startRiding(Entity entity, boolean force, boolean sendEventAndTriggers, CallbackInfoReturnable<Boolean> cir) {
         if (AcaSetting.minecartOptimization && entity instanceof AbstractMinecartAccessor minecart) {
-            minecart.aca$setCanDisable(((Entity)(Object)this) instanceof WitherSkeleton);
+            minecart.aca$setCanDisable(((Entity) (Object) this) instanceof WitherSkeleton);
         }
     }
 
@@ -29,7 +29,7 @@ public abstract class Entity_Mixin {
             cancellable = true
     )
     public void collide(Vec3 movement, CallbackInfoReturnable<Vec3> cir) {
-        if (AcaSetting.minecartOptimization && this instanceof AbstractMinecartAccessor accessor && accessor.aca$canDisable()) {
+        if (this instanceof AbstractMinecartAccessor accessor && accessor.aca$canDisable()) {
             cir.setReturnValue(Vec3.ZERO);
         }
     }

@@ -34,6 +34,7 @@
     "rule.minecartOptimization.AbstractMinecart_Mixin",
     "rule.minecartOptimization.Entity_Mixin",
     "rule.minecartOptimization.LivingEntity_Mixin",
+    "rule.minecartOptimization.Mob_Mixin",
     "rule.minecartOptimization.OldMinecartBehavior_Mixin",
     "rule.neverDropLeashBySpectator.Leashable_Mixin",
     "rule.softAnvil.FallingBlockEntity_Mixin",
