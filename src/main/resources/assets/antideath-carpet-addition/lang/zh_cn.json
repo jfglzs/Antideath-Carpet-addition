@@ -50,5 +50,7 @@
   "carpet.rule.fixNbtFold.name": "修复1.21.4-Nbt自动折叠",
   "carpet.rule.fixNbtFold.desc": "修复NbtCompound长度≥64自动折叠的问题，用于修复假人全物品的getStorageData命令在1.21.4-查找聊天消息会被折叠的问题",
   "carpet.rule.neverDropLeashBySpectator.name": "旁观者栓绳不会断裂",
-  "carpet.rule.neverDropLeashBySpectator.desc": "旁观者栓绳不会断裂"
+  "carpet.rule.neverDropLeashBySpectator.desc": "旁观者栓绳不会断裂",
+  "carpet.rule.minecartOptimization.name": "矿车洪流-矿车优化",
+  "carpet.rule.minecartOptimization.desc": "优化矿车洪流中的矿车"
 }

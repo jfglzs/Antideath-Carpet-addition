@@ -96,5 +96,8 @@ public class AcaSetting {
 
     @Rule(categories = {ACA, SURVIVAL})
     public static boolean beeOptimization = false;
+
+    @Rule(categories = {ACA, SURVIVAL})
+    public static boolean minecartOptimization = false;
 }
 

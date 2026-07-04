@@ -29,5 +29,6 @@
   "carpet.rule.mcdrPrefixCompatible.desc": "mcdrPrefixCompatible",
   "carpet.rule.enablePlayerLockCommand.desc": "fakePlayerLockCommand",
   "carpet.rule.fixNbtFold.desc": "fixNbtFold",
-  "carpet.rule.neverDropLeashBySpectator.desc": "leadNeverDropLeashBySpectator"
+  "carpet.rule.neverDropLeashBySpectator.desc": "leadNeverDropLeashBySpectator",
+  "carpet.rule.minecartOptimization.desc": "minecartOptimization"
 }

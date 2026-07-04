@@ -12,10 +12,12 @@ import net.minecraft.world.entity.ai.goal.WrappedGoal;
 import net.minecraft.world.entity.animal.bee.Bee;
 //~}
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(GoalSelector.class)
 public class GoalSelector_Mixin implements GoalSelectorAccessor {
+    @Unique
     private Entity aca$entity;
 
     @Override
