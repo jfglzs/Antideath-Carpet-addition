@@ -5,6 +5,7 @@ import carpet.CarpetServer;
 import com.mojang.brigadier.CommandDispatcher;
 import io.github.jfglzs.aca.command.*;
 import io.github.jfglzs.aca.logger.Loggers;
+import io.github.jfglzs.aca.utils.EntityUtils;
 import io.github.jfglzs.aca.utils.RuleTranslator;
 import io.github.jfglzs.aca.utils.ThreadUtils;
 import io.github.jfglzs.aca.utils.config.ConfigUtils;
@@ -16,11 +17,19 @@ import java.util.Map;
 
 public class ACAServer implements CarpetExtension {
     public static final ACAServer INSTANCE = new ACAServer();
+    public static final MinecraftServer MINECRAFT_SERVER = CarpetServer.minecraft_server;
 
     @Override
     public void onGameStarted() {
         this.initConfig();
         CarpetServer.settingsManager.parseSettingsClass(AcaSetting.class);
+    }
+
+    @Override
+    public void onTick(MinecraftServer server) {
+        server.getPlayerList().getPlayers().forEach(player -> {
+            System.out.println(EntityUtils.getEntityPos(player));
+        });
     }
 
     @Override
@@ -44,6 +53,7 @@ public class ACAServer implements CarpetExtension {
         SearchEntityCommand.registerCommand(dispatcher);
         PreventCommand.registerCommand(dispatcher);
         PlayerCommand.registerCommand(dispatcher);
+        HatCommand.register(dispatcher);
     }
 
     @Override
