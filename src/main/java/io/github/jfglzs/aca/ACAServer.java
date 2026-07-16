@@ -9,8 +9,10 @@ import io.github.jfglzs.aca.utils.EntityUtils;
 import io.github.jfglzs.aca.utils.RuleTranslator;
 import io.github.jfglzs.aca.utils.ThreadUtils;
 import io.github.jfglzs.aca.utils.config.ConfigUtils;
+import io.github.jfglzs.aca.utils.wrap.Cache;
 import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.core.Direction;
 import net.minecraft.server.MinecraftServer;
 
 import java.util.Map;
@@ -27,9 +29,9 @@ public class ACAServer implements CarpetExtension {
 
     @Override
     public void onTick(MinecraftServer server) {
-        server.getPlayerList().getPlayers().forEach(player -> {
-            System.out.println(EntityUtils.getEntityPos(player));
-        });
+        for (Cache<Direction> value : EntityUtils.attachables.values()) {
+            value.tick();
+        }
     }
 
     @Override

@@ -36,5 +36,6 @@ public abstract class LivingEntity_Mixin implements LivingEntityAccessor {
     @Override
     public void aca$setPushed(boolean pushed) {
         this.aca$pushed = pushed;
+        this.aca$pushedCount = 0;
     }
 }

@@ -32,6 +32,7 @@
     "rule.itemPickUpRange.Player_Mixin",
     "rule.mcdrPrefixCompatible.PlayerList_Mixin",
     "rule.neverDropLeashBySpectator.Leashable_Mixin",
+    "rule.shulkerOptimization.Entity_Mixin",
     "rule.shulkerOptimization.LivingEntity_Mixin",
     "rule.shulkerOptimization.LivingEntity_Mixin1",
     "rule.shulkerOptimization.Shulker_Mixin",
