@@ -73,7 +73,7 @@ public abstract class Shulker_Mixin extends AbstractGolem {
             if (direction != null) {
                 EntityUtils.attachables.put(
                         EntityUtils.pack(target.getX(), target.getY(), target.getZ()),
-                        new Cache<>(direction, this.random.nextInt(2,10))
+                        new Cache<>(direction, this.random.nextInt(4,10))
                 );
             }
         }

@@ -21,17 +21,18 @@ public class LivingEntity_Mixin1 {
             method = "pushEntities",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/world/entity/LivingEntity;hurtServer(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/damagesource/DamageSource;F)Z"
+                    //? if > 1.21.1 {
+                    //target = "Lnet/minecraft/world/entity/LivingEntity;hurtServer(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/damagesource/DamageSource;F)Z"
+                    //?} else {
+                    target = ""
+                    //?}
             )
     )
-    public boolean pushEntities(
-            LivingEntity instance,
-            ServerLevel level,
-            DamageSource damageSource,
-            float amount,
-            Operation<Boolean> original,
-            @Local List<Entity> pushableEntities
-    ) {
+    //? if > 1.21.1 {
+    public boolean pushEntities(LivingEntity instance, ServerLevel level, DamageSource damageSource, float amount, Operation<Boolean> original, @Local List<Entity> pushableEntities) {
+    //?} else {
+        //public boolean pushEntities(LivingEntity instance, ServerLevel level, DamageSource damageSource, float amount, Operation<Boolean> original, @Local List<Entity> pushableEntities) {
+    //?}
         if (AcaSetting.shulkerOptimization) {
             LivingEntity livingEntity = (LivingEntity) (Object) this;
             if (livingEntity instanceof Shulker) {

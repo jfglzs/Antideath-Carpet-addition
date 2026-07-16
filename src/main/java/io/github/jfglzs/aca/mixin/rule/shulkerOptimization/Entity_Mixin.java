@@ -7,11 +7,12 @@ import net.minecraft.world.entity.projectile.ShulkerBullet;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Entity.class)
 public class Entity_Mixin {
-    //~ if < 26.1 'updateFluidInteraction' -> 'updateInWaterStateAndDoFluidPushing'
+    //~ if < 26.1 'updateFluidInteraction' -> 'updateInWaterStateAndDoFluidPushing' {
     @Inject(
             method = "updateFluidInteraction",
             at = @At("HEAD"),
@@ -26,4 +27,17 @@ public class Entity_Mixin {
             }
         }
     }
+
+    //~ if > 1.21.1 'checkInsideBlocks' -> 'applyEffectsFromBlocks()V' {
+    @Inject(
+            method = "applyEffectsFromBlocks()V",
+            at = @At("HEAD"),
+            cancellable = true
+    )
+    private void tickBlockCollision_Inject(CallbackInfo ci) {
+        if (AcaSetting.shulkerOptimization && (((Entity) (Object) this)) instanceof Shulker) {
+            ci.cancel();
+        }
+    }
+    //~}
 }

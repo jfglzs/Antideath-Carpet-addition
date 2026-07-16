@@ -100,7 +100,7 @@ public class AcaSetting {
     @Rule(categories = {ACA, COMMAND}, options = {"1", "2", "3", "4", "true", "false"})
     public static String enableHatCommand = FALSE;
 
-    @Rule(categories = {ACA, OPTIMIZATION})
+    @Rule(categories = {ACA, OPTIMIZATION, EXPERIMENTAL})
     public static boolean shulkerOptimization = false;
 }
 
