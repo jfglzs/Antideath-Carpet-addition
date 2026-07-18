@@ -53,6 +53,6 @@
   "carpet.rule.neverDropLeashBySpectator.desc": "旁观者栓绳不会断裂",
   "carpet.rule.enableHatCommand.name": "/hat 命令",
   "carpet.rule.enableHatCommand.desc": "输入/hat可以将玩家主手的物品穿在头上",
-  "carpet.rule.shulkerOptimization.name": "贝壳厂优化（实验性功能）",
-  "carpet.rule.shulkerOptimization.desc": "贝壳厂优化"
+  "carpet.rule.shulkerOptimization.name": "潜影贝优化（实验性功能）",
+  "carpet.rule.shulkerOptimization.desc": "潜影贝优化"
 }

@@ -56,7 +56,7 @@ public abstract class Shulker_Mixin extends AbstractGolem {
     )
     private static void findAttachableSurface(BlockPos target, CallbackInfoReturnable<Direction> cir) {
         if (AcaSetting.shulkerOptimization) {
-            Cache<Direction> cache = EntityUtils.attachables.get(EntityUtils.pack(target.getX(), target.getY(), target.getZ()));
+            Cache<Direction> cache = EntityUtils.ATTACHABLES.get(EntityUtils.pack(target.getX(), target.getY(), target.getZ()));
             if (cache != null && !cache.isExpired()) {
                 cir.setReturnValue(cache.getValue());
             }
@@ -71,9 +71,9 @@ public abstract class Shulker_Mixin extends AbstractGolem {
         if (AcaSetting.shulkerOptimization) {
             Direction direction = cir.getReturnValue();
             if (direction != null) {
-                EntityUtils.attachables.put(
+                EntityUtils.ATTACHABLES.put(
                         EntityUtils.pack(target.getX(), target.getY(), target.getZ()),
-                        new Cache<>(direction, this.random.nextInt(4,10))
+                        new Cache<>(direction, this.random.nextInt(5,10))
                 );
             }
         }

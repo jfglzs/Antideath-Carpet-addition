@@ -3,14 +3,12 @@ package io.github.jfglzs.aca.utils;
 import io.github.jfglzs.aca.accessors.IVillagerAccessor;
 import io.github.jfglzs.aca.utils.wrap.Cache;
 import io.netty.util.collection.LongObjectHashMap;
-import it.unimi.dsi.fastutil.ints.IntArrayList;
-import it.unimi.dsi.fastutil.objects.ObjectList;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
 
 public class EntityUtils {
-    public static LongObjectHashMap<Cache<Direction>> attachables = new LongObjectHashMap<>();
+    public static final LongObjectHashMap<Cache<Direction>> ATTACHABLES = new LongObjectHashMap<>();
 
     public static Vec3 getEntityPos(Entity entity) {
         return entity.position();
