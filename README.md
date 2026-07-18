@@ -18,7 +18,8 @@ _**感谢 @[_OptiJava_](https://github.com/OptiJava) 的指导**_
 | 26.1.x   | 持续更新   | -      |
 | 26.2   | 持续更新   | -      |
 
-### [规则](RULES.md)
-### [记录器](LOGGERS.md)
+#### [规则](RULES.md)
+
+#### [记录器](LOGGERS.md)
 
 
