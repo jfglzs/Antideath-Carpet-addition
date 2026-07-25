@@ -1,4 +1,7 @@
 ## Antideath Carpet Addition
+[![Modrinth](https://img.shields.io/modrinth/dt/antideath-carpet-addition?color=00AF5C&label=Modrinth%20downloads&logo=modrinth)](https://modrinth.com/mod/antideath-carpet-addition)
+[![Github](https://img.shields.io/github/downloads/jfglzs/Antideath-Carpet-addition/total?color=161616&label=Github%20downloads&logo=github)](https://github.com/jfglzs/Antideath-Carpet-addition/releases)
+
 一个为Fabric服务器编写的 Carpet 拓展
 
 _**感谢 @[_OptiJava_](https://github.com/OptiJava) 的指导**_
