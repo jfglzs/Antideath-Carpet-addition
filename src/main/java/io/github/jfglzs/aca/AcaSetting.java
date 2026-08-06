@@ -102,5 +102,8 @@ public class AcaSetting {
 
     @Rule(categories = {ACA, OPTIMIZATION, EXPERIMENTAL})
     public static boolean shulkerOptimization = false;
+
+    @Rule(categories = {ACA, SURVIVAL})
+    public static boolean hardDecoratedBlock = false;
 }
 

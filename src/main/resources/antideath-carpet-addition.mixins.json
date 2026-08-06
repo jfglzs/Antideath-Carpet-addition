@@ -27,6 +27,7 @@
     "rule.fastClickPacketLimit.ServerGamePacketListenerImpl_Mixin",
     "rule.fixNbtFold.TextComponentTagVisitor_Mixin",
     "rule.flippinToTemOfUndying.BlockRotator_Mixin",
+    "rule.hardDecoratedPot.DecoratedPotBlock_Mixin",
     "rule.itemDespawnImmediately.ItemEntity_Mixin",
     "rule.ItemFrameAlwaysStayAttach.ItemFrame_Mixin",
     "rule.itemPickUpRange.Player_Mixin",
