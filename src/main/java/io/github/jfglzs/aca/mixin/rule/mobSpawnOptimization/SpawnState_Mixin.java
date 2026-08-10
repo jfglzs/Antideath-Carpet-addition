@@ -35,7 +35,7 @@ public abstract class SpawnState_Mixin implements SpawnStateAccessor {
         return this.canSpawnForCategoryGlobal(category);
         //?} else {
         //int i = category.getMaxInstancesPerChunk() * this.spawnableChunkCount / NaturalSpawnerAccessor.ASA$getMagicNumber();
-        //return this.mobCategoryCounts.getInt(category) < i
+        //return this.mobCategoryCounts.getInt(category) < i;
         //?}
     }
 
