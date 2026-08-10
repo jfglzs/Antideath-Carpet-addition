@@ -15,6 +15,7 @@ import java.util.List;
 
 @Mixin(NaturalSpawner.class)
 public class NaturalSpawner_Mixin {
+    //? if > 1.21.1 {
     @Inject(
             method = "getFilteredSpawningCategories",
             at = @At(value = "RETURN")
@@ -38,4 +39,5 @@ public class NaturalSpawner_Mixin {
             }
         }
     }
+    //?}
 }
