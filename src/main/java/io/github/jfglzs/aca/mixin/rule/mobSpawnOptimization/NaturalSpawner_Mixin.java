@@ -23,7 +23,7 @@ public class NaturalSpawner_Mixin {
     //? if < 26.2 {
     private static void getFilteredSpawningCategories(NaturalSpawner.SpawnState state, boolean spawnFriendlies, boolean spawnEnemies, boolean spawnPersistent, CallbackInfoReturnable<List<MobCategory>> cir, @Local List<MobCategory> spawningCategories) {
     //?} else {
-    // private static List<MobCategory> getFilteredSpawningCategories(final NaturalSpawner.SpawnState state, final boolean spawnEnemies, final boolean spawnPersistent, CallbackInfoReturnable<List<MobCategory>> cir, @Local List<MobCategory> spawningCategories) {
+    // private static void getFilteredSpawningCategories(final NaturalSpawner.SpawnState state, final boolean spawnEnemies, final boolean spawnPersistent, CallbackInfoReturnable<List<MobCategory>> cir, @Local List<MobCategory> spawningCategories) {
     //?}
         if (AcaSetting.mobSpawnOptimization) {
             if (spawningCategories instanceof ArrayList<MobCategory>) {
