@@ -105,5 +105,8 @@ public class AcaSetting {
 
     @Rule(categories = {ACA, SURVIVAL})
     public static boolean hardDecoratedBlock = false;
+
+    @Rule(categories = {ACA, SURVIVAL})
+    public static boolean mobSpawnOptimization = false;
 }
 

@@ -31,5 +31,7 @@
   "carpet.rule.fixNbtFold.desc": "fixNbtFold",
   "carpet.rule.neverDropLeashBySpectator.desc": "leadNeverDropLeashBySpectator",
   "carpet.rule.enableHatCommand.desc": "hatCommand",
-  "carpet.rule.shulkerOptimization.desc": "shulkerOptimization"
+  "carpet.rule.shulkerOptimization.desc": "shulkerOptimization",
+  "carpet.rule.mobSpawnOptimization.desc": "optimization mob spawn",
+  "carpet.rule.hardDecoratedBlock.desc": "hardDecoratedBlock"
 }

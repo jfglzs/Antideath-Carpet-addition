@@ -54,5 +54,7 @@
   "carpet.rule.enableHatCommand.name": "/hat 命令",
   "carpet.rule.enableHatCommand.desc": "输入/hat可以将玩家主手的物品穿在头上",
   "carpet.rule.shulkerOptimization.name": "潜影贝优化（实验性功能）",
-  "carpet.rule.shulkerOptimization.desc": "潜影贝优化"
+  "carpet.rule.shulkerOptimization.desc": "潜影贝优化",
+  "carpet.rule.mobSpawnOptimization.name": "生物生成优化",
+  "carpet.rule.mobSpawnOptimization.desc": "优化生物生成的卡顿"
 }
