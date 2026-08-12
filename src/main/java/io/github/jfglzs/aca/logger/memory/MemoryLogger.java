@@ -16,7 +16,7 @@ public class MemoryLogger extends AbstractHUDLogger {
 
     static {
         try {
-            INSTANCE = new MemoryLogger(Loggers.class.getField("__sysMem"), "sysMemory", " ", new String[]{"Physical","Swap","Both"}, true);
+            INSTANCE = new MemoryLogger(Loggers.class.getField("__sysMem"), "sysMemory", " ", new String[]{"Physical", "Swap", "Both"}, true);
         }
         catch (NoSuchFieldException e) {
             throw new RuntimeException(e);
@@ -41,16 +41,16 @@ public class MemoryLogger extends AbstractHUDLogger {
     }
 
     private Component[] logMemory(String option) {
-        long free      = toMiB(Loggers.SYSTEM_INFO.getHardware().getMemory().getAvailable());
-        long total     = toMiB(Loggers.SYSTEM_INFO.getHardware().getMemory().getTotal());
-        long page      = toMiB(Loggers.SYSTEM_INFO.getHardware().getMemory().getVirtualMemory().getSwapUsed());
+        long free = toMiB(Loggers.SYSTEM_INFO.getHardware().getMemory().getAvailable());
+        long total = toMiB(Loggers.SYSTEM_INFO.getHardware().getMemory().getTotal());
+        long page = toMiB(Loggers.SYSTEM_INFO.getHardware().getMemory().getVirtualMemory().getSwapUsed());
         long pageTotal = toMiB(Loggers.SYSTEM_INFO.getHardware().getMemory().getVirtualMemory().getSwapTotal());
 
         var message = switch (option) {
             case "Physical" -> String.format("g Physical: %dM/%dM", total - free, total);
-            case "Swap"     -> String.format("g Swap: %dM/%dM", page, pageTotal);
-            default         -> String.format("g Physical: %dM/%dM Swap: %dM/%dM", total - free, total, page, pageTotal);
+            case "Swap" -> String.format("g Swap: %dM/%dM", page, pageTotal);
+            default -> String.format("g Physical: %dM/%dM Swap: %dM/%dM", total - free, total, page, pageTotal);
         };
-        return new Component[] {Messenger.c(message)};
+        return new Component[]{Messenger.c(message)};
     }
 }

@@ -38,5 +38,4 @@ public abstract class SpawnState_Mixin implements SpawnStateAccessor {
         //return this.mobCategoryCounts.getInt(category) < i;
         //?}
     }
-
 }

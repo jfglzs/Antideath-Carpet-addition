@@ -23,11 +23,11 @@ public class PlayerCommand {
         LiteralArgumentBuilder<CommandSourceStack> argument = literal("player")
                 .requires((source) -> CommandHelper.canUseCommand(source, AcaSetting.enablePlayerLockCommand))
                 .then(Commands.argument("player", StringArgumentType.word())
-                .then(Commands.literal("lock").executes(PlayerCommand::lockPlayer))
-                .then(Commands.literal("unlock").executes(PlayerCommand::unlockPlayer))
+                                .then(Commands.literal("lock").executes(PlayerCommand::lockPlayer))
+                                .then(Commands.literal("unlock").executes(PlayerCommand::unlockPlayer))
 //                .then(Commands.literal("makePrivate")).executes(PlayerCommand::makePrivate)
 //                .then(Commands.literal("makePublic")).executes(PlayerCommand::makePublic)
-                );
+                     );
         dispatcher.register(argument);
     }
 

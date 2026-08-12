@@ -21,12 +21,13 @@ public class NetworkLogger extends AbstractHUDLogger {
             "tun",
             "tunnel",
             "radmin"
-    );
+                                                );
 
     static {
         try {
-            INSTANCE = new NetworkLogger(Loggers.class.getField("__network"), "network", " ", new String[]{"uploadAndDownload","totalUploadAndDownload","both"}, true);
-        } catch (NoSuchFieldException e) {
+            INSTANCE = new NetworkLogger(Loggers.class.getField("__network"), "network", " ", new String[]{"uploadAndDownload", "totalUploadAndDownload", "both"}, true);
+        }
+        catch (NoSuchFieldException e) {
             throw new RuntimeException(e);
         }
     }
@@ -37,8 +38,8 @@ public class NetworkLogger extends AbstractHUDLogger {
     }
 
     public long lastUpdate = 0L;
-    public long lastRecv   = 0L;
-    public long lastSent   = 0L;
+    public long lastRecv = 0L;
+    public long lastSent = 0L;
 
     @Override
     public void updateHUD(MinecraftServer server) {
@@ -56,19 +57,22 @@ public class NetworkLogger extends AbstractHUDLogger {
         long timeDiff = System.currentTimeMillis() - lastUpdate;
 
         if (timeDiff > 0) {
-            long bytesRecv      = nif.getBytesRecv();
-            long bytesSent      = nif.getBytesSent();
-            double uploadMbps   = ((bytesSent - this.lastSent) * 8.0 / (1024 * 1024)) / (timeDiff / 1000.0);
+            long bytesRecv = nif.getBytesRecv();
+            long bytesSent = nif.getBytesSent();
+            double uploadMbps = ((bytesSent - this.lastSent) * 8.0 / (1024 * 1024)) / (timeDiff / 1000.0);
             double downloadMbps = ((bytesRecv - this.lastRecv) * 8.0 / (1024 * 1024)) / (timeDiff / 1000.0);
 
             String message = switch (option) {
-                case "uploadAndDownload"      -> String.format("g Upload: %.3f Mbps Download: %.3f Mbps", uploadMbps, downloadMbps);
-                case "totalUploadAndDownload" -> String.format("g TotalUpload: %s TotalDownload: %s", this.calculate(bytesRecv), this.calculate(bytesSent));
-                default                       -> String.format("g TotalUpload: %s TotalDownload: %s\nUpload: %.3f Mbps Download: %.3f Mbps", this.calculate(bytesSent), this.calculate(bytesRecv), uploadMbps, downloadMbps);
+                case "uploadAndDownload" ->
+                        String.format("g Upload: %.3f Mbps Download: %.3f Mbps", uploadMbps, downloadMbps);
+                case "totalUploadAndDownload" ->
+                        String.format("g TotalUpload: %s TotalDownload: %s", this.calculate(bytesRecv), this.calculate(bytesSent));
+                default ->
+                        String.format("g TotalUpload: %s TotalDownload: %s\nUpload: %.3f Mbps Download: %.3f Mbps", this.calculate(bytesSent), this.calculate(bytesRecv), uploadMbps, downloadMbps);
             };
 
-            this.lastRecv   = bytesRecv;
-            this.lastSent   = bytesSent;
+            this.lastRecv = bytesRecv;
+            this.lastSent = bytesSent;
             this.lastUpdate = System.currentTimeMillis();
 
             return new Component[]{Messenger.c(message)};

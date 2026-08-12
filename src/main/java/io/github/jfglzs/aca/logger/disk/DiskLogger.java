@@ -112,6 +112,7 @@ public class DiskLogger extends AbstractHUDLogger {
         }
     }
 
-    private record DiskSnapShot(long readBytes, long writeBytes) {}
+    private record DiskSnapShot(long readBytes, long writeBytes) {
+    }
 }
 

@@ -33,16 +33,16 @@ public abstract class VillagerGoalPackages_Mixin {
     @WrapMethod(
             method = "getIdlePackage"
     )
-    //? if >= 1.21.5 && < 26.1 {
+            //? if >= 1.21.5 && < 26.1 {
     /*private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getIdlePackage(Holder<VillagerProfession> holder, float f, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
-    *///?} else if < 26.1 {
+     *///?} else if < 26.1 {
     /*private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getIdlePackage(VillagerProfession holder, float f, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
-    *///?} else {
+     *///?} else {
     private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getIdlePackage(float speedModifier, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
-    //?}
+        //?}
         //? if < 26.1 {
         /*return cullAll(original.call(holder, f), ImmutableList.of(99));
-        *///?} else {
+         *///?} else {
         return cullAll(original.call(speedModifier), ImmutableList.of(99));
         //?}
     }
@@ -50,11 +50,11 @@ public abstract class VillagerGoalPackages_Mixin {
     @WrapMethod(
             method = "getCorePackage"
     )
-    //? if >= 1.21.5 {
+            //? if >= 1.21.5 {
     private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getCorePackage_Wrap(Holder<VillagerProfession> holder, float f, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
-    //?} else if < 26.1 {
-    /*private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getCorePackage_Wrap(VillagerProfession holder, float f, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
-    *///?}
+        //?} else if < 26.1 {
+        /*private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getCorePackage_Wrap(VillagerProfession holder, float f, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
+         *///?}
         return ImmutableList.of(
                 Pair.of(0, FullSuppressBehaviorWrapper.wrap(new Swim(0.8F))),
                 Pair.of(0, FullSuppressBehaviorWrapper.wrap(InteractWithDoor.create())),
@@ -78,7 +78,7 @@ public abstract class VillagerGoalPackages_Mixin {
                 Pair.of(1, FullSuppressBehaviorWrapper.wrap(new MoveToTargetSink())),
                 Pair.of(2, FullSuppressBehaviorWrapper.wrap(PoiCompetitorScan.create())),
                 Pair.of(3, FullSuppressBehaviorWrapper.wrap(new LookAndFollowTradingPlayerSink(f))),
-                new Pair[] {
+                new Pair[]{
                         //? if >= 1.21.5 {
                         Pair.of(5, FullSuppressBehaviorWrapper.wrap(GoToWantedItem.create(f, false, 4))),
                         Pair.of(6, FullSuppressBehaviorWrapper.wrap(AcquirePoi.create(holder.value().acquirableJobSite(), MemoryModuleType.JOB_SITE, MemoryModuleType.POTENTIAL_JOB_SITE, true, Optional.empty(), (serverLevel, blockPos) -> true))),
@@ -102,22 +102,22 @@ public abstract class VillagerGoalPackages_Mixin {
                         //刷铁相关AI
                         Pair.of(10, ResetProfession.create())
                 }
-        );
+                               );
     }
 
     @WrapMethod(
             method = "getPreRaidPackage"
     )
-    //? if >= 1.21.5 && < 26.1  {
+            //? if >= 1.21.5 && < 26.1  {
     /*private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getPreRaidPackage(Holder<VillagerProfession> holder, float f, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
-    *///?} else if < 26.1 {
+     *///?} else if < 26.1 {
     /*private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getPreRaidPackage(VillagerProfession holder, float f, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
-    *///?} else {
+     *///?} else {
     private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getPreRaidPackage(float speedModifier, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
-    //?}
+        //?}
         //? if < 26.1 {
         /*return cullAll(original.call(holder, f), null);
-        *///?}else {
+         *///?}else {
         return cullAll(original.call(speedModifier), null);
         //?}
     }
@@ -125,16 +125,16 @@ public abstract class VillagerGoalPackages_Mixin {
     @WrapMethod(
             method = "getRaidPackage"
     )
-    //? if >= 1.21.5 && < 26.1 {
+            //? if >= 1.21.5 && < 26.1 {
     /*private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getRaidPackage(Holder<VillagerProfession> holder, float f, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
-    *///?} else if < 26.1 {
+     *///?} else if < 26.1 {
     /*private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getRaidPackage(VillagerProfession holder, float f, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
-    *///?} else {
+     *///?} else {
     private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getRaidPackage(float speedModifier, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
-    //?}
+        //?}
         //? if < 26.1 {
         /*return cullAll(original.call(holder, f), null);
-        *///?}else {
+         *///?}else {
         return cullAll(original.call(speedModifier), null);
         //?}
     }
@@ -142,16 +142,16 @@ public abstract class VillagerGoalPackages_Mixin {
     @WrapMethod(
             method = "getPanicPackage"
     )
-    //? if >= 1.21.5 && < 26.1 {
+            //? if >= 1.21.5 && < 26.1 {
     /*private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getPanicPackage(Holder<VillagerProfession> holder, float f, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
-    *///?} else if < 26.1 {
+     *///?} else if < 26.1 {
     /*private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getPanicPackage(VillagerProfession holder, float f, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
-    *///?} else {
+     *///?} else {
     private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> getPanicPackage(float speedModifier, Operation<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> original) {
-    //?}
+        //?}
         //? if < 26.1 {
         /*return cullAll(original.call(holder, f), ImmutableList.of(0));
-        *///?} else {
+         *///?} else {
         return cullAll(original.call(speedModifier), ImmutableList.of(0));
         //?}
     }
@@ -160,7 +160,7 @@ public abstract class VillagerGoalPackages_Mixin {
     private static ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> cullAll(
             ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>> pairs,
             ImmutableList<Integer> except
-    ) {
+                                                                                                    ) {
         List<Pair<Integer, ? extends BehaviorControl<? super Villager>>> list = new ArrayList<>();
         ImmutableList<Integer> excepts = except == null ? ImmutableList.of() : except;
 
@@ -176,7 +176,7 @@ public abstract class VillagerGoalPackages_Mixin {
                         list.add(Pair.of(first, FullSuppressBehaviorWrapper.wrap(second)));
                     }
                 }
-        );
+                     );
         return ImmutableList.copyOf(list);
     }
 }

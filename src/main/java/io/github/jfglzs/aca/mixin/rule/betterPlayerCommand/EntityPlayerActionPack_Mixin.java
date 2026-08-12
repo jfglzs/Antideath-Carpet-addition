@@ -27,7 +27,9 @@ public abstract class EntityPlayerActionPack_Mixin {
     public void drop_Inject(int selectedSlot, boolean dropAll, CallbackInfo ci) {
         if (selectedSlot == -3 || selectedSlot == -4) {
             dropAllEnderChestItems();
-            if (selectedSlot == -4) {drop(-2, dropAll);}
+            if (selectedSlot == -4) {
+                drop(-2, dropAll);
+            }
             ci.cancel();
         }
     }

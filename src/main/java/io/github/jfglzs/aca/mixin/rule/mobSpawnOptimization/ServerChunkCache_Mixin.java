@@ -38,15 +38,15 @@ public class ServerChunkCache_Mixin {
     )
     private void getFilteredSpawningCategories(ProfilerFiller profiler, long timeDiff, CallbackInfo ci, @Local List<MobCategory> result) {
         if (AcaSetting.mobSpawnOptimization) {
-            if (result instanceof ArrayList<MobCategory>) {
-                ResourceKey<Level> dimension = this.level.dimension();
-                if (dimension == Level.NETHER || dimension == Level.END) {
-                    result.remove(MobCategory.AXOLOTLS);
-                    result.remove(MobCategory.WATER_AMBIENT);
-                    result.remove(MobCategory.UNDERGROUND_WATER_CREATURE);
-                    result.remove(MobCategory.WATER_CREATURE);
-                    result.remove(MobCategory.AMBIENT);
-                }
+            if (result.isEmpty()) return;
+            ResourceKey<Level> dimension = this.level.dimension();
+            boolean bl = dimension == Level.OVERWORLD;
+            if (!bl) {
+                result.remove(MobCategory.AXOLOTLS);
+                result.remove(MobCategory.WATER_AMBIENT);
+                result.remove(MobCategory.UNDERGROUND_WATER_CREATURE);
+                result.remove(MobCategory.WATER_CREATURE);
+                result.remove(MobCategory.AMBIENT);
             }
         }
     }

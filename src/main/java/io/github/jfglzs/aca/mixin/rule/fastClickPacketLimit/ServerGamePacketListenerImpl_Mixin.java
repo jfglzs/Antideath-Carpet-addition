@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ServerGamePacketListenerImpl.class)
 public class ServerGamePacketListenerImpl_Mixin {
     @Unique
-    private RateLimiter limiter  = RateLimiter.create(20F);
+    private RateLimiter limiter = RateLimiter.create(20F);
 
     @Inject(
             method = "handleUseItem",

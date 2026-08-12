@@ -33,7 +33,7 @@ public abstract class Bee_Mixin extends Animal {
     @Unique
     private boolean aca$ensureInit() {
         if (aca$list == null) {
-            this.aca$list = new boolean[] {
+            this.aca$list = new boolean[]{
                     true,  // 0: BeeAttackGoal
                     false, // 1: BeeEnterHiveGoal
                     false,  // 2: BreedGoal

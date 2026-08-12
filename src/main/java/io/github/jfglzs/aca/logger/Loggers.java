@@ -12,9 +12,9 @@ import oshi.SystemInfo;
 public class Loggers {
     public static final SystemInfo SYSTEM_INFO = new SystemInfo();
 
-    public static boolean __cpu     = false;
-    public static boolean __mem     = false;
-    public static boolean __sysMem  = false;
+    public static boolean __cpu = false;
+    public static boolean __mem = false;
+    public static boolean __sysMem = false;
     public static boolean __network = false;
     public static boolean ___disk = false;
     public static boolean __entities = false;

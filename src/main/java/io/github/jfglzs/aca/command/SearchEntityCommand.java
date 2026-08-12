@@ -30,7 +30,8 @@ public class SearchEntityCommand {
     private static void sendFeedback(CommandSourceStack source, Entity entity) {
         if (AcaSetting.entitySearchXaeroMapSupport) {
             source.sendSuccess(() -> Component.nullToEmpty(String.format("xaero-waypoint:%s:1:%d:%d:%d:2:false:0:External", entity.getDisplayName().getString(), (int) entity.getX(), (int) entity.getY(), (int) entity.getZ())), true);
-        } else {
+        }
+        else {
             source.sendSuccess(() -> Component.nullToEmpty(String.format("%s pos:[%f,%f,%f]", entity.getDisplayName().getString(), entity.getX(), entity.getY(), entity.getZ())), true);
         }
     }

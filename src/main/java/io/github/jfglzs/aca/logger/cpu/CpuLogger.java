@@ -55,7 +55,7 @@ public class CpuLogger extends AbstractHUDLogger {
             Component fullCore = Messenger.c(
                     "g Cpu Load: ",
                     String.format("%s %.2f%%", color, cpuLoad)
-            );
+                                            );
 
             if (option.equals("all")) {
                 return ArrayUtils.add(perCoreLoadArray, fullCore);
@@ -93,11 +93,11 @@ public class CpuLogger extends AbstractHUDLogger {
                 // 格式化输出
                 for (int i = 0; i < coreLoads.length; i += 2) {
                     list.add(Messenger.c(
-                            coreLoad(i + 1, coreLoads[i]),
-                                   "g  | ",
-                                   coreLoad(i + 2, coreLoads[i + 1])
-                            )
-                    );
+                                    coreLoad(i + 1, coreLoads[i]),
+                                    "g  | ",
+                                    coreLoad(i + 2, coreLoads[i + 1])
+                                        )
+                            );
                 }
 
                 perCoreLoads = list;
@@ -110,7 +110,7 @@ public class CpuLogger extends AbstractHUDLogger {
             String coreLoad = "%s %.0f%%".formatted(
                     Messenger.heatmap_color(percent, 100),
                     percent
-            );
+                                                   );
             return Messenger.c(coreInfo, coreLoad);
         }
     }

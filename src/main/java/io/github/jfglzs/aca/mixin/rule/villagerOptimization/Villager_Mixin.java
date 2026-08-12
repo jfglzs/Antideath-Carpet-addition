@@ -1,5 +1,6 @@
 package io.github.jfglzs.aca.mixin.rule.villagerOptimization;
 //~ if < 26.2 'EntityTypes' -> 'EntityType' {
+
 import com.llamalad7.mixinextras.sugar.Local;
 import io.github.jfglzs.aca.AcaSetting;
 import io.github.jfglzs.aca.accessors.IVillagerAccessor;
@@ -12,7 +13,7 @@ import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 //?} else {
 /*import net.minecraft.nbt.CompoundTag;
-*///?}
+ *///?}
 import net.minecraft.world.phys.AABB;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -37,11 +38,11 @@ public class Villager_Mixin implements IVillagerAccessor {
             method = "customServerAiStep",
             at = @At("HEAD")
     )
-    //? if > 1.21.1 {
+            //? if > 1.21.1 {
     protected void mobTick_Inject(ServerLevel level, CallbackInfo ci) {
-    //?} else {
-    /*protected void mobTick_Inject(CallbackInfo ci) {
-    *///?}
+        //?} else {
+        /*protected void mobTick_Inject(CallbackInfo ci) {
+         *///?}
         if (AcaSetting.villagerOptimization) {
             var villager = ((Villager) (Object) this);
 

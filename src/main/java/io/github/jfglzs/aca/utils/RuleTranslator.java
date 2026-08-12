@@ -20,7 +20,8 @@ public class RuleTranslator {
         String jsonData;
         try {
             jsonData = IOUtils.toString(langFile, StandardCharsets.UTF_8);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             return Collections.emptyMap();
         }
         Gson gson = new GsonBuilder().setLenient().create();

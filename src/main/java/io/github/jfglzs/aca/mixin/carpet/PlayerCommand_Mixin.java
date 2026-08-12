@@ -18,7 +18,9 @@ public abstract class PlayerCommand_Mixin {
     @Shadow
     private static ServerPlayer getPlayer(CommandContext<CommandSourceStack> context) {
         return null;
-    };
+    }
+
+    ;
 
     @Inject(
             method = "kill",

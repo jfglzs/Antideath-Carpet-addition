@@ -42,7 +42,7 @@ public class MemoryAllocationRateLogger extends AbstractHUDLogger {
     @Override
     public void updateHUD(MinecraftServer server) {
         if (Loggers.__mem) {
-            long free  = Runtime.getRuntime().freeMemory();
+            long free = Runtime.getRuntime().freeMemory();
             long total = Runtime.getRuntime().totalMemory();
 
             Component[] texts = {
@@ -51,8 +51,8 @@ public class MemoryAllocationRateLogger extends AbstractHUDLogger {
                                     Locale.ROOT,
                                     "g Allocation rate: %03dMB/s",
                                     toMiB(allocationRateCalculator.get(total - free))
-                            )
-                    )
+                                         )
+                               )
             };
             LoggerRegistry.getLogger(this.NAME).log(() -> texts);
         }
@@ -79,7 +79,8 @@ public class MemoryAllocationRateLogger extends AbstractHUDLogger {
             long l = System.currentTimeMillis();
             if (l - this.lastCalculated < 500L) {
                 return this.allocationRate;
-            } else {
+            }
+            else {
                 long m = getCollectionCount();
                 if (this.lastCalculated != 0L && m == this.collectionCount) {
                     double d = (double) TimeUnit.SECONDS.toMillis(1L) / (double) (l - this.lastCalculated);

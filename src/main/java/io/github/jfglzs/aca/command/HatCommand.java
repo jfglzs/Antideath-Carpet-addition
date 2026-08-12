@@ -13,19 +13,19 @@ import net.minecraft.world.item.ItemStack;
 import static net.minecraft.commands.Commands.literal;
 
 public class HatCommand {
-    public static void  register(CommandDispatcher<CommandSourceStack> dispatcher) {
+    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         LiteralArgumentBuilder<CommandSourceStack> command = literal("hat")
                 .requires((source) -> CommandHelper.canUseCommand(source, AcaSetting.enableHatCommand))
-                        .executes(context -> {
-                            if (context.getSource().getPlayer() instanceof ServerPlayer player) {
-                                Inventory inventory = player.getInventory();
-                                if (inventory.getItem(39).isEmpty()) {
-                                    ItemStack handItem = player.getMainHandItem().copyAndClear();
-                                    inventory.setItem(39, handItem);
-                                }
-                            }
-                            return Command.SINGLE_SUCCESS;
-                        });
+                .executes(context -> {
+                    if (context.getSource().getPlayer() instanceof ServerPlayer player) {
+                        Inventory inventory = player.getInventory();
+                        if (inventory.getItem(39).isEmpty()) {
+                            ItemStack handItem = player.getMainHandItem().copyAndClear();
+                            inventory.setItem(39, handItem);
+                        }
+                    }
+                    return Command.SINGLE_SUCCESS;
+                });
 
         dispatcher.register(command);
     }

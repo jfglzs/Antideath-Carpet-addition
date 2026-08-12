@@ -21,7 +21,7 @@ public interface Leashable_Mixin {
                     ordinal = 1
             )
     )
-     private static boolean dropLeash(Entity entity, Operation<Boolean> original) {
+    private static boolean dropLeash(Entity entity, Operation<Boolean> original) {
         if (AcaSetting.neverDropLeashBySpectator) {
             if (entity instanceof ServerPlayer player && player.isSpectator()) {
                 return true;

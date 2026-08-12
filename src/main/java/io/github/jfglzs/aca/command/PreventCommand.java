@@ -24,50 +24,50 @@ public class PreventCommand {
                         .then(literal("add")
                                 .then(argument("cmd", StringArgumentType.word())
                                         .executes(PreventCommand::addWhiteList)
-                                )
-                        )
+                                     )
+                             )
                         .then(literal("remove")
                                 .then(argument("cmd", StringArgumentType.word())
                                         .executes(PreventCommand::removeWhiteList)
-                                )
-                        )
+                                     )
+                             )
                         .then(literal("list")
                                 .executes(PreventCommand::listWhiteList)
-                        )
-                )
+                             )
+                     )
                 .then(literal("blacklist")
                         .then(literal("add")
                                 .then(argument("cmd", StringArgumentType.word())
                                         .executes(PreventCommand::addBlackList)
-                                )
-                        )
+                                     )
+                             )
                         .then(literal("remove")
                                 .then(argument("cmd", StringArgumentType.word())
                                         .executes(PreventCommand::removeBlackList)
-                                )
-                        )
+                                     )
+                             )
                         .then(literal("list")
                                 .executes(PreventCommand::listBlackList)
-                        )
-                )
+                             )
+                     )
                 .then(literal("prefix")
                         .then(literal("add")
                                 .then(argument("cmd", StringArgumentType.word())
                                         .executes(PreventCommand::addPrefix)
-                                )
-                        )
+                                     )
+                             )
                         .then(literal("remove")
                                 .then(argument("cmd", StringArgumentType.word())
                                         .executes(PreventCommand::removePrefix)
-                                )
-                        )
+                                     )
+                             )
                         .then(literal("list")
                                 .executes(PreventCommand::listPrefix)
-                        )
-                )
+                             )
+                     )
                 .then(literal("reload")
                         .executes(PreventCommand::reload)
-                );
+                     );
 
         dispatcher.register(argument);
     }
@@ -122,7 +122,8 @@ public class PreventCommand {
         if (isRemove) {
             ConfigUtils.removeConfig(cmd, index);
             context.getSource().sendSuccess(() -> Messenger.c(COMMAND_PREVENTER_PREFIX + feedback.formatted(cmd)), true);
-        } else {
+        }
+        else {
             ConfigUtils.addToConfig(cmd, index);
             context.getSource().sendSuccess(() -> Messenger.c(COMMAND_PREVENTER_PREFIX + feedback.formatted(cmd)), true);
         }

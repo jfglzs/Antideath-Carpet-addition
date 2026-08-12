@@ -13,14 +13,14 @@ import net.minecraft.world.entity.vehicle.boat.Boat;
 import net.minecraft.world.entity.vehicle.boat.AbstractBoat;
 //?} else {
 /*import net.minecraft.world.entity.vehicle.Boat;
-*///?}
+ *///?}
 
 //? if > 1.21.5 {
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 //?} else {
 /*import net.minecraft.nbt.CompoundTag;
-*///?}
+ *///?}
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -51,12 +51,12 @@ public class AbstractBoat_Mixin implements IVehicleAccessor {
             *///?} else {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/vehicle/boat/AbstractBoat;applyEffectsFromBlocks()V")
             //?}
-    )
-    //? if < 1.21.4 {
+            )
+            //? if < 1.21.4 {
     /*public void tick(Boat instance, Operation<Void> original) {
-    *///?} else {
-     public void tick(AbstractBoat instance, Operation<Void> original) {
-    //?}
+     *///?} else {
+    public void tick(AbstractBoat instance, Operation<Void> original) {
+        //?}
         if (AcaSetting.boatOptimization && this.aca$RideCount > 10) return;
         original.call(instance);
     }

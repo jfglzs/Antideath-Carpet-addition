@@ -33,13 +33,13 @@ public abstract class PlayerCommand_Mixin {
     private static ArgumentBuilder makeDropCommand(LiteralArgumentBuilder instance,
                                                    Command command,
                                                    Operation<ArgumentBuilder> original
-    ) {
+                                                  ) {
         ArgumentBuilder builder = original.call(instance, command);
 //        boolean bl = actionName.equals("dropStack");
         return builder.then(Commands.literal("enderChest")
-                             .executes(manipulation(ap -> ap.drop(-3, true))))
-                       .then(Commands.literal("withEnderChest")
-                             .executes(manipulation(ap -> ap.drop(-4, true)))
-                       );
+                        .executes(manipulation(ap -> ap.drop(-3, true))))
+                .then(Commands.literal("withEnderChest")
+                        .executes(manipulation(ap -> ap.drop(-4, true)))
+                     );
     }
 }

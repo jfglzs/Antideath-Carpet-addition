@@ -10,7 +10,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Mixin(NaturalSpawner.class)
@@ -20,20 +19,16 @@ public class NaturalSpawner_Mixin {
             method = "getFilteredSpawningCategories",
             at = @At(value = "RETURN")
     )
-    //? if < 26.2 {
+            //? if < 26.2 {
     private static void getFilteredSpawningCategories(NaturalSpawner.SpawnState state, boolean spawnFriendlies, boolean spawnEnemies, boolean spawnPersistent, CallbackInfoReturnable<List<MobCategory>> cir, @Local List<MobCategory> spawningCategories) {
-    //?} else {
-    // private static void getFilteredSpawningCategories(final NaturalSpawner.SpawnState state, final boolean spawnEnemies, final boolean spawnPersistent, CallbackInfoReturnable<List<MobCategory>> cir, @Local List<MobCategory> spawningCategories) {
-    //?}
+        //?} else {
+        // private static void getFilteredSpawningCategories(final NaturalSpawner.SpawnState state, final boolean spawnEnemies, final boolean spawnPersistent, CallbackInfoReturnable<List<MobCategory>> cir, @Local List<MobCategory> spawningCategories) {
+        //?}
         if (AcaSetting.mobSpawnOptimization) {
-            if (spawningCategories instanceof ArrayList<MobCategory>) {
-                if (!spawnPersistent && ((SpawnStateAccessor) state).ACA$canSpawnForCategoryGlobal(MobCategory.MONSTER)) {
-                    spawningCategories.remove(MobCategory.UNDERGROUND_WATER_CREATURE);
-                    spawningCategories.remove(MobCategory.WATER_CREATURE);
-                    spawningCategories.remove(MobCategory.WATER_AMBIENT);
-                    spawningCategories.remove(MobCategory.AXOLOTLS);
-                    spawningCategories.remove(MobCategory.AMBIENT);
-                }
+            if (spawningCategories.isEmpty()) return;
+
+            if (!spawnPersistent && ((SpawnStateAccessor) state).ACA$canSpawnForCategoryGlobal(MobCategory.MONSTER)) {
+                spawningCategories.clear();
             }
         }
     }

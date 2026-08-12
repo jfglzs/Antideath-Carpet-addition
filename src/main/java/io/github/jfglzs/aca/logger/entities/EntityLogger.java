@@ -42,7 +42,7 @@ public class EntityLogger extends AbstractHUDLogger {
                 builder.append(levelName).append(": ").append(size).append(" ");
             }
 
-            LoggerRegistry.getLogger(this.NAME).log(() -> new Component[] {Messenger.c(builder.toString())});
+            LoggerRegistry.getLogger(this.NAME).log(() -> new Component[]{Messenger.c(builder.toString())});
         }
     }
 
