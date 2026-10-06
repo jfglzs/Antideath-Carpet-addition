@@ -65,9 +65,6 @@ public class AcaSetting {
     public static boolean enableCommandPreventerPrefix = false;
 
     @Rule(categories = {ACA, OPTIMIZATION})
-    public static boolean fakePeaceOptimization = false;
-
-    @Rule(categories = {ACA, OPTIMIZATION})
     public static boolean villagerOptimization = false;
 
     @Rule(categories = {ACA, OPTIMIZATION})
@@ -87,9 +84,6 @@ public class AcaSetting {
 
     @Rule(categories = {ACA, SURVIVAL})
     public static boolean mcdrPrefixCompatible = false;
-
-    @Rule(categories = {ACA, EXPERIMENTAL})
-    public static boolean fixNbtFold = false;
 
     @Rule(categories = {ACA, SURVIVAL})
     public static boolean neverDropLeashBySpectator = false;

@@ -6,7 +6,7 @@ import io.github.jfglzs.aca.AcaSetting;
 import io.github.jfglzs.aca.accessors.IVillagerAccessor;
 import io.github.jfglzs.aca.utils.EntityUtils;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.npc.villager.Villager;
 //? if > 1.21.5 {
 import net.minecraft.world.level.storage.ValueInput;
@@ -53,7 +53,7 @@ public class Villager_Mixin implements IVillagerAccessor {
                         EntityUtils.getEntityPos(villager).add(-0.5, -0.5, -0.5)
                 );
 
-                this.aca$count = villager.level().getEntities(EntityType.VILLAGER, box, e -> true).size();
+                this.aca$count = villager.level().getEntities(EntityTypes.VILLAGER, box, e -> true).size();
             }
         }
     }

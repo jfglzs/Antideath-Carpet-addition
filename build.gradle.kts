@@ -72,6 +72,9 @@ repositories {
         url = uri("https://maven.fallenbreath.me/releases")
         content { includeGroup("me.fallenbreath") }
     }
+    maven {
+        url = uri("https://jitpack.io")
+    }
 }
 
 val commonVmArgs = listOf(
@@ -122,7 +125,12 @@ dependencies {
     }
     autoRuntimeOnly("me.fallenbreath:mixin-auditor:0.2.0-${if (unobfuscated) "u" else "o"}")
     autoImplementation("net.fabricmc:fabric-loader:${property("loader_version")}")
-    autoImplementation("carpet:fabric-carpet:${property("carpet_core_version")}")
+    if(minecraftVersion == "26.3") {
+        autoImplementation("com.github.gnembon:fabric-carpet:${property("carpet_core_version")}")
+    }
+    else {
+        autoImplementation("carpet:fabric-carpet:${property("carpet_core_version")}")
+    }
 }
 
 tasks.processResources {
