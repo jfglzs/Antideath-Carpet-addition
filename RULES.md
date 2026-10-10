@@ -97,13 +97,6 @@
 - 参考选项：`true`，`false`
 - 分类：`ACA`，`COMMAND`
 
-### 末影人不会被玩家激怒(endermanNeverGetAngryByPlayer)
-末影人不会被玩家激怒
-- 类型：`布尔值`
-- 默认值：`false`
-- 参考选项：`true`，`false`
-- 分类：`ACA`，`SURVIVAL`
-
 ### 自定义信标范围(beaconRange)
 自定义信标效果范围
 - 类型：`整数`
@@ -118,13 +111,6 @@
 - 参考选项：`true`，`false`
 - 分类：`ACA`，`SURVIVAL`
 
-### 伪和平优化(fakePeaceOptimization)
-优化强加在伪和平时的卡顿
-- 类型：`布尔值`
-- 默认值：`false`
-- 参考选项：`true`，`false`
-- 分类：`ACA`，`OPTIMIZATION`
-
 ### 村民优化(villagerOptimization)
 优化刷铁机中村民的卡顿
 - 类型：`布尔值`
@@ -133,18 +119,6 @@
 - 分类：`ACA`，`OPTIMIZATION`
 
 ### 船吸优化(boatOptimization)
-- 类型：`布尔值`
-- 默认值：`false`
-- 参考选项：`true`，`false`
-- 分类：`ACA`，`OPTIMIZATION`
-
-### 蜜蜂优化(BeeOptimization)
-- 类型：`布尔值`
-- 默认值：`false`
-- 参考选项：`true`，`false`
-- 分类：`ACA`，`OPTIMIZATION`
-
-### 潜影贝优化 (实验性) (shulkerOptimization)
 - 类型：`布尔值`
 - 默认值：`false`
 - 参考选项：`true`，`false`
