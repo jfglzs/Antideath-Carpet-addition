@@ -37,7 +37,7 @@ public class ACAServer implements CarpetExtension {
     @Override
     public void onServerClosed(MinecraftServer server) {
         ConfigUtils.saveConfig();
-        ThreadUtils.threadPool.shutdown();
+        ThreadUtils.THREAD_POOL.shutdown();
     }
 
     @Override
