@@ -98,6 +98,6 @@ public class AcaSetting {
     public static boolean hardDecoratedBlock = false;
 
     @Rule(categories = {ACA, SURVIVAL})
-    public static boolean mobSpawnOptimization = false;
+    public static boolean blockEntityIterationOptimization = false;
 }
 

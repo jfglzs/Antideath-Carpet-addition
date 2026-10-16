@@ -53,6 +53,6 @@
   "carpet.rule.neverDropLeashBySpectator.desc": "旁观者栓绳不会断裂",
   "carpet.rule.enableHatCommand.name": "/hat 命令",
   "carpet.rule.enableHatCommand.desc": "输入/hat可以将玩家主手的物品穿在头上",
-  "carpet.rule.mobSpawnOptimization.name": "生物生成优化",
-  "carpet.rule.mobSpawnOptimization.desc": "优化生物生成的卡顿"
+  "carpet.rule.blockEntityIterationOptimization.name": "方块实体遍历优化",
+  "carpet.rule.blockEntityIterationOptimization.desc": "优化方块实体遍历时调用Iterator#remove方法的卡顿"
 }

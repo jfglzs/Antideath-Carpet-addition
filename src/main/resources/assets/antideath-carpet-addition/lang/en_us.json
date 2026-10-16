@@ -32,5 +32,6 @@
   "carpet.rule.neverDropLeashBySpectator.desc": "leadNeverDropLeashBySpectator",
   "carpet.rule.enableHatCommand.desc": "hatCommand",
   "carpet.rule.mobSpawnOptimization.desc": "optimization mob spawn",
-  "carpet.rule.hardDecoratedBlock.desc": "hardDecoratedBlock"
+  "carpet.rule.hardDecoratedBlock.desc": "hardDecoratedBlock",
+  "carpet.rule.blockEntityIterationOptimization.desc": "blockEntityIterationOptimization"
 }
