@@ -38,16 +38,16 @@ public class FullSuppressBehaviorWrapper<E extends LivingEntity> implements Beha
     //?}
 
     @Override
-    public boolean tryStart(ServerLevel serverLevel, E livingEntity, long l) {
-        if ((livingEntity.tickCount ^ livingEntity.getId() & 255) == 0)
+    public boolean tryStart(ServerLevel level, E livingEntity, long l) {
+        if ((livingEntity.tickCount ^ livingEntity.getId()) % 719 == 0)
             this.shouldSkip = EntityUtils.shouldSkip(livingEntity);
         this.shouldSkip = this.shouldSkip && AcaSetting.villagerOptimization;
-        return this.shouldSkip || this.behaviorControl.tryStart(serverLevel, livingEntity, l);
+        return this.shouldSkip || this.behaviorControl.tryStart(level, livingEntity, l);
     }
 
     @Override
-    public void doStop(ServerLevel serverLevel, E livingEntity, long l) {
-        if (!this.shouldSkip) this.behaviorControl.doStop(serverLevel, livingEntity, l);
+    public void doStop(ServerLevel level, E livingEntity, long l) {
+        if (!this.shouldSkip) this.behaviorControl.doStop(level, livingEntity, l);
     }
 
     @Override

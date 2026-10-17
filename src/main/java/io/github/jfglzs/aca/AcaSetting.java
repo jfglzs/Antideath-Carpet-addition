@@ -76,9 +76,6 @@ public class AcaSetting {
     @Rule(categories = {ACA, SURVIVAL})
     public static boolean superSponge = false;
 
-    @Rule(categories = {ACA, SURVIVAL})
-    public static boolean fastClickPacketLimit = false;
-
     @Rule(categories = {ACA, OPTIMIZATION})
     public static boolean boatOptimization = false;
 
@@ -88,16 +85,10 @@ public class AcaSetting {
     @Rule(categories = {ACA, SURVIVAL})
     public static boolean neverDropLeashBySpectator = false;
 
-    @Rule(categories = {ACA, SURVIVAL})
-    public static boolean beeOptimization = false;
-
     @Rule(categories = {ACA, COMMAND}, options = {"1", "2", "3", "4", "true", "false"})
     public static String enableHatCommand = FALSE;
 
     @Rule(categories = {ACA, SURVIVAL})
     public static boolean hardDecoratedBlock = false;
-
-    @Rule(categories = {ACA, SURVIVAL})
-    public static boolean blockEntityIterationOptimization = false;
 }
 

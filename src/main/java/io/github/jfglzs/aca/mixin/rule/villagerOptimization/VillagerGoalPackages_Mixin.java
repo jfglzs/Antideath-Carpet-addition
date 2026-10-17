@@ -5,12 +5,6 @@ import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.mojang.datafixers.util.Pair;
 import io.github.jfglzs.aca.utils.wrap.FullSuppressBehaviorWrapper;
-//? if >= 1.21.5 {
-import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerLevel;
-import org.spongepowered.asm.mixin.Shadow;
-import net.minecraft.core.Holder;
-//?}
 import net.minecraft.world.entity.ai.behavior.*;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.ai.village.poi.PoiTypes;
@@ -18,6 +12,12 @@ import net.minecraft.world.entity.npc.villager.Villager;
 import net.minecraft.world.entity.npc.villager.VillagerProfession;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
+//? if >= 1.21.5 {
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import org.spongepowered.asm.mixin.Shadow;
+import net.minecraft.core.Holder;
+//?}
 
 import java.util.*;
 

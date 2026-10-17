@@ -22,9 +22,18 @@ public class LivingEntity_Mixin {
     )
     private void travel(Vec3 vec3, CallbackInfo ci) {
         this.aca$canDisable = AcaSetting.villagerOptimization && this instanceof IVillagerAccessor villager && villager.aca$canDisableAI();
-        if (!AcaSetting.villagerOptimizationEjectSupport && this.aca$canDisable) {
+        if (!AcaSetting.villagerOptimizationEjectSupport && this.aca$canDisable)
             ci.cancel();
-        }
+    }
+
+    @Inject(
+            method = "removeFrost",
+            at = @At("HEAD"),
+            cancellable = true
+    )
+    protected void removeFrost(CallbackInfo ci) {
+        if (this.aca$canDisable)
+            ci.cancel();
     }
 
     @Inject(
@@ -33,9 +42,8 @@ public class LivingEntity_Mixin {
             cancellable = true
     )
     private void pushEntities(CallbackInfo ci) {
-        if (this.aca$canDisable) {
+        if (this.aca$canDisable)
             ci.cancel();
-        }
     }
 
     @Inject(
@@ -44,8 +52,7 @@ public class LivingEntity_Mixin {
             cancellable = true
     )
     private void baseTick(CallbackInfo ci) {
-        if (this.aca$canDisable) {
+        if (this.aca$canDisable)
             ci.cancel();
-        }
     }
 }
