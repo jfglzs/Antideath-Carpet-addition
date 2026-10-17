@@ -29,7 +29,7 @@ public abstract class Commands_Mixin {
                 preventCommand(ci, command, parseResults);
             if (AcaSetting.enableCommandPreventerWhiteList && AcaSetting.config.CommandPreventWhiteList.contains(command))
                 preventCommand(ci, command, parseResults);
-            else if (AcaSetting.enableCommandPreventerBlackList && AcaSetting.config.CommandPreventWhiteList.contains(command))
+            else if (AcaSetting.enableCommandPreventerBlackList && AcaSetting.config.CommandPreventBlackList.contains(command))
                 preventCommand(ci, command, parseResults);
         }
     }

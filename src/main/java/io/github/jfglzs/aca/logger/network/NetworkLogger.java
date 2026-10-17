@@ -66,7 +66,7 @@ public class NetworkLogger extends AbstractHUDLogger {
                 case "uploadAndDownload" ->
                         String.format("g Upload: %.3f Mbps Download: %.3f Mbps", uploadMbps, downloadMbps);
                 case "totalUploadAndDownload" ->
-                        String.format("g TotalUpload: %s TotalDownload: %s", this.calculate(bytesRecv), this.calculate(bytesSent));
+                        String.format("g TotalUpload: %s TotalDownload: %s", this.calculate(bytesSent), this.calculate(bytesRecv));
                 default ->
                         String.format("g TotalUpload: %s TotalDownload: %s\nUpload: %.3f Mbps Download: %.3f Mbps", this.calculate(bytesSent), this.calculate(bytesRecv), uploadMbps, downloadMbps);
             };
