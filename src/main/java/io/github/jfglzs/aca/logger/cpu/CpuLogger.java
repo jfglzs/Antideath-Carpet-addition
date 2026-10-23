@@ -25,7 +25,7 @@ public class CpuLogger extends AbstractHUDLogger {
 
     static {
         try {
-            INSTANCE = new CpuLogger(Loggers.class.getField("__cpu"), "cpu", "cpu load", new String[]{"percore", "all", "fullcore", "others"}, true);
+            INSTANCE = new CpuLogger(Loggers.class.getField("__cpu"), "cpu", "cpu load", new String[]{"percore", "all", "fullcore"}, true);
         }
         catch (NoSuchFieldException e) {
             throw new RuntimeException(e);
@@ -104,58 +104,6 @@ public class CpuLogger extends AbstractHUDLogger {
 
                 perCoreLoads = list;
             }
-        }
-
-        private static void getOtherInfo() {
-            Computer computer = LibreHardwareManager.createInstance().getComputer();
-            computer.getHardware().stream().map(Hardware::getSensors).flatMap(Collection::stream).forEach(CpuLoadCalculator::sense);
-
-            List<Component> components = new ArrayList<>();
-            components.add(Messenger.c("g " + computer.getHardware().getFirst().getName()));
-            components.add(Messenger.c("g Power: %.0fW".formatted(INFO.get("Power").getFirst())));
-
-            int maxCores = Loggers.SYSTEM_INFO.getHardware().getProcessor().getPhysicalProcessors().size();
-
-            for (int i = 0; i < maxCores; i++) {
-                Component component = Messenger.c("g CPU%d: ".formatted(i + 1));
-
-                for (Map.Entry<String, DoubleArrayList> entry : INFO.entrySet()) {
-                    String type = entry.getKey();
-                    DoubleArrayList values = entry.getValue();
-
-                    if (i >= values.size())
-                        continue;
-
-                    double value = values.getDouble(i);
-
-                    switch (type) {
-                        case "Temperature" ->
-                                component = Messenger.c(component, "%s %.0f°C ".formatted(Messenger.heatmap_color(value, 100f), value));
-                        case "Clock" -> component = Messenger.c(component, "g %.0fMHz ".formatted(value));
-                        case "Voltage" -> component = Messenger.c(component, "g %.3fV ".formatted(value));
-                    }
-                }
-
-                components.add(component);
-            }
-
-            perCoreLoads1 = components;
-            INFO.values().forEach(DoubleArrayList::clear);
-        }
-
-        private static void sense(Sensor sensor) {
-            String name = sensor.getName();
-            double value = sensor.getValue();
-            String type = sensor.getSensorType();
-
-            if (type.equals("Temperature") && name.contains("CPU") && ! name.contains("TjMax") && ! name.equals("Package"))
-                INFO.get(type).add(value);
-            if (type.equals("Clock") && ! name.equals("Bus Speed"))
-                INFO.get(type).add(value);
-            if (type.equals("Power"))
-                INFO.get(type).add(value);
-            if (type.equals("Voltage") && ! name.equals("CPU Core"))
-                INFO.get(type).add(value);
         }
 
         private static Component coreLoad(int core, double load) {

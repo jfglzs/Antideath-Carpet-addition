@@ -127,7 +127,6 @@ dependencies {
     autoRuntimeOnly("me.fallenbreath:mixin-auditor:0.2.0-${if (unobfuscated) "u" else "o"}")
     autoImplementation("net.fabricmc:fabric-loader:${property("loader_version")}")
     autoImplementation("io.github.pandalxb:jLibreHardwareMonitor:1.0.6")
-    include("io.github.pandalxb:jLibreHardwareMonitor:1.0.6")
 
     if(minecraftVersion == "26.3") {
         autoImplementation("com.github.gnembon:fabric-carpet:${property("carpet_core_version")}")
