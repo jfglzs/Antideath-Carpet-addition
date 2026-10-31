@@ -2,6 +2,8 @@ package io.github.jfglzs.aca.logger.disk;
 
 import carpet.logging.LoggerRegistry;
 import carpet.utils.Messenger;
+import io.github.jfglzs.aca.ACAEntry;
+import io.github.jfglzs.aca.ACAServer;
 import io.github.jfglzs.aca.event.onLogging;
 import io.github.jfglzs.aca.logger.AbstractHUDLogger;
 import io.github.jfglzs.aca.logger.Loggers;
@@ -17,14 +19,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 public class DiskLogger extends AbstractHUDLogger {
     public static final DiskLogger INSTANCE;
     public static final Map<String, DiskSnapShot> LAST_READ_AND_WRITE;
+    public static volatile Component[] cache = new Component[0];
 
     static {
         try {
-            INSTANCE = new DiskLogger(Loggers.class.getField("___disk"), "disk", null, new String[]{"ReadAndWrite", "Storage"}, true);
+            INSTANCE = new DiskLogger(Loggers.class.getField("___disk"), "disk", null, null, true);
             LAST_READ_AND_WRITE = new HashMap<>();
             onLogging.event.register(INSTANCE::updateHUD);
         }
@@ -34,6 +38,7 @@ public class DiskLogger extends AbstractHUDLogger {
     }
 
     private long lastRequest = 0;
+    private CompletableFuture<Component[]> future = null;
 
     protected DiskLogger(Field acceleratorField, String logName, String def, String[] options, boolean isStrict) {
         super(acceleratorField, logName, def, options, isStrict);
@@ -42,11 +47,22 @@ public class DiskLogger extends AbstractHUDLogger {
     @Override
     public void updateHUD(MinecraftServer server) {
         if (Loggers.___disk) {
-            LoggerRegistry.getLogger(this.NAME).log(this::logDisk);
+            if (this.future == null || future.isDone()) {
+                this.future = CompletableFuture.supplyAsync(this::logDisk);
+                this.future.whenComplete((c, e) -> {
+                    if (e == null)
+                        cache = c;
+                    else
+                        ACAEntry.LOGGER.error("err when log disk", e);
+                });
+            }
+            else {
+                LoggerRegistry.getLogger(this.NAME).log(() -> cache);
+            }
         }
     }
 
-    public Component[] logDisk(String option) {
+    public Component[] logDisk() {
         long current = System.currentTimeMillis();
         long timeDeltaMs = current - this.lastRequest;
         List<Component> disks = new ArrayList<>();
@@ -54,16 +70,8 @@ public class DiskLogger extends AbstractHUDLogger {
 
         for (HWDiskStore store : diskStores) {
             disks.add(Messenger.c(String.format("g %s", store.getModel())));
-            if ("ReadAndWrite".equals(option)) {
-                this.logReadAndWrite(store, disks, timeDeltaMs);
-            }
-            else if ("Storage".equals(option)) {
-                this.logStorage(store, disks);
-            }
-            else {
-                this.logReadAndWrite(store, disks, timeDeltaMs);
-                this.logStorage(store, disks);
-            }
+            this.logReadAndWrite(store, disks, timeDeltaMs);
+            this.logStorage(store, disks);
         }
 
         this.lastRequest = current;
@@ -72,7 +80,7 @@ public class DiskLogger extends AbstractHUDLogger {
     }
 
     private void logReadAndWrite(HWDiskStore store, List<Component> disks, long timeDeltaMs) {
-        if (!LAST_READ_AND_WRITE.containsKey(store.getName())) {
+        if (! LAST_READ_AND_WRITE.containsKey(store.getName())) {
             LAST_READ_AND_WRITE.put(store.getName(), new DiskSnapShot(store.getReadBytes(), store.getWriteBytes()));
         }
         else if (timeDeltaMs > 0) {
@@ -96,7 +104,8 @@ public class DiskLogger extends AbstractHUDLogger {
     private void logStorage(HWDiskStore store, List<Component> disks) {
         for (HWPartition partition : store.getPartitions()) {
             var mountPoint = partition.getMountPoint();
-            if (mountPoint == null || mountPoint.isEmpty() || mountPoint.trim().contains("unknown")) continue;
+            if (mountPoint == null || mountPoint.isEmpty() || mountPoint.trim().contains("unknown"))
+                continue;
 
             File f = new File(mountPoint);
 

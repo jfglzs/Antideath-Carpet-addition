@@ -83,7 +83,6 @@ public class CpuLogger extends AbstractHUDLogger {
             while (true) {
 
                 try {
-                    getOtherInfo();
                     Thread.sleep(1000);
                 }
                 catch (InterruptedException e) {

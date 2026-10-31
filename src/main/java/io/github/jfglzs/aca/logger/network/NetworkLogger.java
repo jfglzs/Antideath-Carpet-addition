@@ -12,16 +12,11 @@ import oshi.hardware.NetworkIF;
 
 import java.lang.reflect.Field;
 import java.util.Set;
+import java.util.concurrent.CompletableFuture;
 
 public class NetworkLogger extends AbstractHUDLogger {
     public static final NetworkLogger INSTANCE;
-    public static Set<String> blackList = Set.of(
-            "virtual",
-            "vpn",
-            "tun",
-            "tunnel",
-            "radmin"
-                                                );
+    public static Set<String> blackList = Set.of("virtual", "vpn", "tun", "tunnel", "radmin");
 
     static {
         try {
