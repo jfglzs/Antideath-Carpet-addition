@@ -16,6 +16,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class NetworkLogger extends AbstractHUDLogger {
     public static final NetworkLogger INSTANCE;
+    public static final String OS = System.getProperty("os.name").toLowerCase();
     public static Set<String> blackList = Set.of("virtual", "vpn", "tun", "tunnel", "radmin");
 
     static {
@@ -81,7 +82,7 @@ public class NetworkLogger extends AbstractHUDLogger {
     }
 
     public boolean isPhysicDevice(NetworkIF nif) {
-        return blackList.stream().noneMatch(nif.getDisplayName().toLowerCase()::contains) && !nif.isKnownVmMacAddr();
+        return OS.contains("mac") ? nif.getName().startsWith("en0") : blackList.stream().noneMatch(nif.getDisplayName().toLowerCase()::contains) && !nif.isKnownVmMacAddr();
     }
 }
 

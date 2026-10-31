@@ -61,12 +61,12 @@ public class CpuLogger extends AbstractHUDLogger {
             Component fullCore = Messenger.c("g Cpu Load: ", String.format("%s %.2f%%", color, cpuLoad));
 
             Component[] cps = switch (option) {
-                case "all" -> ArrayUtils.add(pcarray, fullCore);
+                case "all" -> ArrayUtils.addFirst(pcarray, fullCore);
                 case "percore" -> pcarray;
                 default -> new Component[]{fullCore};
             };
 
-            return new Component[] {CPU_NAME, fullCore};
+            return ArrayUtils.addFirst(cps, CPU_NAME);
         }
 
         private static void getCpuPerCoreLoad() {
