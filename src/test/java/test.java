@@ -5,6 +5,6 @@ import java.util.List;
 
 public class test {
     public static void main(String[] args) {
-        System.out.println();
+        System.out.println(Loggers.SYSTEM_INFO.getHardware().getProcessor().getProcessorIdentifier().getName());
     }
 }

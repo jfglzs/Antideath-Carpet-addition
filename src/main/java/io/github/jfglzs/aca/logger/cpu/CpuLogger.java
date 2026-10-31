@@ -46,9 +46,8 @@ public class CpuLogger extends AbstractHUDLogger {
 
     static class CpuLoadCalculator {
         private static final OperatingSystemMXBean OS_BEAN = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
-        private static final Map<String, DoubleArrayList> INFO = new HashMap<>(Map.of("Temperature", new DoubleArrayList(), "Clock", new DoubleArrayList(), "Power", new DoubleArrayList(), "Voltage", new DoubleArrayList()));
+        private static final Component CPU_NAME = Messenger.c("g " + Loggers.SYSTEM_INFO.getHardware().getProcessor().getProcessorIdentifier().getName());
         private static volatile List<Component> perCoreLoads = new ArrayList<>();
-        private static volatile List<Component> perCoreLoads1 = new ArrayList<>();
 
         static {
             Thread.startVirtualThread(CpuLoadCalculator::getCpuPerCoreLoad);
@@ -57,21 +56,17 @@ public class CpuLogger extends AbstractHUDLogger {
         public static Component[] getCpuLoad(String option) {
             double cpuLoad = OS_BEAN.getCpuLoad() * 100;
             String color = Messenger.heatmap_color(cpuLoad, 100);
-            Component[] perCoreLoadArray = perCoreLoads.toArray(new Component[0]);
+            Component[] pcarray = perCoreLoads.toArray(new Component[0]);
 
             Component fullCore = Messenger.c("g Cpu Load: ", String.format("%s %.2f%%", color, cpuLoad));
 
-            if (option.equals("all")) {
-                return ArrayUtils.add(perCoreLoadArray, fullCore);
-            }
-            else if (option.equals("percore")) {
-                return perCoreLoadArray;
-            }
-            else if (option.equals("others")) {
-                return perCoreLoads1.toArray(new Component[0]);
-            }
+            Component[] cps = switch (option) {
+                case "all" -> ArrayUtils.add(pcarray, fullCore);
+                case "percore" -> pcarray;
+                default -> new Component[]{fullCore};
+            };
 
-            return new Component[]{fullCore};
+            return new Component[] {CPU_NAME, fullCore};
         }
 
         private static void getCpuPerCoreLoad() {
