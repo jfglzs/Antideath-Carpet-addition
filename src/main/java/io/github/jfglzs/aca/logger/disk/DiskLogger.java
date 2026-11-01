@@ -8,6 +8,7 @@ import io.github.jfglzs.aca.event.onLogging;
 import io.github.jfglzs.aca.logger.AbstractHUDLogger;
 import io.github.jfglzs.aca.logger.Loggers;
 import io.github.jfglzs.aca.utils.DataUtils;
+import io.github.jfglzs.aca.utils.ThreadUtils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
 import oshi.hardware.HWDiskStore;
@@ -48,7 +49,7 @@ public class DiskLogger extends AbstractHUDLogger {
     public void updateHUD(MinecraftServer server) {
         if (Loggers.___disk) {
             if (this.future == null || future.isDone()) {
-                this.future = CompletableFuture.supplyAsync(this::logDisk);
+                this.future = CompletableFuture.supplyAsync(this::logDisk, ThreadUtils.THREAD_POOL);
                 this.future.whenComplete((c, e) -> {
                     if (e == null)
                         cache = c;
@@ -56,9 +57,7 @@ public class DiskLogger extends AbstractHUDLogger {
                         ACAEntry.LOGGER.error("err when log disk", e);
                 });
             }
-            else {
-                LoggerRegistry.getLogger(this.NAME).log(() -> cache);
-            }
+            LoggerRegistry.getLogger(this.NAME).log(() -> cache);
         }
     }
 
