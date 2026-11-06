@@ -8,8 +8,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
 
 public class EntityUtils {
-    public static final LongObjectHashMap<Cache<Direction>> ATTACHABLES = new LongObjectHashMap<>();
-
     public static Vec3 getEntityPos(Entity entity) {
         return entity.position();
     }

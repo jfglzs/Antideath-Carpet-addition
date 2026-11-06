@@ -29,9 +29,6 @@ public class ACAServer implements CarpetExtension {
 
     @Override
     public void onTick(MinecraftServer server) {
-        for (Cache<Direction> value : EntityUtils.ATTACHABLES.values()) {
-            value.tick();
-        }
     }
 
     @Override

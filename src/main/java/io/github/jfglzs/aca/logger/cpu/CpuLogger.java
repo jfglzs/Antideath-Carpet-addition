@@ -6,14 +6,8 @@ import com.sun.management.OperatingSystemMXBean;
 import io.github.jfglzs.aca.event.onLogging;
 import io.github.jfglzs.aca.logger.AbstractHUDLogger;
 import io.github.jfglzs.aca.logger.Loggers;
-import io.github.pandalxb.jlibrehardwaremonitor.manager.LibreHardwareManager;
-import io.github.pandalxb.jlibrehardwaremonitor.model.Computer;
-import io.github.pandalxb.jlibrehardwaremonitor.model.Hardware;
-import io.github.pandalxb.jlibrehardwaremonitor.model.Sensor;
-import it.unimi.dsi.fastutil.doubles.DoubleArrayList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
-import org.apache.commons.lang3.ArrayUtils;
 import oshi.hardware.CentralProcessor;
 
 import java.lang.management.ManagementFactory;
@@ -39,15 +33,14 @@ public class CpuLogger extends AbstractHUDLogger {
 
     @Override
     public void updateHUD(MinecraftServer server) {
-        if (Loggers.__cpu) {
+        if (Loggers.__cpu)
             LoggerRegistry.getLogger(this.NAME).log(CpuLoadCalculator::getCpuLoad);
-        }
     }
 
     static class CpuLoadCalculator {
         private static final OperatingSystemMXBean OS_BEAN = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
-        private static final Component CPU_NAME = Messenger.c("g " + Loggers.SYSTEM_INFO.getHardware().getProcessor().getProcessorIdentifier().getName());
-        private static volatile List<Component> perCoreLoads = new ArrayList<>();
+        private static final Component CPU_NAME = Messenger.c("g CPU: " + Loggers.SYSTEM_INFO.getHardware().getProcessor().getProcessorIdentifier().getName());
+        private static volatile double[] coreLoads = new double[0];
 
         static {
             Thread.startVirtualThread(CpuLoadCalculator::getCpuPerCoreLoad);
@@ -56,47 +49,45 @@ public class CpuLogger extends AbstractHUDLogger {
         public static Component[] getCpuLoad(String option) {
             double cpuLoad = OS_BEAN.getCpuLoad() * 100;
             String color = Messenger.heatmap_color(cpuLoad, 100);
-            Component[] pcarray = perCoreLoads.toArray(new Component[0]);
+            Component fullCoreText = Messenger.c("g Cpu Load: ", String.format("%s %.2f%%", color, cpuLoad));
+            List<Component> resultText = new ArrayList<>();
+            List<Component> percoreText = new ArrayList<>();
 
-            Component fullCore = Messenger.c("g Cpu Load: ", String.format("%s %.2f%%", color, cpuLoad));
+            for (int i = 0; i < coreLoads.length; i += 2) {
+                percoreText.add(Messenger.c(coreLoad(i + 1, coreLoads[i]), "g  | ", coreLoad(i + 2, coreLoads[i + 1])));
+            }
 
-            Component[] cps = switch (option) {
-                case "all" -> ArrayUtils.addFirst(pcarray, fullCore);
-                case "percore" -> pcarray;
-                default -> new Component[]{fullCore};
-            };
+            resultText.add(CPU_NAME);
 
-            return ArrayUtils.addFirst(cps, CPU_NAME);
+            if (option.equals("all")) {
+                resultText.addAll(percoreText);
+                resultText.add(fullCoreText);
+            }
+            else if (option.equals("percore")) {
+                resultText.addAll(percoreText);
+            }
+            else {
+                resultText.add(fullCoreText);
+            }
+
+            return resultText.toArray(new Component[0]);
         }
 
         private static void getCpuPerCoreLoad() {
             CentralProcessor processor = Loggers.SYSTEM_INFO.getHardware().getProcessor();
 
-            // 第一次获取初始 Ticks
             long[][] prevTicks = processor.getProcessorCpuLoadTicks();
 
             while (true) {
-
                 try {
                     Thread.sleep(1000);
                 }
-                catch (InterruptedException e) {
-                    throw new RuntimeException(e);
+                catch (Exception e) {
                 }
-
-                // 计算当前时刻与上一次 Ticks 之间的负载
-                double[] coreLoads = processor.getProcessorCpuLoadBetweenTicks(prevTicks);
-
-                prevTicks = processor.getProcessorCpuLoadTicks();
-
-                ArrayList<Component> list = new ArrayList<>();
-
-                // 格式化输出
-                for (int i = 0; i < coreLoads.length; i += 2) {
-                    list.add(Messenger.c(coreLoad(i + 1, coreLoads[i]), "g  | ", coreLoad(i + 2, coreLoads[i + 1])));
+                finally {
+                    coreLoads = processor.getProcessorCpuLoadBetweenTicks(prevTicks);
+                    prevTicks = processor.getProcessorCpuLoadTicks();
                 }
-
-                perCoreLoads = list;
             }
         }
 

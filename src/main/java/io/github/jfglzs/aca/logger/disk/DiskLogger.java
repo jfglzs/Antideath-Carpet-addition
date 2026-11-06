@@ -25,11 +25,10 @@ import java.util.concurrent.CompletableFuture;
 public class DiskLogger extends AbstractHUDLogger {
     public static final DiskLogger INSTANCE;
     public static final Map<String, DiskSnapShot> LAST_READ_AND_WRITE;
-    public static volatile Component[] cache = new Component[0];
 
     static {
         try {
-            INSTANCE = new DiskLogger(Loggers.class.getField("___disk"), "disk", null, null, true);
+            INSTANCE = new DiskLogger(Loggers.class.getField("___disk"), "disk", null, new String[]{"ReadAndWrite", "Storage"}, true);
             LAST_READ_AND_WRITE = new HashMap<>();
             onLogging.event.register(INSTANCE::updateHUD);
         }
@@ -38,9 +37,9 @@ public class DiskLogger extends AbstractHUDLogger {
         }
     }
 
-    private long lastRequest = 0;
-    private CompletableFuture<Component[]> future = null;
 
+    public static volatile List<HWDiskStore> cache = new ArrayList<>();
+    private CompletableFuture<List<HWDiskStore>> future = null;
     protected DiskLogger(Field acceleratorField, String logName, String def, String[] options, boolean isStrict) {
         super(acceleratorField, logName, def, options, isStrict);
     }
@@ -49,7 +48,7 @@ public class DiskLogger extends AbstractHUDLogger {
     public void updateHUD(MinecraftServer server) {
         if (Loggers.___disk) {
             if (this.future == null || future.isDone()) {
-                this.future = CompletableFuture.supplyAsync(this::logDisk, ThreadUtils.THREAD_POOL);
+                this.future = CompletableFuture.supplyAsync(Loggers.SYSTEM_INFO.getHardware()::getDiskStores, ThreadUtils.THREAD_POOL);
                 this.future.whenComplete((c, e) -> {
                     if (e == null)
                         cache = c;
@@ -57,20 +56,29 @@ public class DiskLogger extends AbstractHUDLogger {
                         ACAEntry.LOGGER.error("err when log disk", e);
                 });
             }
-            LoggerRegistry.getLogger(this.NAME).log(() -> cache);
+            LoggerRegistry.getLogger(this.NAME).log(this::logDisk);
         }
     }
 
-    public Component[] logDisk() {
+    private long lastRequest = 0;
+
+    public Component[] logDisk(String option) {
         long current = System.currentTimeMillis();
         long timeDeltaMs = current - this.lastRequest;
         List<Component> disks = new ArrayList<>();
-        List<HWDiskStore> diskStores = Loggers.SYSTEM_INFO.getHardware().getDiskStores();
 
-        for (HWDiskStore store : diskStores) {
+        for (HWDiskStore store : cache) {
             disks.add(Messenger.c(String.format("g %s", store.getModel())));
-            this.logReadAndWrite(store, disks, timeDeltaMs);
-            this.logStorage(store, disks);
+            if ("ReadAndWrite".equals(option)) {
+                this.logReadAndWrite(store, disks, timeDeltaMs);
+            }
+            else if ("Storage".equals(option)) {
+                this.logStorage(store, disks);
+            }
+            else {
+                this.logReadAndWrite(store, disks, timeDeltaMs);
+                this.logStorage(store, disks);
+            }
         }
 
         this.lastRequest = current;
