@@ -6,6 +6,7 @@ import com.sun.management.OperatingSystemMXBean;
 import io.github.jfglzs.aca.event.onLogging;
 import io.github.jfglzs.aca.logger.AbstractHUDLogger;
 import io.github.jfglzs.aca.logger.Loggers;
+import io.github.jfglzs.aca.utils.ThreadUtils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
 import oshi.hardware.CentralProcessor;
@@ -40,10 +41,11 @@ public class CpuLogger extends AbstractHUDLogger {
     static class CpuLoadCalculator {
         private static final OperatingSystemMXBean OS_BEAN = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
         private static final Component CPU_NAME = Messenger.c("g CPU: " + Loggers.SYSTEM_INFO.getHardware().getProcessor().getProcessorIdentifier().getName());
+        private static final String SPLIT = "g  | ";
         private static volatile double[] coreLoads = new double[0];
 
         static {
-            Thread.startVirtualThread(CpuLoadCalculator::getCpuPerCoreLoad);
+            ThreadUtils.THREAD_POOL.submit(CpuLoadCalculator::getCpuPerCoreLoad);
         }
 
         public static Component[] getCpuLoad(String option) {
@@ -53,8 +55,25 @@ public class CpuLogger extends AbstractHUDLogger {
             List<Component> resultText = new ArrayList<>();
             List<Component> percoreText = new ArrayList<>();
 
-            for (int i = 0; i < coreLoads.length; i += 2) {
-                percoreText.add(Messenger.c(coreLoad(i + 1, coreLoads[i]), "g  | ", coreLoad(i + 2, coreLoads[i + 1])));
+            if (coreLoads.length % 4 == 0) {
+                for (int i = 0; i < coreLoads.length; i += 4)
+                    percoreText.add(Messenger.c(
+                            coreLoad(i + 1, coreLoads[i]),
+                            SPLIT,
+                            coreLoad(i + 2, coreLoads[i + 1]),
+                            SPLIT,
+                            coreLoad(i + 3, coreLoads[i + 2]),
+                            SPLIT,
+                            coreLoad(i + 4, coreLoads[i + 3]))
+                                   );
+            }
+            else {
+                for (int i = 0; i < coreLoads.length; i += 2)
+                    percoreText.add(Messenger.c(
+                            coreLoad(i + 1, coreLoads[i]),
+                            SPLIT,
+                            coreLoad(i + 2, coreLoads[i + 1]))
+                                   );
             }
 
             resultText.add(CPU_NAME);
