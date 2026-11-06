@@ -9,11 +9,13 @@ import io.github.jfglzs.aca.logger.Loggers;
 import io.github.jfglzs.aca.utils.ThreadUtils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
+import org.apache.commons.lang3.StringUtils;
 import oshi.hardware.CentralProcessor;
 
 import java.lang.management.ManagementFactory;
 import java.lang.reflect.Field;
 import java.util.*;
+import java.util.concurrent.locks.LockSupport;
 
 public class CpuLogger extends AbstractHUDLogger {
     public static final CpuLogger INSTANCE;
@@ -40,7 +42,7 @@ public class CpuLogger extends AbstractHUDLogger {
 
     static class CpuLoadCalculator {
         private static final OperatingSystemMXBean OS_BEAN = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
-        private static final Component CPU_NAME = Messenger.c("g CPU: " + Loggers.SYSTEM_INFO.getHardware().getProcessor().getProcessorIdentifier().getName());
+        private static final Component CPU_NAME = Messenger.c("g CPU: " + StringUtils.stripEnd(Loggers.SYSTEM_INFO.getHardware().getProcessor().getProcessorIdentifier().getName(), " "));
         private static final String SPLIT = "g  | ";
         private static volatile double[] coreLoads = new double[0];
 
@@ -69,11 +71,7 @@ public class CpuLogger extends AbstractHUDLogger {
             }
             else {
                 for (int i = 0; i < coreLoads.length; i += 2)
-                    percoreText.add(Messenger.c(
-                            coreLoad(i + 1, coreLoads[i]),
-                            SPLIT,
-                            coreLoad(i + 2, coreLoads[i + 1]))
-                                   );
+                    percoreText.add(Messenger.c(coreLoad(i + 1, coreLoads[i]), SPLIT, coreLoad(i + 2, coreLoads[i + 1])));
             }
 
             resultText.add(CPU_NAME);
@@ -101,7 +99,7 @@ public class CpuLogger extends AbstractHUDLogger {
                 try {
                     Thread.sleep(1000);
                 }
-                catch (Exception e) {
+                catch (Exception ignored) {
                 }
                 finally {
                     coreLoads = processor.getProcessorCpuLoadBetweenTicks(prevTicks);
@@ -112,8 +110,10 @@ public class CpuLogger extends AbstractHUDLogger {
 
         private static Component coreLoad(int core, double load) {
             double percent = load * 100;
-            String coreInfo = "g C%s: ".formatted(core);
-            String coreLoad = "%s %.0f%%".formatted(Messenger.heatmap_color(percent, 100), percent);
+
+            String coreInfo = "g C%s: ".formatted(core >= 10 ? core : "0" + core);
+            String coreLoad = "%s %4.0f%%".formatted(Messenger.heatmap_color(percent, 100), percent);
+
             return Messenger.c(coreInfo, coreLoad);
         }
     }
