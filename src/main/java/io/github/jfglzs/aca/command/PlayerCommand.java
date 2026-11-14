@@ -66,40 +66,4 @@ public class PlayerCommand {
         }
         return 0;
     }
-
-//    public static int makePrivate(CommandContext<CommandSourceStack> ctx) {
-//        var player_ = PlayerCommand_Invoker.getPlayer(ctx);
-//        var fakesAndOwners = AcaSetting.config.privateFakesAndOwners;
-//        if (player_ instanceof EntityPlayerMPFake fakePlayer) {
-//            for (UUID uuid : fakesAndOwners.keySet()) {
-//                if (fakesAndOwners.get(uuid) instanceof List<UUID> uuids) {
-//                    if (uuids.contains(fakePlayer.getUUID())) {
-//                        Messenger.m(ctx.getSource(), "r player %s is already own by %s".formatted(fakePlayer.getName().getString(), ctx.getSource().getServer().getPlayerList().getPlayer(uuid)));
-//                        return 1;
-//                    }
-//                }
-//            }
-//
-//            if (ctx.getSource().getPlayer() instanceof ServerPlayer realPlayer) {
-//                var fakePlayerUUID = fakePlayer.getUUID();
-//                var realPlayerUUID = realPlayer.getUUID();
-//                if (fakesAndOwners.get(fakePlayerUUID) instanceof List<UUID> uuids) {
-//                    uuids.add(fakePlayerUUID);
-//                }
-//                else {
-//                    fakesAndOwners.put(realPlayerUUID, new ArrayList<>(Collections.singleton(fakePlayerUUID)));
-//                }
-//                Messenger.m(realPlayer, "g fake player %s is own by you".formatted(fakePlayer.getName().getString()));
-//                return 0;
-//            }
-//        }
-//        return 1;
-//    }
-
-//    private static int makePublic(CommandContext<CommandSourceStack> context) {
-//        if (context.getSource().getPlayer() instanceof ServerPlayer) {
-//
-//        }
-//        return 0;
-//    }
 }

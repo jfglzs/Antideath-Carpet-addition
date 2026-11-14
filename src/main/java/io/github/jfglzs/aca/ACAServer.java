@@ -28,13 +28,9 @@ public class ACAServer implements CarpetExtension {
     }
 
     @Override
-    public void onTick(MinecraftServer server) {
-    }
-
-    @Override
     public void onServerClosed(MinecraftServer server) {
         ConfigUtils.saveConfig();
-        ThreadUtils.THREAD_POOL.shutdown();
+        ThreadUtils.THREAD_POOL.shutdownNow();
     }
 
     @Override
@@ -49,10 +45,7 @@ public class ACAServer implements CarpetExtension {
 
     @Override
     public void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext commandBuildContext) {
-        SearchEntityCommand.registerCommand(dispatcher);
-        PreventCommand.registerCommand(dispatcher);
         PlayerCommand.registerCommand(dispatcher);
-        HatCommand.register(dispatcher);
     }
 
     @Override

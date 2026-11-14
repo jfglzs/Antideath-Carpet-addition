@@ -37,9 +37,9 @@ public class DiskLogger extends AbstractHUDLogger {
         }
     }
 
-
     public static volatile List<HWDiskStore> cache = new ArrayList<>();
     private CompletableFuture<List<HWDiskStore>> future = null;
+
     protected DiskLogger(Field acceleratorField, String logName, String def, String[] options, boolean isStrict) {
         super(acceleratorField, logName, def, options, isStrict);
     }
@@ -111,6 +111,7 @@ public class DiskLogger extends AbstractHUDLogger {
     private void logStorage(HWDiskStore store, List<Component> disks) {
         for (HWPartition partition : store.getPartitions()) {
             var mountPoint = partition.getMountPoint();
+
             if (mountPoint == null || mountPoint.isEmpty() || mountPoint.trim().contains("unknown"))
                 continue;
 

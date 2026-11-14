@@ -15,7 +15,6 @@ import oshi.hardware.CentralProcessor;
 import java.lang.management.ManagementFactory;
 import java.lang.reflect.Field;
 import java.util.*;
-import java.util.concurrent.locks.LockSupport;
 
 public class CpuLogger extends AbstractHUDLogger {
     public static final CpuLogger INSTANCE;
@@ -70,8 +69,8 @@ public class CpuLogger extends AbstractHUDLogger {
                                    );
             }
             else {
-                for (int i = 0; i < coreLoads.length; i += 2)
-                    percoreText.add(Messenger.c(coreLoad(i + 1, coreLoads[i]), SPLIT, coreLoad(i + 2, coreLoads[i + 1])));
+                for (int i = 0; i < coreLoads.length; i++)
+                    percoreText.add(Messenger.c(coreLoad(i + 1, coreLoads[i])));
             }
 
             resultText.add(CPU_NAME);
@@ -99,7 +98,8 @@ public class CpuLogger extends AbstractHUDLogger {
                 try {
                     Thread.sleep(1000);
                 }
-                catch (Exception ignored) {
+                catch (InterruptedException e) {
+                    return;
                 }
                 finally {
                     coreLoads = processor.getProcessorCpuLoadBetweenTicks(prevTicks);
