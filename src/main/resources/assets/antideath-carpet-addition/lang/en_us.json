@@ -30,5 +30,5 @@
   "carpet.rule.enablePlayerLockCommand.desc": "fakePlayerLockCommand",
   "carpet.rule.fixNbtFold.desc": "fixNbtFold",
   "carpet.rule.neverDropLeashBySpectator.desc": "leadNeverDropLeashBySpectator",
-  "carpet.rule.enableHatCommand.desc": "hatCommand"
+  "carpet.rule.multiThreadWorldSave.desc": "multiThreadWorldSave"
 }

@@ -18,5 +18,7 @@
   "carpet.rule.mcdrPrefixCompatible.name": "MCDR前缀兼容",
   "carpet.rule.mcdrPrefixCompatible.desc": "可以让带有玩家名称前缀/后缀的服务器 兼容MCDR",
   "carpet.rule.neverDropLeashBySpectator.name": "旁观者栓绳不会断裂",
-  "carpet.rule.neverDropLeashBySpectator.desc": "旁观者栓绳不会断裂"
+  "carpet.rule.neverDropLeashBySpectator.desc": "旁观者栓绳不会断裂",
+  "carpet.rule.multiThreadWorldSave.name": "多线程世界保存",
+  "carpet.rule.multiThreadWorldSave.desc": "每一个 ServerLevel 都使用一个线程来保存数据 可以降低/save-all flush的卡顿"
 }
