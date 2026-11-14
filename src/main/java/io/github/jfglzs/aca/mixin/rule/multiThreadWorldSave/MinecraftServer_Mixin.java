@@ -1,16 +1,10 @@
 package io.github.jfglzs.aca.mixin.rule.multiThreadWorldSave;
 
-import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import io.github.jfglzs.aca.ACAEntry;
 import io.github.jfglzs.aca.AcaSetting;
+import io.github.jfglzs.aca.accessors.MinecraftServerAccessor;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.ProgressListener;
-import org.slf4j.Logger;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -23,32 +17,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 @Mixin(MinecraftServer.class)
-public class MinecraftServer_Mixin {
-    @Shadow
-    @Final
-    private static Logger LOGGER;
+public class MinecraftServer_Mixin implements MinecraftServerAccessor {
     @Unique private List<Future<?>> aca$threads;
     @Unique private ExecutorService aca$executor = Executors.newFixedThreadPool(10);
-
-    @WrapOperation(
-            method = "saveAllChunks",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/server/level/ServerLevel;save(Lnet/minecraft/util/ProgressListener;ZZ)V"
-            )
-    )
-    public void saveAllChunks(ServerLevel level, ProgressListener progressListener, boolean flush, boolean noSave,
-                              Operation<Void> original) {
-        if (AcaSetting.multiThreadWorldSave) {
-            this.ensureThreads();
-            this.aca$threads.add(this.aca$executor.submit(() -> {
-                LOGGER.info("Async Saving chunks for {}", level.getChunkSource().chunkMap.getStorageName());
-                original.call(level, progressListener, flush, noSave);
-            }));
-            return;
-        }
-        original.call(level, progressListener, flush, noSave);
-    }
 
     @Inject(
             method = "saveAllChunks",
@@ -66,7 +37,7 @@ public class MinecraftServer_Mixin {
                 future.get();
             }
             catch (Exception e) {
-                ACAEntry.LOGGER.error("Failed to save all chunks", e);
+                ACAEntry.LOGGER.error("Failed to save world", e);
                 throw new RuntimeException(e);
             }
         }
@@ -74,8 +45,19 @@ public class MinecraftServer_Mixin {
         this.aca$threads.clear();
     }
 
+    @Override
+    public List<Future<?>> asa$getFutures() {
+        ensure();
+        return this.aca$threads;
+    }
+
+    @Override
+    public ExecutorService asa$getExecutor() {
+        return this.aca$executor;
+    }
+
     @Unique
-    private void ensureThreads() {
+    private void ensure() {
         if (this.aca$threads == null)
             this.aca$threads = new ArrayList<>();
     }

@@ -17,6 +17,7 @@
     "rule.lightningDoNotRecordOthers.LightningBolt_Mixin",
     "rule.mcdrPrefixCompatible.PlayerList_Mixin",
     "rule.multiThreadWorldSave.MinecraftServer_Mixin",
+    "rule.multiThreadWorldSave.ServerLevel_Mixin",
     "rule.neverDropLeashBySpectator.Leashable_Mixin",
     "rule.villagerOptimization.Brain_Mixin",
     "rule.villagerOptimization.Entity_Mixin",
