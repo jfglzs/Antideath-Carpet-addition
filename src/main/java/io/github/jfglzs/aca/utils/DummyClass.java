@@ -1,0 +1,4 @@
+package io.github.jfglzs.aca.utils;
+
+public class DummyClass {
+}

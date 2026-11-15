@@ -25,7 +25,7 @@ public class MinecraftServer_Mixin implements MinecraftServerAccessor {
             method = "saveAllChunks",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/server/MinecraftServer;getSingleplayerProfile()Lcom/mojang/authlib/GameProfile;"
+                    target = "Lnet/minecraft/server/MinecraftServer;getAllLevels()Ljava/lang/Iterable;"
             )
     )
     public void saveAllChunks(CallbackInfoReturnable<Boolean> cir) {
