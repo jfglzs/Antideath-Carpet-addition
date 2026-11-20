@@ -20,5 +20,7 @@
   "carpet.rule.neverDropLeashBySpectator.name": "旁观者栓绳不会断裂",
   "carpet.rule.neverDropLeashBySpectator.desc": "旁观者栓绳不会断裂",
   "carpet.rule.multiThreadWorldSave.name": "多线程世界保存",
-  "carpet.rule.multiThreadWorldSave.desc": "每一个 ServerLevel 都使用一个线程来保存数据 可以降低/save-all flush的卡顿"
+  "carpet.rule.multiThreadWorldSave.desc": "使用多线程来加速世界保存 可以降低/save-all flush的卡顿",
+  "carpet.rule.disableSystemReportRecordHardware.name": "禁止SystemReport记录硬件",
+  "carpet.rule.disableSystemReportRecordHardware.desc": "可以降低频繁fillCrashReport时的卡顿（你说这有什么用?）\n切门玩家: 这可太有用了，切门终于不会卡主线程了(MacOS only)"
 }

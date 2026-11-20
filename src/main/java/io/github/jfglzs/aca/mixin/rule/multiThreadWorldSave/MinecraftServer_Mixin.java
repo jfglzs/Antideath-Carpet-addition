@@ -32,6 +32,8 @@ public class MinecraftServer_Mixin implements MinecraftServerAccessor {
         if (! AcaSetting.multiThreadWorldSave)
             return;
 
+        ensure();
+
         for (Future<?> future : this.aca$threads) {
             try {
                 future.get();

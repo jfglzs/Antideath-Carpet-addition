@@ -13,6 +13,7 @@ public class ACAEntry implements ModInitializer {
     public static final String MOD_ID = "antideath-carpet-addition";
     public static final String FANCY_NAME = "Antideath Carpet Addition";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+
     public static final int ruleAmount;
     public static String MOD_VER;
 

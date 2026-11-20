@@ -53,5 +53,8 @@ public class AcaSetting {
 
     @Rule(categories = {ACA, OPTIMIZATION})
     public static boolean multiThreadWorldSave = false;
+
+    @Rule(categories = {ACA, OPTIMIZATION})
+    public static boolean disableSystemReportRecordHardware = false;
 }
 

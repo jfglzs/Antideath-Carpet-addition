@@ -10,6 +10,8 @@ import io.github.jfglzs.aca.utils.RuleTranslator;
 import io.github.jfglzs.aca.utils.ThreadUtils;
 import io.github.jfglzs.aca.utils.config.ConfigUtils;
 import io.github.jfglzs.aca.utils.wrap.Cache;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.Direction;
@@ -20,6 +22,8 @@ import java.util.Map;
 public class ACAServer implements CarpetExtension {
     public static final ACAServer INSTANCE = new ACAServer();
     public static final MinecraftServer MINECRAFT_SERVER = CarpetServer.minecraft_server;
+    public static final EnvType ENV_TYPE = FabricLoader.getInstance().getEnvironmentType();
+
 
     @Override
     public void onGameStarted() {

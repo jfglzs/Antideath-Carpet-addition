@@ -30,5 +30,6 @@
   "carpet.rule.enablePlayerLockCommand.desc": "fakePlayerLockCommand",
   "carpet.rule.fixNbtFold.desc": "fixNbtFold",
   "carpet.rule.neverDropLeashBySpectator.desc": "leadNeverDropLeashBySpectator",
-  "carpet.rule.multiThreadWorldSave.desc": "multiThreadWorldSave"
+  "carpet.rule.multiThreadWorldSave.desc": "multiThreadWorldSave",
+  "carpet.rule.disableSystemReportRecordHardware.desc": "disableSystemReportRecordHardware"
 }

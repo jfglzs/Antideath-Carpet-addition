@@ -10,9 +10,7 @@ import java.util.function.Consumer;
 public class ThreadUtils {
     public static final ExecutorService THREAD_POOL = Executors.newCachedThreadPool();
 
-    public static <T> void parallel(List<T> list, int batchSize, Consumer<List<T>> processor, ExecutorService pool, boolean autoClose) {
-        ExecutorService executor = pool;
-
+    public static <T> void parallel(List<T> list, int batchSize, Consumer<List<T>> processor, ExecutorService pool, boolean autoShutDown) {
         try {
             List<Future<?>> futures = new ArrayList<>();
 
@@ -20,7 +18,7 @@ public class ThreadUtils {
                 int from = i;
                 int to = Math.min(i + batchSize, list.size());
 
-                futures.add(executor.submit(() -> processor.accept(list.subList(from, to))));
+                futures.add(pool.submit(() -> processor.accept(list.subList(from, to))));
             }
 
             for (Future<?> future : futures) {
@@ -31,7 +29,7 @@ public class ThreadUtils {
             throw new RuntimeException(e.getCause());
         }
         finally {
-            if (autoClose) executor.shutdown();
+            if (autoShutDown) pool.shutdown();
         }
     }
 
