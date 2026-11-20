@@ -44,13 +44,13 @@ public class CpuLogger extends AbstractHUDLogger {
         private static final Component CPU_NAME = Messenger.c("g CPU: " + StringUtils.stripEnd(Loggers.SYSTEM_INFO.getHardware().getProcessor().getProcessorIdentifier().getName(), " "));
         private static final String SPLIT = "g  | ";
         private static volatile double[] coreLoads = new double[0];
+        private static double cpuLoad = 0;
 
         static {
             ThreadUtils.THREAD_POOL.submit(CpuLoadCalculator::getCpuPerCoreLoad);
         }
 
         public static Component[] getCpuLoad(String option) {
-            double cpuLoad = OS_BEAN.getCpuLoad() * 100;
             String color = Messenger.heatmap_color(cpuLoad, 100);
             Component fullCoreText = Messenger.c("g Cpu Load: ", String.format("%s %.2f%%", color, cpuLoad));
             List<Component> resultText = new ArrayList<>();
@@ -104,6 +104,7 @@ public class CpuLogger extends AbstractHUDLogger {
                 finally {
                     coreLoads = processor.getProcessorCpuLoadBetweenTicks(prevTicks);
                     prevTicks = processor.getProcessorCpuLoadTicks();
+                    cpuLoad = OS_BEAN.getCpuLoad() * 100;
                 }
             }
         }
