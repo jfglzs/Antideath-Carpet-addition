@@ -31,5 +31,9 @@
   "carpet.rule.fixNbtFold.desc": "fixNbtFold",
   "carpet.rule.neverDropLeashBySpectator.desc": "leadNeverDropLeashBySpectator",
   "carpet.rule.multiThreadWorldSave.desc": "multiThreadWorldSave",
-  "carpet.rule.disableSystemReportRecordHardware.desc": "disableSystemReportRecordHardware"
+  "carpet.rule.disableSystemReportRecordHardware.desc": "disableSystemReportRecordHardware",
+  "carpet.rule.asynchronizedLoggers.name": "asynchronizedLogger",
+  "carpet.rule.asynchronizedLoggers.desc": "asynchronizedLogger",
+  "carpet.rule.asynchronizedLoggersUpdateFreq.name": "asynchronizedLoggersUpdateFreq",
+  "carpet.rule.asynchronizedLoggersUpdateFreq.desc": "ms"
 }

@@ -56,5 +56,11 @@ public class AcaSetting {
 
     @Rule(categories = {ACA, OPTIMIZATION})
     public static boolean disableSystemReportRecordHardware = false;
+
+    @Rule(categories = {ACA, OPTIMIZATION})
+    public static boolean asynchronizedLoggers = false;
+
+    @Rule(categories = {ACA, OPTIMIZATION}, options = {"1", "50", "500", "1000"})
+    public static int asynchronizedLoggersUpdateFreq = 1000;
 }
 
