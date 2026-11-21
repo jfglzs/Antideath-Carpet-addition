@@ -32,8 +32,8 @@
   "carpet.rule.neverDropLeashBySpectator.desc": "leadNeverDropLeashBySpectator",
   "carpet.rule.multiThreadWorldSave.desc": "multiThreadWorldSave",
   "carpet.rule.disableSystemReportRecordHardware.desc": "disableSystemReportRecordHardware",
-  "carpet.rule.asynchronizedLoggers.name": "asynchronizedLogger",
-  "carpet.rule.asynchronizedLoggers.desc": "asynchronizedLogger",
-  "carpet.rule.asynchronizedLoggersUpdateFreq.name": "asynchronizedLoggersUpdateFreq",
-  "carpet.rule.asynchronizedLoggersUpdateFreq.desc": "ms"
+  "carpet.rule.justInTimeLoggers.name": "justInTimeLoggers",
+  "carpet.rule.justInTimeLoggers.desc": "justInTimeLoggers",
+  "carpet.rule.justInTimeLoggersLeastUpdateFreq.name": "asynchronizedLoggersUpdateFreq",
+  "carpet.rule.justInTimeLoggersLeastUpdateFreq.desc": "ms"
 }

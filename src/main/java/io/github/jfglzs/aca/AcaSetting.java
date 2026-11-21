@@ -58,9 +58,9 @@ public class AcaSetting {
     public static boolean disableSystemReportRecordHardware = false;
 
     @Rule(categories = {ACA, OPTIMIZATION})
-    public static boolean asynchronizedLoggers = false;
+    public static boolean justInTimeLoggers = false;
 
-    @Rule(categories = {ACA, OPTIMIZATION}, options = {"1", "50", "500", "1000"})
-    public static int asynchronizedLoggersUpdateFreq = 1000;
+    @Rule(categories = {ACA, OPTIMIZATION}, options = {"1", "50", "500", "1000"},strict = false)
+    public static int justInTimeLoggersLeastUpdateFreq = 1000;
 }
 

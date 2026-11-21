@@ -26,23 +26,6 @@ public class ACAServer implements CarpetExtension {
     @Override
     public void onGameStarted() {
         this.initConfig();
-        ThreadUtils.THREAD_POOL.submit(() -> {
-            while (true) {
-                try {
-                    Thread.sleep(AcaSetting.asynchronizedLoggersUpdateFreq);
-                    if (AcaSetting.asynchronizedLoggers) {
-                        HUDController.update_hud(CarpetServer.minecraft_server, null);
-                    }
-                }
-                catch (InterruptedException e) {
-                    return;
-                }
-                catch (Exception e) {
-                    ACAEntry.LOGGER.error("Error while updating loggers", e);
-                    throw new RuntimeException(e);
-                }
-            }
-        });
         CarpetServer.settingsManager.parseSettingsClass(AcaSetting.class);
     }
 

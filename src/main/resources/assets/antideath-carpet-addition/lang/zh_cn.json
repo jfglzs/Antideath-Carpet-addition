@@ -23,8 +23,8 @@
   "carpet.rule.multiThreadWorldSave.desc": "使用多线程来加速世界保存 可以降低/save-all flush的卡顿",
   "carpet.rule.disableSystemReportRecordHardware.name": "禁止SystemReport记录硬件",
   "carpet.rule.disableSystemReportRecordHardware.desc": "可以降低频繁fillCrashReport时的卡顿\n你说这有什么用?\n切门玩家: 这可太有用了，切门终于不会卡主线程了(MacOS only)",
-  "carpet.rule.asynchronizedLoggers.name": "记录器异步化",
-  "carpet.rule.asynchronizedLoggers.desc": "使用异步线程来更新Carpet的记录器，开启此规则后，服务器卡顿时，记录器的更新频率将不受影响",
-  "carpet.rule.asynchronizedLoggersUpdateFreq.name": "记录器异步化-更新频率",
-  "carpet.rule.asynchronizedLoggersUpdateFreq.desc": "单位ms"
+  "carpet.rule.justInTimeLoggers.name": "即时记录器",
+  "carpet.rule.justInTimeLoggers.desc": "开启规则后，服务器主线程卡顿时，会适当加快记录器(logger)的更新速度",
+  "carpet.rule.justInTimeLoggersLeastUpdateFreq.name": "即时记录器-最小更新间隔",
+  "carpet.rule.justInTimeLoggersLeastUpdateFreq.desc": "单位ms"
 }
